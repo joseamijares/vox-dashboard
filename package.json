@@ -4,5 +4,20 @@
   "description": "VOX Trading Dashboard",
   "scripts": {
     "build": "echo 'Static site - no build needed'"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joseamijares/vox-dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joseamijares/vox-dashboard/issues"
+  },
+  "homepage": "https://github.com/joseamijares/vox-dashboard#readme",
+  "dependencies": {
+    "@vercel/functions": "^3.6.0"
   }
 }
