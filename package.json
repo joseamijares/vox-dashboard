@@ -1,0 +1,8 @@
+{
+  "name": "vox-dashboard",
+  "version": "1.0.0",
+  "description": "VOX Trading Dashboard",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'"
+  }
+}
