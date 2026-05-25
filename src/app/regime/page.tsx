@@ -1,0 +1,159 @@
+"use client";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Sidebar } from "@/components/sidebar";
+import { getMarketRegime, getMacroIndicators } from "@/lib/data";
+import { TrendingUp, Target, Shield, AlertTriangle } from "lucide-react";
+
+export default function RegimePage() {
+  const regime = getMarketRegime();
+  const indicators = getMacroIndicators();
+
+  const regimeConfig: Record<string, { color: string; emoji: string; description: string }> = {
+    EARLY_BULL: { color: "text-green-400", emoji: "🌱", description: "Buy quality pullbacks. Tight stops." },
+    BULL: { color: "text-green-500", emoji: "🐂", description: "Let winners run. Add on dips." },
+    LATE_BULL: { color: "text-amber-400", emoji: "⚠️", description: "Trim overvalued. Raise cash." },
+    SIDEWAYS: { color: "text-blue-400", emoji: "↔️", description: "Range trade. Sell premium." },
+    BEAR: { color: "text-red-400", emoji: "🐻", description: "Defensive. Short overvalued." },
+    CRASH: { color: "text-red-500", emoji: "💥", description: "Max cash. Buy fear." },
+    RECOVERY: { color: "text-green-400", emoji: "🌿", description: "Early cycle plays. Small size." },
+  };
+
+  const config = regimeConfig[regime.regime] || regimeConfig.EARLY_BULL;
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Sidebar />
+      <main className="lg:ml-64 p-4 lg:p-8">
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold tracking-tight">Market Regime</h1>
+          <p className="text-muted-foreground text-sm">
+            Current regime detection and strategy adjustments
+          </p>
+        </div>
+
+        {/* Regime Hero */}
+        <Card className="vox-card mb-8 border-green-500/30">
+          <CardContent className="p-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-4xl">{config.emoji}</span>
+                  <div>
+                    <h2 className={`text-3xl font-bold ${config.color}`}>
+                      {regime.regime}
+                    </h2>
+                    <p className="text-muted-foreground">{config.description}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="text-center">
+                  <div className="text-sm text-muted-foreground">Confidence</div>
+                  <div className="text-2xl font-bold font-mono">{regime.confidence}%</div>
+                </div>
+                <div className="w-px h-12 bg-border" />
+                <div className="text-center">
+                  <div className="text-sm text-muted-foreground">Cash Target</div>
+                  <div className="text-2xl font-bold font-mono text-blue-400">{regime.cashTarget}%</div>
+                </div>
+                <div className="w-px h-12 bg-border" />
+                <div className="text-center">
+                  <div className="text-sm text-muted-foreground">Max Positions</div>
+                  <div className="text-2xl font-bold font-mono">{regime.maxPositions}</div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Strategy + Sector Biases */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <Card className="vox-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                Stop Strategy
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="p-4 bg-muted/30 rounded-lg">
+                <p className="text-lg font-medium">{regime.stopStrategy}</p>
+              </div>
+              <div className="mt-4 space-y-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-amber-400" />
+                  <span>Never move stops down on winning positions</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-amber-400" />
+                  <span>Hard stops at entry price after +20% gain</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-amber-400" />
+                  <span>Trim 50% if grade drops below 50</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="vox-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-primary" />
+                Sector Biases
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {regime.sectorBiases.map((bias) => (
+                  <div key={bias.sector} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
+                    <span className="font-medium">{bias.sector}</span>
+                    <Badge
+                      variant={bias.bias === "BULLISH" ? "default" : bias.bias === "BEARISH" ? "destructive" : "secondary"}
+                    >
+                      {bias.bias}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Macro Indicators */}
+        <Card className="vox-card">
+          <CardHeader>
+            <CardTitle>Macro Indicators</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {indicators.map((ind) => (
+                <div key={ind.name} className="p-4 bg-muted/30 rounded-lg">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-sm text-muted-foreground">{ind.name}</span>
+                    <Badge
+                      variant={ind.status === "GOOD" ? "default" : ind.status === "WARNING" ? "secondary" : "destructive"}
+                      className="text-xs"
+                    >
+                      {ind.status}
+                    </Badge>
+                  </div>
+                  <div className="text-2xl font-bold font-mono">
+                    {ind.value}
+                    <span className={`text-sm ml-1 ${ind.change >= 0 ? "text-green-400" : "text-red-400"}`}>
+                      {ind.change >= 0 ? "+" : ""}{ind.change}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">{ind.description}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </main>
+    </div>
+  );
+}
