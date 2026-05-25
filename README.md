@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VOX Dashboard v9.1
 
-## Getting Started
+**Autonomous AI Trading Intelligence System**
 
-First, run the development server:
+Live: https://vox-dashboard-five.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## What is VOX?
+
+VOX is a fully autonomous trading intelligence system that:
+- **Monitors** your portfolio across 8 brokers
+- **Grades** every position with AI-powered scoring
+- **Generates** actionable trade plays
+- **Alerts** you via Telegram in real-time
+- **Learns** from your feedback to improve
+- **Self-upgrades** its own signal weights
+
+---
+
+## Architecture
+
+### 5-Layer AI Stack
+
+```
+┌─────────────────────────────────────────┐
+│  Layer 5: Autonomous Agent              │
+│  Self-running, 24/7 monitoring          │
+├─────────────────────────────────────────┤
+│  Layer 4: Tracking & Learning           │
+│  Play review, win rate tracking         │
+├─────────────────────────────────────────┤
+│  Layer 3: Play Generator                │
+│  BUY/SELL/TRIM/HOLD actions             │
+├─────────────────────────────────────────┤
+│  Layer 2: AI Signal Harness             │
+│  8 signal sources, composite scoring    │
+├─────────────────────────────────────────┤
+│  Layer 1: RAG Memory                    │
+│  119 vault files, semantic search       │
+└─────────────────────────────────────────┘
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Signal Sources (8)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Signal | Weight | Source |
+|--------|--------|--------|
+| Grade | 25% | Manual + AI scoring |
+| Technical | 15% | Position P&L momentum |
+| Fundamental | 15% | Revenue, growth |
+| Sentiment | 10% | Social + news |
+| Earnings | 10% | Surprise history |
+| Macro | 10% | Market regime |
+| LLM Council | 10% | Multi-model consensus |
+| Trump Policy | 5% | Policy impact |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Dashboard Pages (34)
 
-To learn more about Next.js, take a look at the following resources:
+### AI Section
+- **Plays** — AI-generated trade cards with entry/stop/target
+- **AI Insights** — LLM Council analysis
+- **RAG Intelligence** — Ask anything about your portfolio
+- **Play Review** — Rate AI recommendations, track outcomes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Overview
+- Dashboard, Portfolio, Grades, Watchlist
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Intelligence
+- Market Regime, Daily Briefing, Position Review, Trade Scorer
+- Sector Rotation, LLM Council
 
-## Deploy on Vercel
+### Feeds
+- Trump Tracker, Sentiment, Screener DB, Macro, Correlation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Tracking
+- Trade Journal, Earnings, Dividends, Risk Mgmt, Performance
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Tools
+- Position Sizer, Rebalancing, Compounding, Mistake Journal
+
+### Assets
+- Crypto, Options, Forex
+
+### Systems
+- Alert System, Commander, Weekly Summary, Trade Logger
+
+---
+
+## Scripts (Python)
+
+All scripts live in `~/.hermes/scripts/`:
+
+| Script | Purpose |
+|--------|---------|
+| `vox_ai_harness.py` | Signal fusion, composite scoring |
+| `vox_autonomous_agent.py` | 24/7 monitoring, discovery |
+| `vox_rag_system.py` | Vector DB, semantic search |
+| `vox_signal_enhancer.py` | Options flow, insider, short interest |
+| `vox_self_upgrade.py` | Self-analysis, weight optimization |
+| `vox_telegram_alerts.py` | Real-time Telegram notifications |
+| `vox_agentic_cron.sh` | 15-minute autonomous loop |
+| `vox_ai_pipeline.sh` | Sequential pipeline runner |
+
+---
+
+## Cost
+
+| Service | Cost/Month |
+|---------|-----------|
+| Polygon API (Starter) | $29 |
+| OpenRouter (embeddings) | ~$0.50 |
+| Vercel Hosting | $0 |
+| Telegram Bot | $0 |
+| **Total** | **~$34** |
+
+Portfolio: $195K. Breakeven: 0.02% better decisions/month.
+
+---
+
+## Setup
+
+```bash
+# Install dependencies
+cd ~/.hermes/scripts
+pip install chromadb sentence-transformers
+
+# Set API keys in ~/.hermes/.env
+POLYGON_API_KEY=xxx
+OPENROUTER_API_KEY=xxx
+TELEGRAM_BOT_TOKEN=xxx
+TELEGRAM_CHAT_ID=xxx
+
+# Run autonomous loop
+python3 vox_agentic_cron.sh
+```
+
+---
+
+## Cron Jobs
+
+| Job | Frequency | Purpose |
+|-----|-----------|---------|
+| `vox-agentic-loop` | Every 15 min | Full autonomous cycle |
+| `vox-premarket` | Daily 8:30 AM | Pre-market briefing |
+| `vox-intraday` | Every 30 min | Intraday monitoring |
+| `vox-close` | Daily 3:55 PM | End-of-day summary |
+
+---
+
+## GitHub
+
+https://github.com/joseamijares/vox-dashboard
+
+---
+
+## Version History
+
+- **v9.1** — Full agentic system, self-upgrading, Telegram alerts
+- **v9.0** — AI architecture, RAG, harness, autonomous agent
+- **v8.0** — React + Next.js migration, real broker data
+- **v7.2** — Static HTML dashboard, responsive design
+
+---
+
+Built for Jose Mijares. Work ONLY on VOX.
