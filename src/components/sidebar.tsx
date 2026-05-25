@@ -33,6 +33,12 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
+  { section: "AI", items: [
+    { href: "/plays", label: "Plays", icon: Target },
+    { href: "/ai-insights", label: "AI Insights", icon: Brain },
+    { href: "/rag", label: "RAG Intelligence", icon: BookOpen },
+    { href: "/play-review", label: "Play Review", icon: Activity },
+  ]},
   { section: "Overview", items: [
     { href: "/", label: "Dashboard", icon: LayoutDashboard },
     { href: "/portfolio", label: "Portfolio", icon: Briefcase },

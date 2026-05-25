@@ -11,38 +11,39 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Sidebar } from "@/components/sidebar";
-import { getPositions, getPortfolioSummary } from "@/lib/data";
+import { positions, portfolioSummary, getTotalValue, getTotalPnL, getAvgGrade } from "@/lib/data";
 import { useState, useMemo } from "react";
 import { Search, ArrowUpDown, TrendingUp, TrendingDown } from "lucide-react";
 
 export default function PortfolioPage() {
-  const positions = getPositions();
-  const summary = getPortfolioSummary();
+  const allPositions = positions;
+  const summary = portfolioSummary;
   const [search, setSearch] = useState("");
   const [brokerFilter, setBrokerFilter] = useState("all");
-  const [sectorFilter, setSectorFilter] = useState("all");
   const [sortBy, setSortBy] = useState<"value" | "pnl" | "grade">("value");
 
+  const totalValue = getTotalValue();
+  const totalPnl = getTotalPnL();
+  const avgGrade = getAvgGrade();
+
   const filtered = useMemo(() => {
-    let result = positions.filter((p) => {
+    let result = allPositions.filter((p) => {
       const matchesSearch = p.ticker.toLowerCase().includes(search.toLowerCase()) ||
-        p.name.toLowerCase().includes(search.toLowerCase());
+        (p.name || "").toLowerCase().includes(search.toLowerCase());
       const matchesBroker = brokerFilter === "all" || p.broker === brokerFilter;
-      const matchesSector = sectorFilter === "all" || p.sector === sectorFilter;
-      return matchesSearch && matchesBroker && matchesSector;
+      return matchesSearch && matchesBroker;
     });
 
     result.sort((a, b) => {
       if (sortBy === "value") return b.value - a.value;
-      if (sortBy === "pnl") return b.pnlPercent - a.pnlPercent;
-      return b.grade - a.grade;
+      if (sortBy === "pnl") return (b.pnlPct || b.unrealized_pnl_pct || 0) - (a.pnlPct || a.unrealized_pnl_pct || 0);
+      return (b.grade || 0) - (a.grade || 0);
     });
 
     return result;
-  }, [positions, search, brokerFilter, sectorFilter, sortBy]);
+  }, [allPositions, search, brokerFilter, sortBy]);
 
-  const brokers = [...new Set(positions.map((p) => p.broker))];
-  const sectors = [...new Set(positions.map((p) => p.sector))];
+  const brokers = [...new Set(allPositions.map((p) => p.broker))];
 
   const gradeColor = (grade: number) => {
     if (grade >= 70) return "bg-green-500/20 text-green-400 border-green-500/30";
@@ -52,15 +53,19 @@ export default function PortfolioPage() {
     return "bg-red-500/20 text-red-400 border-red-500/30";
   };
 
-  const actionBadge = (action: string) => {
-    switch (action) {
-      case "BUY": return "default";
-      case "HOLD": return "secondary";
-      case "TRIM": return "outline";
-      case "SELL": return "destructive";
-      case "CUT": return "destructive";
-      default: return "secondary";
-    }
+  const actionBadge = (grade: number) => {
+    if (grade >= 70) return "default";
+    if (grade >= 60) return "secondary";
+    if (grade >= 50) return "outline";
+    return "destructive";
+  };
+
+  const actionLabel = (grade: number) => {
+    if (grade >= 70) return "BUY";
+    if (grade >= 60) return "HOLD";
+    if (grade >= 50) return "HOLD";
+    if (grade >= 40) return "TRIM";
+    return "SELL";
   };
 
   return (
@@ -70,7 +75,7 @@ export default function PortfolioPage() {
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Portfolio</h1>
           <p className="text-muted-foreground text-sm">
-            {summary.positionCount} positions across {brokers.length} brokers
+            {allPositions.length} positions across {brokers.length} brokers
           </p>
         </div>
 
@@ -79,27 +84,27 @@ export default function PortfolioPage() {
           <Card className="vox-card">
             <CardContent className="p-6">
               <p className="text-sm text-muted-foreground">Total Value</p>
-              <p className="text-2xl font-bold font-mono">${summary.totalValue.toLocaleString()}</p>
+              <p className="text-2xl font-bold font-mono">${totalValue.toLocaleString()}</p>
             </CardContent>
           </Card>
           <Card className="vox-card">
             <CardContent className="p-6">
               <p className="text-sm text-muted-foreground">Total P&L</p>
-              <p className={`text-2xl font-bold font-mono ${summary.totalPnl >= 0 ? "text-green-400" : "text-red-400"}`}>
-                {summary.totalPnl >= 0 ? "+" : ""}${summary.totalPnl.toLocaleString()}
+              <p className={`text-2xl font-bold font-mono ${totalPnl >= 0 ? "text-green-400" : "text-red-400"}`}>
+                {totalPnl >= 0 ? "+" : ""}${totalPnl.toLocaleString()}
               </p>
             </CardContent>
           </Card>
           <Card className="vox-card">
             <CardContent className="p-6">
               <p className="text-sm text-muted-foreground">Avg Grade</p>
-              <p className="text-2xl font-bold font-mono text-green-400">{summary.avgGrade}</p>
+              <p className="text-2xl font-bold font-mono text-green-400">{avgGrade}</p>
             </CardContent>
           </Card>
           <Card className="vox-card">
             <CardContent className="p-6">
-              <p className="text-sm text-muted-foreground">Cash</p>
-              <p className="text-2xl font-bold font-mono text-blue-400">${summary.cash.toLocaleString()}</p>
+              <p className="text-sm text-muted-foreground">Grand Total</p>
+              <p className="text-2xl font-bold font-mono text-blue-400">${summary.totalAUM.toLocaleString()}</p>
             </CardContent>
           </Card>
         </div>
@@ -123,17 +128,6 @@ export default function PortfolioPage() {
               <SelectItem value="all">All Brokers</SelectItem>
               {brokers.map((b) => (
                 <SelectItem key={b} value={b}>{b}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={sectorFilter} onValueChange={(v) => setSectorFilter(v || "all")}>
-            <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder="Sector" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Sectors</SelectItem>
-              {sectors.map((s) => (
-                <SelectItem key={s} value={s}>{s}</SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -166,33 +160,38 @@ export default function PortfolioPage() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((p) => (
-                  <tr key={p.ticker} className="border-b border-border/50 hover:bg-muted/30">
+                {filtered.map((p) => {
+                  const pnl = p.unrealized_pnl || p.pnl || 0;
+                  const pnlPct = p.unrealized_pnl_pct || p.pnlPct || 0;
+                  const grade = p.grade || 0;
+                  return (
+                  <tr key={`${p.ticker}-${p.broker}`} className="border-b border-border/50 hover:bg-muted/30">
                     <td className="p-4">
                       <div className="font-semibold">{p.ticker}</div>
-                      <div className="text-xs text-muted-foreground">{p.name}</div>
+                      <div className="text-xs text-muted-foreground">{p.name || p.sector}</div>
                     </td>
                     <td className="p-4 text-right font-mono">{p.shares}</td>
-                    <td className="p-4 text-right font-mono">${p.currentPrice}</td>
+                    <td className="p-4 text-right font-mono">${p.price}</td>
                     <td className="p-4 text-right font-mono">${p.value.toLocaleString()}</td>
                     <td className="p-4 text-right">
-                      <div className={`flex items-center justify-end gap-1 ${p.pnl >= 0 ? "text-green-400" : "text-red-400"}`}>
-                        {p.pnl >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                        <span className="font-mono">{p.pnlPercent}%</span>
+                      <div className={`flex items-center justify-end gap-1 ${pnl >= 0 ? "text-green-400" : "text-red-400"}`}>
+                        {pnl >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                        <span className="font-mono">{pnlPct}%</span>
                       </div>
-                      <div className="text-xs text-muted-foreground font-mono">${p.pnl.toLocaleString()}</div>
+                      <div className="text-xs text-muted-foreground font-mono">${pnl.toLocaleString()}</div>
                     </td>
                     <td className="p-4 text-center">
-                      <Badge variant="outline" className={gradeColor(p.grade)}>
-                        {p.grade}
+                      <Badge variant="outline" className={gradeColor(grade)}>
+                        {grade || 'N/A'}
                       </Badge>
                     </td>
                     <td className="p-4 text-center">
-                      <Badge variant={actionBadge(p.action)}>{p.action}</Badge>
+                      <Badge variant={actionBadge(grade)}>{actionLabel(grade)}</Badge>
                     </td>
                     <td className="p-4 text-muted-foreground">{p.broker}</td>
                   </tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>

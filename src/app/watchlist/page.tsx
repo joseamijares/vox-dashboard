@@ -4,11 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Sidebar } from "@/components/sidebar";
-import { getMonitoredPlays } from "@/lib/data";
+import { monitoredPlaysList } from "@/lib/data";
 import { Eye, Target, AlertTriangle, CheckCircle } from "lucide-react";
 
 export default function WatchlistPage() {
-  const plays = getMonitoredPlays();
+  const plays = monitoredPlaysList;
 
   const statusIcon = (status: string) => {
     switch (status) {
@@ -38,7 +38,7 @@ export default function WatchlistPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {plays.map((play) => (
+          {plays.map((play: any) => (
             <Card key={play.ticker} className="vox-card">
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-4">

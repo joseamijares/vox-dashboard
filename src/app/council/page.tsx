@@ -4,11 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Sidebar } from "@/components/sidebar";
-import { getLLMConsensus } from "@/lib/data";
+import { llmCouncil } from "@/lib/data";
 import { Brain, TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 export default function CouncilPage() {
-  const consensus = getLLMConsensus();
+  const consensus = llmCouncil;
 
   return (
     <div className="min-h-screen bg-background">
@@ -22,7 +22,7 @@ export default function CouncilPage() {
         </div>
 
         <div className="space-y-6">
-          {consensus.map((c) => (
+          {consensus.consensus.map((c: any) => (
             <Card key={c.ticker} className="vox-card">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
@@ -85,7 +85,7 @@ export default function CouncilPage() {
                 {/* Individual Votes */}
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold">Individual Model Votes</h4>
-                  {c.votes.map((vote) => (
+                  {c.models.map((vote: any) => (
                     <div
                       key={vote.model}
                       className="p-3 bg-muted/30 rounded-lg"

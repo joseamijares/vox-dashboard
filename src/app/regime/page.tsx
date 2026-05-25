@@ -4,12 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Sidebar } from "@/components/sidebar";
-import { getMarketRegime, getMacroIndicators } from "@/lib/data";
+import { marketRegime } from "@/lib/data";
 import { TrendingUp, Target, Shield, AlertTriangle } from "lucide-react";
 
 export default function RegimePage() {
-  const regime = getMarketRegime();
-  const indicators = getMacroIndicators();
+  const regime = marketRegime;
+  const indicators = marketRegime.macroIndicators;
 
   const regimeConfig: Record<string, { color: string; emoji: string; description: string }> = {
     EARLY_BULL: { color: "text-green-400", emoji: "🌱", description: "Buy quality pullbacks. Tight stops." },
@@ -57,12 +57,12 @@ export default function RegimePage() {
                 <div className="w-px h-12 bg-border" />
                 <div className="text-center">
                   <div className="text-sm text-muted-foreground">Cash Target</div>
-                  <div className="text-2xl font-bold font-mono text-blue-400">{regime.cashTarget}%</div>
+                  <div className="text-2xl font-bold font-mono text-blue-400">{regime.cashTarget}</div>
                 </div>
                 <div className="w-px h-12 bg-border" />
                 <div className="text-center">
-                  <div className="text-sm text-muted-foreground">Max Positions</div>
-                  <div className="text-2xl font-bold font-mono">{regime.maxPositions}</div>
+                  <div className="text-sm text-muted-foreground">Stop Strategy</div>
+                  <div className="text-2xl font-bold font-mono">{regime.stopStrategy}</div>
                 </div>
               </div>
             </div>
@@ -75,12 +75,12 @@ export default function RegimePage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-primary" />
-                Stop Strategy
+                Strategy Bias
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="p-4 bg-muted/30 rounded-lg">
-                <p className="text-lg font-medium">{regime.stopStrategy}</p>
+                <p className="text-lg font-medium">{regime.bias}</p>
               </div>
               <div className="mt-4 space-y-2 text-sm">
                 <div className="flex items-center gap-2">
@@ -108,14 +108,19 @@ export default function RegimePage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {regime.sectorBiases.map((bias) => (
+                {regime.sectorBiases.map((bias: any) => (
                   <div key={bias.sector} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
                     <span className="font-medium">{bias.sector}</span>
-                    <Badge
-                      variant={bias.bias === "BULLISH" ? "default" : bias.bias === "BEARISH" ? "destructive" : "secondary"}
-                    >
-                      {bias.bias}
-                    </Badge>
+                    <div className="flex items-center gap-2">
+                      <Badge
+                        variant={bias.sentiment === "bullish" ? "default" : bias.sentiment === "bearish" ? "destructive" : "secondary"}
+                      >
+                        {bias.bias}
+                      </Badge>
+                      <div className="w-16">
+                        <Progress value={bias.strength} className="h-1.5" />
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -130,24 +135,21 @@ export default function RegimePage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {indicators.map((ind) => (
+              {indicators.map((ind: any) => (
                 <div key={ind.name} className="p-4 bg-muted/30 rounded-lg">
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-sm text-muted-foreground">{ind.name}</span>
                     <Badge
-                      variant={ind.status === "GOOD" ? "default" : ind.status === "WARNING" ? "secondary" : "destructive"}
+                      variant={ind.trend === "down" ? "default" : ind.trend === "up" ? "destructive" : "secondary"}
                       className="text-xs"
                     >
-                      {ind.status}
+                      {ind.trend}
                     </Badge>
                   </div>
                   <div className="text-2xl font-bold font-mono">
                     {ind.value}
-                    <span className={`text-sm ml-1 ${ind.change >= 0 ? "text-green-400" : "text-red-400"}`}>
-                      {ind.change >= 0 ? "+" : ""}{ind.change}
-                    </span>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">{ind.description}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{ind.impact}</p>
                 </div>
               ))}
             </div>

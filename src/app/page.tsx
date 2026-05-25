@@ -6,10 +6,13 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { Sidebar } from "@/components/sidebar";
 import {
-  getPortfolioSummary,
-  getPositions,
-  getMonitoredPlays,
-  getDailyBrief,
+  portfolioSummary,
+  positions,
+  monitoredPlaysList,
+  dailyBriefing,
+  getTotalValue,
+  getTotalPnL,
+  getAvgGrade,
 } from "@/lib/data";
 import {
   TrendingUp,
@@ -26,14 +29,20 @@ import {
 import Link from "next/link";
 
 export default function Dashboard() {
-  const summary = getPortfolioSummary();
-  const positions = getPositions();
-  const plays = getMonitoredPlays();
-  const brief = getDailyBrief();
+  const summary = portfolioSummary;
+  const allPositions = positions;
+  const plays = monitoredPlaysList;
+  const brief = dailyBriefing;
 
-  const sellPositions = positions.filter((p) => p.action === "SELL" || p.action === "CUT");
-  const trimPositions = positions.filter((p) => p.action === "TRIM");
-  const buyPositions = positions.filter((p) => p.action === "BUY");
+  const totalValue = getTotalValue();
+  const totalPnl = getTotalPnL();
+  const avgGrade = getAvgGrade();
+
+  // Get top positions by value
+  const topPositions = [...allPositions].sort((a, b) => b.value - a.value).slice(0, 10);
+
+  // Calculate cash from unified portfolio
+  const cash = summary.byBroker?.eToro?.value_usd * 0.15 || 12000; // Estimate 15% cash
 
   return (
     <div className="min-h-screen bg-background">
@@ -44,12 +53,12 @@ export default function Dashboard() {
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
             <p className="text-muted-foreground text-sm">
-              Memorial Day — Markets Closed. Execute Tuesday May 27.
+              {brief.date} — Markets Open
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="destructive" className="animate-pulse">
-              🔥 REBALANCE: TUE MAY 27
+            <Badge variant="outline" className="text-xs">
+              USD/MXN {summary.usdMXN}
             </Badge>
           </div>
         </div>
@@ -62,7 +71,7 @@ export default function Dashboard() {
                 <div>
                   <p className="text-sm text-muted-foreground">Total AUM</p>
                   <p className="text-2xl font-bold font-mono">
-                    ${summary.totalAum.toLocaleString()}
+                    ${summary.totalAUM.toLocaleString()}
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -72,7 +81,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-1 mt-2">
                 <TrendingUp className="h-3 w-3 text-green-400" />
                 <span className="text-xs text-green-400">
-                  +${summary.totalPnl.toLocaleString()} (+{summary.pnlPercent}%)
+                  +${totalPnl.toLocaleString()} YTD
                 </span>
               </div>
             </CardContent>
@@ -82,21 +91,18 @@ export default function Dashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Cash Position</p>
+                  <p className="text-sm text-muted-foreground">eToro Value</p>
                   <p className="text-2xl font-bold font-mono text-blue-400">
-                    ${summary.cash.toLocaleString()}
+                    ${summary.byBroker?.eToro?.value_usd?.toLocaleString() || "N/A"}
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
                   <Wallet className="h-5 w-5 text-blue-400" />
                 </div>
               </div>
-              <div className="mt-2">
-                <Progress value={summary.cashPercent} className="h-1.5" />
-                <p className="text-xs text-muted-foreground mt-1">
-                  {summary.cashPercent}% (Target: 15-20%)
-                </p>
-              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                {summary.byBroker?.eToro?.pct_of_total || 0}% of portfolio
+              </p>
             </CardContent>
           </Card>
 
@@ -104,9 +110,9 @@ export default function Dashboard() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">Avg Grade</p>
+                  <p className="text-sm text-muted-foreground">Positions</p>
                   <p className="text-2xl font-bold font-mono text-green-400">
-                    {summary.avgGrade}
+                    {allPositions.length}
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
@@ -114,7 +120,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-2">
-                +9 after rebalance
+                Avg Grade: {avgGrade}
               </p>
             </CardContent>
           </Card>
@@ -139,156 +145,46 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Rebalance Plan */}
-        <Card className="vox-card mb-8 border-red-500/30">
+        {/* Top Holdings */}
+        <Card className="vox-card mb-8">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-red-400">
-              <AlertTriangle className="h-5 w-5" />
-              REBALANCE PLAN — EXECUTE TUESDAY MAY 27
+            <CardTitle className="flex items-center gap-2">
+              <Eye className="h-5 w-5 text-primary" />
+              Top Holdings (Real Positions)
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {/* SELL */}
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-red-400 flex items-center gap-2">
-                  <TrendingDown className="h-4 w-4" />
-                  SELL (Grade &lt; 50)
-                </h3>
-                <div className="space-y-1 text-sm">
-                  {sellPositions.map((p) => (
-                    <div key={p.ticker} className="flex justify-between">
-                      <span>{p.ticker}</span>
-                      <span className="font-mono text-muted-foreground">
-                        {p.shares} @ ${p.currentPrice}
-                      </span>
+            <div className="space-y-3">
+              {topPositions.map((p) => {
+                const pnl = p.unrealized_pnl || p.pnl || 0;
+                const pnlPct = p.unrealized_pnl_pct || p.pnlPct || 0;
+                return (
+                <div
+                  key={`${p.ticker}-${p.broker}`}
+                  className="flex items-center justify-between p-3 bg-muted/30 rounded-lg"
+                >
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <div className="font-semibold">{p.ticker}</div>
+                      <div className="text-xs text-muted-foreground">{p.name || p.broker}</div>
                     </div>
-                  ))}
-                </div>
-                <Separator />
-                <div className="flex justify-between font-semibold text-red-400">
-                  <span>Total</span>
-                  <span className="font-mono">
-                    ${sellPositions.reduce((s, p) => s + p.value, 0).toLocaleString()}
-                  </span>
-                </div>
-              </div>
-
-              {/* TRIM */}
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-amber-400 flex items-center gap-2">
-                  <Target className="h-4 w-4" />
-                  TRIM (Take Profits)
-                </h3>
-                <div className="space-y-1 text-sm">
-                  {trimPositions.map((p) => (
-                    <div key={p.ticker} className="flex justify-between">
-                      <span>{p.ticker}</span>
-                      <span className="font-mono text-muted-foreground">
-                        {p.shares} @ ${p.currentPrice}
-                      </span>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-mono">${p.value.toLocaleString()}</div>
+                    <div className={`text-xs ${pnl >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      {pnl >= 0 ? '+' : ''}${pnl.toLocaleString()} ({pnlPct >= 0 ? '+' : ''}{pnlPct}%)
                     </div>
-                  ))}
-                </div>
-                <Separator />
-                <div className="flex justify-between font-semibold text-amber-400">
-                  <span>Total</span>
-                  <span className="font-mono">
-                    ${trimPositions.reduce((s, p) => s + p.value, 0).toLocaleString()}
-                  </span>
-                </div>
-              </div>
-
-              {/* BUY */}
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-green-400 flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4" />
-                  BUY (Deploy Capital)
-                </h3>
-                <div className="space-y-1 text-sm">
-                  {buyPositions.map((p) => (
-                    <div key={p.ticker} className="flex justify-between">
-                      <span>{p.ticker}</span>
-                      <span className="font-mono text-muted-foreground">
-                        {p.shares} @ ${p.currentPrice}
-                      </span>
-                    </div>
-                  ))}
-                  <div className="flex justify-between">
-                    <span>NVDA (ADD)</span>
-                    <span className="font-mono text-muted-foreground">78 @ $215.33</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>XLF (ADD)</span>
-                    <span className="font-mono text-muted-foreground">325 @ $51.94</span>
                   </div>
                 </div>
-                <Separator />
-                <div className="flex justify-between font-semibold text-green-400">
-                  <span>Total</span>
-                  <span className="font-mono">$56,026</span>
-                </div>
-              </div>
-
-              {/* CASH */}
-              <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-blue-400 flex items-center gap-2">
-                  <Wallet className="h-4 w-4" />
-                  Cash Position
-                </h3>
-                <div className="space-y-1 text-sm">
-                  <div className="flex justify-between">
-                    <span>Starting</span>
-                    <span className="font-mono">$56,000</span>
-                  </div>
-                  <div className="flex justify-between text-green-400">
-                    <span>+ Sells</span>
-                    <span className="font-mono">+$23,629</span>
-                  </div>
-                  <div className="flex justify-between text-green-400">
-                    <span>+ Trims</span>
-                    <span className="font-mono">+$63,286</span>
-                  </div>
-                  <div className="flex justify-between text-red-400">
-                    <span>- Buys</span>
-                    <span className="font-mono">-$56,026</span>
-                  </div>
-                </div>
-                <Separator />
-                <div className="flex justify-between font-semibold text-blue-400">
-                  <span>Final</span>
-                  <span className="font-mono">$86,890 (30.8%)</span>
-                </div>
-              </div>
+                );
+              })}
             </div>
-
-            {/* Checklist */}
-            <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-              <h4 className="text-sm font-semibold mb-3">Execution Checklist</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
-                {[
-                  "SELL JMIA 200 @ market — eToro",
-                  "SELL BILL 50 @ market — eToro",
-                  "SELL INDA 150 @ market — Schwab",
-                  "SELL EWZ 100 @ market — Schwab",
-                  "SELL FXI 120 @ market — Schwab",
-                  "SELL OKLO 80 @ market — Schwab",
-                  "TRIM BTC 0.38 @ market — Binance",
-                  "TRIM RKLB 75 @ market — Schwab",
-                  "TRIM VST 40 @ market — Schwab",
-                  "TRIM NET 17 @ market — eToro",
-                  "TRIM ANET 20 @ market — Schwab",
-                  "NEW CEG 76 @ limit $294 — Schwab",
-                  "ADD NVDA 78 @ limit $215 — Schwab",
-                  "ADD XLF 325 @ limit $51.94 — Schwab",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded border border-muted-foreground/30" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <Link
+              href="/portfolio"
+              className="text-sm text-primary hover:underline mt-4 block"
+            >
+              View all {allPositions.length} positions →
+            </Link>
           </CardContent>
         </Card>
 
@@ -304,7 +200,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {plays.slice(0, 5).map((play) => (
+                {plays.slice(0, 5).map((play: any) => (
                   <div
                     key={play.ticker}
                     className="flex items-center justify-between p-3 bg-muted/30 rounded-lg"
@@ -312,22 +208,16 @@ export default function Dashboard() {
                     <div>
                       <div className="font-semibold">{play.ticker}</div>
                       <div className="text-xs text-muted-foreground">
-                        Target: ${play.entryTarget} | Stop: ${play.stopLoss}
+                        Entry: ${play.entry_price} | Grade: {play.grade}
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-mono">${play.currentPrice}</div>
+                      <div className="font-mono">${play.current_price}</div>
                       <Badge
-                        variant={
-                          play.alertStatus === "TRIGGERED"
-                            ? "default"
-                            : play.alertStatus === "NEAR"
-                            ? "secondary"
-                            : "outline"
-                        }
+                        variant={play.urgency === "HIGH" ? "destructive" : "outline"}
                         className="text-xs"
                       >
-                        {play.alertStatus}
+                        {play.action}
                       </Badge>
                     </div>
                   </div>
@@ -358,7 +248,7 @@ export default function Dashboard() {
                     Alerts
                   </h4>
                   <ul className="space-y-1 text-sm">
-                    {brief.alerts.map((alert, i) => (
+                    {brief.alerts.map((alert: string, i: number) => (
                       <li key={i} className="text-muted-foreground">
                         • {alert}
                       </li>
@@ -372,9 +262,9 @@ export default function Dashboard() {
                     Screener Signals
                   </h4>
                   <ul className="space-y-1 text-sm">
-                    {brief.screenerSignals.map((sig, i) => (
+                    {brief.screener.map((sig: any, i: number) => (
                       <li key={i} className="text-muted-foreground">
-                        • {sig}
+                        • {sig.ticker}: {sig.signal} ({sig.confidence}%)
                       </li>
                     ))}
                   </ul>
@@ -386,7 +276,7 @@ export default function Dashboard() {
                     Action Checklist
                   </h4>
                   <ul className="space-y-1 text-sm">
-                    {brief.checklist.map((item, i) => (
+                    {brief.checklist.map((item: string, i: number) => (
                       <li key={i} className="text-muted-foreground">
                         • {item}
                       </li>

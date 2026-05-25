@@ -4,12 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Sidebar } from "@/components/sidebar";
-import { getDailyBrief, getMacroIndicators } from "@/lib/data";
+import { dailyBriefing, marketRegime } from "@/lib/data";
 import { Newspaper, AlertTriangle, TrendingUp, Target, CheckCircle, Calendar } from "lucide-react";
 
 export default function BriefingPage() {
-  const brief = getDailyBrief();
-  const macro = getMacroIndicators();
+  const brief = dailyBriefing;
+  const macro = marketRegime.macroIndicators;
 
   return (
     <div className="min-h-screen bg-background">
@@ -37,10 +37,10 @@ export default function BriefingPage() {
                   <div className="text-xs text-muted-foreground">{ind.name}</div>
                   <div className="text-xl font-bold font-mono">{ind.value}</div>
                   <Badge
-                    variant={ind.status === "GOOD" ? "default" : ind.status === "WARNING" ? "secondary" : "destructive"}
+                    variant={ind.trend === "down" ? "default" : ind.trend === "up" ? "destructive" : "secondary"}
                     className="text-xs mt-1"
                   >
-                    {ind.status}
+                    {ind.trend}
                   </Badge>
                 </div>
               ))}
@@ -78,10 +78,10 @@ export default function BriefingPage() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
-                {brief.screenerSignals.map((sig, i) => (
+                {brief.screener.map((sig: any, i: number) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <TrendingUp className="h-4 w-4 text-green-400 mt-0.5 shrink-0" />
-                    <span>{sig}</span>
+                    <span>{sig.ticker}: {sig.signal} ({sig.confidence}%)</span>
                   </li>
                 ))}
               </ul>
@@ -100,10 +100,10 @@ export default function BriefingPage() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
-                {brief.contrarianOpps.map((opp, i) => (
+                {brief.contrarian.map((opp: any, i: number) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <Target className="h-4 w-4 text-blue-400 mt-0.5 shrink-0" />
-                    <span>{opp}</span>
+                    <span>{opp.ticker}: {opp.signal} (RSI {opp.rsi})</span>
                   </li>
                 ))}
               </ul>

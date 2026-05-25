@@ -4,18 +4,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Sidebar } from "@/components/sidebar";
-import { getGradeBuckets, getPositions } from "@/lib/data";
+import { getGradeBuckets, positions } from "@/lib/data";
 
 export default function GradesPage() {
   const buckets = getGradeBuckets();
-  const positions = getPositions();
+  const allPositions = positions;
 
   const gradeGroups = [
-    { label: "Strong Buy", range: [70, 100], color: "#22c55e", positions: positions.filter((p) => p.grade >= 70) },
-    { label: "Buy", range: [60, 70], color: "#3b82f6", positions: positions.filter((p) => p.grade >= 60 && p.grade < 70) },
-    { label: "Hold", range: [50, 60], color: "#f59e0b", positions: positions.filter((p) => p.grade >= 50 && p.grade < 60) },
-    { label: "Weak Hold", range: [40, 50], color: "#f97316", positions: positions.filter((p) => p.grade >= 40 && p.grade < 50) },
-    { label: "Sell", range: [0, 40], color: "#ef4444", positions: positions.filter((p) => p.grade < 40) },
+    { label: "Strong Buy", range: [70, 100], color: "#22c55e", positions: allPositions.filter((p) => (p.grade || 0) >= 70) },
+    { label: "Buy", range: [60, 70], color: "#3b82f6", positions: allPositions.filter((p) => { const g = p.grade || 0; return g >= 60 && g < 70; }) },
+    { label: "Hold", range: [50, 60], color: "#f59e0b", positions: allPositions.filter((p) => { const g = p.grade || 0; return g >= 50 && g < 60; }) },
+    { label: "Weak Hold", range: [40, 50], color: "#f97316", positions: allPositions.filter((p) => { const g = p.grade || 0; return g >= 40 && g < 50; }) },
+    { label: "Sell", range: [0, 40], color: "#ef4444", positions: allPositions.filter((p) => (p.grade || 0) < 40) },
   ];
 
   return (
@@ -119,7 +119,7 @@ export default function GradesPage() {
                               backgroundColor: `${group.color}20`,
                             }}
                           >
-                            {p.grade}
+                            {p.grade || 'N/A'}
                           </Badge>
                         </div>
                         <div className="mt-2 text-xs text-muted-foreground">

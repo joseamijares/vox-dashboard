@@ -3,11 +3,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Sidebar } from "@/components/sidebar";
-import { getAlerts } from "@/lib/data";
+import { alerts } from "@/lib/data";
 import { AlertTriangle, Bell, CheckCircle, Clock } from "lucide-react";
 
 export default function AlertsPage() {
-  const alerts = getAlerts();
+  const allAlerts = alerts;
 
   const typeIcon = (type: string) => {
     switch (type) {
@@ -41,7 +41,7 @@ export default function AlertsPage() {
         </div>
 
         <div className="space-y-3">
-          {alerts.map((alert) => (
+          {allAlerts.map((alert: any) => (
             <Card
               key={alert.id}
               className={`vox-card ${alert.triggered ? "border-green-500/30" : "border-border"}`}
