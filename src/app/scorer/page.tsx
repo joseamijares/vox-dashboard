@@ -3,28 +3,30 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { positions } from "@/lib/data";
 import { Star, TrendingUp, TrendingDown, AlertTriangle } from "lucide-react";
 
 export default function ScorerPage() {
-  const graded = positions.filter((p) => (p.grade || 0) > 0);
-  const ungraded = positions.filter((p) => (p.grade || 0) === 0);
+  const graded = positions.filter((p: any) => (p.grade || 0) > 0);
+  const ungraded = positions.filter((p: any) => (p.grade || 0) === 0);
 
   const avgGrade = graded.length > 0
-    ? graded.reduce((s, p) => s + (p.grade || 0), 0) / graded.length
+    ? graded.reduce((s: number, p: any) => s + (p.grade || 0), 0) / graded.length
     : 0;
 
-  const strongBuy = graded.filter((p) => (p.grade || 0) >= 70);
-  const buy = graded.filter((p) => (p.grade || 0) >= 60 && (p.grade || 0) < 70);
-  const hold = graded.filter((p) => (p.grade || 0) >= 50 && (p.grade || 0) < 60);
-  const weak = graded.filter((p) => (p.grade || 0) >= 40 && (p.grade || 0) < 50);
-  const sell = graded.filter((p) => (p.grade || 0) > 0 && (p.grade || 0) < 40);
+  const strongBuy = graded.filter((p: any) => (p.grade || 0) >= 70);
+  const buy = graded.filter((p: any) => (p.grade || 0) >= 60 && (p.grade || 0) < 70);
+  const hold = graded.filter((p: any) => (p.grade || 0) >= 50 && (p.grade || 0) < 60);
+  const weak = graded.filter((p: any) => (p.grade || 0) >= 40 && (p.grade || 0) < 50);
+  const sell = graded.filter((p: any) => (p.grade || 0) > 0 && (p.grade || 0) < 40);
 
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Trade Scorer</h1>
           <p className="text-muted-foreground text-sm">
@@ -101,9 +103,9 @@ export default function ScorerPage() {
             <CardContent>
               <div className="space-y-2">
                 {graded
-                  .sort((a, b) => (a.grade || 0) - (b.grade || 0))
+                  .sort((a: any, b: any) => (a.grade || 0) - (b.grade || 0))
                   .slice(0, 10)
-                  .map((p) => (
+                  .map((p: any) => (
                     <div key={`${p.ticker}-${p.broker}`} className="flex items-center justify-between p-2 bg-red-500/10 rounded">
                       <div>
                         <span className="font-semibold text-sm">{p.ticker}</span>

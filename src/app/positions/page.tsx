@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { positions } from "@/lib/data";
 import { useState } from "react";
@@ -12,21 +13,22 @@ export default function PositionsPage() {
   const [filter, setFilter] = useState("");
   const [brokerFilter, setBrokerFilter] = useState("ALL");
 
-  const brokers = ["ALL", ...Array.from(new Set(positions.map((p) => p.broker)))];
+  const brokers = ["ALL", ...Array.from(new Set(positions.map((p: any) => p.broker)))] as string[];
 
-  const filtered = positions.filter((p) => {
+  const filtered = positions.filter((p: any) => {
     const matchesSearch = p.ticker.toLowerCase().includes(filter.toLowerCase());
     const matchesBroker = brokerFilter === "ALL" || p.broker === brokerFilter;
     return matchesSearch && matchesBroker;
   });
 
-  const totalValue = filtered.reduce((s, p) => s + p.value, 0);
-  const totalPnl = filtered.reduce((s, p) => s + (p.unrealized_pnl || 0), 0);
+  const totalValue = filtered.reduce((s: number, p: any) => s + p.value, 0);
+  const totalPnl = filtered.reduce((s: number, p: any) => s + (p.unrealized_pnl || 0), 0);
 
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">All Positions</h1>
           <p className="text-muted-foreground text-sm">
@@ -71,8 +73,8 @@ export default function PositionsPage() {
                 </thead>
                 <tbody>
                   {filtered
-                    .sort((a, b) => b.value - a.value)
-                    .map((p) => (
+                    .sort((a: any, b: any) => b.value - a.value)
+                    .map((p: any) => (
                       <tr key={`${p.ticker}-${p.broker}`} className="border-b border-border/50 hover:bg-muted/30">
                         <td className="p-4 font-semibold">{p.ticker}</td>
                         <td className="p-4">

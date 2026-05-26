@@ -1,73 +1,191 @@
 {
-  "date": "2026-05-24T20:55:40.843311",
+  "generated_at": "2026-05-26T14:00:26.231184+00:00",
   "portfolio": {
-    "total_value": 94083.37999999999,
-    "total_pnl": 0,
-    "positions_count": 59
+    "total_value": 197818.36,
+    "total_pnl": 55141.61,
+    "positions_count": 141,
+    "avg_grade": 51.1,
+    "usd_mxn": 17.28
   },
-  "top_movers": [
-    {
-      "ticker": "BTC",
-      "broker": "Binance",
-      "pnl_pct": 0,
-      "value": 11761.19
-    },
-    {
-      "ticker": "VOO",
-      "broker": "eToro",
-      "pnl_pct": 0,
-      "value": 11085.38
-    },
-    {
-      "ticker": "BTC",
-      "broker": "eToro",
-      "pnl_pct": 0,
-      "value": 6095.97
-    },
-    {
-      "ticker": "ETH",
-      "broker": "eToro",
-      "pnl_pct": 0,
-      "value": 5574.49
-    },
-    {
-      "ticker": "ETH",
-      "broker": "Binance",
-      "pnl_pct": 0,
-      "value": 5218.02
-    },
-    {
-      "ticker": "AMD",
-      "broker": "GBM",
-      "pnl_pct": 0,
-      "value": 4152.0
-    },
-    {
-      "ticker": "META",
-      "broker": "GBM",
-      "pnl_pct": 0,
-      "value": 3032.98
-    },
-    {
-      "ticker": "OSCR",
-      "broker": "GBM",
-      "pnl_pct": 0,
-      "value": 2601.44
-    },
-    {
-      "ticker": "APH",
-      "broker": "GBM",
-      "pnl_pct": 0,
-      "value": 2394.64
-    },
-    {
-      "ticker": "QQQ",
-      "broker": "eToro",
-      "pnl_pct": 0,
-      "value": 2387.19
-    }
-  ],
-  "active_plays": [],
-  "alerts": [],
-  "recommendations": []
+  "grades": {
+    "strong": 17,
+    "moderate": 21,
+    "weak": 97,
+    "ungraded": 0
+  },
+  "actions": {
+    "sell_now": [
+      {
+        "ticker": "BTC",
+        "value": 16812.2644281929,
+        "grade": 45,
+        "brokers": [
+          "eToro",
+          "Binance"
+        ]
+      },
+      {
+        "ticker": "SHOP",
+        "value": 6877.095637070115,
+        "grade": 40,
+        "brokers": [
+          "eToro",
+          "GBM Main"
+        ]
+      },
+      {
+        "ticker": "META",
+        "value": 6079.372739082526,
+        "grade": 40,
+        "brokers": [
+          "GBM Main",
+          "GBM USA"
+        ]
+      },
+      {
+        "ticker": "MELI",
+        "value": 3372.828974076437,
+        "grade": 40,
+        "brokers": [
+          "GBM Main"
+        ]
+      },
+      {
+        "ticker": "PLTR",
+        "value": 1801.54,
+        "grade": 40,
+        "brokers": [
+          "eToro"
+        ]
+      },
+      {
+        "ticker": "TRX",
+        "value": 1617.5699999999995,
+        "grade": 45,
+        "brokers": [
+          "eToro"
+        ]
+      },
+      {
+        "ticker": "XRP",
+        "value": 1549.5184456169618,
+        "grade": 45,
+        "brokers": [
+          "eToro",
+          "Binance"
+        ]
+      },
+      {
+        "ticker": "JMIA",
+        "value": 585.13,
+        "grade": 40,
+        "brokers": [
+          "eToro"
+        ]
+      },
+      {
+        "ticker": "SPRB",
+        "value": 206.56,
+        "grade": 40,
+        "brokers": [
+          "Schwab"
+        ]
+      },
+      {
+        "ticker": "DASH",
+        "value": 139.16,
+        "grade": 40,
+        "brokers": [
+          "eToro"
+        ]
+      }
+    ],
+    "sell_total_value": 39073.04,
+    "trim": [
+      {
+        "ticker": "ETH",
+        "value": 8396.01031843741,
+        "grade": 50
+      },
+      {
+        "ticker": "COST",
+        "value": 2559.19,
+        "grade": 50
+      },
+      {
+        "ticker": "WMT",
+        "value": 1903.79,
+        "grade": 50
+      },
+      {
+        "ticker": "BIDU",
+        "value": 1707.3700000000001,
+        "grade": 50
+      },
+      {
+        "ticker": "OKLO",
+        "value": 1619.04,
+        "grade": 50
+      }
+    ]
+  },
+  "movers": {
+    "gainers": [
+      {
+        "ticker": "NVDA",
+        "pnl": 8115.55
+      },
+      {
+        "ticker": "CRWD",
+        "pnl": 7788.42
+      },
+      {
+        "ticker": "TSLA",
+        "pnl": 7439.77
+      },
+      {
+        "ticker": "VOO",
+        "pnl": 7223.27
+      },
+      {
+        "ticker": "TSM",
+        "pnl": 5351.12
+      }
+    ],
+    "losers": [
+      {
+        "ticker": "ETH",
+        "pnl": -2504.65
+      },
+      {
+        "ticker": "BYND",
+        "pnl": -2079.73
+      },
+      {
+        "ticker": "OKLO",
+        "pnl": -1505.12
+      },
+      {
+        "ticker": "JMIA",
+        "pnl": -1264.61
+      },
+      {
+        "ticker": "BTC",
+        "pnl": -1175.47
+      }
+    ]
+  },
+  "crypto": {
+    "value": 31950.43,
+    "pct": 16.2,
+    "over_limit": true
+  },
+  "checklist": [
+    "\ud83d\udd34 Review 78 SELL candidates (grade < 50) \u2014 $39,073",
+    "\ud83d\udfe1 Check 19 TRIM candidates (grade 50-54)",
+    "\ud83d\udfe2 17 core holdings (grade 70+) \u2014 consider adding",
+    "\ud83d\udcb0 Crypto at 16.2% \u2014 TRIM if > 10%",
+    "\ud83d\udcb1 USD/MXN at 17.28",
+    "\ud83d\udcf0 Review overnight news on top 5 holdings"
+  ]
 }

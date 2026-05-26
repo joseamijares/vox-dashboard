@@ -1,0 +1,6699 @@
+{
+  "timestamp": "2026-05-26T18:30:34.436891+00:00",
+  "results": [
+    {
+      "ticker": "BNB",
+      "timestamp": "2026-05-26T18:30:34.183157+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: crypto",
+          "details": "Sector: crypto"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,819, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "YB",
+      "timestamp": "2026-05-26T18:30:34.186282+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "GOOGL",
+      "timestamp": "2026-05-26T18:30:34.188920+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 39.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $7,777, Grade: 70"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SOMI",
+      "timestamp": "2026-05-26T18:30:34.191417+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "HOME",
+      "timestamp": "2026-05-26T18:30:34.193813+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ZBT",
+      "timestamp": "2026-05-26T18:30:34.196298+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "LINEA",
+      "timestamp": "2026-05-26T18:30:34.198626+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AMB",
+      "timestamp": "2026-05-26T18:30:34.200815+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SPRB",
+      "timestamp": "2026-05-26T18:30:34.202982+00:00",
+      "consensus": "SELL",
+      "consensus_pct": 54.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 64,
+          "signal": "Grade: 36",
+          "details": "Weak technicals | Grade: 36"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Pfizer (PFE) Q1 Earnings and Revenues Beat Estimat..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 100"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $207, Grade: 36"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Pfizer (PFE) Q1 Earnings and Revenues Beat Estimat..."
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $207, Grade: 36"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BYND",
+      "timestamp": "2026-05-26T18:30:34.205059+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 47.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 50",
+          "details": "Mixed technicals | Grade: 50"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Beyond Meat Stock Drops After Q1 Earnings \u2014 Here's..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $26, Grade: 50"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Beyond Meat Stock Drops After Q1 Earnings \u2014 Here's..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "COIN",
+      "timestamp": "2026-05-26T18:30:34.207116+00:00",
+      "consensus": "SELL",
+      "consensus_pct": 62.7,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 61,
+          "signal": "Grade: 39",
+          "details": "Weak technicals | Grade: 39"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Why SEC\u2019s Tokenized Stock Delay Reveals ..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 65"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $794, Grade: 39"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Why SEC\u2019s Tokenized Stock Delay Reveals ..."
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $794, Grade: 39"
+        }
+      ],
+      "action": "SELL"
+    },
+    {
+      "ticker": "VANA",
+      "timestamp": "2026-05-26T18:30:34.209062+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "MOVE",
+      "timestamp": "2026-05-26T18:30:34.211010+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 66.2,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 59,
+          "signal": "Grade: 59",
+          "details": "Moderate technicals | Grade: 59"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 59"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "0700.HK",
+      "timestamp": "2026-05-26T18:30:34.212904+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,074, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SPOT",
+      "timestamp": "2026-05-26T18:30:34.214796+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 50.4,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 66,
+          "signal": "Grade: 66",
+          "details": "Moderate technicals | Grade: 66"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Billionaire Investor David Einhorn Just Bought The..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,203, Grade: 66"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Billionaire Investor David Einhorn Just Bought The..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BARD",
+      "timestamp": "2026-05-26T18:30:34.216629+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "DOLO",
+      "timestamp": "2026-05-26T18:30:34.218396+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SHELL",
+      "timestamp": "2026-05-26T18:30:34.220155+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "STO",
+      "timestamp": "2026-05-26T18:30:34.221911+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SCCO",
+      "timestamp": "2026-05-26T18:30:34.223666+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.3,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 66,
+          "signal": "Grade: 66",
+          "details": "Moderate technicals | Grade: 66"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: materials",
+          "details": "Sector: materials"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 66"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "TOWNS",
+      "timestamp": "2026-05-26T18:30:34.225433+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SOLV",
+      "timestamp": "2026-05-26T18:30:34.227176+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 73,
+          "signal": "Grade: 73",
+          "details": "Strong technicals | Grade: 73"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 73"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 73,
+          "signal": "Grade: 73",
+          "details": "Strong technicals | Grade: 73"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "RED",
+      "timestamp": "2026-05-26T18:30:34.228928+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "USDT",
+      "timestamp": "2026-05-26T18:30:34.230676+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BETH",
+      "timestamp": "2026-05-26T18:30:34.232427+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 50",
+          "details": "Mixed technicals | Grade: 50"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 50"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "HUMA",
+      "timestamp": "2026-05-26T18:30:34.234186+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 49.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 59,
+          "signal": "Grade: 59",
+          "details": "Moderate technicals | Grade: 59"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Strong Earnings and Biotech Resilience Define the ..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 59"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Strong Earnings and Biotech Resilience Define the ..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ENSO",
+      "timestamp": "2026-05-26T18:30:34.235949+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "TSLA",
+      "timestamp": "2026-05-26T18:30:34.237705+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 39.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $10,981, Grade: 70"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "MORPHO",
+      "timestamp": "2026-05-26T18:30:34.239449+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $2, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "QQQ",
+      "timestamp": "2026-05-26T18:30:34.241196+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.4,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 67,
+          "signal": "Grade: 67",
+          "details": "Moderate technicals | Grade: 67"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $7,443, Grade: 67"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ROBO",
+      "timestamp": "2026-05-26T18:30:34.242954+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.8,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "signal": "Grade: 72",
+          "details": "Strong technicals | Grade: 72"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 72"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "signal": "Grade: 72",
+          "details": "Strong technicals | Grade: 72"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "DOGE",
+      "timestamp": "2026-05-26T18:30:34.244740+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,104, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "TSM",
+      "timestamp": "2026-05-26T18:30:34.246485+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "signal": "Grade: 76",
+          "details": "Strong technicals | Grade: 76"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $9,001, Grade: 76"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "signal": "Grade: 76",
+          "details": "Strong technicals | Grade: 76"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "VOO",
+      "timestamp": "2026-05-26T18:30:34.248245+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.4,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 67,
+          "signal": "Grade: 67",
+          "details": "Moderate technicals | Grade: 67"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: consumer",
+          "details": "Sector: consumer"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $21,300, Grade: 67"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "CEG",
+      "timestamp": "2026-05-26T18:30:34.249997+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 65,
+          "signal": "Grade: 65",
+          "details": "Moderate technicals | Grade: 65"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: energy",
+          "details": "Sector: energy"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $407, Grade: 65"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "NIGHT",
+      "timestamp": "2026-05-26T18:30:34.251743+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "PENGU",
+      "timestamp": "2026-05-26T18:30:34.253495+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $3, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "PROVE",
+      "timestamp": "2026-05-26T18:30:34.255236+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "DOT",
+      "timestamp": "2026-05-26T18:30:34.256987+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "DDOG",
+      "timestamp": "2026-05-26T18:30:34.258729+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 64,
+          "signal": "Grade: 64",
+          "details": "Moderate technicals | Grade: 64"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $2,433, Grade: 64"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BTC",
+      "timestamp": "2026-05-26T18:30:34.260483+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 52",
+          "details": "Mixed technicals | Grade: 52"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: crypto",
+          "details": "Sector: crypto"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $16,812, Grade: 52"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ACE",
+      "timestamp": "2026-05-26T18:30:34.262220+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "PLUME",
+      "timestamp": "2026-05-26T18:30:34.263959+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "NEWT",
+      "timestamp": "2026-05-26T18:30:34.265716+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "KERNEL",
+      "timestamp": "2026-05-26T18:30:34.267466+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "NVDA",
+      "timestamp": "2026-05-26T18:30:34.269227+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 39.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "signal": "Grade: 71",
+          "details": "Strong technicals | Grade: 71"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $10,150, Grade: 71"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "signal": "Grade: 71",
+          "details": "Strong technicals | Grade: 71"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SOL",
+      "timestamp": "2026-05-26T18:30:34.270986+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $544, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BMT",
+      "timestamp": "2026-05-26T18:30:34.272751+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "CRWV",
+      "timestamp": "2026-05-26T18:30:34.274491+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 47",
+          "details": "Mixed technicals | Grade: 47"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $662, Grade: 47"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "LA",
+      "timestamp": "2026-05-26T18:30:34.276248+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AT",
+      "timestamp": "2026-05-26T18:30:34.278032+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 47.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Market Braced For Earnings From Disney Tomorrow, A..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Market Braced For Earnings From Disney Tomorrow, A..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "POET",
+      "timestamp": "2026-05-26T18:30:34.279796+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 64,
+          "signal": "Grade: 64",
+          "details": "Moderate technicals | Grade: 64"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,744, Grade: 64"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "JMIA",
+      "timestamp": "2026-05-26T18:30:34.281547+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 44",
+          "details": "Mixed technicals | Grade: 44"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $585, Grade: 44"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "WCT",
+      "timestamp": "2026-05-26T18:30:34.283293+00:00",
+      "consensus": "SELL",
+      "consensus_pct": 65.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 75,
+          "signal": "Grade: 25",
+          "details": "Weak technicals | Grade: 25"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 25"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 25"
+        }
+      ],
+      "action": "SELL"
+    },
+    {
+      "ticker": "OPN",
+      "timestamp": "2026-05-26T18:30:34.285050+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "DASH",
+      "timestamp": "2026-05-26T18:30:34.286792+00:00",
+      "consensus": "SELL",
+      "consensus_pct": 62.9,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 62,
+          "signal": "Grade: 38",
+          "details": "Weak technicals | Grade: 38"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $139, Grade: 38"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $139, Grade: 38"
+        }
+      ],
+      "action": "SELL"
+    },
+    {
+      "ticker": "C",
+      "timestamp": "2026-05-26T18:30:34.288537+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.5,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "signal": "Grade: 74",
+          "details": "Strong technicals | Grade: 74"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: financials",
+          "details": "Sector: financials"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 74"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "signal": "Grade: 74",
+          "details": "Strong technicals | Grade: 74"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "MITO",
+      "timestamp": "2026-05-26T18:30:34.290284+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "TURTLE",
+      "timestamp": "2026-05-26T18:30:34.292033+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "MIRA",
+      "timestamp": "2026-05-26T18:30:34.293783+00:00",
+      "consensus": "SELL",
+      "consensus_pct": 54.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 64,
+          "signal": "Grade: 36",
+          "details": "Weak technicals | Grade: 36"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: EXCLUSIVE: Mira Pharmaceuticals Board Approves SKN..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 75"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 36"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: EXCLUSIVE: Mira Pharmaceuticals Board Approves SKN..."
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 36"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "WMT",
+      "timestamp": "2026-05-26T18:30:34.295544+00:00",
+      "consensus": "SELL",
+      "consensus_pct": 91.9,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 61,
+          "signal": "Grade: 39",
+          "details": "Weak technicals | Grade: 39"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: consumer",
+          "details": "Sector: consumer"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,904, Grade: 39"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: consumer",
+          "details": "Sector: consumer"
+        }
+      ],
+      "action": "SELL"
+    },
+    {
+      "ticker": "BERA",
+      "timestamp": "2026-05-26T18:30:34.297286+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "IREN",
+      "timestamp": "2026-05-26T18:30:34.299028+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.4,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 67,
+          "signal": "Grade: 67",
+          "details": "Moderate technicals | Grade: 67"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $631, Grade: 67"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "PARTI",
+      "timestamp": "2026-05-26T18:30:34.300780+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "XRP",
+      "timestamp": "2026-05-26T18:30:34.302529+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 42",
+          "details": "Mixed technicals | Grade: 42"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: crypto",
+          "details": "Sector: crypto"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,550, Grade: 42"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BIO",
+      "timestamp": "2026-05-26T18:30:34.304289+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 65,
+          "signal": "Grade: 65",
+          "details": "Moderate technicals | Grade: 65"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 65"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "GPS",
+      "timestamp": "2026-05-26T18:30:34.306042+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "EDEN",
+      "timestamp": "2026-05-26T18:30:34.307778+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 37.3,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 81,
+          "signal": "Grade: 81",
+          "details": "Strong technicals | Grade: 81"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 81"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 81,
+          "signal": "Grade: 81",
+          "details": "Strong technicals | Grade: 81"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ADA",
+      "timestamp": "2026-05-26T18:30:34.309528+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $107, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "EUL",
+      "timestamp": "2026-05-26T18:30:34.311324+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AXS",
+      "timestamp": "2026-05-26T18:30:34.313074+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 42",
+          "details": "Mixed technicals | Grade: 42"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $59, Grade: 42"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "MELI",
+      "timestamp": "2026-05-26T18:30:34.314818+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 43",
+          "details": "Mixed technicals | Grade: 43"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $3,373, Grade: 43"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "FF",
+      "timestamp": "2026-05-26T18:30:34.316557+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 48",
+          "details": "Mixed technicals | Grade: 48"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 48"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ETHW",
+      "timestamp": "2026-05-26T18:30:34.318321+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 42",
+          "details": "Mixed technicals | Grade: 42"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 42"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "USUAL",
+      "timestamp": "2026-05-26T18:30:34.320068+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "WAL",
+      "timestamp": "2026-05-26T18:30:34.321810+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 39.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 70"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "RESOLV",
+      "timestamp": "2026-05-26T18:30:34.323565+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "INIT",
+      "timestamp": "2026-05-26T18:30:34.325309+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "PLTR",
+      "timestamp": "2026-05-26T18:30:34.327053+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 45",
+          "details": "Mixed technicals | Grade: 45"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,802, Grade: 45"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AVNT",
+      "timestamp": "2026-05-26T18:30:34.328804+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 45",
+          "details": "Mixed technicals | Grade: 45"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 45"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "TREE",
+      "timestamp": "2026-05-26T18:30:34.330544+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 41",
+          "details": "Mixed technicals | Grade: 41"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 41"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "CBRS",
+      "timestamp": "2026-05-26T18:30:34.332321+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $373, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ETH",
+      "timestamp": "2026-05-26T18:30:34.334065+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 42",
+          "details": "Mixed technicals | Grade: 42"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: crypto",
+          "details": "Sector: crypto"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $8,396, Grade: 42"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ANIME",
+      "timestamp": "2026-05-26T18:30:34.335832+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "2Z",
+      "timestamp": "2026-05-26T18:30:34.337595+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "MANA",
+      "timestamp": "2026-05-26T18:30:34.339343+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 66.7,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 62,
+          "signal": "Grade: 62",
+          "details": "Moderate technicals | Grade: 62"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 62"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "GUN",
+      "timestamp": "2026-05-26T18:30:34.341110+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SAHARA",
+      "timestamp": "2026-05-26T18:30:34.342870+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "HAEDAL",
+      "timestamp": "2026-05-26T18:30:34.344666+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "VTI",
+      "timestamp": "2026-05-26T18:30:34.346425+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.4,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 67,
+          "signal": "Grade: 67",
+          "details": "Moderate technicals | Grade: 67"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: consumer",
+          "details": "Sector: consumer"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $6,138, Grade: 67"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SOPH",
+      "timestamp": "2026-05-26T18:30:34.348185+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 66.8,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 63,
+          "signal": "Grade: 63",
+          "details": "Moderate technicals | Grade: 63"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 63"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "A",
+      "timestamp": "2026-05-26T18:30:34.349927+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 39.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $4, Grade: 70"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "OPEN",
+      "timestamp": "2026-05-26T18:30:34.351700+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 44",
+          "details": "Mixed technicals | Grade: 44"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 44"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "KAITO",
+      "timestamp": "2026-05-26T18:30:34.353456+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SIGN",
+      "timestamp": "2026-05-26T18:30:34.355211+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "FDUSD",
+      "timestamp": "2026-05-26T18:30:34.356956+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "META",
+      "timestamp": "2026-05-26T18:30:34.358702+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 45",
+          "details": "Mixed technicals | Grade: 45"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $6,079, Grade: 45"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "HBAR",
+      "timestamp": "2026-05-26T18:30:34.360456+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $167, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ERA",
+      "timestamp": "2026-05-26T18:30:34.362200+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "KITE",
+      "timestamp": "2026-05-26T18:30:34.363963+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $3, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BIDU",
+      "timestamp": "2026-05-26T18:30:34.365712+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 40",
+          "details": "Mixed technicals | Grade: 40"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,707, Grade: 40"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "OKLO",
+      "timestamp": "2026-05-26T18:30:34.367453+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 73,
+          "signal": "Grade: 73",
+          "details": "Strong technicals | Grade: 73"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: energy",
+          "details": "Sector: energy"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,619, Grade: 73"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 73,
+          "signal": "Grade: 73",
+          "details": "Strong technicals | Grade: 73"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "CRWD",
+      "timestamp": "2026-05-26T18:30:34.369192+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 66.5,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 61,
+          "signal": "Grade: 61",
+          "details": "Moderate technicals | Grade: 61"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $12,902, Grade: 61"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "OSCR",
+      "timestamp": "2026-05-26T18:30:34.370940+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 64,
+          "signal": "Grade: 64",
+          "details": "Moderate technicals | Grade: 64"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: AMD Just Soared 20% on Earnings. Is It Still a Buy..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 85"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $4,056, Grade: 64"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: AMD Just Soared 20% on Earnings. Is It Still a Buy..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 85"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AVGO",
+      "timestamp": "2026-05-26T18:30:34.372684+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "signal": "Grade: 76",
+          "details": "Strong technicals | Grade: 76"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $2,125, Grade: 76"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "signal": "Grade: 76",
+          "details": "Strong technicals | Grade: 76"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SHOP",
+      "timestamp": "2026-05-26T18:30:34.374431+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 43",
+          "details": "Mixed technicals | Grade: 43"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $6,877, Grade: 43"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "APH",
+      "timestamp": "2026-05-26T18:30:34.376170+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 65,
+          "signal": "Grade: 65",
+          "details": "Moderate technicals | Grade: 65"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $4,178, Grade: 65"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "LAYER",
+      "timestamp": "2026-05-26T18:30:34.377943+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "CHIP",
+      "timestamp": "2026-05-26T18:30:34.379710+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AMD",
+      "timestamp": "2026-05-26T18:30:34.381463+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 64,
+          "signal": "Grade: 64",
+          "details": "Moderate technicals | Grade: 64"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $8,192, Grade: 64"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "TRX",
+      "timestamp": "2026-05-26T18:30:34.383215+00:00",
+      "consensus": "SELL",
+      "consensus_pct": 91.9,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 61,
+          "signal": "Grade: 39",
+          "details": "Weak technicals | Grade: 39"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,618, Grade: 39"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        }
+      ],
+      "action": "SELL"
+    },
+    {
+      "ticker": "MEME",
+      "timestamp": "2026-05-26T18:30:34.384972+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 64,
+          "signal": "Grade: 64",
+          "details": "Moderate technicals | Grade: 64"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 64"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "0G",
+      "timestamp": "2026-05-26T18:30:34.386716+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BIVI",
+      "timestamp": "2026-05-26T18:30:34.388463+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 39.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $11, Grade: 70"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "signal": "Grade: 70",
+          "details": "Strong technicals | Grade: 70"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "NIL",
+      "timestamp": "2026-05-26T18:30:34.390214+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "XLE",
+      "timestamp": "2026-05-26T18:30:34.391968+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.5,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "signal": "Grade: 74",
+          "details": "Strong technicals | Grade: 74"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: energy",
+          "details": "Sector: energy"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $41, Grade: 74"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "signal": "Grade: 74",
+          "details": "Strong technicals | Grade: 74"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BABY",
+      "timestamp": "2026-05-26T18:30:34.393720+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SAPIEN",
+      "timestamp": "2026-05-26T18:30:34.395469+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "NXPC",
+      "timestamp": "2026-05-26T18:30:34.397222+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "XPL",
+      "timestamp": "2026-05-26T18:30:34.399000+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 43",
+          "details": "Mixed technicals | Grade: 43"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 43"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "THE",
+      "timestamp": "2026-05-26T18:30:34.400762+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "1000CAT",
+      "timestamp": "2026-05-26T18:30:34.402527+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SNOW",
+      "timestamp": "2026-05-26T18:30:34.404282+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 66.8,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 63,
+          "signal": "Grade: 63",
+          "details": "Moderate technicals | Grade: 63"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,280, Grade: 63"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SMH",
+      "timestamp": "2026-05-26T18:30:34.406029+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.1,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 65,
+          "signal": "Grade: 65",
+          "details": "Moderate technicals | Grade: 65"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,883, Grade: 65"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "HEMI",
+      "timestamp": "2026-05-26T18:30:34.407800+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.8,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "signal": "Grade: 72",
+          "details": "Strong technicals | Grade: 72"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 72"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "signal": "Grade: 72",
+          "details": "Strong technicals | Grade: 72"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "GBM O",
+      "timestamp": "2026-05-26T18:30:34.409554+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $126, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "HYPER",
+      "timestamp": "2026-05-26T18:30:34.411308+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ZKC",
+      "timestamp": "2026-05-26T18:30:34.413051+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BREV",
+      "timestamp": "2026-05-26T18:30:34.414796+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "BONK",
+      "timestamp": "2026-05-26T18:30:34.416544+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $5, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AMZN",
+      "timestamp": "2026-05-26T18:30:34.418282+00:00",
+      "consensus": "BUY",
+      "consensus_pct": 47.2,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 73,
+          "signal": "Grade: 73",
+          "details": "Strong technicals | Grade: 73"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "signal": "Sector: consumer",
+          "details": "Sector: consumer | News: Here's What I Think Is Going on With Nvidia Stock ..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $4,168, Grade: 73"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 70"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $4,168, Grade: 73"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AIGENSYN",
+      "timestamp": "2026-05-26T18:30:34.420023+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SPK",
+      "timestamp": "2026-05-26T18:30:34.421767+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "MSFT",
+      "timestamp": "2026-05-26T18:30:34.423567+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.3,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 75,
+          "signal": "Grade: 75",
+          "details": "Strong technicals | Grade: 75"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $1,362, Grade: 75"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 75,
+          "signal": "Grade: 75",
+          "details": "Strong technicals | Grade: 75"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "SXT",
+      "timestamp": "2026-05-26T18:30:34.425319+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 38.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 73,
+          "signal": "Grade: 73",
+          "details": "Strong technicals | Grade: 73"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Sensient Posts 22% Profit Gain in Q2..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 65"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 73"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 73,
+          "signal": "Grade: 73",
+          "details": "Strong technicals | Grade: 73"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 65"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "COST",
+      "timestamp": "2026-05-26T18:30:34.427069+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 44",
+          "details": "Mixed technicals | Grade: 44"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: consumer",
+          "details": "Sector: consumer"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $2,559, Grade: 44"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "HOLO",
+      "timestamp": "2026-05-26T18:30:34.428819+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 67.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 68,
+          "signal": "Grade: 68",
+          "details": "Moderate technicals | Grade: 68"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 68"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "NAFTRAC ISHRS",
+      "timestamp": "2026-05-26T18:30:34.430567+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 0",
+          "details": "Grade: 0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $792, Grade: 0"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "AAPL",
+      "timestamp": "2026-05-26T18:30:34.432319+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 39.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "signal": "Grade: 71",
+          "details": "Strong technicals | Grade: 71"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology | News: Is Nvidia the Most Underrated Dividend G..."
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 60"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 60,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $3,892, Grade: 71"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "signal": "Grade: 71",
+          "details": "Strong technicals | Grade: 71"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0) | News score: 60"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "MMT",
+      "timestamp": "2026-05-26T18:30:34.434087+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 44",
+          "details": "Mixed technicals | Grade: 44"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 44"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    },
+    {
+      "ticker": "ALLO",
+      "timestamp": "2026-05-26T18:30:34.435847+00:00",
+      "consensus": "HOLD",
+      "consensus_pct": 64.6,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Grade: 41",
+          "details": "Mixed technicals | Grade: 41"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 20,
+          "signal": "Sector: technology",
+          "details": "Sector: technology"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "signal": "Risk: 3/10",
+          "details": "Portfolio risk: 3/10, Position: $0, Grade: 41"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 100,
+          "signal": "NEUTRAL",
+          "details": "X: NEUTRAL (0 mentions, score: 0)"
+        }
+      ],
+      "action": "HOLD"
+    }
+  ],
+  "summary": {
+    "buy": 1,
+    "sell": 7,
+    "hold": 133
+  }
+}

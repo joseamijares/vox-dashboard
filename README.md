@@ -1,167 +1,208 @@
-# VOX Dashboard v9.1
+# VOX Dashboard v12.0
 
-**Autonomous AI Trading Intelligence System**
+Agentic trading platform with autonomous research agents, council voting, LLM-enhanced alerts, and multi-broker portfolio sync.
 
-Live: https://vox-dashboard-five.vercel.app
-
----
-
-## What is VOX?
-
-VOX is a fully autonomous trading intelligence system that:
-- **Monitors** your portfolio across 8 brokers
-- **Grades** every position with AI-powered scoring
-- **Generates** actionable trade plays
-- **Alerts** you via Telegram in real-time
-- **Learns** from your feedback to improve
-- **Self-upgrades** its own signal weights
+**URL:** https://vox-dashboard-five.vercel.app
 
 ---
 
 ## Architecture
 
-### 5-Layer AI Stack
+### Frontend (Next.js + TypeScript + shadcn/ui)
+- **55 pages** (20 in navigation, 35 legacy/hidden)
+- Mobile-responsive with hamburger menu + sidebar
+- Dark theme, real-time data from JSON + Supabase
+- Static export (CDN-cached, free hosting)
 
+### Backend (Python Agents)
+- **10 autonomous research agents**
+- **4 active cron pipelines**
+- **37 paused legacy jobs**
+- Supabase PostgreSQL backend (optional)
+
+### Broker Sync (v2.0)
+- **8 brokers** aggregated into unified view
+- Live FX conversion (MXN → USD)
+- Retry logic + circuit breaker + health checks
+- Runs 2x daily: 7 AM + 12 PM CT
+
+---
+
+## Active Agents (10)
+
+| Agent | File | Schedule | Purpose |
+|-------|------|----------|---------|
+| News Intelligence | `vox_news_agent.py` | Every 4h | Breaking news scanner |
+| Trump Tracker | `vox_trump_agent.py` | Every 4h | Trump statement monitor |
+| Reddit Intelligence | `vox_reddit_intelligence.py` | Every 4h | r/wsb, r/stocks tracker |
+| X Intelligence | `vox_x_intelligence.py` | Every 4h | Twitter sentiment |
+| Volume Intelligence | `vox_volume_intelligence.py` | Every 4h | Volume anomaly detection |
+| Debrief Agent | `vox_debrief_agent.py` | Every 4h | Cross-signal aggregation |
+| Stock Researcher | `vox_stock_researcher.py` | Every 4h | Technical + fundamental grades |
+| Crypto Researcher | `vox_crypto_researcher.py` | Every 4h | On-chain metrics |
+| Macro Agent | `vox_macro_agent.py` | Every 4h | VIX, yields, DXY |
+| Sector Agent | `vox_sector_agent.py` | Every 4h | 11-sector rotation |
+
+### Pipeline Flow (Every 4 Hours)
 ```
-┌─────────────────────────────────────────┐
-│  Layer 5: Autonomous Agent              │
-│  Self-running, 24/7 monitoring          │
-├─────────────────────────────────────────┤
-│  Layer 4: Tracking & Learning           │
-│  Play review, win rate tracking         │
-├─────────────────────────────────────────┤
-│  Layer 3: Play Generator                │
-│  BUY/SELL/TRIM/HOLD actions             │
-├─────────────────────────────────────────┤
-│  Layer 2: AI Signal Harness             │
-│  8 signal sources, composite scoring    │
-├─────────────────────────────────────────┤
-│  Layer 1: RAG Memory                    │
-│  119 vault files, semantic search       │
-└─────────────────────────────────────────┘
+Live Prices → News → Trump → Reddit → X → Volume → Macro → Sector → Research → Debrief → Alerts → Supabase
 ```
 
-### Signal Sources (8)
+---
 
-| Signal | Weight | Source |
-|--------|--------|--------|
-| Grade | 25% | Manual + AI scoring |
-| Technical | 15% | Position P&L momentum |
-| Fundamental | 15% | Revenue, growth |
-| Sentiment | 10% | Social + news |
-| Earnings | 10% | Surprise history |
-| Macro | 10% | Market regime |
-| LLM Council | 10% | Multi-model consensus |
-| Trump Policy | 5% | Policy impact |
+## Active Cron Jobs (4)
+
+| Job | Schedule | Script | Purpose |
+|-----|----------|--------|---------|
+| Broker Sync | 7:00 AM + 12:00 PM CT | `vox_broker_sync_pipeline.sh` | Full sync + prices + grades |
+| Pre-Market | 7:00 AM CT | `vox_premarket_pipeline.sh` | News + briefing |
+| Alert Pipeline v3 | 9/12/15 CT weekdays | `vox_unified_pipeline_v3.sh` | Live prices + alerts |
+| Research Orchestrator v2 | Every 4 hours | `vox_agentic_pipeline_v2.sh` | Full agentic pipeline |
 
 ---
 
-## Dashboard Pages (34)
+## Broker Sync System (v2.0)
 
-### AI Section
-- **Plays** — AI-generated trade cards with entry/stop/target
-- **AI Insights** — LLM Council analysis
-- **RAG Intelligence** — Ask anything about your portfolio
-- **Play Review** — Rate AI recommendations, track outcomes
+### Supported Brokers
 
-### Overview
-- Dashboard, Portfolio, Grades, Watchlist
+| Broker | Type | Currency | Status | Weight |
+|--------|------|----------|--------|--------|
+| eToro | API | USD | 🟢 Live | 43% |
+| Binance | Manual | USD | 🟡 Manual | 10% |
+| GBM Main | Manual | MXN → USD | 🟡 Manual | 38% |
+| GBM USA | Manual | USD | 🟡 Manual | 7% |
+| Schwab | Manual | USD | 🟡 Manual | 1% |
+| IBKR | Manual | USD | 🟡 Manual | 1% |
+| Revolut | Manual | MXN | 🟡 Manual | 0% |
+| Bitso | Manual | USD | 🟡 Manual | 0% |
 
-### Intelligence
-- Market Regime, Daily Briefing, Position Review, Trade Scorer
-- Sector Rotation, LLM Council
+### Features
+- **Retry Logic**: 3 attempts with exponential backoff
+- **Circuit Breaker**: Auto-disables failing brokers (5min recovery)
+- **Health Checks**: Per-broker timing + status tracking
+- **FX Conversion**: Live USD/MXN from Polygon.io
+- **Stale Detection**: 7-day threshold with visual indicators
 
-### Feeds
-- Trump Tracker, Sentiment, Screener DB, Macro, Correlation
-
-### Tracking
-- Trade Journal, Earnings, Dividends, Risk Mgmt, Performance
-
-### Tools
-- Position Sizer, Rebalancing, Compounding, Mistake Journal
-
-### Assets
-- Crypto, Options, Forex
-
-### Systems
-- Alert System, Commander, Weekly Summary, Trade Logger
-
----
-
-## Scripts (Python)
-
-All scripts live in `~/.hermes/scripts/`:
-
-| Script | Purpose |
-|--------|---------|
-| `vox_ai_harness.py` | Signal fusion, composite scoring |
-| `vox_autonomous_agent.py` | 24/7 monitoring, discovery |
-| `vox_rag_system.py` | Vector DB, semantic search |
-| `vox_signal_enhancer.py` | Options flow, insider, short interest |
-| `vox_self_upgrade.py` | Self-analysis, weight optimization |
-| `vox_telegram_alerts.py` | Real-time Telegram notifications |
-| `vox_agentic_cron.sh` | 15-minute autonomous loop |
-| `vox_ai_pipeline.sh` | Sequential pipeline runner |
+### Files
+| File | Purpose |
+|------|---------|
+| `vox_broker_sync_v2.py` | Main orchestrator |
+| `vox_broker_sync.py` | Legacy v1.0 |
+| `vox_fx_rate.py` | USD/MXN rate fetcher |
+| `etoro_api.py` | eToro API client |
 
 ---
 
-## Cost
+## Alert System v8
 
-| Service | Cost/Month |
-|---------|-----------|
-| Polygon API (Starter) | $29 |
-| OpenRouter (embeddings) | ~$0.50 |
-| Vercel Hosting | $0 |
-| Telegram Bot | $0 |
-| **Total** | **~$34** |
+**Event-driven, LLM-enhanced:**
+- **STOP**: User-defined stops (no cooldown) — PLTR @ $115
+- **MOVE**: >10% daily moves (24h dedup)
+- **NEWS**: Breaking news relevance ≥65 (6h dedup)
+- **TRUMP**: Trump mentions portfolio (immediate)
+- **DAILY DIGEST**: At market close
 
-Portfolio: $195K. Breakeven: 0.02% better decisions/month.
+**Protected:** SHOP (never sell)
+**Max 5 alerts/day with 24h dedup per ticker**
+
+**NO grade-based SELL spam. NO repetitive alerts.**
 
 ---
 
-## Setup
+## Navigation (20 Pages)
 
+| Section | Pages |
+|---------|-------|
+| Command | Dashboard, Plan, Intelligence |
+| Portfolio | Positions, **Brokers**, Watchlist, Sectors, Grades, Plays |
+| Agents | Agents, Crons, Council, Sentiment, Regime, Risk |
+| Tools | Sizer, Screener, Crypto |
+| Journal | Journal, Logger |
+
+---
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `vox_smart_alerts_v8.py` | Main alert system with LLM layer |
+| `vox_broker_sync_v2.py` | Broker sync orchestrator |
+| `vox_agentic_pipeline_v2.sh` | Research orchestrator pipeline |
+| `vox_unified_pipeline_v3.sh` | Alert pipeline |
+| `vox_premarket_pipeline.sh` | Pre-market briefing |
+| `vox_broker_sync_pipeline.sh` | Broker sync + prices + grades |
+| `vox_supabase_sync.py` | Supabase data sync |
+| `vox_council.py` | Council voting system |
+
+---
+
+## Environment
+
+Required in `~/.hermes/.env`:
+- `POLYGON_API_KEY` — Live prices + FX rates
+- `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` — Database
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Dashboard Supabase client
+- `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` — Alerts
+- `X_BEARER_TOKEN` — X/Twitter API
+- `ETORO_API_KEY` — eToro live data
+
+---
+
+## Deployment
+
+### Dashboard
 ```bash
-# Install dependencies
+cd ~/dev/vox-dashboard
+npm run build
+npx vercel --prod
+```
+
+### Python Agents
+```bash
 cd ~/.hermes/scripts
-pip install chromadb sentence-transformers
-
-# Set API keys in ~/.hermes/.env
-POLYGON_API_KEY=xxx
-OPENROUTER_API_KEY=xxx
-TELEGRAM_BOT_TOKEN=xxx
-TELEGRAM_CHAT_ID=xxx
-
-# Run autonomous loop
-python3 vox_agentic_cron.sh
+python3 vox_broker_sync_v2.py      # Manual broker sync
+python3 vox_smart_alerts_v8.py     # Manual alert check
 ```
 
 ---
 
-## Cron Jobs
+## Data Flow
 
-| Job | Frequency | Purpose |
-|-----|-----------|---------|
-| `vox-agentic-loop` | Every 15 min | Full autonomous cycle |
-| `vox-premarket` | Daily 8:30 AM | Pre-market briefing |
-| `vox-intraday` | Every 30 min | Intraday monitoring |
-| `vox-close` | Daily 3:55 PM | End-of-day summary |
-
----
-
-## GitHub
-
-https://github.com/joseamijares/vox-dashboard
-
----
-
-## Version History
-
-- **v9.1** — Full agentic system, self-upgrading, Telegram alerts
-- **v9.0** — AI architecture, RAG, harness, autonomous agent
-- **v8.0** — React + Next.js migration, real broker data
-- **v7.2** — Static HTML dashboard, responsive design
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Brokers   │────▶│    Sync     │────▶│   Unified   │
+│  (8 total)  │     │   Engine    │     │  Portfolio  │
+└─────────────┘     └─────────────┘     └──────┬──────┘
+                                               │
+                          ┌────────────────────┼────────────────────┐
+                          │                    │                    │
+                    ┌─────▼─────┐      ┌──────▼──────┐      ┌─────▼─────┐
+                    │ Dashboard │      │   Alerts    │      │  Grades   │
+                    │  (/data)  │      │  (Telegram) │      │ (Council) │
+                    └───────────┘      └─────────────┘      └───────────┘
+```
 
 ---
 
-Built for Jose Mijares. Work ONLY on VOX.
+## Documentation
+
+| File | Content |
+|------|---------|
+| `README.md` | This file — overview |
+| `BROKER_SYNC.md` | Broker sync architecture |
+| `AI_ARCHITECTURE.md` | Agent system design |
+| `CLAUDE.md` | Claude-specific rules |
+
+---
+
+## Portfolio Stats (Live)
+
+- **Total AUM:** $192,677
+- **Total PnL:** $56,149
+- **Positions:** 52 across 8 brokers
+- **Watchlist:** 46 tickers
+- **Universe:** 259 tickers
+
+---
+
+*Last updated: 2026-05-26*

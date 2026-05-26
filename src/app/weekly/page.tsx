@@ -2,21 +2,22 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { positions } from "@/lib/data";
 import { Calendar, TrendingUp, TrendingDown, AlertTriangle, CheckCircle } from "lucide-react";
 
 export default function WeeklyPage() {
-  const totalValue = positions.reduce((s, p) => s + p.value, 0);
-  const totalPnl = positions.reduce((s, p) => s + (p.unrealized_pnl || 0), 0);
+  const totalValue = positions.reduce((s: number, p: any) => s + p.value, 0);
+  const totalPnl = positions.reduce((s: number, p: any) => s + (p.unrealized_pnl || 0), 0);
 
   // Top movers this week (simulated from P&L data)
   const movers = [...positions]
-    .filter((p) => Math.abs(p.unrealized_pnl_pct || 0) > 5)
-    .sort((a, b) => (b.unrealized_pnl_pct || 0) - (a.unrealized_pnl_pct || 0));
+    .filter((p: any) => Math.abs(p.unrealized_pnl_pct || 0) > 5)
+    .sort((a: any, b: any) => (b.unrealized_pnl_pct || 0) - (a.unrealized_pnl_pct || 0));
 
-  const winners = movers.filter((p) => (p.unrealized_pnl_pct || 0) > 0).slice(0, 5);
-  const losers = movers.filter((p) => (p.unrealized_pnl_pct || 0) < 0).slice(0, 5);
+  const winners = movers.filter((p: any) => (p.unrealized_pnl_pct || 0) > 0).slice(0, 5);
+  const losers = movers.filter((p: any) => (p.unrealized_pnl_pct || 0) < 0).slice(0, 5);
 
   // Alerts triggered
   const alerts = [
@@ -27,8 +28,9 @@ export default function WeeklyPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Weekly Summary</h1>
           <p className="text-muted-foreground text-sm">Week of May 26 — June 1, 2026</p>
@@ -82,7 +84,7 @@ export default function WeeklyPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {winners.map((p) => (
+                {winners.map((p: any) => (
                   <div key={`${p.ticker}-${p.broker}`} className="flex items-center justify-between p-2 bg-green-500/10 rounded">
                     <span className="font-semibold text-sm">{p.ticker} <span className="text-muted-foreground">({p.broker})</span></span>
                     <span className="text-green-400 text-sm">+{p.unrealized_pnl_pct?.toFixed(1)}%</span>
@@ -102,7 +104,7 @@ export default function WeeklyPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {losers.map((p) => (
+                {losers.map((p: any) => (
                   <div key={`${p.ticker}-${p.broker}`} className="flex items-center justify-between p-2 bg-red-500/10 rounded">
                     <span className="font-semibold text-sm">{p.ticker} <span className="text-muted-foreground">({p.broker})</span></span>
                     <span className="text-red-400 text-sm">{p.unrealized_pnl_pct?.toFixed(1)}%</span>

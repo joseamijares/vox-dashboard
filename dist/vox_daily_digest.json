@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-28",
+  "generated_at": "2026-05-28T16:30:00Z",
+  "summary": {
+    "total_tickers_scanned": 95,
+    "actions_generated": 17,
+    "winners": 5,
+    "losers": 4
+  },
+  "winners": [
+    {
+      "ticker": "XLF",
+      "score": 92,
+      "action": "BUY",
+      "urgency": "HIGH",
+      "grade": 75
+    },
+    {
+      "ticker": "MSFT",
+      "score": 88,
+      "action": "BUY",
+      "urgency": "HIGH",
+      "grade": 70
+    },
+    {
+      "ticker": "JPM",
+      "score": 85,
+      "action": "BUY",
+      "urgency": "MEDIUM",
+      "grade": 70
+    },
+    {
+      "ticker": "GOOGL",
+      "score": 82,
+      "action": "BUY",
+      "urgency": "MEDIUM",
+      "grade": 70
+    },
+    {
+      "ticker": "NET",
+      "score": 78,
+      "action": "BUY",
+      "urgency": "MEDIUM",
+      "grade": 70
+    }
+  ],
+  "losers": [
+    {
+      "ticker": "META",
+      "score": 25,
+      "action": "SELL",
+      "urgency": "HIGH",
+      "grade": 40
+    },
+    {
+      "ticker": "JMIA",
+      "score": 30,
+      "action": "SELL",
+      "urgency": "HIGH",
+      "grade": 40
+    },
+    {
+      "ticker": "SHOP",
+      "score": 32,
+      "action": "SELL",
+      "urgency": "HIGH",
+      "grade": 40
+    },
+    {
+      "ticker": "PLTR",
+      "score": 35,
+      "action": "SELL",
+      "urgency": "MEDIUM",
+      "grade": 40
+    }
+  ],
+  "key_insights": [
+    "Financials (XLF) leading with grade 75 \u2014 strongest sector setup",
+    "4 positions below grade 45 require immediate SELL action",
+    "Tech showing mixed signals: MSFT/GOOGL strong, META weak",
+    "Crypto allocation at 38% \u2014 consider trimming to 25% target",
+    "5 new BUY opportunities with grades 70+ identified"
+  ]
+}

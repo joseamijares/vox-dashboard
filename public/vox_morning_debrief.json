@@ -1,0 +1,113 @@
+{
+  "date": "2026-05-28",
+  "generated_at": "2026-05-28T08:00:00Z",
+  "portfolio_snapshot": {
+    "total_value": 195714,
+    "total_positions": 1344,
+    "cash": 15000
+  },
+  "sections": {
+    "reflection": {
+      "summary": {
+        "planned_trades": 5,
+        "executed_trades": 3,
+        "portfolio_change": 1240,
+        "portfolio_change_pct": 0.64
+      },
+      "key_moves": [
+        {
+          "ticker": "NVDA",
+          "move_pct": 3.2,
+          "direction": "up"
+        },
+        {
+          "ticker": "TSLA",
+          "move_pct": 2.1,
+          "direction": "up"
+        },
+        {
+          "ticker": "META",
+          "move_pct": -1.8,
+          "direction": "down"
+        },
+        {
+          "ticker": "BTC",
+          "move_pct": -2.5,
+          "direction": "down"
+        }
+      ],
+      "lessons": [
+        "Did not trim AMD at +200% \u2014 greed cost 5% pullback",
+        "Should have added to XLF earlier \u2014 missed 3% move",
+        "Good discipline: did not chase JMIA bounce"
+      ]
+    },
+    "news": {
+      "headlines": [
+        {
+          "ticker": "NVDA",
+          "title": "NVIDIA announces new AI chip lineup",
+          "source": "Reuters"
+        },
+        {
+          "ticker": "TSLA",
+          "title": "Tesla deliveries beat expectations",
+          "source": "Bloomberg"
+        },
+        {
+          "ticker": "XLF",
+          "title": "Fed signals rate stability",
+          "source": "WSJ"
+        },
+        {
+          "ticker": "BTC",
+          "title": "Bitcoin ETF outflows continue",
+          "source": "CoinDesk"
+        }
+      ]
+    },
+    "watchlist": {
+      "earnings_today": [
+        {
+          "ticker": "CRM"
+        },
+        {
+          "ticker": "OKTA"
+        }
+      ],
+      "grade_alerts": [
+        {
+          "ticker": "XLF",
+          "old_grade": 65,
+          "new_grade": 75,
+          "direction": "up"
+        },
+        {
+          "ticker": "META",
+          "old_grade": 50,
+          "new_grade": 40,
+          "direction": "down"
+        }
+      ],
+      "price_alerts": [
+        {
+          "ticker": "NVDA",
+          "message": "Broke above $220 resistance"
+        },
+        {
+          "ticker": "META",
+          "message": "Falling below $600 support"
+        }
+      ]
+    },
+    "checklist": [
+      "Review MUST DO plays (4 SELLs, 1 BUY)",
+      "Check pre-market futures",
+      "Set alerts for XLF entry at $51.94",
+      "Confirm stop losses on all positions",
+      "Log yesterday's executed trades",
+      "Check earnings calendar for today",
+      "Review crypto allocation \u2014 trim if BTC < $75K"
+    ]
+  }
+}

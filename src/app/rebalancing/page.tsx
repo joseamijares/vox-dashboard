@@ -2,43 +2,36 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
-import { positions } from "@/lib/data";
+import { positions, getTotalValue, getGradeBuckets } from "@/lib/data";
 import { RefreshCw, TrendingDown, TrendingUp, Minus } from "lucide-react";
 
 export default function RebalancingPage() {
-  const totalValue = positions.reduce((s, p) => s + p.value, 0);
+  const totalValue = getTotalValue();
+  const buckets = getGradeBuckets();
 
   // Categorize by grade
-  const strongBuy = positions.filter((p) => (p.grade || 0) >= 70);
-  const buy = positions.filter((p) => (p.grade || 0) >= 60 && (p.grade || 0) < 70);
-  const hold = positions.filter((p) => (p.grade || 0) >= 50 && (p.grade || 0) < 60);
-  const weakHold = positions.filter((p) => (p.grade || 0) >= 40 && (p.grade || 0) < 50);
-  const sell = positions.filter((p) => (p.grade || 0) > 0 && (p.grade || 0) < 40);
-  const ungraded = positions.filter((p) => (p.grade || 0) === 0);
+  const strongBuy = positions.filter((p: any) => (p.grade || 0) >= 70);
+  const buy = positions.filter((p: any) => (p.grade || 0) >= 60 && (p.grade || 0) < 70);
+  const hold = positions.filter((p: any) => (p.grade || 0) >= 50 && (p.grade || 0) < 60);
+  const weakHold = positions.filter((p: any) => (p.grade || 0) >= 40 && (p.grade || 0) < 50);
+  const sell = positions.filter((p: any) => (p.grade || 0) > 0 && (p.grade || 0) < 40);
 
-  const categories = [
-    { name: "Strong Buy (70+)", positions: strongBuy, color: "bg-green-500/20 text-green-400 border-green-500/30", icon: TrendingUp },
-    { name: "Buy (60-69)", positions: buy, color: "bg-blue-500/20 text-blue-400 border-blue-500/30", icon: TrendingUp },
-    { name: "Hold (50-59)", positions: hold, color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30", icon: Minus },
-    { name: "Weak Hold (40-49)", positions: weakHold, color: "bg-orange-500/20 text-orange-400 border-orange-500/30", icon: TrendingDown },
-    { name: "Sell (<40)", positions: sell, color: "bg-red-500/20 text-red-400 border-red-500/30", icon: TrendingDown },
-    { name: "Ungraded", positions: ungraded, color: "bg-gray-500/20 text-gray-400 border-gray-500/30", icon: Minus },
-  ];
+  const sellCandidates = [...weakHold, ...sell].sort((a: any, b: any) => b.value - a.value);
+  const sellTotal = sellCandidates.reduce((s: number, p: any) => s + p.value, 0);
 
-  // Calculate recommended actions
-  const sellCandidates = [...weakHold, ...sell].sort((a, b) => b.value - a.value);
-  const sellTotal = sellCandidates.reduce((s, p) => s + p.value, 0);
+  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
 
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Rebalancing</h1>
           <p className="text-muted-foreground text-sm">
-            Grade-based portfolio rebalancing recommendations
+            Grade-based rebalancing — sell weak, add to strong
           </p>
         </div>
 
@@ -46,118 +39,93 @@ export default function RebalancingPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <Card className="vox-card">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Portfolio Value</p>
-                  <p className="text-2xl font-bold font-mono">${totalValue.toLocaleString()}</p>
-                </div>
-                <RefreshCw className="h-8 w-8 text-primary" />
-              </div>
+              <p className="text-sm text-muted-foreground">Portfolio</p>
+              <p className="text-2xl font-bold font-mono">{fmt(totalValue)}</p>
             </CardContent>
           </Card>
           <Card className="vox-card border-red-500/30">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">SELL / TRIM Value</p>
-                  <p className="text-2xl font-bold font-mono text-red-400">${sellTotal.toLocaleString()}</p>
-                </div>
-                <TrendingDown className="h-8 w-8 text-red-400" />
-              </div>
-              <p className="text-xs text-muted-foreground mt-2">
-                {sellCandidates.length} positions below grade 50
-              </p>
+              <p className="text-sm text-muted-foreground">SELL / TRIM</p>
+              <p className="text-2xl font-bold font-mono text-red-400">{fmt(sellTotal)}</p>
+              <p className="text-xs text-muted-foreground mt-2">{sellCandidates.length} positions</p>
             </CardContent>
           </Card>
-          <Card className="vox-card">
+          <Card className="vox-card border-green-500/30">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Cash if Sold</p>
-                  <p className="text-2xl font-bold font-mono text-green-400">
-                    ${(totalValue * 0.15 + sellTotal).toLocaleString()}
-                  </p>
-                </div>
-                <TrendingUp className="h-8 w-8 text-green-400" />
-              </div>
-              <p className="text-xs text-muted-foreground mt-2">Estimated 15% current cash</p>
+              <p className="text-sm text-muted-foreground">Strong Core</p>
+              <p className="text-2xl font-bold font-mono text-green-400">
+                {fmt(strongBuy.reduce((s: number, p: any) => s + p.value, 0))}
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">{strongBuy.length} positions</p>
             </CardContent>
           </Card>
-        </div>
-
-        {/* Grade Distribution */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {categories.map((cat) => (
-            <Card key={cat.name} className="vox-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-sm">
-                  <cat.icon className="h-4 w-4" />
-                  {cat.name}
-                  <Badge variant="outline" className={`ml-auto ${cat.color}`}>
-                    {cat.positions.length} positions
-                  </Badge>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-lg font-bold font-mono mb-3">
-                  ${cat.positions.reduce((s, p) => s + p.value, 0).toLocaleString()}
-                </p>
-                {cat.positions.length > 0 ? (
-                  <div className="space-y-2 max-h-64 overflow-y-auto">
-                    {cat.positions
-                      .sort((a, b) => b.value - a.value)
-                      .slice(0, 10)
-                      .map((p) => (
-                        <div
-                          key={`${p.ticker}-${p.broker}`}
-                          className="flex items-center justify-between p-2 bg-muted/30 rounded"
-                        >
-                          <div>
-                            <span className="font-semibold text-sm">{p.ticker}</span>
-                            <span className="text-xs text-muted-foreground ml-2">{p.broker}</span>
-                          </div>
-                          <div className="text-right">
-                            <span className="font-mono text-sm">${p.value.toLocaleString()}</span>
-                            <span className="text-xs text-muted-foreground ml-2">Grade {p.grade}</span>
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-                ) : (
-                  <p className="text-sm text-muted-foreground">No positions in this category</p>
-                )}
-              </CardContent>
-            </Card>
-          ))}
         </div>
 
         {/* Execution Plan */}
-        <Card className="vox-card border-yellow-500/30">
+        <Card className="vox-card border-yellow-500/30 mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <RefreshCw className="h-5 w-5 text-yellow-400" />
-              Suggested Execution Plan
+              Execution Plan
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div>
-                <h4 className="font-semibold text-red-400 mb-2">Step 1: SELL / TRIM</h4>
+                <h4 className="font-semibold text-red-400 mb-2">Step 1: SELL These</h4>
                 <div className="space-y-2">
-                  {sellCandidates.slice(0, 10).map((p) => (
-                    <div key={`${p.ticker}-${p.broker}`} className="flex items-center justify-between p-2 bg-red-500/10 rounded">
-                      <span className="text-sm">{p.ticker} ({p.broker})</span>
-                      <span className="font-mono text-sm">${p.value.toLocaleString()} — Grade {p.grade}</span>
+                  {sellCandidates.slice(0, 10).map((p: any) => (
+                    <div key={p.ticker} className="flex items-center justify-between p-3 bg-red-500/10 rounded-lg">
+                      <div>
+                        <span className="font-semibold">{p.ticker}</span>
+                        <span className="text-xs text-muted-foreground ml-2">{p.brokers?.join(", ")}</span>
+                      </div>
+                      <div className="text-right">
+                        <span className="font-mono">{fmt(p.value)}</span>
+                        <Badge variant="destructive" className="ml-2">Grade {p.grade}</Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground mt-3">
+                  Cash freed: {fmt(sellTotal)}
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-green-400 mb-2">Step 2: Add To These (Grade 70+)</h4>
+                <div className="space-y-2">
+                  {strongBuy.map((p: any) => (
+                    <div key={p.ticker} className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg">
+                      <div>
+                        <span className="font-semibold">{p.ticker}</span>
+                        <span className="text-xs text-muted-foreground ml-2">{p.brokers?.join(", ")}</span>
+                      </div>
+                      <div className="text-right">
+                        <span className="font-mono">{fmt(p.value)}</span>
+                        <Badge className="ml-2 bg-green-500/20 text-green-400">Grade {p.grade}</Badge>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-green-400 mb-2">Step 2: REDEPLOY TO</h4>
-                <p className="text-sm text-muted-foreground">
-                  Top graded holdings: CRWD (65), AAPL (65), TSLA (64), NVDA (64), TSM (63)
-                </p>
-              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Grade Distribution */}
+        <Card className="vox-card">
+          <CardHeader>
+            <CardTitle>Grade Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+              {buckets.map((b) => (
+                <div key={b.name} className="p-3 rounded-lg text-center" style={{ backgroundColor: `${b.color}20`, border: `1px solid ${b.color}40` }}>
+                  <p className="text-xs" style={{ color: b.color }}>{b.name}</p>
+                  <p className="text-2xl font-bold font-mono">{b.count}</p>
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>

@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { TrendingUp, TrendingDown, MessageSquare, Newspaper } from "lucide-react";
 
@@ -27,8 +28,9 @@ const newsHeadlines = [
 export default function SentimentPage() {
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Sentiment</h1>
           <p className="text-muted-foreground text-sm">

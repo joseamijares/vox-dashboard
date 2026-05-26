@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { positions } from "@/lib/data";
 import { GitBranch, AlertTriangle } from "lucide-react";
@@ -9,14 +10,14 @@ import { GitBranch, AlertTriangle } from "lucide-react";
 export default function CorrelationPage() {
   // Find duplicate tickers across brokers
   const tickerMap: Record<string, { broker: string; value: number }[]> = {};
-  positions.forEach((p) => {
+  positions.forEach((p: any) => {
     if (!tickerMap[p.ticker]) tickerMap[p.ticker] = [];
     tickerMap[p.ticker].push({ broker: p.broker, value: p.value });
   });
 
   const duplicates = Object.entries(tickerMap)
     .filter(([_, entries]) => entries.length > 1)
-    .sort((a, b) => b[1].reduce((s, e) => s + e.value, 0) - a[1].reduce((s, e) => s + e.value, 0));
+    .sort((a: any, b: any) => b[1].reduce((s: number, e: any) => s + e.value, 0) - a[1].reduce((s: number, e: any) => s + e.value, 0));
 
   // Highly correlated sectors
   const sectorGroups = [
@@ -26,16 +27,17 @@ export default function CorrelationPage() {
     { name: "Healthcare", tickers: ["OSCR", "SPRB"], risk: "MEDIUM" },
   ];
 
-  const portfolioSectors = sectorGroups.map((g) => {
-    const sectorPositions = positions.filter((p) => g.tickers.includes(p.ticker));
-    const value = sectorPositions.reduce((s, p) => s + p.value, 0);
+  const portfolioSectors = sectorGroups.map((g: any) => {
+    const sectorPositions = positions.filter((p: any) => g.tickers.includes(p.ticker));
+    const value = sectorPositions.reduce((s: number, p: any) => s + p.value, 0);
     return { ...g, value, positions: sectorPositions };
-  }).filter((g) => g.value > 0).sort((a, b) => b.value - a.value);
+  }).filter((g) => g.value > 0).sort((a: any, b: any) => b.value - a.value);
 
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Correlation</h1>
           <p className="text-muted-foreground text-sm">
@@ -55,7 +57,7 @@ export default function CorrelationPage() {
             {duplicates.length > 0 ? (
               <div className="space-y-3">
                 {duplicates.map(([ticker, entries]) => {
-                  const totalValue = entries.reduce((s, e) => s + e.value, 0);
+                  const totalValue = entries.reduce((s: number, e: any) => s + e.value, 0);
                   return (
                     <div key={ticker} className="flex items-center justify-between p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/20">
                       <div>
@@ -94,12 +96,12 @@ export default function CorrelationPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {portfolioSectors.map((g) => (
+              {portfolioSectors.map((g: any) => (
                 <div key={g.name} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
                   <div>
                     <span className="font-semibold">{g.name}</span>
                     <div className="flex gap-1 mt-1">
-                      {g.positions.map((p) => (
+                      {g.positions.map((p: any) => (
                         <Badge key={`${p.ticker}-${p.broker}`} variant="outline" className="text-xs">
                           {p.ticker}
                         </Badge>

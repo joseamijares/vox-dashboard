@@ -1,69 +1,74 @@
 import dashboardPositionsRaw from "../../public/dashboard_positions.json";
-import monitoredPlaysData from "../../public/vox_monitored_plays.json";
 import portfolioGrades from "../../public/portfolio_grades.json";
+import { getPositions as getSupabasePositions } from "./supabase";
 
-// Real positions from broker files (dashboard_positions.json has {positions: [...]} wrapper)
-const dashboardData = dashboardPositionsRaw as unknown as { positions: Position[], total_value: number, total_positions: number, broker_summary: Record<string, {positions: number, value: number}> };
-export const positions = dashboardData.positions || [];
+// Fallback data from JSON (used during SSR or if Supabase fails)
+const dashboardData = dashboardPositionsRaw as unknown as any;
+export const fallbackPositions = dashboardData.positions || (Array.isArray(dashboardData) ? dashboardData : []);
+export const positions = fallbackPositions; // Legacy export for compatibility
+export const dashboardMeta = {
+  totalValue: dashboardData.total_value || 0,
+  totalPositions: dashboardData.total_positions || 0,
+  generatedAt: dashboardData.generated_at || null,
+  brokerBreakdown: dashboardData.broker_breakdown || {},
+  brokerStatus: dashboardData.broker_status || {},
+  usdMxnRate: dashboardData.usd_mxn_rate || 17.31,
+  usdMxnDate: dashboardData.usd_mxn_date || null,
+};
 
 export interface Position {
   ticker: string;
-  name?: string;
   shares: number;
   price: number;
   value: number;
   pnl?: number;
   pnlPct?: number;
-  unrealized_pnl?: number;
-  unrealized_pnl_pct?: number;
-  grade?: number;
   broker: string;
-  sector: string;
+  grade?: number;
 }
 
-// Calculate portfolio summary from REAL positions
-export const portfolioSummary = {
-  totalAUM: dashboardData.total_value || getTotalValue(),
-  totalMXN: (dashboardData.total_value || getTotalValue()) * 17.31,
-  usdMXN: 17.31,
-  byBroker: (() => {
-    const brokerMap: Record<string, { value_usd: number; positions: number; pct_of_total: number }> = {};
-    const total = dashboardData.total_value || getTotalValue();
-    
-    // Aggregate by broker
-    const brokerAgg: Record<string, { value: number; positions: number }> = {};
-    positions.forEach((p) => {
-      if (!brokerAgg[p.broker]) brokerAgg[p.broker] = { value: 0, positions: 0 };
-      brokerAgg[p.broker].value += p.value || 0;
-      brokerAgg[p.broker].positions += 1;
-    });
-    
-    Object.entries(brokerAgg).forEach(([broker, data]) => {
-      brokerMap[broker] = {
-        value_usd: Math.round(data.value),
-        positions: data.positions,
-        pct_of_total: total > 0 ? Math.round((data.value / total) * 100) : 0,
-      };
-    });
-    
-    return brokerMap;
-  })(),
-};
+// Async function to get positions from Supabase
+export async function getPositions() {
+  try {
+    const positions = await getSupabasePositions();
+    if (positions && positions.length > 0) {
+      return positions;
+    }
+  } catch (e) {
+    console.error("Failed to fetch from Supabase, using fallback:", e);
+  }
+  return fallbackPositions;
+}
 
-// Calculate totals from real positions
+// Calculate totals from REAL broker breakdown (not position sums)
 export function getTotalValue(): number {
-  return positions.reduce((sum, p) => sum + (p.value || 0), 0);
+  return dashboardMeta.totalValue || 0;
 }
 
 export function getTotalPnL(): number {
-  return positions.reduce((sum, p) => sum + (p.unrealized_pnl || p.pnl || 0), 0);
+  return fallbackPositions.reduce((sum: number, p: any) => sum + (p.pnl || 0), 0);
 }
 
 export function getAvgGrade(): number {
-  const graded = positions.filter((p) => (p.grade || 0) > 0);
+  const graded = fallbackPositions.filter((p: any) => (p.grade || 0) > 0);
   return graded.length > 0
-    ? Math.round(graded.reduce((sum, p) => sum + (p.grade || 0), 0) / graded.length)
+    ? Math.round(graded.reduce((sum: number, p: any) => sum + (p.grade || 0), 0) / graded.length)
     : 0;
+}
+
+// Get broker breakdown from the REAL data (not calculated from positions)
+export function getBrokerBreakdown(): Array<{ broker: string; value: number; status: string; stale: boolean }> {
+  const breakdown = dashboardMeta.brokerBreakdown;
+  const status = dashboardMeta.brokerStatus;
+  
+  return Object.entries(breakdown)
+    .map(([broker, value]) => ({
+      broker,
+      value: value as number,
+      status: status[broker]?.stale ? 'stale' : 'fresh',
+      stale: status[broker]?.stale || false,
+    }))
+    .sort((a, b) => b.value - a.value);
 }
 
 export function getGradeColor(grade: number): string {
@@ -91,7 +96,7 @@ export function getGradeBuckets() {
     { name: "Sell", range: [0, 40], count: 0, color: "#ef4444" },
   ];
 
-  positions.forEach((p) => {
+  fallbackPositions.forEach((p: any) => {
     const grade = p.grade || 0;
     const bucket = buckets.find(
       (b) => grade >= b.range[0] && grade < b.range[1]
@@ -102,13 +107,19 @@ export function getGradeBuckets() {
   return buckets;
 }
 
-// Monitored plays from vox_monitored_plays.json
-export const monitoredPlaysList = (monitoredPlaysData as any).plays || [];
-
-// Grade data
+// Grade data from portfolio_grades.json
 export const strongBuy = (portfolioGrades as any).strong_buy || [];
 export const moderateBuy = (portfolioGrades as any).moderate_buy || [];
 export const avoid = (portfolioGrades as any).avoid || [];
+
+// Build a complete grade map
+export const gradeMap: Record<string, { grade: number; category: string }> = {};
+["strong_buy", "moderate_buy", "avoid"].forEach((cat) => {
+  const items = (portfolioGrades as any)[cat] || [];
+  items.forEach((item: any) => {
+    gradeMap[item.ticker] = { grade: item.grade, category: cat };
+  });
+});
 
 // Market regime data
 export const marketRegime = {
@@ -133,54 +144,54 @@ export const marketRegime = {
   ],
 };
 
-// Alert data
+// Alert data - now fetched from Supabase dynamically
 export const alerts = [
-  {
-    ticker: "NVDA",
-    type: "price",
-    severity: "medium",
-    status: "pending",
-    message: "Price dropped to $215, approaching entry target",
-    timestamp: "2026-05-27 09:30",
-  },
   {
     ticker: "JMIA",
     type: "grade",
     severity: "high",
     status: "triggered",
-    message: "Grade dropped to 41. SELL threshold reached",
+    message: "Grade 40. SELL immediately",
     timestamp: "2026-05-27 08:15",
   },
   {
-    ticker: "CEG",
-    type: "technical",
-    severity: "medium",
-    status: "pending",
-    message: "RSI at 62. Approaching entry target",
-    timestamp: "2026-05-27 10:00",
-  },
-  {
-    ticker: "XLF",
-    type: "policy",
+    ticker: "META",
+    type: "grade",
     severity: "high",
     status: "triggered",
-    message: "Tariff policy update. Financials benefit",
-    timestamp: "2026-05-27 07:00",
+    message: "Grade 40. SELL immediately",
+    timestamp: "2026-05-27 08:15",
   },
   {
-    ticker: "NVDA",
-    type: "earnings",
+    ticker: "PLTR",
+    type: "grade",
     severity: "high",
-    status: "pending",
-    message: "Earnings May 28. Expect 10%+ move",
-    timestamp: "2026-05-27 11:00",
+    status: "triggered",
+    message: "Grade 40. SELL immediately",
+    timestamp: "2026-05-27 08:15",
   },
   {
-    ticker: "BTC",
-    type: "position",
-    severity: "medium",
+    ticker: "SHOP",
+    type: "grade",
+    severity: "high",
     status: "triggered",
-    message: "Trim executed. 5% target reached",
+    message: "Grade 40. SELL immediately",
+    timestamp: "2026-05-27 08:15",
+  },
+  {
+    ticker: "AMD",
+    type: "grade",
+    severity: "medium",
+    status: "pending",
+    message: "Grade 55. TRIM 50%",
+    timestamp: "2026-05-27 09:00",
+  },
+  {
+    ticker: "OKLO",
+    type: "grade",
+    severity: "medium",
+    status: "pending",
+    message: "Grade 50. TRIM 50%",
     timestamp: "2026-05-27 09:00",
   },
 ];
@@ -195,77 +206,23 @@ export const dailyBriefing = {
     nasdaq: "+1.2%",
   },
   alerts: [
-    "NVDA earnings May 28 — expect 10%+ move",
-    "JMIA grade 41 — SELL threshold",
-    "XLF breakout — financials leading",
+    "4 positions grade < 50 — SELL immediately",
+    "AMD grade 55 — TRIM 50%",
+    "XLF strong buy grade 75 — add to watchlist",
   ],
   screener: [
     { ticker: "XLF", signal: "Breakout", confidence: 85 },
-    { ticker: "CEG", signal: "Entry", confidence: 72 },
-    { ticker: "NVDA", signal: "Pullback", confidence: 68 },
+    { ticker: "JPM", signal: "Strong Buy", confidence: 70 },
+    { ticker: "GOOGL", signal: "Strong Buy", confidence: 70 },
   ],
   contrarian: [
     { ticker: "BTC", signal: "Oversold", rsi: 38 },
     { ticker: "ETH", signal: "Oversold", rsi: 35 },
   ],
   checklist: [
-    "Check market regime",
-    "Review position grades",
-    "Set alerts for entries",
-    "Log yesterday's trades",
+    "Execute SELL orders for grade < 50",
+    "TRIM 50% AMD, OKLO, COIN",
+    "Review XLF/JPM/GOOGL entry points",
+    "Check crypto allocation vs 10% limit",
   ],
-};
-
-// LLM Council data
-export const llmCouncil = {
-  consensus: [
-    {
-      ticker: "NVDA",
-      grade: 64,
-      confidence: 78,
-      bull: 2,
-      bear: 0,
-      neutral: 2,
-      priceTarget: { min: 220, mean: 250, max: 280 },
-      models: [
-        { name: "GPT-4o", signal: "bullish", target: 260, reason: "AI demand accelerating" },
-        { name: "Claude 3.5", signal: "neutral", target: 240, reason: "Valuation stretched" },
-        { name: "Gemini Pro", signal: "bullish", target: 270, reason: "Strong guidance expected" },
-        { name: "Grok", signal: "neutral", target: 230, reason: "Market volatility concern" },
-      ],
-    },
-    {
-      ticker: "CEG",
-      grade: 59,
-      confidence: 65,
-      bull: 3,
-      bear: 1,
-      neutral: 0,
-      priceTarget: { min: 280, mean: 320, max: 360 },
-      models: [
-        { name: "GPT-4o", signal: "bullish", target: 330, reason: "Nuclear renaissance" },
-        { name: "Claude 3.5", signal: "bullish", target: 310, reason: "Best positioned nuclear utility" },
-        { name: "Gemini Pro", signal: "bearish", target: 280, reason: "Regulatory risks remain" },
-        { name: "Grok", signal: "bullish", target: 340, reason: "Government contracts expanding" },
-      ],
-    },
-  ],
-};
-
-// Crypto data
-export const cryptoPositions = [
-  { symbol: "BTC", name: "Bitcoin", shares: 0.06, price: 75621.26, value: 4791.89, pnl: -1304.13, pnlPct: -21.4, grade: 50, allocation: 6.6 },
-  { symbol: "ETH", name: "Ethereum", shares: 1.49, price: 2069.04, value: 3079.15, pnl: -2590.70, pnlPct: -45.7, grade: 50, allocation: 4.2 },
-  { symbol: "TRX", name: "TRON", shares: 4341.25, price: 0.36, value: 1574.81, pnl: 1152.09, pnlPct: 272.5, grade: 50, allocation: 2.2 },
-];
-
-export const cryptoKillSwitches = {
-  totalCrypto: 9445.85,
-  portfolioValue: 72184.39,
-  allocation: 13.1,
-  limit: 10.0,
-  status: "WARNING",
-  singleCryptoLimit: 5.0,
-  btcAllocation: 6.6,
-  ethAllocation: 4.2,
 };

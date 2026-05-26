@@ -1,0 +1,81 @@
+{
+  "timestamp": "2026-05-26T02:15:00Z",
+  "sectors": {
+    "nuclear": {
+      "name": "Nuclear",
+      "description": "Next-gen nuclear, SMRs, uranium",
+      "thesis": "US energy shortage + AI data center power demand + decarbonization",
+      "momentum": "STRONG",
+      "stocks": [
+        {"ticker": "OKLO", "status": "OWNED", "value": 1619, "description": "Small modular reactors", "edge": "Micro-reactor for remote power", "risk": "High"},
+        {"ticker": "CEG", "status": "WATCHLIST", "value": 0, "description": "Constellation Energy, nuclear fleet", "edge": "Largest US nuclear fleet, AI data center deals", "risk": "Medium"},
+        {"ticker": "VST", "status": "WATCHLIST", "value": 0, "description": "Vistra, nuclear + gas", "edge": "Nuclear fleet, Texas power, AI deals", "risk": "Medium"},
+        {"ticker": "SMR", "status": "WATCHLIST", "value": 0, "description": "NuScale Power, SMR leader", "edge": "First US SMR design approved by NRC", "risk": "High"},
+        {"ticker": "CCJ", "status": "WATCHLIST", "value": 0, "description": "Cameco, uranium mining", "edge": "Largest uranium producer, supply crunch", "risk": "Medium"},
+        {"ticker": "BWXT", "status": "WATCHLIST", "value": 0, "description": "BWX Technologies", "edge": "Nuclear components for Navy + commercial", "risk": "Medium"}
+      ]
+    },
+    "renewables": {
+      "name": "Renewables + Storage",
+      "description": "Solar, wind, battery storage",
+      "thesis": "Grid modernization + IRA subsidies + cost parity",
+      "momentum": "MIXED",
+      "stocks": [
+        {"ticker": "NEE", "status": "WATCHLIST", "value": 0, "description": "NextEra Energy", "edge": "Largest renewable developer, dividend aristocrat", "risk": "Low"},
+        {"ticker": "ENPH", "status": "WATCHLIST", "value": 0, "description": "Enphase, solar microinverters", "edge": "Residential solar leader, beaten down", "risk": "High"},
+        {"ticker": "FSLR", "status": "WATCHLIST", "value": 0, "description": "First Solar", "edge": "US-made solar, IRA beneficiary", "risk": "Medium"},
+        {"ticker": "TSLA", "status": "OWNED", "value": 10981, "description": "Tesla, energy storage", "edge": "Megapack utility storage", "risk": "Medium"}
+      ]
+    },
+    "traditional": {
+      "name": "Traditional Energy",
+      "description": "Oil, gas, LNG",
+      "thesis": "Transition takes decades, gas needed for baseload",
+      "momentum": "MIXED",
+      "stocks": [
+        {"ticker": "XOM", "status": "WATCHLIST", "value": 0, "description": "ExxonMobil", "edge": "Lowest cost producer, dividend", "risk": "Low"},
+        {"ticker": "LNG", "status": "WATCHLIST", "value": 0, "description": "Cheniere Energy", "edge": "US LNG export leader, Europe demand", "risk": "Medium"},
+        {"ticker": "KMI", "status": "WATCHLIST", "value": 0, "description": "Kinder Morgan", "edge": "Toll road model, 6% dividend", "risk": "Low"}
+      ]
+    },
+    "grid": {
+      "name": "Grid + Utilities",
+      "description": "Power utilities, grid infrastructure",
+      "thesis": "Grid needs $2T investment, electrification of everything",
+      "momentum": "BUILDING",
+      "stocks": [
+        {"ticker": "ETN", "status": "WATCHLIST", "value": 0, "description": "Eaton, electrical equipment", "edge": "Grid hardware, data center electrification", "risk": "Medium"},
+        {"ticker": "GNRC", "status": "WATCHLIST", "value": 0, "description": "Generac, backup generators", "edge": "Grid reliability concerns", "risk": "Medium"},
+        {"ticker": "NRG", "status": "WATCHLIST", "value": 0, "description": "NRG Energy", "edge": "Retail + wholesale, backup power", "risk": "Medium"}
+      ]
+    }
+  },
+  "recommendations": {
+    "tier1_buy_now": [
+      {"ticker": "CEG", "amount": "5000-10000", "reason": "Nuclear fleet, AI deals happening NOW"},
+      {"ticker": "VST", "amount": "3000-5000", "reason": "Similar to CEG, Texas exposure"}
+    ],
+    "tier2_buy": [
+      {"ticker": "SMR", "amount": "1000-2000", "reason": "Pure SMR play, first-mover"},
+      {"ticker": "CCJ", "amount": "1000-2000", "reason": "Uranium supply crunch"}
+    ],
+    "tier3_watch": [
+      {"ticker": "ETN", "reason": "Grid infrastructure play"},
+      {"ticker": "NEE", "reason": "Renewable dividend aristocrat"},
+      {"ticker": "ENPH", "reason": "Solar contrarian"},
+      {"ticker": "LNG", "reason": "US LNG exports"},
+      {"ticker": "XOM", "reason": "Defensive dividend"},
+      {"ticker": "BWXT", "reason": "Defense + nuclear"}
+    ]
+  },
+  "current_allocation": {
+    "total_energy_value": 2026,
+    "total_portfolio_value": 197818,
+    "energy_percentage": 1.0,
+    "target_percentage": "5-8%",
+    "positions": [
+      {"ticker": "OKLO", "value": 1619},
+      {"ticker": "CEG", "value": 407}
+    ]
+  }
+}

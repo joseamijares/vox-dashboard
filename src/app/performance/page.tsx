@@ -2,38 +2,39 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { positions } from "@/lib/data";
 import { TrendingUp, TrendingDown, BarChart3, Award } from "lucide-react";
 
 export default function PerformancePage() {
-  const totalValue = positions.reduce((s, p) => s + p.value, 0);
-  const totalPnl = positions.reduce((s, p) => s + (p.unrealized_pnl || 0), 0);
-  const totalCost = positions.reduce((s, p) => s + (p.value - (p.unrealized_pnl || 0)), 0);
+  const totalValue = positions.reduce((s: number, p: any) => s + p.value, 0);
+  const totalPnl = positions.reduce((s: number, p: any) => s + (p.unrealized_pnl || 0), 0);
+  const totalCost = positions.reduce((s: number, p: any) => s + (p.value - (p.unrealized_pnl || 0)), 0);
   const totalReturn = totalCost > 0 ? (totalPnl / totalCost) * 100 : 0;
 
   // Winners vs Losers
-  const winners = positions.filter((p) => (p.unrealized_pnl || 0) > 0);
-  const losers = positions.filter((p) => (p.unrealized_pnl || 0) < 0);
-  const winnerValue = winners.reduce((s, p) => s + p.value, 0);
-  const loserValue = losers.reduce((s, p) => s + p.value, 0);
-  const winnerPnl = winners.reduce((s, p) => s + (p.unrealized_pnl || 0), 0);
-  const loserPnl = losers.reduce((s, p) => s + (p.unrealized_pnl || 0), 0);
+  const winners = positions.filter((p: any) => (p.unrealized_pnl || 0) > 0);
+  const losers = positions.filter((p: any) => (p.unrealized_pnl || 0) < 0);
+  const winnerValue = winners.reduce((s: number, p: any) => s + p.value, 0);
+  const loserValue = losers.reduce((s: number, p: any) => s + p.value, 0);
+  const winnerPnl = winners.reduce((s: number, p: any) => s + (p.unrealized_pnl || 0), 0);
+  const loserPnl = losers.reduce((s: number, p: any) => s + (p.unrealized_pnl || 0), 0);
 
   // Top performers
   const topWinners = [...positions]
-    .filter((p) => (p.unrealized_pnl || 0) > 0)
-    .sort((a, b) => (b.unrealized_pnl || 0) - (a.unrealized_pnl || 0))
+    .filter((p: any) => (p.unrealized_pnl || 0) > 0)
+    .sort((a: any, b: any) => (b.unrealized_pnl || 0) - (a.unrealized_pnl || 0))
     .slice(0, 10);
 
   const topLosers = [...positions]
-    .filter((p) => (p.unrealized_pnl || 0) < 0)
-    .sort((a, b) => (a.unrealized_pnl || 0) - (b.unrealized_pnl || 0))
+    .filter((p: any) => (p.unrealized_pnl || 0) < 0)
+    .sort((a: any, b: any) => (a.unrealized_pnl || 0) - (b.unrealized_pnl || 0))
     .slice(0, 10);
 
   // By broker P&L
   const brokerPnl: Record<string, { pnl: number; value: number; positions: number }> = {};
-  positions.forEach((p) => {
+  positions.forEach((p: any) => {
     if (!brokerPnl[p.broker]) brokerPnl[p.broker] = { pnl: 0, value: 0, positions: 0 };
     brokerPnl[p.broker].pnl += p.unrealized_pnl || 0;
     brokerPnl[p.broker].value += p.value;
@@ -42,8 +43,9 @@ export default function PerformancePage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Performance</h1>
           <p className="text-muted-foreground text-sm">Portfolio P&L analysis</p>
@@ -111,7 +113,7 @@ export default function PerformancePage() {
           <CardContent>
             <div className="space-y-3">
               {Object.entries(brokerPnl)
-                .sort((a, b) => b[1].pnl - a[1].pnl)
+                .sort((a: any, b: any) => b[1].pnl - a[1].pnl)
                 .map(([broker, data]) => (
                   <div key={broker} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
                     <div>
@@ -141,7 +143,7 @@ export default function PerformancePage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {topWinners.map((p) => (
+                {topWinners.map((p: any) => (
                   <div key={`${p.ticker}-${p.broker}`} className="flex items-center justify-between p-2 bg-green-500/10 rounded">
                     <div>
                       <span className="font-semibold text-sm">{p.ticker}</span>
@@ -166,7 +168,7 @@ export default function PerformancePage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {topLosers.map((p) => (
+                {topLosers.map((p: any) => (
                   <div key={`${p.ticker}-${p.broker}`} className="flex items-center justify-between p-2 bg-red-500/10 rounded">
                     <div>
                       <span className="font-semibold text-sm">{p.ticker}</span>

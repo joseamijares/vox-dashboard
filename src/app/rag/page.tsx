@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { useState } from "react";
 import { Search, Brain, BookOpen, Database, TrendingUp } from "lucide-react";
@@ -60,10 +61,10 @@ function searchRAG(query: string): typeof RAG_KNOWLEDGE_BASE {
     doc.text.toLowerCase().includes(q) ||
     doc.title.toLowerCase().includes(q) ||
     doc.tags.some(t => t.toLowerCase().includes(q))
-  ).sort((a, b) => {
+  ).sort((a: any, b: any) => {
     // Exact ticker match gets priority
-    const aExact = a.tags.some(t => t.toLowerCase() === q);
-    const bExact = b.tags.some(t => t.toLowerCase() === q);
+    const aExact = a.tags.some((t: any) => t.toLowerCase() === q);
+    const bExact = b.tags.some((t: any) => t.toLowerCase() === q);
     if (aExact && !bExact) return -1;
     if (bExact && !aExact) return 1;
     return 0;
@@ -99,8 +100,9 @@ export default function RAGPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">RAG Intelligence</h1>
           <p className="text-muted-foreground text-sm">

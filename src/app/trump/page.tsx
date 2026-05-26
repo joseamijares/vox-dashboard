@@ -2,69 +2,80 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
-import { Flag, AlertTriangle, TrendingDown, TrendingUp, Minus } from "lucide-react";
+import { positions, getTotalValue } from "@/lib/data";
+import { Flag, AlertTriangle, TrendingDown, TrendingUp, Minus, Target } from "lucide-react";
 
-// Real Trump policy impacts on portfolio
+// Portfolio exposure by policy-sensitive sectors
+function getPortfolioExposure() {
+  const exposure = [
+    { sector: "Semiconductors", tickers: ["NVDA", "AMD", "TSM", "AVGO"], risk: "HIGH" as const },
+    { sector: "Crypto", tickers: ["BTC", "ETH", "SOL", "DOGE", "XRP", "ADA"], risk: "MEDIUM" as const },
+    { sector: "Healthcare", tickers: ["OSCR", "SPRB", "HUMA"], risk: "MEDIUM" as const },
+    { sector: "Energy", tickers: ["XLE", "VST", "CEG"], risk: "MEDIUM" as const },
+    { sector: "Financials", tickers: ["JPM", "BAC", "C", "NEWT"], risk: "LOW" as const },
+    { sector: "EV/Auto", tickers: ["TSLA"], risk: "MEDIUM" as const },
+  ];
+
+  return exposure.map((exp) => {
+    const matching = positions.filter((p: any) => exp.tickers.includes(p.ticker));
+    const value = matching.reduce((s: number, p: any) => s + p.value, 0);
+    return { ...exp, value, matching };
+  }).filter((e) => e.value > 0).sort((a: any, b: any) => b.value - a.value);
+}
+
+// Simulated Trump events (in production, this comes from trump_tracker.py)
 const trumpEvents = [
   {
     date: "2026-05-20",
     event: "Tariff announcement on semiconductors",
-    impact: "NEGATIVE",
+    impact: "NEGATIVE" as const,
     affected: ["NVDA", "AMD", "TSM", "AVGO"],
     severity: 7,
-    description: "25% tariffs on imported chips could hurt margins for TSMC-dependent companies",
+    action: "Watch TSM — may gap down. Consider protective stop.",
   },
   {
     date: "2026-05-15",
     event: "Crypto regulatory clarity",
-    impact: "POSITIVE",
+    impact: "POSITIVE" as const,
     affected: ["BTC", "ETH", "COIN"],
     severity: 6,
-    description: "SEC guidance favorable to Bitcoin ETFs and staking",
+    action: "BTC/ETH may rally. Monitor for breakout entry.",
   },
   {
     date: "2026-05-10",
     event: "Healthcare deregulation push",
-    impact: "MIXED",
+    impact: "MIXED" as const,
     affected: ["OSCR", "SPRB"],
     severity: 4,
-    description: "Faster FDA approvals but reduced Medicare reimbursements",
+    action: "Hold. Mixed impact on small-cap healthcare.",
   },
   {
     date: "2026-05-05",
     event: "Energy independence executive order",
-    impact: "POSITIVE",
+    impact: "POSITIVE" as const,
     affected: ["XLE", "VST", "CEG"],
     severity: 8,
-    description: "Nuclear and LNG export approvals accelerated",
+    action: "XLE/CEG bullish. Consider adding on dips.",
   },
-  {
-    date: "2026-04-28",
-    event: "Fed pressure on rate cuts",
-    impact: "POSITIVE",
-    affected: ["XLF", "JPM", "BAC"],
-    severity: 5,
-    description: "Financials benefit from lower rates, but inflation risk rises",
-  },
-];
-
-const portfolioExposure = [
-  { sector: "Semiconductors", tickers: ["NVDA", "AMD", "TSM", "AVGO"], value: 25000, risk: "HIGH" },
-  { sector: "Crypto", tickers: ["BTC", "ETH"], value: 19739, risk: "MEDIUM" },
-  { sector: "Healthcare", tickers: ["OSCR", "SPRB"], value: 2808, risk: "MEDIUM" },
-  { sector: "Financials", tickers: ["VOO", "VTI"], value: 7000, risk: "LOW" },
 ];
 
 export default function TrumpPage() {
+  const exposure = getPortfolioExposure();
+  const totalValue = getTotalValue();
+
+  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
+
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Trump Tracker</h1>
           <p className="text-muted-foreground text-sm">
-            Policy events affecting your portfolio
+            Policy events affecting your portfolio + suggested actions
           </p>
         </div>
 
@@ -73,21 +84,21 @@ export default function TrumpPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Flag className="h-5 w-5 text-red-400" />
-              Portfolio Policy Exposure
+              Your Portfolio Policy Exposure
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {portfolioExposure.map((exp) => (
+              {exposure.map((exp: any) => (
                 <div key={exp.sector} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
                   <div>
                     <span className="font-semibold">{exp.sector}</span>
                     <span className="text-xs text-muted-foreground ml-2">
-                      {exp.tickers.join(", ")}
+                      {exp.matching.map((p: any) => p.ticker).join(", ")}
                     </span>
                   </div>
                   <div className="text-right">
-                    <span className="font-mono">${exp.value.toLocaleString()}</span>
+                    <span className="font-mono">{fmt(exp.value)}</span>
                     <Badge
                       variant="outline"
                       className={`ml-2 ${
@@ -112,7 +123,7 @@ export default function TrumpPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-yellow-400" />
-              Policy Event Timeline
+              Policy Events + Action Plan
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -133,8 +144,7 @@ export default function TrumpPage() {
                       <span className="font-semibold">{event.event}</span>
                       <span className="text-xs text-muted-foreground">{event.date}</span>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-2">{event.description}</p>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs">Affected:</span>
                       {event.affected.map((ticker) => (
                         <Badge key={ticker} variant="outline" className="text-xs">
@@ -153,6 +163,10 @@ export default function TrumpPage() {
                       >
                         Severity {event.severity}/10
                       </Badge>
+                    </div>
+                    <div className="p-2 bg-primary/10 rounded flex items-start gap-2">
+                      <Target className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-sm">{event.action}</span>
                     </div>
                   </div>
                 </div>

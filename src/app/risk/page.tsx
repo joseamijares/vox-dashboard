@@ -3,43 +3,45 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { positions } from "@/lib/data";
 import { Shield, AlertTriangle, TrendingDown, Wallet } from "lucide-react";
 
 export default function RiskPage() {
-  const totalValue = positions.reduce((s, p) => s + p.value, 0);
+  const totalValue = positions.reduce((s: number, p: any) => s + p.value, 0);
 
   // Risk metrics
   const cryptoValue = positions
-    .filter((p) => p.broker === "Binance" || ["BTC", "ETH", "BNB", "SOL", "DOGE", "XRP", "TRX"].includes(p.ticker))
-    .reduce((s, p) => s + p.value, 0);
+    .filter((p: any) => p.broker === "Binance" || ["BTC", "ETH", "BNB", "SOL", "DOGE", "XRP", "TRX"].includes(p.ticker))
+    .reduce((s: number, p: any) => s + p.value, 0);
   const cryptoPct = (cryptoValue / totalValue) * 100;
 
   const etoroValue = positions
-    .filter((p) => p.broker === "eToro")
-    .reduce((s, p) => s + p.value, 0);
+    .filter((p: any) => p.broker === "eToro")
+    .reduce((s: number, p: any) => s + p.value, 0);
   const etoroPct = (etoroValue / totalValue) * 100;
 
   // Concentration risk - top 5 positions
-  const sorted = [...positions].sort((a, b) => b.value - a.value);
+  const sorted = [...positions].sort((a: any, b: any) => b.value - a.value);
   const top5 = sorted.slice(0, 5);
-  const top5Value = top5.reduce((s, p) => s + p.value, 0);
+  const top5Value = top5.reduce((s: number, p: any) => s + p.value, 0);
   const top5Pct = (top5Value / totalValue) * 100;
 
   // SELL candidates (grade < 55)
-  const sellCandidates = positions.filter((p) => (p.grade || 0) > 0 && (p.grade || 0) < 55);
-  const sellValue = sellCandidates.reduce((s, p) => s + p.value, 0);
+  const sellCandidates = positions.filter((p: any) => (p.grade || 0) > 0 && (p.grade || 0) < 55);
+  const sellValue = sellCandidates.reduce((s: number, p: any) => s + p.value, 0);
 
   // Negative P&L positions
-  const losers = positions.filter((p) => (p.unrealized_pnl || 0) < -50);
-  const loserValue = losers.reduce((s, p) => s + p.value, 0);
-  const totalLoss = losers.reduce((s, p) => s + (p.unrealized_pnl || 0), 0);
+  const losers = positions.filter((p: any) => (p.unrealized_pnl || 0) < -50);
+  const loserValue = losers.reduce((s: number, p: any) => s + p.value, 0);
+  const totalLoss = losers.reduce((s: number, p: any) => s + (p.unrealized_pnl || 0), 0);
 
   return (
     <div className="min-h-screen bg-background">
+      <MobileHeader />
       <Sidebar />
-      <main className="lg:ml-64 p-4 lg:p-8">
+      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Risk Management</h1>
           <p className="text-muted-foreground text-sm">Portfolio risk metrics and exposure analysis</p>
@@ -117,9 +119,9 @@ export default function RiskPage() {
             </p>
             <div className="space-y-2">
               {sellCandidates
-                .sort((a, b) => b.value - a.value)
+                .sort((a: any, b: any) => b.value - a.value)
                 .slice(0, 15)
-                .map((p) => (
+                .map((p: any) => (
                   <div
                     key={`${p.ticker}-${p.broker}`}
                     className="flex items-center justify-between p-3 bg-red-500/10 rounded-lg border border-red-500/20"
@@ -152,8 +154,8 @@ export default function RiskPage() {
             <CardContent>
               <div className="space-y-2">
                 {losers
-                  .sort((a, b) => (a.unrealized_pnl || 0) - (b.unrealized_pnl || 0))
-                  .map((p) => (
+                  .sort((a: any, b: any) => (a.unrealized_pnl || 0) - (b.unrealized_pnl || 0))
+                  .map((p: any) => (
                     <div
                       key={`${p.ticker}-${p.broker}`}
                       className="flex items-center justify-between p-3 bg-muted/30 rounded-lg"

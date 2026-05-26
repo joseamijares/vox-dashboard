@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-05-26T00:11:24.713332+00:00",
+  "validated_total": 197818.36,
+  "validated_positions": 141,
+  "stale_brokers": [
+    "GBM Main",
+    "GBM USA",
+    "IBKR"
+  ],
+  "broker_breakdown": {
+    "eToro": 84937.0,
+    "GBM Main": 74671.97,
+    "GBM USA": 14932.18,
+    "Schwab": 1630.07,
+    "IBKR": 1260.0,
+    "Binance": 20145.9,
+    "Bitso": 241.24
+  }
+}
