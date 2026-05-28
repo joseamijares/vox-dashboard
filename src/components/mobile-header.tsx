@@ -20,9 +20,7 @@ const navSections = [
     items: [
       { href: "/portfolio", label: "Positions" },
       { href: "/brokers", label: "Brokers" },
-      { href: "/watchlist", label: "Watchlist" },
-      { href: "/sectors", label: "Sectors" },
-      { href: "/grades", label: "Grades" },
+      { href: "/intelligence", label: "Intelligence" },
       { href: "/plays", label: "Plays" },
     ],
   },
@@ -91,7 +89,7 @@ export function MobileHeader() {
                       const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
                       return (
                         <Link
-                          key={item.href}
+                          key={item.href + item.label}
                           href={item.href}
                           onClick={() => setOpen(false)}
                           className={cn(

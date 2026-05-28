@@ -1,0 +1,31 @@
+{
+  "headers": [
+    {
+      "source": "/vox_council_votes.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/vox_watchlist_graded.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/vox_portfolio_graded.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

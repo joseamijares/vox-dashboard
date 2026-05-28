@@ -5,9 +5,30 @@ import { Badge } from "@/components/ui/badge";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { useState, useMemo, useEffect } from "react";
-import { Brain, ArrowUpDown, TrendingUp, TrendingDown, Loader2, Target, Shield, AlertTriangle, CheckCircle } from "lucide-react";
+import {
+  Brain,
+  Eye,
+  BarChart3,
+  Award,
+  ArrowUpDown,
+  TrendingUp,
+  TrendingDown,
+  Loader2,
+  Target,
+  Shield,
+  CheckCircle,
+  Zap,
+  Rocket,
+  Atom,
+  Globe,
+  Landmark,
+  Lock,
+  Activity,
+} from "lucide-react";
 
-interface GradedItem {
+// ─── Types ─────────────────────────────────────────────────────────
+
+interface WatchItem {
   ticker: string;
   price: number;
   grade: number;
@@ -27,36 +48,88 @@ interface GradedItem {
   pnl_pct?: number;
   live_value?: number;
   is_portfolio?: boolean;
+  sector?: string;
 }
 
-type SortKey = "ticker" | "grade" | "price" | "risk_reward" | "pnl_pct";
+interface SectorData {
+  name: string;
+  description: string;
+  thesis: string;
+  momentum: string;
+  key_companies: string[];
+  etfs: string[];
+  portfolio_overlap: string[];
+  watchlist_candidates: string[];
+  alerts: Array<{
+    level: string;
+    message: string;
+    action: string;
+  }>;
+}
+
+interface SectorWatchlistData {
+  timestamp: string;
+  sectors: Record<string, SectorData>;
+  summary: {
+    total_sectors: number;
+    strong_momentum: number;
+    building_momentum: number;
+    portfolio_coverage: Record<string, number>;
+  };
+}
+
+type ViewMode = "watchlist" | "portfolio" | "sectors";
+type SortKey = "ticker" | "grade" | "price" | "risk_reward" | "pnl_pct" | "value";
 type SortDir = "asc" | "desc";
-type FilterType = "all" | "strong_buy" | "buy" | "hold" | "weak" | "trim" | "avoid" | "portfolio";
+type FilterType = "all" | "strong" | "buy" | "hold" | "weak" | "trim" | "avoid" | "space" | "ai" | "quantum" | "banks" | "cyber" | "emerging";
+
+// ─── Sector icon mapping ───────────────────────────────────────────
+
+const sectorIcons: Record<string, React.ReactNode> = {
+  Space: <Rocket className="h-4 w-4" />,
+  "AI Infrastructure": <Zap className="h-4 w-4" />,
+  Quantum: <Atom className="h-4 w-4" />,
+  Banks: <Landmark className="h-4 w-4" />,
+  Cybersecurity: <Lock className="h-4 w-4" />,
+  "Emerging Markets": <Globe className="h-4 w-4" />,
+};
+
+// ─── Component ─────────────────────────────────────────────────────
 
 export default function IntelligencePage() {
-  const [watchlistData, setWatchlistData] = useState<GradedItem[]>([]);
-  const [portfolioData, setPortfolioData] = useState<GradedItem[]>([]);
+  // Data states
+  const [watchlistData, setWatchlistData] = useState<WatchItem[]>([]);
+  const [portfolioData, setPortfolioData] = useState<WatchItem[]>([]);
+  const [sectorData, setSectorData] = useState<SectorWatchlistData | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // UI states
+  const [viewMode, setViewMode] = useState<ViewMode>("watchlist");
   const [sortKey, setSortKey] = useState<SortKey>("grade");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [filter, setFilter] = useState<FilterType>("all");
-  const [activeTab, setActiveTab] = useState<"watchlist" | "portfolio">("watchlist");
 
+  // Load all data
   useEffect(() => {
     async function loadData() {
       try {
-        // Load watchlist grades
-        const wlRes = await fetch("/data/vox_watchlist_graded.json");
+        const [wlRes, pfRes, secRes] = await Promise.all([
+          fetch("/data/vox_watchlist_graded.json"),
+          fetch("/data/vox_portfolio_graded.json"),
+          fetch("/vox_sector_watchlist.json"),
+        ]);
+
         if (wlRes.ok) {
           const wlJson = await wlRes.json();
           setWatchlistData(wlJson.results || []);
         }
-        
-        // Load portfolio grades
-        const pfRes = await fetch("/data/vox_portfolio_graded.json");
         if (pfRes.ok) {
           const pfJson = await pfRes.json();
           setPortfolioData(pfJson.results || []);
+        }
+        if (secRes.ok) {
+          const secJson = await secRes.json();
+          setSectorData(secJson);
         }
       } catch (e) {
         console.error("Failed to load intelligence data:", e);
@@ -67,17 +140,40 @@ export default function IntelligencePage() {
     loadData();
   }, []);
 
-  const currentData = activeTab === "watchlist" ? watchlistData : portfolioData;
+  // ─── Helpers ─────────────────────────────────────────────────────
+
+  const currentData = viewMode === "portfolio" ? portfolioData : watchlistData;
 
   const filtered = useMemo(() => {
     let result = [...currentData];
-    
-    if (filter === "strong_buy") result = result.filter((g) => g.signal === "STRONG_BUY" || g.signal === "STRONG_HOLD");
+
+    // Signal filters
+    if (filter === "strong") result = result.filter((g) => g.signal?.includes("STRONG"));
     if (filter === "buy") result = result.filter((g) => g.signal === "BUY" || g.signal === "HOLD");
     if (filter === "weak") result = result.filter((g) => g.signal === "WEAK");
     if (filter === "trim") result = result.filter((g) => g.signal === "TRIM" || g.signal === "CUT_LOSS");
     if (filter === "avoid") result = result.filter((g) => g.signal === "AVOID" || g.signal === "SELL");
-    
+
+    // Sector filters
+    if (filter === "space") result = result.filter((g) =>
+      ["CPSH", "LUNR", "SIDU", "RDW", "FLY", "DDD", "ASTS", "SPIR", "RKLB", "TSLA", "SPCE", "MNTS", "VORB", "AJRD", "NOC", "LHX", "RTX", "GD", "BA", "LMT"].includes(g.ticker)
+    );
+    if (filter === "ai") result = result.filter((g) =>
+      ["TE", "APLD", "HIVE", "CLSK", "IREN", "BTDR", "RIOT", "CORZ", "WULF", "MARA", "CIFR", "GLXY", "HUT"].includes(g.ticker)
+    );
+    if (filter === "quantum") result = result.filter((g) =>
+      ["IONQ", "RGTI", "QBTS", "QUBT", "IBM", "GOOGL", "MSFT", "NVDA", "HON", "TSM", "ASML", "MU", "LRCX", "AMAT", "KLAC", "FORM", "COHR", "CIEN", "LITE", "ARQQ", "BKSY"].includes(g.ticker)
+    );
+    if (filter === "banks") result = result.filter((g) =>
+      ["GS", "MS", "JPM", "BAC", "C", "WFC", "USB", "PNC", "TFC", "COF", "SCHW", "BK", "STT", "BLK", "AXP"].includes(g.ticker)
+    );
+    if (filter === "cyber") result = result.filter((g) =>
+      ["CRWD", "ARQQ", "GRRR", "PANW", "FTNT", "CYBR", "S", "OKTA", "ZS", "NET", "GEN", "QLYS", "RPD", "TENB", "VRNS"].includes(g.ticker)
+    );
+    if (filter === "emerging") result = result.filter((g) =>
+      ["BABA", "TCEHY", "JD", "PDD", "NIO", "LI", "XPEV", "DIDI", "BEKE", "EDU", "MNSO", "FUTU", "VIPS", "BIDU", "KC"].includes(g.ticker)
+    );
+
     result.sort((a: any, b: any) => {
       let valA: number | string = a[sortKey] || 0;
       let valB: number | string = b[sortKey] || 0;
@@ -114,13 +210,13 @@ export default function IntelligencePage() {
   );
 
   const signalBadge = (signal: string) => {
-    const s = signal.toUpperCase();
+    const s = signal?.toUpperCase() || "";
     if (s.includes("STRONG")) return { label: s, class: "bg-green-500/20 text-green-400 border-green-500/30" };
     if (s === "BUY" || s === "HOLD") return { label: s, class: "bg-blue-500/20 text-blue-400 border-blue-500/30" };
     if (s === "WEAK") return { label: s, class: "bg-amber-500/20 text-amber-400 border-amber-500/30" };
     if (s === "TRIM" || s === "CUT_LOSS") return { label: s, class: "bg-orange-500/20 text-orange-400 border-orange-500/30" };
     if (s === "AVOID" || s === "SELL") return { label: s, class: "bg-red-500/20 text-red-400 border-red-500/30" };
-    return { label: s, class: "bg-muted text-muted-foreground" };
+    return { label: s || "—", class: "bg-muted text-muted-foreground" };
   };
 
   const gradeColor = (grade: number) => {
@@ -131,15 +227,24 @@ export default function IntelligencePage() {
     return "text-red-400";
   };
 
-  // Stats
+  const getMomentumColor = (momentum: string) => {
+    if (momentum === "STRONG") return "bg-green-500/20 text-green-400 border-green-500/30";
+    if (momentum === "BUILDING") return "bg-amber-500/20 text-amber-400 border-amber-500/30";
+    return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+  };
+
+  const fmt = (n: number) => `$${n?.toFixed?.(2) || n}`;
+
+  // ─── Stats ───────────────────────────────────────────────────────
+
   const strong = currentData.filter((g) => g.signal?.includes("STRONG"));
   const buy = currentData.filter((g) => g.signal === "BUY" || g.signal === "HOLD");
   const weak = currentData.filter((g) => g.signal === "WEAK");
   const trim = currentData.filter((g) => g.signal === "TRIM" || g.signal === "CUT_LOSS");
   const avoid = currentData.filter((g) => g.signal === "AVOID" || g.signal === "SELL");
-  const avgGrade = currentData.length > 0 ? (currentData.reduce((s, g) => s + g.grade, 0) / currentData.length).toFixed(1) : "—";
+  const avgGrade = currentData.length > 0 ? (currentData.reduce((s, g) => s + (g.grade || 0), 0) / currentData.length).toFixed(1) : "—";
 
-  const fmt = (n: number) => `$${n?.toFixed?.(2) || n}`;
+  // ─── Loading ─────────────────────────────────────────────────────
 
   if (loading) {
     return (
@@ -152,213 +257,378 @@ export default function IntelligencePage() {
     );
   }
 
+  // ─── Render ──────────────────────────────────────────────────────
+
   return (
     <div className="min-h-screen bg-background">
       <MobileHeader />
       <Sidebar />
       <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold tracking-tight">Intelligence Dashboard</h1>
+        {/* Header */}
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <Brain className="h-6 w-6 text-primary" />
+            Intelligence
+          </h1>
           <p className="text-muted-foreground text-sm">
             {watchlistData.length} watchlist + {portfolioData.length} portfolio graded | Avg: {avgGrade}
           </p>
         </div>
 
-        {/* Tab Switcher */}
+        {/* View Mode Tabs */}
         <div className="flex gap-2 mb-6">
           <button
-            onClick={() => { setActiveTab("watchlist"); setFilter("all"); }}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              activeTab === "watchlist"
+            onClick={() => { setViewMode("watchlist"); setFilter("all"); }}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
+              viewMode === "watchlist"
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:text-foreground"
             }`}
           >
+            <Eye className="h-4 w-4" />
             Watchlist ({watchlistData.length})
           </button>
           <button
-            onClick={() => { setActiveTab("portfolio"); setFilter("all"); }}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              activeTab === "portfolio"
+            onClick={() => { setViewMode("portfolio"); setFilter("all"); }}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
+              viewMode === "portfolio"
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:text-foreground"
             }`}
           >
+            <Award className="h-4 w-4" />
             Portfolio ({portfolioData.length})
+          </button>
+          <button
+            onClick={() => { setViewMode("sectors"); setFilter("all"); }}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
+              viewMode === "sectors"
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <BarChart3 className="h-4 w-4" />
+            Sectors ({sectorData?.summary?.total_sectors || 0})
           </button>
         </div>
 
-        {/* Summary Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-6 gap-3 mb-6">
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground">Strong</p>
-              <p className="text-xl font-bold font-mono text-green-400">{strong.length}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground">Buy/Hold</p>
-              <p className="text-xl font-bold font-mono text-blue-400">{buy.length}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground">Weak</p>
-              <p className="text-xl font-bold font-mono text-amber-400">{weak.length}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground">Trim</p>
-              <p className="text-xl font-bold font-mono text-orange-400">{trim.length}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground">Avoid</p>
-              <p className="text-xl font-bold font-mono text-red-400">{avoid.length}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground">Avg Grade</p>
-              <p className="text-xl font-bold font-mono">{avgGrade}</p>
-            </CardContent>
-          </Card>
-        </div>
+        {/* ─── WATCHLIST / PORTFOLIO VIEW ─────────────────────────── */}
+        {(viewMode === "watchlist" || viewMode === "portfolio") && (
+          <>
+            {/* Summary Cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-6 gap-3 mb-6">
+              <Card className="vox-card">
+                <CardContent className="p-4">
+                  <p className="text-xs text-muted-foreground">Strong</p>
+                  <p className="text-xl font-bold font-mono text-green-400">{strong.length}</p>
+                </CardContent>
+              </Card>
+              <Card className="vox-card">
+                <CardContent className="p-4">
+                  <p className="text-xs text-muted-foreground">Buy/Hold</p>
+                  <p className="text-xl font-bold font-mono text-blue-400">{buy.length}</p>
+                </CardContent>
+              </Card>
+              <Card className="vox-card">
+                <CardContent className="p-4">
+                  <p className="text-xs text-muted-foreground">Weak</p>
+                  <p className="text-xl font-bold font-mono text-amber-400">{weak.length}</p>
+                </CardContent>
+              </Card>
+              <Card className="vox-card">
+                <CardContent className="p-4">
+                  <p className="text-xs text-muted-foreground">Trim</p>
+                  <p className="text-xl font-bold font-mono text-orange-400">{trim.length}</p>
+                </CardContent>
+              </Card>
+              <Card className="vox-card">
+                <CardContent className="p-4">
+                  <p className="text-xs text-muted-foreground">Avoid</p>
+                  <p className="text-xl font-bold font-mono text-red-400">{avoid.length}</p>
+                </CardContent>
+              </Card>
+              <Card className="vox-card">
+                <CardContent className="p-4">
+                  <p className="text-xs text-muted-foreground">Avg Grade</p>
+                  <p className="text-xl font-bold font-mono">{avgGrade}</p>
+                </CardContent>
+              </Card>
+            </div>
 
-        {/* Filter Tabs */}
-        <div className="flex gap-2 mb-6 flex-wrap">
-          {([
-            { key: "all" as FilterType, label: `All (${currentData.length})` },
-            { key: "strong_buy" as FilterType, label: `Strong (${strong.length})` },
-            { key: "buy" as FilterType, label: `Buy/Hold (${buy.length})` },
-            { key: "weak" as FilterType, label: `Weak (${weak.length})` },
-            { key: "trim" as FilterType, label: `Trim (${trim.length})` },
-            { key: "avoid" as FilterType, label: `Avoid (${avoid.length})` },
-          ]).map((f) => (
-            <button
-              key={f.key}
-              onClick={() => setFilter(f.key)}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                filter === f.key
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
+            {/* Filter Tabs — Signal */}
+            <div className="flex gap-2 mb-3 flex-wrap">
+              {([
+                { key: "all" as FilterType, label: `All (${currentData.length})` },
+                { key: "strong" as FilterType, label: `Strong (${strong.length})` },
+                { key: "buy" as FilterType, label: `Buy/Hold (${buy.length})` },
+                { key: "weak" as FilterType, label: `Weak (${weak.length})` },
+                { key: "trim" as FilterType, label: `Trim (${trim.length})` },
+                { key: "avoid" as FilterType, label: `Avoid (${avoid.length})` },
+              ]).map((f) => (
+                <button
+                  key={f.key}
+                  onClick={() => setFilter(f.key)}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                    filter === f.key
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
 
-        <Card className="vox-card">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Brain className="h-5 w-5 text-primary" />
-              {activeTab === "watchlist" ? "Watchlist Targets" : "Portfolio Targets"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-0">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left p-3 font-medium text-muted-foreground w-12">#</th>
-                    <SortHeader label="Ticker" sortKey="ticker" />
-                    <th className="text-left p-3 font-medium text-muted-foreground">Signal</th>
-                    <SortHeader label="Grade" sortKey="grade" />
-                    <th className="text-left p-3 font-medium text-muted-foreground">Price</th>
-                    <th className="text-left p-3 font-medium text-muted-foreground">Buy/Add</th>
-                    <th className="text-left p-3 font-medium text-muted-foreground">Stop</th>
-                    <th className="text-left p-3 font-medium text-muted-foreground">Target 1</th>
-                    <th className="text-left p-3 font-medium text-muted-foreground">Target 2</th>
-                    <th className="text-left p-3 font-medium text-muted-foreground">R:R</th>
-                    {activeTab === "portfolio" && (
-                      <>
-                        <th className="text-left p-3 font-medium text-muted-foreground">PnL%</th>
-                        <th className="text-left p-3 font-medium text-muted-foreground">Value</th>
-                      </>
-                    )}
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((g, i) => {
-                    const badge = signalBadge(g.signal);
-                    return (
-                      <tr key={g.ticker} className="border-b border-border/50 hover:bg-muted/30">
-                        <td className="p-3 text-muted-foreground">{i + 1}</td>
-                        <td className="p-3">
-                          <span className="font-bold font-mono">{g.ticker}</span>
-                        </td>
-                        <td className="p-3">
-                          <Badge variant="outline" className={badge.class}>
-                            {badge.label}
-                          </Badge>
-                        </td>
-                        <td className="p-3">
-                          <span className={`font-mono font-bold ${gradeColor(g.grade)}`}>
-                            {g.grade}
-                          </span>
-                        </td>
-                        <td className="p-3 font-mono">{fmt(g.price)}</td>
-                        <td className="p-3 font-mono text-green-400">
-                          {activeTab === "watchlist" ? fmt(g.buy_zone) : fmt(g.add_on_zone || g.buy_zone)}
-                        </td>
-                        <td className="p-3 font-mono text-red-400">
-                          {fmt((g.stop_loss || g.trailing_stop || 0) as number)}
-                        </td>
-                        <td className="p-3 font-mono text-blue-400">
-                          {fmt((g.target_1 || g.take_profit_1 || 0) as number)}
-                        </td>
-                        <td className="p-3 font-mono text-purple-400">
-                          {fmt((g.target_2 || g.take_profit_2 || 0) as number)}
-                        </td>
-                        <td className="p-3 font-mono">{g.risk_reward}x</td>
-                        {activeTab === "portfolio" && (
+            {/* Filter Tabs — Thematic Sectors */}
+            <div className="flex gap-2 mb-6 flex-wrap">
+              <span className="text-xs text-muted-foreground self-center mr-1">Sectors:</span>
+              {([
+                { key: "space" as FilterType, label: "🚀 Space", icon: <Rocket className="h-3 w-3" /> },
+                { key: "ai" as FilterType, label: "⚡ AI Infra", icon: <Zap className="h-3 w-3" /> },
+                { key: "quantum" as FilterType, label: "⚛️ Quantum", icon: <Atom className="h-3 w-3" /> },
+                { key: "banks" as FilterType, label: "🏦 Banks", icon: <Landmark className="h-3 w-3" /> },
+                { key: "cyber" as FilterType, label: "🔒 Cyber", icon: <Lock className="h-3 w-3" /> },
+                { key: "emerging" as FilterType, label: "🌏 Emerging", icon: <Globe className="h-3 w-3" /> },
+              ]).map((f) => (
+                <button
+                  key={f.key}
+                  onClick={() => setFilter(f.key)}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5 ${
+                    filter === f.key
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {f.icon}
+                  {f.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Data Table */}
+            <Card className="vox-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  {viewMode === "watchlist" ? <Eye className="h-5 w-5 text-primary" /> : <Award className="h-5 w-5 text-primary" />}
+                  {viewMode === "watchlist" ? "Watchlist Targets" : "Portfolio Positions"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left p-3 font-medium text-muted-foreground w-12">#</th>
+                        <SortHeader label="Ticker" sortKey="ticker" />
+                        <th className="text-left p-3 font-medium text-muted-foreground">Signal</th>
+                        <SortHeader label="Grade" sortKey="grade" />
+                        <th className="text-left p-3 font-medium text-muted-foreground">Price</th>
+                        <th className="text-left p-3 font-medium text-muted-foreground">Buy/Add</th>
+                        <th className="text-left p-3 font-medium text-muted-foreground">Stop</th>
+                        <th className="text-left p-3 font-medium text-muted-foreground">Target 1</th>
+                        <th className="text-left p-3 font-medium text-muted-foreground">Target 2</th>
+                        <th className="text-left p-3 font-medium text-muted-foreground">R:R</th>
+                        {viewMode === "portfolio" && (
                           <>
-                            <td className={`p-3 font-mono ${(g.pnl_pct || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
-                              {g.pnl_pct?.toFixed?.(1) || 0}%
-                            </td>
-                            <td className="p-3 font-mono">
-                              ${g.live_value?.toFixed?.(0) || 0}
-                            </td>
+                            <SortHeader label="PnL%" sortKey="pnl_pct" />
+                            <SortHeader label="Value" sortKey="value" />
                           </>
                         )}
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            {filtered.length === 0 && (
-              <div className="p-8 text-center text-muted-foreground">
-                <Brain className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                <p>No tickers match current filter</p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                    </thead>
+                    <tbody>
+                      {filtered.map((g, i) => {
+                        const badge = signalBadge(g.signal);
+                        return (
+                          <tr key={g.ticker} className="border-b border-border/50 hover:bg-muted/30">
+                            <td className="p-3 text-muted-foreground">{i + 1}</td>
+                            <td className="p-3">
+                              <span className="font-bold font-mono">{g.ticker}</span>
+                            </td>
+                            <td className="p-3">
+                              <Badge variant="outline" className={badge.class}>
+                                {badge.label}
+                              </Badge>
+                            </td>
+                            <td className="p-3">
+                              <span className={`font-mono font-bold ${gradeColor(g.grade || 0)}`}>
+                                {g.grade || "—"}
+                              </span>
+                            </td>
+                            <td className="p-3 font-mono">{fmt(g.price)}</td>
+                            <td className="p-3 font-mono text-green-400">
+                              {viewMode === "watchlist" ? fmt(g.buy_zone) : fmt(g.add_on_zone || g.buy_zone)}
+                            </td>
+                            <td className="p-3 font-mono text-red-400">
+                              {fmt((g.stop_loss || g.trailing_stop || 0) as number)}
+                            </td>
+                            <td className="p-3 font-mono text-blue-400">
+                              {fmt((g.target_1 || g.take_profit_1 || 0) as number)}
+                            </td>
+                            <td className="p-3 font-mono text-purple-400">
+                              {fmt((g.target_2 || g.take_profit_2 || 0) as number)}
+                            </td>
+                            <td className="p-3 font-mono">{g.risk_reward}x</td>
+                            {viewMode === "portfolio" && (
+                              <>
+                                <td className={`p-3 font-mono ${(g.pnl_pct || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
+                                  {g.pnl_pct?.toFixed?.(1) || 0}%
+                                </td>
+                                <td className="p-3 font-mono">
+                                  ${g.live_value?.toFixed?.(0) || 0}
+                                </td>
+                              </>
+                            )}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                {filtered.length === 0 && (
+                  <div className="p-8 text-center text-muted-foreground">
+                    <Brain className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                    <p>No tickers match current filter</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-        {/* Legend */}
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Target className="h-4 w-4 text-green-400" />
-            <span>Buy/Add Zone = entry target</span>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Shield className="h-4 w-4 text-red-400" />
-            <span>Stop = trailing stop loss</span>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <TrendingUp className="h-4 w-4 text-blue-400" />
-            <span>Target 1 = near-term resistance</span>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <CheckCircle className="h-4 w-4 text-purple-400" />
-            <span>Target 2 = extended 3R target</span>
-          </div>
-        </div>
+            {/* Legend */}
+            <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Target className="h-4 w-4 text-green-400" />
+                <span>Buy/Add Zone = entry target</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Shield className="h-4 w-4 text-red-400" />
+                <span>Stop = trailing stop loss</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <TrendingUp className="h-4 w-4 text-blue-400" />
+                <span>Target 1 = near-term resistance</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <CheckCircle className="h-4 w-4 text-purple-400" />
+                <span>Target 2 = extended 3R target</span>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* ─── SECTORS VIEW ───────────────────────────────────────── */}
+        {viewMode === "sectors" && sectorData && (
+          <>
+            {/* Sector Summary */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-2xl font-bold">{sectorData.summary.total_sectors}</div>
+                  <div className="text-sm text-muted-foreground">Sectors Tracked</div>
+                </CardContent>
+              </Card>
+              <Card className="bg-green-500/5 border-green-500/20">
+                <CardContent className="pt-6">
+                  <div className="text-2xl font-bold text-green-400">{sectorData.summary.strong_momentum}</div>
+                  <div className="text-sm text-muted-foreground">Strong Momentum</div>
+                </CardContent>
+              </Card>
+              <Card className="bg-amber-500/5 border-amber-500/20">
+                <CardContent className="pt-6">
+                  <div className="text-2xl font-bold text-amber-400">{sectorData.summary.building_momentum}</div>
+                  <div className="text-sm text-muted-foreground">Building Momentum</div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="text-2xl font-bold">
+                    {Object.values(sectorData.summary.portfolio_coverage).reduce((a, b) => a + b, 0)}
+                  </div>
+                  <div className="text-sm text-muted-foreground">Portfolio Positions</div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Sector Cards */}
+            <div className="space-y-4">
+              {Object.entries(sectorData.sectors).map(([name, sector]) => (
+                <Card key={name} className="vox-card">
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-bold text-lg">{name}</span>
+                          <Badge className={getMomentumColor(sector.momentum)}>
+                            {sector.momentum}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{sector.description}</p>
+                      </div>
+                    </div>
+
+                    <div className="text-sm mb-3">
+                      <span className="font-medium">Thesis:</span> {sector.thesis}
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 mb-3">
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">In Portfolio</p>
+                        <div className="flex flex-wrap gap-1">
+                          {sector.portfolio_overlap.length > 0 ? (
+                            sector.portfolio_overlap.map((t) => (
+                              <Badge key={t} variant="outline" className="text-green-400">
+                                {t}
+                              </Badge>
+                            ))
+                          ) : (
+                            <span className="text-xs text-muted-foreground">None</span>
+                          )}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Watchlist</p>
+                        <div className="flex flex-wrap gap-1">
+                          {sector.watchlist_candidates.map((t) => (
+                            <Badge key={t} variant="outline">
+                              {t}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      <span className="text-xs text-muted-foreground mr-2">ETFs:</span>
+                      {sector.etfs.map((etf) => (
+                        <Badge key={etf} variant="outline" className="text-xs">
+                          {etf}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {sector.alerts.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-border">
+                        {sector.alerts.map((alert, i) => (
+                          <div key={i} className="flex items-center gap-2">
+                            <span className="text-amber-400">🚨</span>
+                            <span className="text-sm">{alert.message}</span>
+                            <Badge variant="outline" className="text-amber-400">
+                              {alert.action}
+                            </Badge>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <p className="text-xs text-muted-foreground mt-6">
+              Generated: {new Date(sectorData.timestamp).toLocaleString()}
+            </p>
+          </>
+        )}
       </main>
     </div>
   );

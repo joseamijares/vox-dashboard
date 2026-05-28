@@ -1,0 +1,7546 @@
+{
+  "timestamp": "2026-05-27T10:38:24.885801",
+  "total_votes": 193,
+  "strong_buy": 40,
+  "buy": 75,
+  "hold": 50,
+  "trim": 25,
+  "sell": 3,
+  "results": [
+    {
+      "ticker": "ALLO",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 58, RSI 48.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 48.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.1%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "BA",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 46, RSI 41.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 41.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.3%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "GLXY",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 58, RSI 42.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 42.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.1%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "NIO",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 49, RSI 45.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.5%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "NVDA",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 53, RSI 52.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 52.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.8%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "OXY",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 53, RSI 59.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 59.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.1%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "PLTR",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 46, RSI 48.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 48.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.7%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "SHOP",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 49, RSI 52.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 52.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.7%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "VIPS",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 48, RSI 46.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 46.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.5%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "WULF",
+      "consensus": "HOLD",
+      "consensus_pct": 100.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 58, RSI 49.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 49.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.3%"
+        }
+      ],
+      "dissent": []
+    },
+    {
+      "ticker": "A",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 42.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 42.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "AAPL",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 78,
+          "details": "Grade 78, RSI 87.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 27.0,
+          "details": "RSI 87.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "ABBV",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "details": "Grade 76, RSI 68.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 68.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "AMZN",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 44.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 44.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "AXP",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 36.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 36.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "BIDU",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 44, RSI 41.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 41.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "BK",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 81,
+          "details": "Grade 81, RSI 58.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 58.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "BOTZ",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 50.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 50.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "C",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 46, RSI 44.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 44.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "CIEN",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 52.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 52.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "COF",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 44.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 44.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "COHR",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 58.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 58.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "COST",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 51, RSI 52.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 52.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "CRWV",
+      "consensus": "SELL",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 60,
+          "details": "Grade 30, RSI 22.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 47.4,
+          "details": "RSI 22.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.5,
+          "details": "Vol 8.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "DASH",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 44, RSI 42.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 42.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "EDEN",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 73,
+          "details": "Grade 73, RSI 45.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "FTXG",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 89,
+          "details": "Grade 89, RSI 52.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 52.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "FUTU",
+      "consensus": "SELL",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 61,
+          "details": "Grade 29, RSI 23.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 46.4,
+          "details": "RSI 23.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 60.9,
+          "details": "Vol 10.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "GD",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 66,
+          "details": "Grade 68, RSI 45.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "GOOGL",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 44.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 44.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "GS",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "details": "Grade 76, RSI 66.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 66.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "HEMI",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 68.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 68.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 0.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "HON",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 72.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 12.1,
+          "details": "RSI 72.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "HUMA",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 59, RSI 58.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 58.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 61.1,
+          "details": "Vol 11.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "IBB",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "details": "Grade 70, RSI 41.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 41.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "IWM",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 78,
+          "details": "Grade 78, RSI 54.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 54.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "JD",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 44, RSI 46.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 46.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "JNJ",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 62.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 62.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "KC",
+      "consensus": "SELL",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 59,
+          "details": "Grade 31, RSI 34.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 34.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.5,
+          "details": "Vol 8.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "LHX",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 51, RSI 58.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 58.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "LLY",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 71.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 11.0,
+          "details": "RSI 71.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "LMT",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Grade 65, RSI 65.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 65.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MA",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 53, RSI 52.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 52.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "MELI",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 57, RSI 39.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 39.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "META",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 50, RSI 49.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 49.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "MMT",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 50, RSI 44.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 44.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "MS",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 79,
+          "details": "Grade 79, RSI 61.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 61.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 46, RSI 48.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 48.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "NET",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 53, RSI 34.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 34.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "NOC",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 50, RSI 45.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "NVO",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 44.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 44.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "OPEN",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 56, RSI 34.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 34.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "PFE",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 66,
+          "details": "Grade 68, RSI 45.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "PNC",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "details": "Grade 70, RSI 48.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 48.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "POET",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 59, RSI 57.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 57.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 69.4,
+          "details": "Vol 19.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "QQQ",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 68.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 68.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "QUBT",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 59, RSI 55.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 55.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 61.6,
+          "details": "Vol 11.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "ROBO",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "details": "Grade 76, RSI 58.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 58.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ROBT",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 65.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 65.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "RPD",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 56.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 56.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "RTX",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 56, RSI 51.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 51.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "SMR",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 58, RSI 40.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 40.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.7,
+          "details": "Vol 8.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "SOLV",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 76.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 16.5,
+          "details": "RSI 76.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "SOPH",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 50.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 50.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "SPY",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 64.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 64.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 0.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "STT",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 63.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 63.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "SXT",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 45.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "TFC",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 35.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 35.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "UNH",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "details": "Grade 76, RSI 60.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 60.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "USB",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 66,
+          "details": "Grade 68, RSI 41.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 41.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "V",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 78,
+          "details": "Grade 78, RSI 62.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 62.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "VOO",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 64.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 64.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 0.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "VTI",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 62.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 62.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "WCT",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 47, RSI 45.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 64.4,
+          "details": "Vol 14.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "XBI",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 44.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 44.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "XLE",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 51, RSI 51.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 51.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "XLF",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 48, RSI 45.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "XLK",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 79,
+          "details": "Grade 79, RSI 69.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 69.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "XLV",
+      "consensus": "BUY",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 62.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 62.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "XOM",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 46, RSI 49.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 49.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "XPL",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 44, RSI 47.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 47.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "XRP",
+      "consensus": "HOLD",
+      "consensus_pct": 75.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 44, RSI 40.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 40.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "AGCO",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 43, RSI 36.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 36.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "AMAT",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 56.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 56.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "AMD",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "details": "Grade 72, RSI 67.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 67.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "APH",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 51.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 51.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 53.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 53.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.4,
+          "details": "Vol 9.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "APP",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 67.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 67.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ARKG",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 55.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 55.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ARKX",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 79,
+          "details": "Grade 79, RSI 64.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 64.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ARQQ",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 51.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 51.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.6,
+          "details": "Vol 9.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "ASML",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 55.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 55.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ASTS",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 82.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 22.9,
+          "details": "RSI 82.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.1,
+          "details": "Vol 8.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 47.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 47.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "AVNT",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 41.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 41.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "AXS",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 44, RSI 40.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 40.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "BABA",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Grade 35, RSI 33.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 33.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "BAC",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 41, RSI 34.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 34.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "BEKE",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 51,
+          "details": "Grade 39, RSI 36.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 36.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "BETH",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 52,
+          "details": "Grade 38, RSI 28.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 41.5,
+          "details": "RSI 28.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "SELL"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "BIO",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 76.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 16.5,
+          "details": "RSI 76.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "BIVI",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Grade 35, RSI 37.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 37.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "BKSY",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 63.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 63.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 60.3,
+          "details": "Vol 10.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "BLK",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 58,
+          "details": "Grade 64, RSI 48.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 48.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "BTC",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 56,
+          "details": "Grade 34, RSI 29.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 40.6,
+          "details": "RSI 29.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "SELL"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "BTDR",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 68,
+          "details": "Grade 69, RSI 52.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 52.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "BYND",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 60,
+          "details": "Grade 30, RSI 15.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 54.9,
+          "details": "RSI 15.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "CEG",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 51,
+          "details": "Grade 39, RSI 35.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 35.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 5.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "CIFR",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 56.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 56.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.4,
+          "details": "Vol 8.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "CLSK",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 68.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 68.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "COIN",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 59,
+          "details": "Grade 31, RSI 38.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 38.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "CORZ",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 75,
+          "details": "Grade 75, RSI 61.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 61.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "CPSH",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 88.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 28.0,
+          "details": "RSI 88.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.7,
+          "details": "Vol 9.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "CRWD",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 88.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 28.1,
+          "details": "RSI 88.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "DDD",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 66,
+          "details": "Grade 68, RSI 68.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 68.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.7,
+          "details": "Vol 8.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "DDOG",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "details": "Grade 70, RSI 91.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 31.9,
+          "details": "RSI 91.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "DE",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 54,
+          "details": "Grade 36, RSI 18.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 51.3,
+          "details": "RSI 18.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "SELL"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "EDU",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 54,
+          "details": "Grade 36, RSI 9.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 60.1,
+          "details": "RSI 9.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ENPH",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 86.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 26.5,
+          "details": "RSI 86.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ETH",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 56,
+          "details": "Grade 34, RSI 23.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 46.7,
+          "details": "RSI 23.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ETHW",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 56,
+          "details": "Grade 34, RSI 23.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 46.5,
+          "details": "RSI 23.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "FF",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 58,
+          "details": "Grade 32, RSI 28.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 41.6,
+          "details": "RSI 28.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "FLY",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 68,
+          "details": "Grade 69, RSI 81.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 21.4,
+          "details": "RSI 81.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.9,
+          "details": "Vol 8.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "FORM",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 53, RSI 38.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 38.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.1,
+          "details": "Vol 8.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "FTNT",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 85.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 25.6,
+          "details": "RSI 85.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "GEN",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 85.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 25.0,
+          "details": "RSI 85.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "GRRR",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 58.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 58.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "GRWG",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 72.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 12.7,
+          "details": "RSI 72.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "HIVE",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 70.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 10.7,
+          "details": "RSI 70.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 60.0,
+          "details": "Vol 10.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "HOLO",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 68.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 68.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "HUT",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 56.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 56.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.2,
+          "details": "Vol 8.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "IBM",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 71.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 11.3,
+          "details": "RSI 71.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ICLN",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 79,
+          "details": "Grade 79, RSI 65.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 65.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "IREN",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 53.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 53.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.7,
+          "details": "Vol 8.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "JMIA",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 50.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 50.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.2,
+          "details": "Vol 8.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "JPM",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 51,
+          "details": "Grade 39, RSI 34.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 34.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "SELL"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "KLAC",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "details": "Grade 72, RSI 60.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 60.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "LI",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 53,
+          "details": "Grade 37, RSI 36.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 36.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "LITE",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 40, RSI 46.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 46.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.5,
+          "details": "Vol 9.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "LRCX",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 59.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 59.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "LUNR",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 58,
+          "details": "Grade 64, RSI 70.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 10.6,
+          "details": "RSI 70.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 62.6,
+          "details": "Vol 12.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MANA",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 68,
+          "details": "Grade 69, RSI 63.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 63.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 62.5,
+          "details": "Vol 12.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "MARA",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 66,
+          "details": "Grade 68, RSI 60.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 60.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MEME",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 64.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 64.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MIRA",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 83,
+          "details": "Grade 83, RSI 69.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 69.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MNSO",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 51,
+          "details": "Grade 39, RSI 22.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 47.6,
+          "details": "RSI 22.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MNTS",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 70,
+          "details": "Grade 70, RSI 91.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 31.1,
+          "details": "RSI 91.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 60.1,
+          "details": "Vol 10.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "MOO",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 52,
+          "details": "Grade 38, RSI 24.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 45.7,
+          "details": "RSI 24.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 1.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "SELL"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "MOVE",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 59, RSI 71.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 11.4,
+          "details": "RSI 71.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 63.8,
+          "details": "Vol 13.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MSTR",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 59,
+          "details": "Grade 31, RSI 30.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 30.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 70.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 10.4,
+          "details": "RSI 70.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 7.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "NEE",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 56,
+          "details": "Grade 34, RSI 28.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 41.8,
+          "details": "RSI 28.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "SELL"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "NEWT",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 54.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 54.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "NRG",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 51,
+          "details": "Grade 39, RSI 37.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 37.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Grade 53, RSI 37.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 37.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.2,
+          "details": "Vol 9.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "OKTA",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "details": "Grade 72, RSI 67.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 67.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "OSCR",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 66,
+          "details": "Grade 68, RSI 60.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 60.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "PANW",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 82.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 22.1,
+          "details": "RSI 82.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "PBW",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 75,
+          "details": "Grade 75, RSI 65.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 65.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "PDD",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 43, RSI 27.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 42.7,
+          "details": "RSI 27.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        }
+      ]
+    },
+    {
+      "ticker": "QBTS",
+      "consensus": "HOLD",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 57.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 57.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.8,
+          "details": "Vol 9.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "QCLN",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 79,
+          "details": "Grade 79, RSI 62.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 62.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "QLYS",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "details": "Grade 72, RSI 64.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 64.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "RDW",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 92.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 32.5,
+          "details": "RSI 92.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.0,
+          "details": "Vol 9.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "RIOT",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 75,
+          "details": "Grade 75, RSI 64.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 64.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "RKLB",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 56,
+          "details": "Grade 63, RSI 77.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 17.1,
+          "details": "RSI 77.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.0,
+          "details": "Vol 9.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "S",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 74.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 14.3,
+          "details": "RSI 74.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "SCCO",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 54.6"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 54.6"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "SCHW",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 42, RSI 33.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 33.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "SEDG",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 62,
+          "details": "Grade 66, RSI 79.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 19.2,
+          "details": "RSI 79.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.2,
+          "details": "Vol 9.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "SIDU",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 74.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 14.7,
+          "details": "RSI 74.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 61.8,
+          "details": "Vol 11.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "SMH",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "details": "Grade 76, RSI 61.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 61.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "SNOW",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 84.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 24.3,
+          "details": "RSI 84.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "SPCE",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 71.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 11.5,
+          "details": "RSI 71.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 59.7,
+          "details": "Vol 9.7%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "SPIR",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 74,
+          "details": "Grade 74, RSI 69.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 69.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 58.9,
+          "details": "Vol 8.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "SPOT",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 79.3"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 19.3,
+          "details": "RSI 79.3"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "SPRB",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Grade 35, RSI 35.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 35.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "TCEHY",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 51,
+          "details": "Grade 39, RSI 30.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 30.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "SELL"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "TE",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 54,
+          "details": "Grade 62, RSI 81.8"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 21.8,
+          "details": "RSI 81.8"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 60.9,
+          "details": "Vol 10.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "BUY"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "TENB",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 71.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 11.1,
+          "details": "RSI 71.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 5.2%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "TREE",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 51,
+          "details": "Grade 39, RSI 39.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 39.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "TRX",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 62,
+          "details": "Grade 28, RSI 28.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 41.1,
+          "details": "RSI 28.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "TSLA",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 76,
+          "details": "Grade 76, RSI 64.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 64.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.0%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "TSM",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 50.2"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 50.2"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "UFO",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 79,
+          "details": "Grade 79, RSI 80.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "SELL",
+          "conviction": 20.4,
+          "details": "RSI 80.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "SELL"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "VRNS",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 72,
+          "details": "Grade 72, RSI 68.9"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "RSI 68.9"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "VRT",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Grade 35, RSI 35.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 35.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 55,
+          "details": "Vol 6.3%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "BUY"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "VST",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 64,
+          "details": "Grade 67, RSI 50.7"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 50.7"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 4.6%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "WAL",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 52,
+          "details": "Grade 61, RSI 38.0"
+        },
+        {
+          "agent": "macro",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 38.0"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.1%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "macro",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "WFC",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 41, RSI 36.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 36.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.5%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "WMT",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "SELL",
+          "conviction": 51,
+          "details": "Grade 39, RSI 30.1"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "BUY",
+          "conviction": 55,
+          "details": "RSI 30.1"
+        },
+        {
+          "agent": "risk",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Vol 2.8%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "SELL"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL"
+        }
+      ]
+    },
+    {
+      "ticker": "XPEV",
+      "consensus": "BUY",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "BUY",
+          "conviction": 71,
+          "details": "Grade 71, RSI 53.5"
+        },
+        {
+          "agent": "macro",
+          "vote": "BUY",
+          "conviction": 60,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 53.5"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "Vol 3.9%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "risk",
+          "vote": "HOLD"
+        }
+      ]
+    },
+    {
+      "ticker": "ZS",
+      "consensus": "SELL",
+      "consensus_pct": 50.0,
+      "votes": [
+        {
+          "agent": "technical",
+          "vote": "HOLD",
+          "conviction": 40,
+          "details": "Grade 43, RSI 45.4"
+        },
+        {
+          "agent": "macro",
+          "vote": "SELL",
+          "conviction": 55,
+          "details": "Sector momentum"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD",
+          "conviction": 50,
+          "details": "RSI 45.4"
+        },
+        {
+          "agent": "risk",
+          "vote": "SELL",
+          "conviction": 60.4,
+          "details": "Vol 10.4%"
+        }
+      ],
+      "dissent": [
+        {
+          "agent": "technical",
+          "vote": "HOLD"
+        },
+        {
+          "agent": "sentiment",
+          "vote": "HOLD"
+        }
+      ]
+    }
+  ]
+}

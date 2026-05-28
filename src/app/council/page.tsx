@@ -27,7 +27,7 @@ export default function CouncilPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/vox_council_votes.json")
+    fetch("/vox_council_votes.json?t=" + Date.now())
       .then((r) => r.json())
       .then((data) => {
         setVotes(data.results || []);
