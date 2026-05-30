@@ -181,7 +181,8 @@ export default function Dashboard() {
             </div>
             <div className="flex justify-between items-center mt-3">
               <span style={{ color: '#666666', fontSize: '13px' }}>
-                Cash freed if sold: <span className="font-mono font-semibold" style={{ color: '#dc2626' }}>${sellValue.toLocaleString()}</span>
+                Cash freed if sold: <span className="font-mono font-semibold" style={{ color: '#dc2626' }}>${sellValue.toLocaleString()} USD</span>
+                <span className="ml-2 text-xs" style={{ color: '#999' }}>(~${(sellValue * (dashboardMeta.usdMxnRate || 17.28)).toLocaleString()} MXN)</span>
               </span>
               <Link href="/plays" className="flex items-center gap-1 text-sm hover:underline" style={{ color: '#0072f5' }}>
                 Go to Plays <ChevronRight className="h-3 w-3" />
@@ -291,9 +292,9 @@ export default function Dashboard() {
                       <td className="p-3 font-mono text-sm" style={{ color: '#171717' }}>
                         ${(p.value || p.live_value || 0).toLocaleString()}
                       </td>
-                      <td className="p-3">
+                      <td className="p-3 text-right">
                         <span className="text-sm" style={{ color: (p.pnl_pct || 0) >= 0 ? '#00a86b' : '#dc2626' }}>
-                          {(p.pnl_pct || 0) >= 0 ? '+' : ''}{p.pnl_pct || 0}%
+                          {p.avg_cost > 0 ? `${(p.pnl_pct || 0) >= 0 ? '+' : ''}${p.pnl_pct || 0}%` : 'N/A'}
                         </span>
                       </td>
                       <td className="p-3">
