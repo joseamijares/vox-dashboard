@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
-import { getPositions, getTotalValue, getTotalPnL, getAvgGrade, getBrokerBreakdown, dashboardMeta } from "@/lib/data";
+import { getPositions, getTotalValue, getTotalPnL, getAvgGrade, getBrokerBreakdown, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import { useState, useMemo, useEffect } from "react";
 import { Search, TrendingUp, TrendingDown, AlertTriangle, Loader2 } from "lucide-react";
 
@@ -38,10 +38,19 @@ export default function PortfolioPage() {
     loadData();
   }, []);
 
-  const totalValue = getTotalValue();
-  const totalPnl = getTotalPnL();
-  const avgGrade = getAvgGrade();
-  const brokerBreakdown = getBrokerBreakdown();
+  const totalValue = allPositions.length > 0 ? calculateTotalValue(allPositions) : getTotalValue();
+  const totalPnl = allPositions.length > 0 ? calculateTotalPnL(allPositions) : getTotalPnL();
+  const avgGrade = allPositions.length > 0 
+    ? Math.round(allPositions.reduce((sum: number, p: any) => sum + (p.grade || 0), 0) / allPositions.filter((p: any) => (p.grade || 0) > 0).length) || 0
+    : getAvgGrade();
+  const brokerBreakdown = allPositions.length > 0 
+    ? Object.entries(calculateBrokerBreakdown(allPositions)).map(([broker, value]) => ({
+        broker,
+        value: value as number,
+        status: 'fresh' as string,
+        stale: false,
+      })).sort((a, b) => b.value - a.value)
+    : getBrokerBreakdown();
 
   // Extract unique brokers from positions
   const allBrokers = useMemo(() => {
@@ -108,8 +117,10 @@ export default function PortfolioPage() {
   // Format currency without decimals
   const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
 
-  // Data freshness
-  const dataAge = dashboardMeta.generatedAt 
+  // Data freshness - use most recent position update
+  const dataAge = allPositions.length > 0 && allPositions[0]?.updated_at
+    ? Math.round((Date.now() - new Date(allPositions[0].updated_at).getTime()) / 3600000)
+    : dashboardMeta.generatedAt 
     ? Math.round((Date.now() - new Date(dashboardMeta.generatedAt).getTime()) / 3600000)
     : null;
 
@@ -279,7 +290,10 @@ export default function PortfolioPage() {
               </thead>
               <tbody>
                 {filtered.map((p: any) => {
-                  const pnl = p.pnl || 0;
+                  const value = p.live_value || p.value || 0;
+                  const price = p.live_price || p.price || 0;
+                  const pnl = p.pnl || p.unrealized_pnl || 0;
+                  const pnlPct = p.pnl_pct || p.unrealized_pnl_pct || 0;
                   const grade = p.grade || 0;
                   const brokerList = p.brokers || (p.broker ? [p.broker] : []);
                   return (
@@ -289,12 +303,12 @@ export default function PortfolioPage() {
                       <div className="text-xs text-muted-foreground">{p.name || p.sector}</div>
                     </td>
                     <td className="p-4 text-right font-mono">{p.shares?.toFixed ? p.shares.toFixed(2) : p.shares}</td>
-                    <td className="p-4 text-right font-mono">${p.price?.toFixed ? p.price.toFixed(2) : p.price}</td>
-                    <td className="p-4 text-right font-mono">{fmt(p.value)}</td>
+                    <td className="p-4 text-right font-mono">${price?.toFixed ? price.toFixed(2) : price}</td>
+                    <td className="p-4 text-right font-mono">{fmt(value)}</td>
                     <td className="p-4 text-right">
                       <div className={`flex items-center justify-end gap-1 ${pnl >= 0 ? "text-green-400" : "text-red-400"}`}>
                         {pnl >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                        <span className="font-mono">{fmt(pnl)}</span>
+                        <span className="font-mono">{fmt(pnl)} ({pnlPct >= 0 ? '+' : ''}{pnlPct.toFixed(1)}%)</span>
                       </div>
                     </td>
                     <td className="p-4 text-center">

@@ -40,7 +40,37 @@ export async function getPositions() {
   return fallbackPositions;
 }
 
-// Calculate totals from REAL broker breakdown (not position sums)
+// Calculate totals from LIVE positions data (not stale JSON)
+export function calculateTotalValue(positions: any[]): number {
+  return positions.reduce((sum: number, p: any) => sum + (p.live_value || p.value || 0), 0);
+}
+
+export function calculateTotalPnL(positions: any[]): number {
+  return positions.reduce((sum: number, p: any) => {
+    const value = p.live_value || p.value || 0;
+    const cost = (p.avg_cost || p.cost_basis || 0) * (p.shares || 0);
+    if (cost > 0) {
+      return sum + (value - cost);
+    }
+    return sum + (p.pnl || 0);
+  }, 0);
+}
+
+export function calculateBrokerBreakdown(positions: any[]): Record<string, number> {
+  const breakdown: Record<string, number> = {};
+  positions.forEach((p: any) => {
+    const value = p.live_value || p.value || 0;
+    const brokers = p.brokers || [p.broker || 'Unknown'];
+    // Split value equally across brokers if multiple
+    const perBroker = value / brokers.length;
+    brokers.forEach((broker: string) => {
+      breakdown[broker] = (breakdown[broker] || 0) + perBroker;
+    });
+  });
+  return breakdown;
+}
+
+// Legacy: Calculate totals from REAL broker breakdown (not position sums)
 export function getTotalValue(): number {
   return dashboardMeta.totalValue || 0;
 }

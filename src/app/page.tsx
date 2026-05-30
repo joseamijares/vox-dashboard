@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
-import { getPositions, getTotalValue, getTotalPnL, gradeMap, dashboardMeta } from "@/lib/data";
+import { getPositions, getTotalValue, getTotalPnL, gradeMap, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import {
   TrendingUp, TrendingDown, Target, ArrowRight,
   ShieldAlert, Zap, BarChart3, AlertTriangle, Clock,
@@ -32,10 +32,14 @@ export default function Dashboard() {
     loadData();
   }, []);
 
-  const totalValue = getTotalValue();
-  const totalPnl = getTotalPnL();
+  // Use LIVE data for totals, fallback to JSON only if no positions loaded
+  const totalValue = positions.length > 0 ? calculateTotalValue(positions) : getTotalValue();
+  const totalPnl = positions.length > 0 ? calculateTotalPnL(positions) : getTotalPnL();
+  const liveBrokerBreakdown = positions.length > 0 ? calculateBrokerBreakdown(positions) : null;
 
-  const dataAge = dashboardMeta.generatedAt
+  const dataAge = positions.length > 0 && positions[0]?.updated_at
+    ? Math.round((Date.now() - new Date(positions[0].updated_at).getTime()) / (1000 * 60 * 60))
+    : dashboardMeta.generatedAt
     ? Math.round((Date.now() - new Date(dashboardMeta.generatedAt).getTime()) / (1000 * 60 * 60))
     : null;
   const isStale = dataAge !== null && dataAge > 24;
@@ -55,17 +59,23 @@ export default function Dashboard() {
   const sellValue = sellPositions.reduce((sum: number, p: any) => sum + (p.value || p.live_value || 0), 0);
   const topHoldings = [...enrichedPositions].sort((a: any, b: any) => (b.value || b.live_value || 0) - (a.value || a.live_value || 0)).slice(0, 10);
 
-  const brokerBreakdown = (() => {
-    const breakdown = dashboardMeta.brokerBreakdown;
-    const status = dashboardMeta.brokerStatus;
-    return Object.entries(breakdown)
-      .map(([broker, value]: [string, any]) => ({
+  const brokerBreakdown = liveBrokerBreakdown 
+    ? Object.entries(liveBrokerBreakdown).map(([broker, value]) => ({
         broker,
         value: value as number,
-        stale: status[broker]?.stale || false,
-      }))
-      .sort((a: any, b: any) => b.value - a.value);
-  })();
+        stale: false,
+      })).sort((a: any, b: any) => b.value - a.value)
+    : (() => {
+        const breakdown = dashboardMeta.brokerBreakdown;
+        const status = dashboardMeta.brokerStatus;
+        return Object.entries(breakdown)
+          .map(([broker, value]: [string, any]) => ({
+            broker,
+            value: value as number,
+            stale: status[broker]?.stale || false,
+          }))
+          .sort((a: any, b: any) => b.value - a.value);
+      })();
 
   const staleCount = brokerBreakdown.filter((b: any) => b.stale).length;
 
@@ -192,7 +202,7 @@ export default function Dashboard() {
             },
             {
               label: "Positions",
-              value: `${dashboardMeta.totalPositions}`,
+              value: `${positions.length > 0 ? positions.length : dashboardMeta.totalPositions}`,
               sub: `Across ${brokerBreakdown.length} brokers`,
               subColor: '#666666',
               icon: null,
