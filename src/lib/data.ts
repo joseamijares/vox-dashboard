@@ -1,6 +1,5 @@
 import dashboardPositionsRaw from "../../public/dashboard_positions.json";
 import portfolioGrades from "../../public/portfolio_grades.json";
-import { getPositions as getDbPositions } from "./db";
 
 // Fallback data from JSON (used during SSR or if DB fails)
 const dashboardData = dashboardPositionsRaw as unknown as any;
@@ -27,17 +26,17 @@ export interface Position {
   grade?: number;
 }
 
-// Async function to get positions from Railway Postgres
+// Async function to get positions - now fetches from API route
 export async function getPositions() {
   try {
-    const positions = await getDbPositions();
-    if (positions && positions.length > 0) {
-      return positions;
-    }
+    const res = await fetch("/api/positions");
+    if (!res.ok) throw new Error("Failed to fetch");
+    const json = await res.json();
+    return json.positions || [];
   } catch (e) {
-    console.error("Failed to fetch from Railway DB, using fallback:", e);
+    console.error("Failed to fetch from API, using fallback:", e);
+    return fallbackPositions;
   }
-  return fallbackPositions;
 }
 
 // Calculate totals from LIVE positions data (not stale JSON)
