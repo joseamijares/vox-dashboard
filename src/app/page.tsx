@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
-import { getPositions, getTotalValue, getTotalPnL, gradeMap, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
+import { getTotalValue, getTotalPnL, gradeMap, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import {
   TrendingUp, TrendingDown, Target, ArrowRight,
   ShieldAlert, Zap, BarChart3, AlertTriangle, Clock,
@@ -21,8 +21,10 @@ export default function Dashboard() {
   useEffect(() => {
     async function loadData() {
       try {
-        const data = await getPositions();
-        setPositions(data);
+        const res = await fetch("/api/positions");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const json = await res.json();
+        setPositions(json.positions || []);
       } catch (e) {
         setError("Failed to load positions");
       } finally {

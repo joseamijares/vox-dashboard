@@ -1,11 +1,10 @@
+import { NextResponse } from "next/server";
+
 export async function GET() {
-  return new Response(JSON.stringify({
+  return NextResponse.json({
     status: "ok",
     service: "vox-dashboard",
     version: "12.0",
     timestamp: new Date().toISOString(),
-  }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
   });
 }
