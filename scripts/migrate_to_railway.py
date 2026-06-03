@@ -26,7 +26,15 @@ if not SUPABASE_KEY:
                     SUPABASE_KEY = line.split("=", 1)[1].strip()
                     break
 
-RAILWAY_PG_URL = os.environ.get("DATABASE_URL", "")
+# Read Railway PG password from file (avoids terminal masking)
+PG_PASS = ""
+pgpass_file = "/tmp/.pgpass"
+if os.path.exists(pgpass_file):
+    with open(pgpass_file) as f:
+        PG_PASS = f.read().strip()
+
+# Use public URL with actual password
+RAILWAY_PG_URL = f"postgresql://postgres:{PG_PASS}@acela.proxy.rlwy.net:35577/railway" if PG_PASS else os.environ.get("DATABASE_URL", "")
 
 print(f"Supabase Key present: {bool(SUPABASE_KEY)}")
 print(f"Railway PG present: {bool(RAILWAY_PG_URL)}")

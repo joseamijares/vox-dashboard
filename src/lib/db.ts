@@ -33,16 +33,15 @@ export async function getWatchlist() {
 
 export async function getAlerts() {
   return query(`
-    SELECT ticker, alert_type, entry_price, target_price, stop_loss, position_size, status, created_at
+    SELECT timestamp, ticker, alert_type, message, grade, council, sent
     FROM alerts
-    WHERE status = 'active'
-    ORDER BY created_at DESC
+    ORDER BY timestamp DESC
   `);
 }
 
 export async function getPlays() {
   return query(`
-    SELECT ticker, play_type, entry_price, target_price, stop_loss, position_size, rationale, status, timestamp, pnl
+    SELECT timestamp, ticker, action, shares, price, notional, broker, reason, grade_at_entry, council_at_entry, notes, closed, exit_price, exit_date, pnl, pnl_pct
     FROM plays
     ORDER BY timestamp DESC
   `);
@@ -50,7 +49,7 @@ export async function getPlays() {
 
 export async function getJournal() {
   return query(`
-    SELECT entry_type, ticker, content, tags, timestamp
+    SELECT timestamp, date, ticker, action, shares, price, notional, broker, reason, grade_at_entry, council_at_entry, notes, pnl, pnl_pct, tags
     FROM journal
     ORDER BY timestamp DESC
     LIMIT 100
