@@ -1,14 +1,21 @@
 import { Pool } from "pg";
+import { readFileSync } from "fs";
 
-// Build connection string from individual env vars (avoids password masking issues)
+// Try to read password from a file (set by startup script)
+let pgPassword = "";
+try {
+  pgPassword = readFileSync("/tmp/.pgpass", "utf8").trim();
+} catch (e) {
+  // Fallback to env var
+  pgPassword = process.env.PGPASSWORD || "";
+}
+
 const PGHOST = process.env.PGHOST || "postgres-flpd.railway.internal";
 const PGPORT = process.env.PGPORT || "5432";
 const PGUSER = process.env.PGUSER || "postgres";
-const PGPASSWORD = process.env.PGPASSWORD || "";
 const PGDATABASE = process.env.PGDATABASE || "railway";
 
-// Always build from individual vars - ignore DATABASE_URL which may have masked password
-const connectionString = `postgresql://${PGUSER}:***@${PGHOST}:${PGPORT}/${PGDATABASE}`;
+const connectionString = "postgresql://" + PGUSER + ":" + pgPassword + "@" + PGHOST + ":" + PGPORT + "/" + PGDATABASE;
 
 const pool = new Pool({
   connectionString,
