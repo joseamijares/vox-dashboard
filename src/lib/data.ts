@@ -1,8 +1,8 @@
 import dashboardPositionsRaw from "../../public/dashboard_positions.json";
 import portfolioGrades from "../../public/portfolio_grades.json";
-import { getPositions as getSupabasePositions } from "./supabase";
+import { getPositions as getDbPositions } from "./db";
 
-// Fallback data from JSON (used during SSR or if Supabase fails)
+// Fallback data from JSON (used during SSR or if DB fails)
 const dashboardData = dashboardPositionsRaw as unknown as any;
 export const fallbackPositions = dashboardData.positions || (Array.isArray(dashboardData) ? dashboardData : []);
 export const positions = fallbackPositions; // Legacy export for compatibility
@@ -27,15 +27,15 @@ export interface Position {
   grade?: number;
 }
 
-// Async function to get positions from Supabase
+// Async function to get positions from Railway Postgres
 export async function getPositions() {
   try {
-    const positions = await getSupabasePositions();
+    const positions = await getDbPositions();
     if (positions && positions.length > 0) {
       return positions;
     }
   } catch (e) {
-    console.error("Failed to fetch from Supabase, using fallback:", e);
+    console.error("Failed to fetch from Railway DB, using fallback:", e);
   }
   return fallbackPositions;
 }
