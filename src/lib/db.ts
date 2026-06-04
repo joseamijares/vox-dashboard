@@ -104,3 +104,11 @@ export async function getJournal() {
     parseRow(row, ["shares", "price", "notional", "grade_at_entry", "pnl", "pnl_pct"])
   );
 }
+
+// Update position grade
+export async function updatePositionGrade(ticker: string, grade: number, action: string) {
+  await query(
+    `UPDATE positions SET grade = $1, council = $2, updated_at = NOW() WHERE ticker = $3`,
+    [grade, action, ticker]
+  );
+}
