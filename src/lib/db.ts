@@ -112,3 +112,20 @@ export async function updatePositionGrade(ticker: string, grade: number, action:
     [grade, action, ticker]
   );
 }
+
+export async function getVoxGrades(): Promise<Record<string, any>[]> {
+  const rows = await query(`
+    SELECT ticker, name, vox_grade, previous_grade, action, current_price, stop_loss, entry_point,
+           position_value, shares, technical_score, fundamental_score, macro_score, sector_score,
+           weather_score, sentiment_score, catalysts, weather_factors, generated_at
+    FROM vox_grades
+    ORDER BY vox_grade DESC
+  `);
+  return rows.map((row: any) =>
+    parseRow(row, [
+      "vox_grade", "previous_grade", "current_price", "stop_loss", "entry_point",
+      "position_value", "shares", "technical_score", "fundamental_score", "macro_score",
+      "sector_score", "weather_score", "sentiment_score"
+    ])
+  );
+}

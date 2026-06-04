@@ -2,6 +2,7 @@ import { PageShell } from "@/components/vox-nav";
 import { VoxCard } from "@/components/vox-card";
 import { colors, getGradeStyle } from "@/lib/design-system";
 import { fmtCurrency } from "@/lib/format";
+import { getVoxGrades } from "@/lib/db";
 import { Zap, TrendingUp, Target } from "lucide-react";
 
 interface Grade {
@@ -25,21 +26,10 @@ interface Grade {
   weather_factors: string;
 }
 
-async function getGrades(): Promise<Grade[]> {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || "https://web-production-9e321.up.railway.app"}/api/grades`, {
-      cache: "no-store",
-    });
-    if (!res.ok) return [];
-    const json = await res.json();
-    return json.grades || [];
-  } catch {
-    return [];
-  }
-}
+export const dynamic = "force-dynamic";
 
 export default async function GradesPage() {
-  const grades = await getGrades();
+  const grades = await getVoxGrades() as Grade[];
 
   const positions = grades.filter((g) => (g.position_value || 0) > 0);
   const opportunities = grades.filter((g) => (g.position_value || 0) === 0 && g.action === "BUY");
