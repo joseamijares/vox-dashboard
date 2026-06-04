@@ -14,18 +14,24 @@ import Link from "next/link";
 
 export default function Dashboard() {
   const [positions, setPositions] = useState<any[]>([]);
+  const [grades, setGrades] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const res = await fetch("/api/positions");
-        if (!res.ok) throw new Error("Failed to fetch");
-        const json = await res.json();
-        setPositions(json.positions || []);
+        const [posRes, gradesRes] = await Promise.all([
+          fetch("/api/positions"),
+          fetch("/api/grades"),
+        ]);
+        if (!posRes.ok) throw new Error("Failed to fetch positions");
+        const posJson = await posRes.json();
+        const gradesJson = await gradesRes.json();
+        setPositions(posJson.positions || []);
+        setGrades(gradesJson.grades || []);
       } catch (e) {
-        setError("Failed to load positions");
+        setError("Failed to load data");
       } finally {
         setLoading(false);
       }
@@ -49,11 +55,26 @@ export default function Dashboard() {
     grade: gradeMap[p.ticker]?.grade || p.grade || 0,
   }));
 
-  const sellPositions = enrichedPositions.filter((p: any) => p.grade > 0 && p.grade < 50);
-  const trimPositions = enrichedPositions.filter((p: any) => p.grade >= 50 && p.grade < 60);
-  const holdPositions = enrichedPositions.filter((p: any) => p.grade >= 60 && p.grade < 70);
-  const corePositions = enrichedPositions.filter((p: any) => p.grade >= 70);
-  const ungradedPositions = enrichedPositions.filter((p: any) => p.grade === 0);
+  // Merge with VOX grades for actions
+  const gradeMapLive: Record<string, any> = {};
+  grades.forEach((g: any) => {
+    gradeMapLive[g.ticker] = g;
+  });
+
+  const positionsWithActions = enrichedPositions.map((p: any) => ({
+    ...p,
+    vox_grade: gradeMapLive[p.ticker]?.vox_grade || p.grade || 0,
+    action: gradeMapLive[p.ticker]?.action || "HOLD",
+    stop_loss: gradeMapLive[p.ticker]?.stop_loss || 0,
+  }));
+
+  const trimPositions = positionsWithActions.filter((p: any) => p.action === "TRIM").sort((a: any, b: any) => b.vox_grade - a.vox_grade);
+  const newOpportunities = grades.filter((g: any) => g.action === "BUY" && (g.position_value || 0) === 0).sort((a: any, b: any) => b.vox_grade - a.vox_grade);
+
+  const sellPositions = positionsWithActions.filter((p: any) => p.grade > 0 && p.grade < 50);
+  const holdPositions = positionsWithActions.filter((p: any) => p.grade >= 50 && p.grade < 60);
+  const corePositions = positionsWithActions.filter((p: any) => p.grade >= 70);
+  const ungradedPositions = positionsWithActions.filter((p: any) => p.grade === 0);
 
   const sellValue = sellPositions.reduce((sum: number, p: any) => sum + (p.value || p.live_value || 0), 0);
   const topHoldings = [...enrichedPositions].sort((a: any, b: any) => (b.value || b.live_value || 0) - (a.value || a.live_value || 0)).slice(0, 10);
@@ -190,6 +211,43 @@ export default function Dashboard() {
         </div>
       )}
 
+      {/* NEW OPPORTUNITIES */}
+      {newOpportunities.length > 0 && (
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <Target className="h-4 w-4" style={{ color: colors.accent }} />
+            <h2 className="text-sm font-semibold uppercase" style={{ color: colors.accent, letterSpacing: "-0.32px" }}>
+              Top {Math.min(newOpportunities.length, 6)} New Opportunities
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {newOpportunities.slice(0, 6).map((g: any) => {
+              const gradeStyle = getGradeStyle(g.vox_grade);
+              return (
+                <VoxCard key={g.ticker} hover>
+                  <div className="p-3">
+                    <div className="flex justify-between items-start">
+                      <span className="font-mono text-sm font-semibold" style={{ color: colors.foreground }}>{g.ticker}</span>
+                      <span className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded" style={{ color: gradeStyle.color, background: gradeStyle.bg }}>
+                        {g.vox_grade}
+                      </span>
+                    </div>
+                    <p className="text-xs mt-1" style={{ color: colors.muted }}>
+                      Entry ${g.entry_point?.toFixed(2)} → Target ${(g.entry_point * 1.15)?.toFixed(2)}
+                    </p>
+                  </div>
+                </VoxCard>
+              );
+            })}
+          </div>
+          <div className="flex justify-end mt-3">
+            <Link href="/grades" className="flex items-center gap-1 text-sm hover:underline" style={{ color: colors.accent }}>
+              View all opportunities <ChevronRight className="h-3 w-3" />
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* KPI ROW */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <VoxKpi
@@ -202,7 +260,7 @@ export default function Dashboard() {
         <VoxKpi
           label="Positions"
           value={`${positions.length > 0 ? positions.length : dashboardMeta.totalPositions}`}
-          sub={`Across ${brokerBreakdown.length} brokers`}
+          sub={`${trimPositions.length} TRIM · ${newOpportunities.length} BUY`}
         />
         <VoxKpi
           label="USD / MXN"
