@@ -1,15 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
+import { VoxCard, VoxBadge, VoxKpi } from "@/components/vox-card";
+import { colors, getGradeStyle } from "@/lib/design-system";
 import { getTotalValue, getTotalPnL, gradeMap, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import {
-  TrendingUp, TrendingDown, Target, ArrowRight,
-  ShieldAlert, Zap, BarChart3, AlertTriangle, Clock,
-  ChevronRight
+  TrendingUp, TrendingDown, Target, ShieldAlert, Zap,
+  BarChart3, AlertTriangle, Clock, ChevronRight
 } from "lucide-react";
 import Link from "next/link";
 
@@ -34,7 +32,6 @@ export default function Dashboard() {
     loadData();
   }, []);
 
-  // Use LIVE data for totals, fallback to JSON only if no positions loaded
   const totalValue = positions.length > 0 ? calculateTotalValue(positions) : getTotalValue();
   const totalPnl = positions.length > 0 ? calculateTotalPnL(positions) : getTotalPnL();
   const liveBrokerBreakdown = positions.length > 0 ? calculateBrokerBreakdown(positions) : null;
@@ -49,7 +46,6 @@ export default function Dashboard() {
   const enrichedPositions = positions.map((p: any) => ({
     ...p,
     grade: gradeMap[p.ticker]?.grade || p.grade || 0,
-    gradeCategory: gradeMap[p.ticker]?.category || "ungraded",
   }));
 
   const sellPositions = enrichedPositions.filter((p: any) => p.grade > 0 && p.grade < 50);
@@ -61,7 +57,7 @@ export default function Dashboard() {
   const sellValue = sellPositions.reduce((sum: number, p: any) => sum + (p.value || p.live_value || 0), 0);
   const topHoldings = [...enrichedPositions].sort((a: any, b: any) => (b.value || b.live_value || 0) - (a.value || a.live_value || 0)).slice(0, 10);
 
-  const brokerBreakdown = liveBrokerBreakdown 
+  const brokerBreakdown = liveBrokerBreakdown
     ? Object.entries(liveBrokerBreakdown).map(([broker, value]) => ({
         broker,
         value: value as number,
@@ -79,346 +75,298 @@ export default function Dashboard() {
           .sort((a: any, b: any) => b.value - a.value);
       })();
 
-  const staleCount = brokerBreakdown.filter((b: any) => b.stale).length;
-
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-14 lg:pt-0" style={{ background: '#ffffff' }}>
-        <div className="text-center">
-          <div className="animate-spin h-6 w-6 border-2 border-[#171717] border-t-transparent rounded-full mx-auto mb-3"></div>
-          <p style={{ color: '#666666', fontSize: '14px' }}>Loading portfolio data...</p>
+      <PageShell>
+        <div className="flex items-center justify-center h-64">
+          <div className="animate-spin h-6 w-6 border-2 rounded-full mx-auto"
+            style={{ borderColor: colors.foreground, borderTopColor: "transparent" }}
+          />
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-14 lg:pt-0" style={{ background: '#ffffff' }}>
-        <div className="text-center">
-          <AlertTriangle className="h-6 w-6 mx-auto mb-3" style={{ color: '#dc2626' }} />
-          <p style={{ color: '#171717', fontSize: '14px' }}>{error}</p>
-          <p style={{ color: '#666666', fontSize: '12px', marginTop: '4px' }}>Using fallback data</p>
+      <PageShell>
+        <div className="flex items-center justify-center h-64">
+          <div className="text-center">
+            <AlertTriangle className="h-6 w-6 mx-auto mb-3" style={{ color: colors.loss }} />
+            <p style={{ color: colors.foreground }}>{error}</p>
+          </div>
         </div>
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ background: '#ffffff' }}>
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-6 lg:p-10">
-        {/* Header */}
-        <div className="mb-10">
-          <h1 style={{
-            fontSize: '40px',
-            fontWeight: 600,
+    <PageShell>
+      {/* Header */}
+      <div className="mb-10">
+        <h1
+          className="font-semibold"
+          style={{
+            fontSize: "40px",
             lineHeight: 1.2,
-            letterSpacing: '-2.4px',
-            color: '#171717',
-          }}>
-            Today's Command Center
-          </h1>
-          <div className="flex items-center gap-3 mt-2">
-            <p style={{ color: '#666666', fontSize: '14px' }}>
-              {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", year: "numeric" })}
-            </p>
-            {isStale && (
-              <span className="flex items-center gap-1 text-xs" style={{ color: '#f59e0b' }}>
-                <AlertTriangle className="h-3 w-3" />
-                Data is {dataAge}h old
-              </span>
-            )}
-            {!isStale && dashboardMeta.generatedAt && (
-              <span className="flex items-center gap-1 text-xs" style={{ color: '#00a86b' }}>
-                <Clock className="h-3 w-3" />
-                Fresh — {dataAge}h ago
-              </span>
-            )}
-          </div>
+            letterSpacing: "-2.4px",
+            color: colors.foreground,
+          }}
+        >
+          Today&apos;s Command Center
+        </h1>
+        <div className="flex items-center gap-3 mt-2">
+          <p style={{ color: colors.muted, fontSize: "14px" }}>
+            {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", year: "numeric" })}
+          </p>
+          {isStale && (
+            <span className="flex items-center gap-1 text-xs" style={{ color: colors.warning }}>
+              <AlertTriangle className="h-3 w-3" />
+              Data is {dataAge}h old
+            </span>
+          )}
+          {!isStale && dashboardMeta.generatedAt && (
+            <span className="flex items-center gap-1 text-xs" style={{ color: colors.profit }}>
+              <Clock className="h-3 w-3" />
+              Fresh — {dataAge}h ago
+            </span>
+          )}
         </div>
+      </div>
 
-        {/* URGENT ALERTS */}
-        {sellPositions.length > 0 && (
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-3">
-              <ShieldAlert className="h-4 w-4" style={{ color: '#dc2626' }} />
-              <h2 style={{
-                fontSize: '14px',
-                fontWeight: 600,
-                letterSpacing: '-0.32px',
-                color: '#dc2626',
-                textTransform: 'uppercase',
-              }}>
-                {sellPositions.length} Positions Require Action
-              </h2>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              {sellPositions.slice(0, 6).map((p: any) => (
-                <div
-                  key={p.ticker}
-                  className="p-3 rounded-lg transition-all hover:translate-y-[-1px]"
-                  style={{
-                    background: '#ffffff',
-                    boxShadow: 'rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px',
-                  }}
-                >
-                  <div className="flex justify-between items-start">
-                    <span className="font-mono text-sm font-semibold" style={{ color: '#171717' }}>
-                      {p.ticker}
-                    </span>
-                    <span
-                      className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded"
-                      style={{ color: '#dc2626', background: 'rgba(220,38,38,0.08)' }}
-                    >
-                      {p.grade}
-                    </span>
+      {/* URGENT ALERTS */}
+      {sellPositions.length > 0 && (
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <ShieldAlert className="h-4 w-4" style={{ color: colors.loss }} />
+            <h2
+              className="text-sm font-semibold uppercase"
+              style={{ color: colors.loss, letterSpacing: "-0.32px" }}
+            >
+              {sellPositions.length} Positions Require Action
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {sellPositions.slice(0, 6).map((p: any) => {
+              const gradeStyle = getGradeStyle(p.grade);
+              return (
+                <VoxCard key={p.ticker} hover>
+                  <div className="p-3">
+                    <div className="flex justify-between items-start">
+                      <span className="font-mono text-sm font-semibold" style={{ color: colors.foreground }}>
+                        {p.ticker}
+                      </span>
+                      <span
+                        className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded"
+                        style={{ color: gradeStyle.color, background: gradeStyle.bg }}
+                      >
+                        {p.grade}
+                      </span>
+                    </div>
+                    <p className="text-xs mt-1" style={{ color: colors.muted }}>
+                      ${(p.value || p.live_value || 0).toLocaleString()}
+                    </p>
                   </div>
-                  <p className="text-xs mt-1" style={{ color: '#666666' }}>
-                    ${(p.value || p.live_value || 0).toLocaleString()}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="flex justify-between items-center mt-3">
-              <span style={{ color: '#666666', fontSize: '13px' }}>
-                Cash freed if sold: <span className="font-mono font-semibold" style={{ color: '#dc2626' }}>${sellValue.toLocaleString()} USD</span>
-                <span className="ml-2 text-xs" style={{ color: '#999' }}>(~${(sellValue * (dashboardMeta.usdMxnRate || 17.28)).toLocaleString()} MXN)</span>
-              </span>
-              <Link href="/plays" className="flex items-center gap-1 text-sm hover:underline" style={{ color: '#0072f5' }}>
-                Go to Plays <ChevronRight className="h-3 w-3" />
-              </Link>
-            </div>
+                </VoxCard>
+              );
+            })}
           </div>
-        )}
-
-        {/* KPI ROW */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {[
-            {
-              label: "Total AUM",
-              value: `$${totalValue.toLocaleString()}`,
-              sub: totalPnl >= 0 ? `+$${totalPnl.toLocaleString()}` : `-$${Math.abs(totalPnl).toLocaleString()}`,
-              subColor: totalPnl >= 0 ? '#00a86b' : '#dc2626',
-              icon: totalPnl >= 0 ? TrendingUp : TrendingDown,
-            },
-            {
-              label: "Positions",
-              value: `${positions.length > 0 ? positions.length : dashboardMeta.totalPositions}`,
-              sub: `Across ${brokerBreakdown.length} brokers`,
-              subColor: '#666666',
-              icon: null,
-            },
-            {
-              label: "USD / MXN",
-              value: dashboardMeta.usdMxnRate.toFixed(2),
-              sub: dashboardMeta.usdMxnDate || 'Today',
-              subColor: '#666666',
-              icon: null,
-            },
-            {
-              label: "Market Regime",
-              value: "EARLY_BULL",
-              sub: "Buy pullbacks, tight stops",
-              subColor: '#666666',
-              icon: null,
-            },
-          ].map((kpi) => (
-            <div
-              key={kpi.label}
-              className="p-4 rounded-lg"
-              style={{
-                background: '#ffffff',
-                boxShadow: 'rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px, #fafafa 0px 0px 0px 1px',
-              }}
+          <div className="flex justify-between items-center mt-3">
+            <span style={{ color: colors.muted, fontSize: "13px" }}>
+              Cash freed if sold:{" "}
+              <span className="font-mono font-semibold" style={{ color: colors.loss }}>
+                ${sellValue.toLocaleString()} USD
+              </span>
+            </span>
+            <Link
+              href="/plays"
+              className="flex items-center gap-1 text-sm hover:underline"
+              style={{ color: colors.accent }}
             >
-              <p style={{ color: '#666666', fontSize: '12px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                {kpi.label}
-              </p>
-              <p className="font-mono text-xl font-semibold mt-1" style={{ color: '#171717', letterSpacing: '-0.96px' }}>
-                {kpi.value}
-              </p>
-              {kpi.sub && (
-                <div className="flex items-center gap-1 mt-1">
-                  {kpi.icon && <kpi.icon className="h-3 w-3" style={{ color: kpi.subColor }} />}
-                  <span className="text-xs" style={{ color: kpi.subColor }}>{kpi.sub}</span>
-                </div>
-              )}
-            </div>
-          ))}
+              Go to Plays <ChevronRight className="h-3 w-3" />
+            </Link>
+          </div>
         </div>
+      )}
 
-        {/* HOLDINGS + DISTRIBUTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Top Holdings Table */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <BarChart3 className="h-4 w-4" style={{ color: '#0072f5' }} />
-              <h2 style={{
-                fontSize: '24px',
-                fontWeight: 600,
-                letterSpacing: '-0.96px',
-                color: '#171717',
-              }}>
-                Top 10 Holdings
-              </h2>
-            </div>
-            <div
-              className="rounded-lg overflow-hidden"
+      {/* KPI ROW */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <VoxKpi
+          label="Total AUM"
+          value={`$${totalValue.toLocaleString()}`}
+          sub={totalPnl >= 0 ? `+$${totalPnl.toLocaleString()}` : `-$${Math.abs(totalPnl).toLocaleString()}`}
+          subVariant={totalPnl >= 0 ? "profit" : "loss"}
+          icon={totalPnl >= 0 ? <TrendingUp className="h-3 w-3" style={{ color: colors.profit }} /> : <TrendingDown className="h-3 w-3" style={{ color: colors.loss }} />}
+        />
+        <VoxKpi
+          label="Positions"
+          value={`${positions.length > 0 ? positions.length : dashboardMeta.totalPositions}`}
+          sub={`Across ${brokerBreakdown.length} brokers`}
+        />
+        <VoxKpi
+          label="USD / MXN"
+          value={dashboardMeta.usdMxnRate.toFixed(2)}
+          sub={dashboardMeta.usdMxnDate || "Today"}
+        />
+        <VoxKpi
+          label="Market Regime"
+          value="EARLY_BULL"
+          sub="Buy pullbacks, tight stops"
+        />
+      </div>
+
+      {/* HOLDINGS + DISTRIBUTION */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        {/* Top Holdings Table */}
+        <div className="lg:col-span-2">
+          <div className="flex items-center gap-2 mb-4">
+            <BarChart3 className="h-4 w-4" style={{ color: colors.accent }} />
+            <h2
+              className="font-semibold"
               style={{
-                background: '#ffffff',
-                boxShadow: 'rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px, rgba(0,0,0,0.04) 0px 8px 8px -8px, #fafafa 0px 0px 0px 1px',
+                fontSize: "24px",
+                letterSpacing: "-0.96px",
+                color: colors.foreground,
               }}
             >
-              <table className="w-full text-sm">
-                <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-                    {['Ticker', 'Value', 'P&L', 'Grade', 'Broker'].map((h) => (
-                      <th key={h} className="text-left p-3 font-medium" style={{ color: '#666666', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {topHoldings.map((p: any) => (
+              Top 10 Holdings
+            </h2>
+          </div>
+          <VoxCard variant="stack">
+            <table className="w-full text-sm">
+              <thead>
+                <tr style={{ borderBottom: `1px solid ${colors.border}` }}>
+                  {["Ticker", "Value", "P&L", "Grade", "Broker"].map((h) => (
+                    <th
+                      key={h}
+                      className="text-left p-3 font-medium"
+                      style={{ color: colors.muted, fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {topHoldings.map((p: any) => {
+                  const gradeStyle = getGradeStyle(p.grade);
+                  return (
                     <tr
                       key={p.ticker}
-                      className="transition-colors"
-                      style={{ borderBottom: '1px solid rgba(0,0,0,0.04)' }}
+                      style={{ borderBottom: `1px solid ${colors.border}` }}
                     >
                       <td className="p-3">
-                        <span className="font-mono font-semibold text-sm" style={{ color: '#171717' }}>{p.ticker}</span>
+                        <span className="font-mono font-semibold text-sm" style={{ color: colors.foreground }}>{p.ticker}</span>
                       </td>
-                      <td className="p-3 font-mono text-sm" style={{ color: '#171717' }}>
+                      <td className="p-3 font-mono text-sm" style={{ color: colors.foreground }}>
                         ${(p.value || p.live_value || 0).toLocaleString()}
                       </td>
                       <td className="p-3 text-right">
-                        <span className="text-sm" style={{ color: (p.pnl_pct || 0) >= 0 ? '#00a86b' : '#dc2626' }}>
-                          {p.avg_cost > 0 ? `${(p.pnl_pct || 0) >= 0 ? '+' : ''}${p.pnl_pct || 0}%` : 'N/A'}
+                        <span
+                          className="text-sm"
+                          style={{ color: (p.pnl_pct || 0) >= 0 ? colors.profit : colors.loss }}
+                        >
+                          {p.avg_cost > 0 ? `${(p.pnl_pct || 0) >= 0 ? "+" : ""}${p.pnl_pct || 0}%` : "N/A"}
                         </span>
                       </td>
                       <td className="p-3">
                         {p.grade > 0 ? (
-                          <span
-                            className="text-xs font-mono font-medium px-2 py-0.5 rounded"
-                            style={
-                              p.grade >= 70 ? { color: '#00a86b', background: 'rgba(0,168,107,0.08)' } :
-                              p.grade >= 60 ? { color: '#0072f5', background: 'rgba(0,114,245,0.08)' } :
-                              p.grade >= 50 ? { color: '#f59e0b', background: 'rgba(245,158,11,0.08)' } :
-                              { color: '#dc2626', background: 'rgba(220,38,38,0.08)' }
-                            }
-                          >
-                            {p.grade}
-                          </span>
+                          <VoxBadge variant="grade" grade={p.grade}>{p.grade}</VoxBadge>
                         ) : (
-                          <span style={{ color: '#808080', fontSize: '12px' }}>—</span>
+                          <span style={{ color: colors.mutedLight, fontSize: "12px" }}>—</span>
                         )}
                       </td>
-                      <td className="p-3 text-xs" style={{ color: '#666666' }}>
-                        {(p.brokers || [p.broker]).join(', ')}
+                      <td className="p-3 text-xs" style={{ color: colors.muted }}>
+                        {(p.brokers || [p.broker]).join(", ")}
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              <Link
-                href="/portfolio"
-                className="flex items-center gap-1 p-3 text-sm hover:underline transition-colors"
-                style={{ color: '#0072f5', borderTop: '1px solid rgba(0,0,0,0.08)' }}
-              >
-                View all {positions.length} positions <ChevronRight className="h-3 w-3" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Column */}
-          <div className="space-y-4">
-            {/* Grade Distribution */}
-            <div
-              className="p-4 rounded-lg"
-              style={{
-                background: '#ffffff',
-                boxShadow: 'rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px, #fafafa 0px 0px 0px 1px',
-              }}
+                  );
+                })}
+              </tbody>
+            </table>
+            <Link
+              href="/portfolio"
+              className="flex items-center gap-1 p-3 text-sm hover:underline transition-colors"
+              style={{ color: colors.accent, borderTop: `1px solid ${colors.border}` }}
             >
-              <h3 style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '-0.32px', color: '#171717', marginBottom: '12px' }}>
-                Grade Distribution
-              </h3>
-              <div className="space-y-2">
-                {[
-                  { label: "Core (70+)", count: corePositions.length, color: '#00a86b' },
-                  { label: "Buy (60-69)", count: holdPositions.length, color: '#0072f5' },
-                  { label: "Hold (50-59)", count: trimPositions.length, color: '#f59e0b' },
-                  { label: "Sell (<50)", count: sellPositions.length, color: '#dc2626' },
-                  { label: "Ungraded", count: ungradedPositions.length, color: '#808080' },
-                ].map((bucket) => (
-                  <div key={bucket.label} className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full" style={{ background: bucket.color }} />
-                      <span style={{ fontSize: '13px', color: '#4d4d4d' }}>{bucket.label}</span>
-                    </div>
-                    <span className="font-mono text-sm" style={{ color: '#171717' }}>{bucket.count}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* By Broker */}
-            <div
-              className="p-4 rounded-lg"
-              style={{
-                background: '#ffffff',
-                boxShadow: 'rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px, #fafafa 0px 0px 0px 1px',
-              }}
-            >
-              <h3 style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '-0.32px', color: '#171717', marginBottom: '12px' }}>
-                By Broker
-              </h3>
-              <div className="space-y-2">
-                {brokerBreakdown.map((b: any) => (
-                  <div key={b.broker} className="flex items-center justify-between">
-                    <span style={{ fontSize: '13px', color: '#4d4d4d' }}>{b.broker}</span>
-                    <div className="flex items-center gap-1">
-                      <span className="font-mono text-sm" style={{ color: '#171717' }}>
-                        ${b.value.toLocaleString()}
-                      </span>
-                      {b.stale && <span style={{ color: '#f59e0b', fontSize: '11px' }}>⚠</span>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* QUICK LINKS */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { label: "Plays", href: "/plays", icon: Target, desc: `${sellPositions.length} urgent actions` },
-            { label: "Portfolio", href: "/portfolio", icon: BarChart3, desc: `${positions.length} positions` },
-            { label: "Grades", href: "/grades", icon: Zap, desc: "AI grading system" },
-            { label: "Watchlist", href: "/watchlist", icon: ShieldAlert, desc: "Entry triggers" },
-          ].map((link) => (
-            <Link key={link.href} href={link.href}>
-              <div
-                className="p-4 rounded-lg transition-all hover:translate-y-[-1px] cursor-pointer"
-                style={{
-                  background: '#ffffff',
-                  boxShadow: 'rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px',
-                }}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <link.icon className="h-4 w-4" style={{ color: '#0072f5' }} />
-                  <span style={{ fontSize: '14px', fontWeight: 500, color: '#171717' }}>{link.label}</span>
-                </div>
-                <p style={{ fontSize: '12px', color: '#666666' }}>{link.desc}</p>
-              </div>
+              View all {positions.length} positions <ChevronRight className="h-3 w-3" />
             </Link>
-          ))}
+          </VoxCard>
         </div>
-      </main>
-    </div>
+
+        {/* Right Column */}
+        <div className="space-y-4">
+          {/* Grade Distribution */}
+          <VoxCard className="p-4">
+            <h3
+              className="font-semibold mb-3"
+              style={{ fontSize: "13px", letterSpacing: "-0.32px", color: colors.foreground }}
+            >
+              Grade Distribution
+            </h3>
+            <div className="space-y-2">
+              {[
+                { label: "Core (70+)", count: corePositions.length, color: colors.gradeCore },
+                { label: "Buy (60-69)", count: holdPositions.length, color: colors.gradeBuy },
+                { label: "Hold (50-59)", count: trimPositions.length, color: colors.gradeHold },
+                { label: "Sell (<50)", count: sellPositions.length, color: colors.gradeSell },
+                { label: "Ungraded", count: ungradedPositions.length, color: colors.gradeUngraded },
+              ].map((bucket) => (
+                <div key={bucket.label} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full" style={{ background: bucket.color }} />
+                    <span style={{ fontSize: "13px", color: colors.muted }}>{bucket.label}</span>
+                  </div>
+                  <span className="font-mono text-sm" style={{ color: colors.foreground }}>{bucket.count}</span>
+                </div>
+              ))}
+            </div>
+          </VoxCard>
+
+          {/* By Broker */}
+          <VoxCard className="p-4">
+            <h3
+              className="font-semibold mb-3"
+              style={{ fontSize: "13px", letterSpacing: "-0.32px", color: colors.foreground }}
+            >
+              By Broker
+            </h3>
+            <div className="space-y-2">
+              {brokerBreakdown.map((b: any) => (
+                <div key={b.broker} className="flex items-center justify-between">
+                  <span style={{ fontSize: "13px", color: colors.muted }}>{b.broker}</span>
+                  <div className="flex items-center gap-1">
+                    <span className="font-mono text-sm" style={{ color: colors.foreground }}>
+                      ${b.value.toLocaleString()}
+                    </span>
+                    {b.stale && <span style={{ color: colors.warning, fontSize: "11px" }}>⚠</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </VoxCard>
+        </div>
+      </div>
+
+      {/* QUICK LINKS */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { label: "Plays", href: "/plays", icon: Target, desc: `${sellPositions.length} urgent actions` },
+          { label: "Portfolio", href: "/portfolio", icon: BarChart3, desc: `${positions.length} positions` },
+          { label: "Grades", href: "/grades", icon: Zap, desc: "AI grading system" },
+          { label: "Watchlist", href: "/watchlist", icon: ShieldAlert, desc: "Entry triggers" },
+        ].map((link) => (
+          <Link key={link.href} href={link.href}>
+            <VoxCard hover className="p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <link.icon className="h-4 w-4" style={{ color: colors.accent }} />
+                <span style={{ fontSize: "14px", fontWeight: 500, color: colors.foreground }}>{link.label}</span>
+              </div>
+              <p style={{ fontSize: "12px", color: colors.muted }}>{link.desc}</p>
+            </VoxCard>
+          </Link>
+        ))}
+      </div>
+    </PageShell>
   );
 }
