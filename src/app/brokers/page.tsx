@@ -6,6 +6,7 @@ import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { useEffect, useState } from "react";
 import { RefreshCw, AlertTriangle, CheckCircle, XCircle, Clock, Wallet } from "lucide-react";
+import { fmtCurrency } from "@/lib/format";
 
 interface BrokerHealth {
   status: string;

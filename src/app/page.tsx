@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { PageShell } from "@/components/vox-nav";
 import { VoxCard, VoxBadge, VoxKpi } from "@/components/vox-card";
 import { colors, getGradeStyle } from "@/lib/design-system";
+import { fmtCurrency } from "@/lib/format";
 import { getTotalValue, getTotalPnL, gradeMap, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import {
   TrendingUp, TrendingDown, Target, ShieldAlert, Zap,
@@ -164,7 +165,7 @@ export default function Dashboard() {
                       </span>
                     </div>
                     <p className="text-xs mt-1" style={{ color: colors.muted }}>
-                      ${(p.value || p.live_value || 0).toLocaleString()}
+                      {fmtCurrency(p.value || p.live_value || 0)}
                     </p>
                   </div>
                 </VoxCard>
@@ -175,7 +176,7 @@ export default function Dashboard() {
             <span style={{ color: colors.muted, fontSize: "13px" }}>
               Cash freed if sold:{" "}
               <span className="font-mono font-semibold" style={{ color: colors.loss }}>
-                ${sellValue.toLocaleString()} USD
+                {fmtCurrency(sellValue)} USD
               </span>
             </span>
             <Link
@@ -193,8 +194,8 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <VoxKpi
           label="Total AUM"
-          value={`$${totalValue.toLocaleString()}`}
-          sub={totalPnl >= 0 ? `+$${totalPnl.toLocaleString()}` : `-$${Math.abs(totalPnl).toLocaleString()}`}
+          value={fmtCurrency(totalValue)}
+          sub={totalPnl >= 0 ? `+${fmtCurrency(totalPnl).replace("$", "")}` : `-${fmtCurrency(Math.abs(totalPnl)).replace("$", "")}`}
           subVariant={totalPnl >= 0 ? "profit" : "loss"}
           icon={totalPnl >= 0 ? <TrendingUp className="h-3 w-3" style={{ color: colors.profit }} /> : <TrendingDown className="h-3 w-3" style={{ color: colors.loss }} />}
         />
@@ -259,7 +260,7 @@ export default function Dashboard() {
                         <span className="font-mono font-semibold text-sm" style={{ color: colors.foreground }}>{p.ticker}</span>
                       </td>
                       <td className="p-3 font-mono text-sm" style={{ color: colors.foreground }}>
-                        ${(p.value || p.live_value || 0).toLocaleString()}
+                        {fmtCurrency(p.value || p.live_value || 0)}
                       </td>
                       <td className="p-3 text-right">
                         <span
@@ -337,7 +338,7 @@ export default function Dashboard() {
                   <span style={{ fontSize: "13px", color: colors.muted }}>{b.broker}</span>
                   <div className="flex items-center gap-1">
                     <span className="font-mono text-sm" style={{ color: colors.foreground }}>
-                      ${b.value.toLocaleString()}
+                      {fmtCurrency(b.value)}
                     </span>
                     {b.stale && <span style={{ color: colors.warning, fontSize: "11px" }}>⚠</span>}
                   </div>

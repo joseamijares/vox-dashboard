@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { getPositions, calculateTotalValue, calculateTotalPnL } from "@/lib/data";
+import { fmtCurrency } from "@/lib/format";
 import { useState, useEffect } from "react";
 import { Search, TrendingUp, TrendingDown } from "lucide-react";
 
@@ -59,7 +60,7 @@ export default function PositionsPage() {
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">All Positions</h1>
           <p className="text-muted-foreground text-sm">
-            {filtered.length} positions | ${totalValue.toLocaleString()} | P&L: ${totalPnl.toLocaleString()}
+            {filtered.length} positions | {fmtCurrency(totalValue)} | P&L: {fmtCurrency(totalPnl)}
           </p>
         </div>
 
@@ -107,9 +108,9 @@ export default function PositionsPage() {
                         <td className="p-4">
                           <Badge variant="outline" className="text-xs">{p.broker || p.brokers?.join(', ') || 'Unknown'}</Badge>
                         </td>
-                        <td className="p-4 text-right font-mono">${(p.live_value || p.value || 0).toLocaleString()}</td>
+                        <td className="p-4 text-right font-mono">{fmtCurrency(p.live_value || p.value || 0)}</td>
                         <td className={`p-4 text-right font-mono ${(p.pnl || p.unrealized_pnl || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
-                          {(p.pnl || p.unrealized_pnl || 0) >= 0 ? "+" : ""}${(p.pnl || p.unrealized_pnl || 0).toLocaleString()}
+                          {(p.pnl || p.unrealized_pnl || 0) >= 0 ? "+" : ""}{fmtCurrency(p.pnl || p.unrealized_pnl || 0)}
                         </td>
                         <td className={`p-4 text-right font-mono ${(p.pnl_pct || p.unrealized_pnl_pct || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
                           {(p.pnl_pct || p.unrealized_pnl_pct || 0) >= 0 ? "+" : ""}{(p.pnl_pct || p.unrealized_pnl_pct || 0).toFixed(1)}%

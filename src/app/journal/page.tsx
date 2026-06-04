@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { BookOpen, Calendar, Loader2, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { fmtCurrency } from "@/lib/format";
 import { useState, useEffect } from "react";
 import { getJournal } from "@/lib/supabase";
 

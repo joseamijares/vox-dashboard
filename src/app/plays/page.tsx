@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { Target, TrendingUp, TrendingDown, CheckCircle } from "lucide-react";
+import { fmtCurrency } from "@/lib/format";
 
 export default function PlaysPage() {
   const [plays, setPlays] = useState([]);
@@ -72,12 +73,12 @@ export default function PlaysPage() {
                         {p.action}
                       </span>
                     </div>
-                    <span className="font-mono text-sm">${p.notional?.toLocaleString() || "—"}</span>
+                    <span className="font-mono text-sm">{fmtCurrency(p.notional) || "—"}</span>
                   </div>
                   <p className="text-sm text-muted-foreground mt-2">{p.reason}</p>
                   <div className="flex gap-4 text-xs text-muted-foreground mt-2">
                     <span>Shares: {p.shares}</span>
-                    <span>Price: ${p.price}</span>
+                    <span>Price: {fmtCurrency(p.price)}</span>
                     <span>Broker: {p.broker}</span>
                   </div>
                 </div>
@@ -101,7 +102,7 @@ export default function PlaysPage() {
                       <span className="text-xs text-muted-foreground">{p.action}</span>
                     </div>
                     <span className={`font-mono text-sm ${(p.pnl || 0) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                      {(p.pnl || 0) >= 0 ? '+' : ''}${p.pnl?.toLocaleString() || "—"} ({p.pnl_pct?.toFixed(1) || "—"}%)
+                      {(p.pnl || 0) >= 0 ? '+' : ''}{fmtCurrency(p.pnl) || "—"} ({p.pnl_pct?.toFixed(1) || "—"}%)
                     </span>
                   </div>
                 </div>

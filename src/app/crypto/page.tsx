@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { Bitcoin, TrendingUp, TrendingDown, Shield } from "lucide-react";
+import { fmtCurrency } from "@/lib/format";
 
 export default function CryptoPage() {
   const crypto = [

@@ -15,6 +15,7 @@ import { Sidebar } from "@/components/sidebar";
 import { getPositions, getTotalValue, getTotalPnL, getAvgGrade, getBrokerBreakdown, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import { useState, useMemo, useEffect } from "react";
 import { Search, TrendingUp, TrendingDown, AlertTriangle, Loader2 } from "lucide-react";
+import { fmtCurrency } from "@/lib/format";
 
 export default function PortfolioPage() {
   const [allPositions, setAllPositions] = useState<any[]>([]);
@@ -114,8 +115,8 @@ export default function PortfolioPage() {
     return "SELL";
   };
 
-  // Format currency without decimals
-  const fmt = (n: number) => `$${Math.round(n).toLocaleString()}`;
+  // Format currency with 2 decimal places
+  const fmt = (n: number) => fmtCurrency(n);
 
   // Data freshness - use most recent position update
   const dataAge = allPositions.length > 0 && allPositions[0]?.updated_at

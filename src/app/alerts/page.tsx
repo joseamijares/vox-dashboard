@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { ShieldAlert, AlertTriangle, Bell } from "lucide-react";
+import { fmtCurrency } from "@/lib/format";
 
 export default function AlertsPage() {
   const [alerts, setAlerts] = useState([]);

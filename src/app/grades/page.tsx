@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
 import { Zap, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { fmtCurrency } from "@/lib/format";
 
 export default function GradesPage() {
   const [positions, setPositions] = useState([]);
