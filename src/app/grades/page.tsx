@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { PageShell } from "@/components/vox-nav";
-import { VoxCard, VoxBadge } from "@/components/vox-card";
+import { VoxCard } from "@/components/vox-card";
 import { colors, getGradeStyle } from "@/lib/design-system";
 import { fmtCurrency } from "@/lib/format";
-import { Zap, TrendingUp, TrendingDown, Target, AlertTriangle, ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { Zap, TrendingUp, Target, AlertTriangle } from "lucide-react";
 
 interface Grade {
   ticker: string;
@@ -80,7 +79,6 @@ export default function GradesPage() {
 
   const trimPositions = positions.filter((g) => g.action === "TRIM").sort((a, b) => b.vox_grade - a.vox_grade);
   const holdPositions = positions.filter((g) => g.action === "HOLD").sort((a, b) => b.vox_grade - a.vox_grade);
-  const watchPositions = positions.filter((g) => g.action === "WATCH").sort((a, b) => b.vox_grade - a.vox_grade);
 
   return (
     <PageShell>
