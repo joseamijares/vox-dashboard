@@ -1,11 +1,8 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import { PageShell } from "@/components/vox-nav";
 import { VoxCard } from "@/components/vox-card";
 import { colors, getGradeStyle } from "@/lib/design-system";
 import { fmtCurrency } from "@/lib/format";
-import { Zap, TrendingUp, Target, AlertTriangle } from "lucide-react";
+import { Zap, TrendingUp, Target } from "lucide-react";
 
 interface Grade {
   ticker: string;
@@ -28,51 +25,21 @@ interface Grade {
   weather_factors: string;
 }
 
-export default function GradesPage() {
-  const [grades, setGrades] = useState<Grade[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const res = await fetch("/api/grades");
-        if (!res.ok) throw new Error("Failed to fetch");
-        const json = await res.json();
-        setGrades(json.grades || []);
-      } catch (e) {
-        setError("Failed to load grades");
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadData();
-  }, []);
-
-  if (loading) {
-    return (
-      <PageShell>
-        <div className="flex items-center justify-center h-64">
-          <div className="animate-spin h-6 w-6 border-2 rounded-full mx-auto"
-            style={{ borderColor: colors.foreground, borderTopColor: "transparent" }}
-          />
-        </div>
-      </PageShell>
-    );
+async function getGrades(): Promise<Grade[]> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || "https://web-production-9e321.up.railway.app"}/api/grades`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return json.grades || [];
+  } catch {
+    return [];
   }
+}
 
-  if (error) {
-    return (
-      <PageShell>
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <AlertTriangle className="h-6 w-6 mx-auto mb-3" style={{ color: colors.loss }} />
-            <p style={{ color: colors.foreground }}>{error}</p>
-          </div>
-        </div>
-      </PageShell>
-    );
-  }
+export default async function GradesPage() {
+  const grades = await getGrades();
 
   const positions = grades.filter((g) => (g.position_value || 0) > 0);
   const opportunities = grades.filter((g) => (g.position_value || 0) === 0 && g.action === "BUY");
