@@ -27,14 +27,14 @@ export async function POST(request: Request) {
         await query(
           `UPDATE positions SET shares = $1, avg_cost = $2, live_price = $3, live_value = $4,
            brokers = $5, sector = $6, updated_at = NOW() WHERE ticker = $7`,
-          [shares, avg_cost, live_price, live_value, JSON.stringify(newBrokers), sector || "", ticker]
+          [shares, avg_cost, live_price, live_value, newBrokers, sector || "", ticker]
         );
         updated++;
       } else {
         await query(
           `INSERT INTO positions (ticker, shares, avg_cost, live_price, live_value, grade, council, brokers, sector, updated_at)
            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, NOW())`,
-          [ticker, shares, avg_cost, live_price, live_value, 0, "", JSON.stringify(brokers || ["eToro"]), sector || ""]
+          [ticker, shares, avg_cost, live_price, live_value, 0, "", brokers || ["eToro"], sector || ""]
         );
         inserted++;
       }
