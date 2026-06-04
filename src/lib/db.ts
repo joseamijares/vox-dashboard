@@ -15,7 +15,7 @@ const PGPORT = process.env.PGPORT || "5432";
 const PGUSER = process.env.PGUSER || "postgres";
 const PGDATABASE = process.env.PGDATABASE || "railway";
 
-const connectionString = "postgresql://" + PGUSER + ":***@" + PGHOST + ":" + PGPORT + "/" + PGDATABASE;
+const connectionString = "postgresql://" + PGUSER + ":" + pgPassword + "@" + PGHOST + ":" + PGPORT + "/" + PGDATABASE;
 
 const pool = new Pool({
   connectionString,
