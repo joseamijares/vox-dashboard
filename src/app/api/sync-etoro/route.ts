@@ -40,6 +40,22 @@ export async function POST(request: Request) {
       }
     }
 
+    // Auto-grade any new positions (grade = 0)
+    const newPositions = await query(`SELECT ticker, sector, live_price, shares FROM positions WHERE grade = 0`);
+    if (newPositions && newPositions.length > 0) {
+      // Call auto-grade endpoint internally
+      try {
+        const autoGradeRes = await fetch(`http://localhost:${process.env.PORT || 3000}/api/auto-grade`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        });
+        const autoGradeData = await autoGradeRes.json();
+        console.log("Auto-grade result:", autoGradeData);
+      } catch (e) {
+        console.error("Auto-grade failed:", e);
+      }
+    }
+
     return NextResponse.json({ success: true, updated, inserted, total: positions.length });
   } catch (error: any) {
     console.error("Sync error:", error);
