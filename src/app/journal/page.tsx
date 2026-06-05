@@ -7,7 +7,13 @@ import { Sidebar } from "@/components/sidebar";
 import { BookOpen, Calendar, Loader2, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
 import { useState, useEffect } from "react";
-import { getJournal } from "@/lib/db";
+
+async function getJournal() {
+  const res = await fetch("/api/journal");
+  if (!res.ok) throw new Error("Failed to fetch journal");
+  const data = await res.json();
+  return data.journal || [];
+}
 
 interface JournalEntry {
   id: number;
