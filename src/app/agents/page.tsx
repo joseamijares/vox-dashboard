@@ -315,7 +315,7 @@ export default function AgentsPage() {
               <span className="text-muted-foreground">→</span>
               <Badge variant="default">Alerts</Badge>
               <span className="text-muted-foreground">→</span>
-              <Badge variant="outline">Supabase</Badge>
+              <Badge variant="outline">Postgres</Badge>
             </div>
           </CardContent>
         </Card>

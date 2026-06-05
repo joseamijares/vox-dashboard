@@ -173,7 +173,7 @@ export const marketRegime = {
   ],
 };
 
-// Alert data - now fetched from Supabase dynamically
+// Alert data - now fetched from Railway Postgres dynamically
 export const alerts = [
   {
     ticker: "JMIA",

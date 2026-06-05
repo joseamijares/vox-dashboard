@@ -84,7 +84,7 @@ Agents run both on Railway (grader service) and locally (Hermes cron):
 | **Sector** | 11-sector rotation | Local cron | `vox_sector_rankings.json` |
 | **Stock Researcher** | Technical + fundamental | Railway grader | DB `watchlist` table |
 | **Crypto Researcher** | On-chain metrics | Local cron | `vox_crypto_analysis.json` |
-| **Debrief** | Cross-signal aggregation | Local cron | Supabase `intelligence_snapshots` |
+| **Debrief** | Cross-signal aggregation | Local cron | Postgres `intelligence_snapshots` |
 
 ### Pipeline Flow
 ```
@@ -319,7 +319,7 @@ Every 4h    ┌─────────────────────�
             │  ├── All 10 Research Agents            │
             │  ├── Council Voting                    │
             │  ├── Debrief Agent                     │
-            │  └── Supabase/Postgres Sync            │
+            │  └── Postgres Sync                       │
             └────────────────────────────────────────┘
 ```
 

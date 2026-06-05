@@ -44,7 +44,7 @@ const cronJobs: CronJob[] = [
     scheduleReadable: "Every 4 hours",
     script: "vox_agentic_pipeline.sh",
     status: "active",
-    purpose: "Full agentic pipeline: News → Trump → Reddit → X → Volume → Research → Debrief → Alerts → Supabase",
+    purpose: "Full agentic pipeline: News → Trump → Reddit → X → Volume → Research → Debrief → Alerts → Postgres",
     lastRun: "—",
     nextRun: "4:00 PM CT",
     category: "Research",
@@ -588,7 +588,7 @@ export default function CronsPage() {
                   <span className="text-muted-foreground">→</span>
                   <Badge variant="outline">Debrief</Badge>
                   <span className="text-muted-foreground">→</span>
-                  <Badge variant="default">Supabase</Badge>
+                  <Badge variant="default">Postgres</Badge>
                 </div>
               </div>
             </div>
