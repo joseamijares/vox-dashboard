@@ -2,14 +2,14 @@
 
 ## Overview
 
-The VOX Broker Sync system aggregates portfolio data from 8 brokers into a unified view, runs twice daily (7 AM + 12 PM CT), and feeds the dashboard with real-time position data.
+The VOX Broker Sync system aggregates portfolio data from 6 brokers into Railway Postgres, runs daily via the grader service, and feeds the dashboard with real-time position data.
 
 ## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    BROKER SYNC PIPELINE                      │
-│                   (vox_broker_sync_v2.py)                   │
+│              (vox_postgres_sync.py + grader)                │
 └─────────────────────────────────────────────────────────────┘
                               │
         ┌─────────────────────┼─────────────────────┐
@@ -20,16 +20,15 @@ The VOX Broker Sync system aggregates portfolio data from 8 brokers into a unifi
    └────┬────┘          └────┬────┘          └────┬────┘
         │                     │                     │
    • eToro              • GBM Main           Polygon.io
-   • Binance            • GBM USA            USD/MXN
+   • (live API)          • GBM USA            USD/MXN
+                        • Binance
                         • Schwab
                         • IBKR
-                        • Revolut
-                        • Bitso
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  UNIFIED PORTFOLIO VIEW                      │
-│              (unified_portfolio_current.json)               │
+│                  RAILWAY POSTGRES                            │
+│              (Single source of truth)                        │
 └─────────────────────────────────────────────────────────────┘
                               │
               ┌───────────────┼───────────────┐
@@ -42,168 +41,142 @@ The VOX Broker Sync system aggregates portfolio data from 8 brokers into a unifi
 
 ## Brokers
 
-| Broker | Type | Currency | Status | Weight |
-|--------|------|----------|--------|--------|
-| eToro | API | USD | 🟢 Live | 43% |
-| Binance | Manual | USD | 🟡 Manual | 10% |
-| GBM Main | Manual | MXN → USD | 🟡 Manual | 38% |
-| GBM USA | Manual | USD | 🟡 Manual | 7% |
-| Schwab | Manual | USD | 🟡 Manual | 1% |
-| IBKR | Manual | USD | 🟡 Manual | 1% |
-| Revolut | Manual | MXN | 🟡 Manual | 0% |
-| Bitso | Manual | USD | 🟡 Manual | 0% |
+| Broker | Type | Currency | Status |
+|--------|------|----------|--------|
+| eToro | API | USD | 🟢 Live API sync |
+| GBM Main | Manual JSON | MXN → USD | 🟡 Manual update |
+| GBM USA | Manual JSON | USD | 🟡 Manual update |
+| Binance | Manual JSON | USD | 🟡 Manual update |
+| Schwab | Manual JSON | USD | 🟡 Manual update |
+| IBKR | Manual JSON | USD | 🟡 Manual update |
 
 ## Key Features
 
-### v2.0 Enhancements
-- **Retry Logic**: 3 attempts with exponential backoff for API calls
-- **Circuit Breaker**: Auto-disables failing brokers for 5 minutes
-- **Health Checks**: Per-broker timing and status tracking
-- **FX Conversion**: Live USD/MXN rate from Polygon.io
-- **Stale Detection**: 7-day threshold with visual indicators
+- **eToro Live API**: Real positions, real prices via eToro API
+- **FX Conversion**: MXN → USD via Polygon.io for GBM Main
+- **Unified View**: Positions merged by ticker across brokers
+- **Railway Postgres**: All data persisted to single database
+- **Daily Sync**: Grader service runs daily at 7:30 AM CT
 
-### Data Flow
-1. **Fetch**: Each broker fetched in parallel with health checks
+## Data Flow
+
+1. **Fetch**: eToro API live; manual brokers from JSON env vars
 2. **Transform**: GBM Main MXN values converted to USD
 3. **Aggregate**: Positions merged by ticker across brokers
 4. **Enrich**: Cost basis, PnL %, portfolio % calculated
-5. **Export**: Saved to JSON + copied to dashboard
+5. **Persist**: Saved to Railway Postgres `positions` table
+
+## Database Schema
+
+```sql
+-- positions table
+CREATE TABLE positions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  ticker TEXT NOT NULL,
+  shares DECIMAL(18,8),
+  avg_cost DECIMAL(18,8),
+  live_price DECIMAL(18,8),
+  live_value DECIMAL(18,2),
+  grade INTEGER,
+  council TEXT,
+  brokers TEXT[],
+  sector TEXT,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- watchlist table
+CREATE TABLE watchlist (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  ticker TEXT NOT NULL,
+  entry_price DECIMAL(18,8),
+  target_price DECIMAL(18,8),
+  stop_loss DECIMAL(18,8),
+  grade INTEGER,
+  sector TEXT,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `vox_broker_sync_v2.py` | Main orchestrator with retry/circuit breaker |
-| `vox_broker_sync.py` | Legacy version (v1.0) |
-| `vox_fx_rate.py` | USD/MXN rate fetcher |
+| `vox_postgres_sync.py` | PostgreSQL CRUD wrapper |
+| `vox_broker_sync_v2.py` | Broker sync orchestrator |
 | `etoro_api.py` | eToro API client |
-| `unified_portfolio_current.json` | Aggregated output |
-| `dashboard_positions_live.json` | Dashboard format |
-| `broker_health.json` | Health check results |
+| `vox_fx_rate.py` | USD/MXN rate fetcher |
 
 ## Cron Schedule
 
 | Job | Schedule | Purpose |
 |-----|----------|---------|
-| `vox-broker-sync` | 7:00 AM + 12:00 PM CT | Full sync + prices + grades |
-| `vox-premarket-pipeline` | 7:00 AM CT | News + briefing |
-| `vox-alert-pipeline-unified` | 9/12/15 CT | Alerts |
-| `vox-research-orchestrator-v2` | Every 4h | Background research |
+| `vox-daily-sync` | Daily 7:30 AM CT | Full broker sync + prices + grades |
 
 ## Dashboard Integration
 
 ### Brokers Page (`/brokers`)
-- Real-time status cards for each broker
-- Health check timing display
-- Sync schedule visualization
-- Auto-refresh every 30 seconds
+- Real-time status for each broker
+- Position counts and values
+- Last sync timestamp
 
-### Data Format
+### Data Format (API)
 ```json
 {
-  "timestamp": "2026-05-26T23:05:02Z",
-  "total_value": 192677.44,
-  "total_pnl": 56149.17,
-  "broker_breakdown": {
-    "etoro": 74170.27,
-    "binance": 19920.56,
-    ...
-  },
-  "broker_status": {
-    "etoro": {
-      "value": 74170.27,
-      "status": "connected",
-      "stale": false,
-      "position_count": 41
+  "positions": [
+    {
+      "ticker": "VOO",
+      "shares": 31.07,
+      "avg_cost": 401.04,
+      "live_price": 696.59,
+      "live_value": 21518.16,
+      "grade": 55,
+      "council": "HOLD",
+      "brokers": ["eToro", "GBM Main"],
+      "sector": "",
+      "updated_at": "2026-06-05T02:25:08Z"
     }
-  },
-  "health": {
-    "overall": "healthy",
-    "healthy_count": 8,
-    "total_count": 8
-  }
+  ]
 }
 ```
 
 ## Error Handling
 
-### Retry Strategy
-- API brokers: 3 attempts, 2s base delay
-- Manual brokers: 2 attempts, 1s base delay
-- Exponential backoff: delay × 2^attempt
+### eToro API
+- Login with username/password
+- Fetch portfolio positions
+- Fallback to last known data if API fails
 
-### Circuit Breaker
-- Failure threshold: 2 consecutive failures
-- Recovery timeout: 5 minutes
-- States: CLOSED → OPEN → HALF_OPEN → CLOSED
+### Manual Brokers
+- JSON stored in environment variables
+- Parsed and merged during sync
+- Stale detection via timestamp
 
 ### Fallbacks
 - FX rate: 17.31 (last known)
-- Broker failure: Marked stale, previous data retained
+- Broker failure: Previous data retained
 - Total calculation: Sum of successful brokers only
-
-## Supabase Integration
-
-### Schema
-```sql
--- broker_sync_log
-CREATE TABLE broker_sync_log (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  sync_time TIMESTAMPTZ DEFAULT NOW(),
-  broker TEXT NOT NULL,
-  status TEXT NOT NULL,
-  duration_ms INTEGER,
-  error TEXT,
-  positions_count INTEGER,
-  total_value DECIMAL(12,2)
-);
-```
-
-### Setup
-1. Add `NEXT_PUBLIC_SUPABASE_ANON_KEY` to `.env`
-2. Run `vox_supabase_setup.sql` in SQL Editor
-3. Enable RLS policies
-
-## Monitoring
-
-### Health Metrics
-- Response time per broker (target <3s)
-- Success rate (target >95%)
-- Stale data detection (max 7 days)
-- FX rate freshness (max 24h)
-
-### Alerts
-- Broker failure → Telegram notification
-- Stale data → Dashboard warning badge
-- FX rate failure → Use last known rate
 
 ## Development
 
 ### Testing
 ```bash
 # Run sync manually
-cd ~/.hermes/scripts
-python3 vox_broker_sync_v2.py
+cd ~/dev/vox-python
+python3 src/sync/vox_postgres_sync.py
 
-# Check health
-cat broker_health.json
+# Check positions
+psql $DATABASE_URL -c "SELECT ticker, live_value FROM positions ORDER BY live_value DESC LIMIT 5;"
 
-# Verify dashboard data
-cat dashboard_positions_live.json | jq '.total_value'
+# Verify dashboard API
+curl -s https://web-production-9e321.up.railway.app/api/positions | jq '.positions | length'
 ```
 
 ### Adding a New Broker
-1. Add to `BROKERS` dict with type/currency/weight
-2. Create fetch function with `@retry` decorator
-3. Add to health check loop
-4. Update dashboard broker names mapping
-5. Add to sidebar navigation
+1. Add to `BROKERS` dict with type/currency
+2. Create fetch function
+3. Add to sync pipeline
+4. Update dashboard broker display
 
-## Future Enhancements
+---
 
-- [ ] Schwab API integration (JOS-120)
-- [ ] IBKR API integration (JOS-121)
-- [ ] Real-time WebSocket updates
-- [ ] Portfolio drift detection (JOS-128)
-- [ ] Correlation heatmap (JOS-129)
-- [ ] Position sizing optimizer (JOS-130)
+*Last updated: 2026-06-05*

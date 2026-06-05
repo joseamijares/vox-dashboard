@@ -1,167 +1,130 @@
 # VOX Dashboard v12.0
 
-Agentic trading platform with autonomous research agents, council voting, LLM-enhanced alerts, and multi-broker portfolio sync.
+**Railway-hosted React dashboard with Railway Postgres database.**
 
-**URL:** https://vox-dashboard-five.vercel.app
+**URL:** https://web-production-9e321.up.railway.app
 
 ---
 
 ## Architecture
 
-### Frontend (Next.js + TypeScript + shadcn/ui)
-- **55 pages** (20 in navigation, 35 legacy/hidden)
-- Mobile-responsive with hamburger menu + sidebar
-- Dark theme, real-time data from JSON + Supabase
-- Static export (CDN-cached, free hosting)
+### Frontend (Next.js + TypeScript + Tailwind)
+- **17 pages** in navigation (5 sections)
+- Mobile-responsive with hamburger menu + sidebar drawer
+- Light theme, real-time data from Railway Postgres
+- Server-side API routes (no client-side DB connections)
 
-### Backend (Python Agents)
-- **10 autonomous research agents**
-- **4 active cron pipelines**
-- **37 paused legacy jobs**
-- Supabase PostgreSQL backend (optional)
+### Backend (Python Grader Service)
+- **Daily sync + grading** running on Railway
+- eToro API live sync (real positions, real prices)
+- 6-broker aggregation with FX conversion
 
-### Broker Sync (v2.0)
-- **8 brokers** aggregated into unified view
-- Live FX conversion (MXN → USD)
-- Retry logic + circuit breaker + health checks
-- Runs 2x daily: 7 AM + 12 PM CT
+### Database (Railway Postgres)
+- **Single source of truth** — all data persisted
+- 70 positions, 277 watchlist tickers, 39 alerts, 16 plays, 6 journal entries
 
 ---
 
-## Active Agents (10)
-
-| Agent | File | Schedule | Purpose |
-|-------|------|----------|---------|
-| News Intelligence | `vox_news_agent.py` | Every 4h | Breaking news scanner |
-| Trump Tracker | `vox_trump_agent.py` | Every 4h | Trump statement monitor |
-| Reddit Intelligence | `vox_reddit_intelligence.py` | Every 4h | r/wsb, r/stocks tracker |
-| X Intelligence | `vox_x_intelligence.py` | Every 4h | Twitter sentiment |
-| Volume Intelligence | `vox_volume_intelligence.py` | Every 4h | Volume anomaly detection |
-| Debrief Agent | `vox_debrief_agent.py` | Every 4h | Cross-signal aggregation |
-| Stock Researcher | `vox_stock_researcher.py` | Every 4h | Technical + fundamental grades |
-| Crypto Researcher | `vox_crypto_researcher.py` | Every 4h | On-chain metrics |
-| Macro Agent | `vox_macro_agent.py` | Every 4h | VIX, yields, DXY |
-| Sector Agent | `vox_sector_agent.py` | Every 4h | 11-sector rotation |
-
-### Pipeline Flow (Every 4 Hours)
-```
-Live Prices → News → Trump → Reddit → X → Volume → Macro → Sector → Research → Debrief → Alerts → Supabase
-```
-
----
-
-## Active Cron Jobs (4)
-
-| Job | Schedule | Script | Purpose |
-|-----|----------|--------|---------|
-| Broker Sync | 7:00 AM + 12:00 PM CT | `vox_broker_sync_pipeline.sh` | Full sync + prices + grades |
-| Pre-Market | 7:00 AM CT | `vox_premarket_pipeline.sh` | News + briefing |
-| Alert Pipeline v3 | 9/12/15 CT weekdays | `vox_unified_pipeline_v3.sh` | Live prices + alerts |
-| Research Orchestrator v2 | Every 4 hours | `vox_agentic_pipeline_v2.sh` | Full agentic pipeline |
-
----
-
-## Broker Sync System (v2.0)
-
-### Supported Brokers
-
-| Broker | Type | Currency | Status | Weight |
-|--------|------|----------|--------|--------|
-| eToro | API | USD | 🟢 Live | 43% |
-| Binance | Manual | USD | 🟡 Manual | 10% |
-| GBM Main | Manual | MXN → USD | 🟡 Manual | 38% |
-| GBM USA | Manual | USD | 🟡 Manual | 7% |
-| Schwab | Manual | USD | 🟡 Manual | 1% |
-| IBKR | Manual | USD | 🟡 Manual | 1% |
-| Revolut | Manual | MXN | 🟡 Manual | 0% |
-| Bitso | Manual | USD | 🟡 Manual | 0% |
-
-### Features
-- **Retry Logic**: 3 attempts with exponential backoff
-- **Circuit Breaker**: Auto-disables failing brokers (5min recovery)
-- **Health Checks**: Per-broker timing + status tracking
-- **FX Conversion**: Live USD/MXN from Polygon.io
-- **Stale Detection**: 7-day threshold with visual indicators
-
-### Files
-| File | Purpose |
-|------|---------|
-| `vox_broker_sync_v2.py` | Main orchestrator |
-| `vox_broker_sync.py` | Legacy v1.0 |
-| `vox_fx_rate.py` | USD/MXN rate fetcher |
-| `etoro_api.py` | eToro API client |
-
----
-
-## Alert System v8
-
-**Event-driven, LLM-enhanced:**
-- **STOP**: User-defined stops (no cooldown) — PLTR @ $115
-- **MOVE**: >10% daily moves (24h dedup)
-- **NEWS**: Breaking news relevance ≥65 (6h dedup)
-- **TRUMP**: Trump mentions portfolio (immediate)
-- **DAILY DIGEST**: At market close
-
-**Protected:** SHOP (never sell)
-**Max 5 alerts/day with 24h dedup per ticker**
-
-**NO grade-based SELL spam. NO repetitive alerts.**
-
----
-
-## Navigation (20 Pages)
+## Active Pages (17)
 
 | Section | Pages |
 |---------|-------|
-| Command | Dashboard, Plan, Intelligence |
-| Portfolio | Positions, **Brokers**, Watchlist, Sectors, Grades, Plays |
-| Agents | Agents, Crons, Council, Sentiment, Regime, Risk |
-| Tools | Sizer, Screener, Crypto |
-| Journal | Journal, Logger |
+| **Command** | Dashboard, Plan, Intelligence |
+| **Portfolio** | Positions, Brokers, Plays |
+| **Agents** | Agents, Crons, Council, Sentiment, Regime, Risk |
+| **Tools** | Sizer, Screener, Crypto |
+| **Journal** | Journal, Logger |
 
 ---
 
-## Key Files
+## Broker Sync System
 
-| File | Purpose |
-|------|---------|
-| `vox_smart_alerts_v8.py` | Main alert system with LLM layer |
-| `vox_broker_sync_v2.py` | Broker sync orchestrator |
-| `vox_agentic_pipeline_v2.sh` | Research orchestrator pipeline |
-| `vox_unified_pipeline_v3.sh` | Alert pipeline |
-| `vox_premarket_pipeline.sh` | Pre-market briefing |
-| `vox_broker_sync_pipeline.sh` | Broker sync + prices + grades |
-| `vox_supabase_sync.py` | Supabase data sync |
-| `vox_council.py` | Council voting system |
+### Supported Brokers (6)
+
+| Broker | Type | Currency | Status |
+|--------|------|----------|--------|
+| eToro | API | USD | 🟢 Live sync |
+| GBM Main | Manual | MXN → USD | 🟡 Manual |
+| GBM USA | Manual | USD | 🟡 Manual |
+| Binance | Manual | USD | 🟡 Manual |
+| IBKR | Manual | USD | 🟡 Manual |
+| Schwab | Manual | USD | 🟡 Manual |
+
+### Data Flow
+```
+Brokers (eToro API, Manual JSON)
+    ↓
+Python Grader Service (Railway)
+    ↓
+Railway Postgres (Single source of truth)
+    ↓
+Next.js API Routes (/api/positions, /api/watchlist, etc.)
+    ↓
+Dashboard UI
+```
 
 ---
 
-## Environment
+## API Routes
 
-Required in `~/.hermes/.env`:
-- `POLYGON_API_KEY` — Live prices + FX rates
-- `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` — Database
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Dashboard Supabase client
-- `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` — Alerts
-- `X_BEARER_TOKEN` — X/Twitter API
-- `ETORO_API_KEY` — eToro live data
+| Route | Data |
+|-------|------|
+| `/api/positions` | 70 live positions |
+| `/api/watchlist` | 277 tickers |
+| `/api/alerts` | 39 alerts |
+| `/api/plays` | 16 plays |
+| `/api/journal` | 6 entries |
+| `/api/health` | Service health |
+
+---
+
+## Environment Variables
+
+Required in Railway dashboard:
+
+```bash
+# Database
+PGHOST=postgres-flpd.railway.internal
+PGPORT=5432
+PGDATABASE=railway
+PGUSER=railway
+PGPASSWORD=***
+
+# eToro API
+ETORO_USERNAME=***
+ETORO_PASSWORD=***
+ETORO_ACCOUNT_ID=***
+
+# Other brokers (JSON fallback)
+GBM_MAIN_JSON=***
+GBM_USA_JSON=***
+BINANCE_JSON=***
+IBKR_JSON=***
+SCHWAB_JSON=***
+
+# APIs
+POLYGON_API_KEY=***
+OPENROUTER_API_KEY=***
+
+# Telegram alerts
+TELEGRAM_BOT_TOKEN=***
+TELEGRAM_CHAT_ID=***
+```
 
 ---
 
 ## Deployment
 
-### Dashboard
+### Dashboard (Next.js)
 ```bash
 cd ~/dev/vox-dashboard
-npm run build
-npx vercel --prod
+git push origin main  # Auto-deploys to Railway
 ```
 
-### Python Agents
+### Python Grader
 ```bash
-cd ~/.hermes/scripts
-python3 vox_broker_sync_v2.py      # Manual broker sync
-python3 vox_smart_alerts_v8.py     # Manual alert check
+cd ~/dev/vox-python
+git push origin main  # Auto-deploys to Railway grader service
 ```
 
 ---
@@ -170,15 +133,15 @@ python3 vox_smart_alerts_v8.py     # Manual alert check
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Brokers   │────▶│    Sync     │────▶│   Unified   │
-│  (8 total)  │     │   Engine    │     │  Portfolio  │
+│   Brokers   │────▶│   Grader    │────▶│   Railway   │
+│  (6 total)  │     │  (Python)   │     │  Postgres   │
 └─────────────┘     └─────────────┘     └──────┬──────┘
                                                │
                           ┌────────────────────┼────────────────────┐
                           │                    │                    │
                     ┌─────▼─────┐      ┌──────▼──────┐      ┌─────▼─────┐
-                    │ Dashboard │      │   Alerts    │      │  Grades   │
-                    │  (/data)  │      │  (Telegram) │      │ (Council) │
+                    │  Next.js  │      │   Alerts    │      │   Grades  │
+                    │  Dashboard│      │  (Telegram) │      │  (Council)│
                     └───────────┘      └─────────────┘      └───────────┘
 ```
 
@@ -188,21 +151,35 @@ python3 vox_smart_alerts_v8.py     # Manual alert check
 
 | File | Content |
 |------|---------|
-| `README.md` | This file — overview |
+| `README.md` | This file — platform overview |
 | `BROKER_SYNC.md` | Broker sync architecture |
-| `AI_ARCHITECTURE.md` | Agent system design |
-| `CLAUDE.md` | Claude-specific rules |
+| `AI_ARCHITECTURE.md` | AI/agent system design |
+| `CLAUDE.md` | Development rules |
 
 ---
 
 ## Portfolio Stats (Live)
 
-- **Total AUM:** $192,677
-- **Total PnL:** $56,149
-- **Positions:** 52 across 8 brokers
-- **Watchlist:** 46 tickers
-- **Universe:** 259 tickers
+- **Total AUM:** $185,301
+- **Positions:** 70 across 6 brokers
+- **Watchlist:** 277 tickers
+- **Alerts:** 39
+- **Plays:** 16
+- **Journal:** 6 entries
 
 ---
 
-*Last updated: 2026-05-26*
+## Infrastructure
+
+| Resource | Provider | Status |
+|----------|----------|--------|
+| Dashboard | Railway (web service) | ✅ Online |
+| Grader | Railway (grader service) | ✅ Online |
+| Database | Railway (Postgres-fLPD) | ✅ Online |
+
+**No Redis. No Supabase. No Vercel. No Streamlit.**
+
+---
+
+*Last updated: 2026-06-05*
+*Version: 12.0*

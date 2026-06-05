@@ -3,11 +3,11 @@
 ## Project Context
 
 VOX is an agentic trading platform with:
-- **Frontend:** Next.js 14 + TypeScript + shadcn/ui + Tailwind
-- **Backend:** Python agents in `~/.hermes/scripts/`
-- **Data:** JSON files + Supabase PostgreSQL
-- **Hosting:** Vercel static export
-- **Cron:** Hermes Agent scheduler
+- **Frontend:** Next.js 15 + TypeScript + Tailwind CSS
+- **Backend:** Python agents in `~/dev/vox-python/src/`
+- **Data:** Railway Postgres (single source of truth)
+- **Hosting:** Railway (web + grader services)
+- **Cron:** Hybrid — Railway grader (daily sync) + Hermes Agent (local agents)
 
 ## Critical Rules
 
@@ -19,6 +19,8 @@ VOX is an agentic trading platform with:
 - ❌ Grade-based SELL alerts (v8 is event-driven only)
 - ❌ Repetitive alerts (max 5/day, 24h dedup)
 - ❌ Old alert scripts (`vox_alert_system.py` etc. — all renamed to `.OLD`)
+- ❌ Supabase client in browser (use API routes)
+- ❌ `pg` module in client bundle (causes build errors)
 
 ### 2. ALWAYS Use These Patterns
 - ✅ `from dotenv import load_dotenv; load_dotenv()` — then `os.getenv()`
@@ -28,12 +30,14 @@ VOX is an agentic trading platform with:
 - ✅ Protected tickers: `PROTECTED_TICKERS = {"SHOP"}`
 - ✅ User stops: `USER_STOPS = {"PLTR": 115.00}`
 - ✅ Dust filter: positions <$500 skipped
+- ✅ API routes for DB access (`/api/positions`, etc.)
+- ✅ `pg` Pool only in API routes (server-side only)
 
 ### 3. Python Agent Rules
-- Scripts live in `~/.hermes/scripts/`
+- Scripts live in `~/dev/vox-python/src/` (Railway) or `~/.hermes/scripts/` (local)
 - Read `.env` from `Path.home() / ".hermes" / ".env"`
-- Output JSON to `~/.hermes/scripts/`
-- Copy dashboard data to `~/dev/vox-dashboard/public/data/`
+- Output JSON to `~/.hermes/scripts/` (local agents)
+- Persist to Railway Postgres (grader service)
 - Use `#!/usr/bin/env python3` shebang
 - Make executable: `chmod +x script.py`
 - No external dependencies unless confirmed installed
@@ -41,26 +45,25 @@ VOX is an agentic trading platform with:
 ### 4. Dashboard Rules
 - Pages in `src/app/[page]/page.tsx`
 - Components in `src/components/`
-- Data in `src/lib/data.ts`
-- Static JSON in `public/data/`
+- Data in `src/lib/data.ts` (fetches from `/api/*`)
+- API routes in `src/app/api/[route]/route.ts`
 - Mobile-first: `pt-14 lg:pt-0 lg:ml-64`
 - Mobile header + sidebar on all pages
-- Dark theme only
-- Use `vox-card` class for cards
+- Light theme (design system in `src/lib/design-system.ts`)
+- Use `VoxCard`, `VoxBadge`, `VoxKpi` from `src/components/vox-card.tsx`
 - Lucide icons only
 
 ### 5. Navigation Sync
 When adding a page:
 1. Create `src/app/[page]/page.tsx`
-2. Add to `src/components/sidebar.tsx` (with icon)
-3. Add to `src/components/mobile-header.tsx` (no icon)
-4. Ensure both show same sections + order
+2. Add to `src/lib/design-system.ts` `navSections` array
+3. Both `Sidebar` and `MobileHeader` consume `navSections` automatically
 
 ### 6. Data Flow
 ```
-Python Agent → JSON file → public/data/ → Dashboard reads
+Python Agent → Railway Postgres → Next.js API Route → Dashboard UI
      ↓
-Supabase sync (optional, secondary)
+Local JSON (agent outputs only)
 ```
 
 ### 7. Alert Rules
@@ -73,22 +76,21 @@ Supabase sync (optional, secondary)
 
 ### 8. Broker Sync Rules
 - v2.0: `vox_broker_sync_v2.py`
-- 8 brokers aggregated
+- 6 brokers aggregated
+- eToro API live sync
 - FX: MXN → USD via Polygon.io
-- Retry: 3 attempts, exponential backoff
-- Circuit breaker: 2 failures → 5min cooldown
-- Health checks: Per-broker timing
+- All data to Railway Postgres
 
 ### 9. File Naming
 - Agents: `vox_[name]_agent.py` or `vox_[name].py`
 - Pipelines: `vox_[name]_pipeline.sh`
 - Alerts: `vox_smart_alerts_v[N].py`
-- Data: `[name].json` in scripts dir
-- Dashboard data: `public/data/[name].json`
+- Data: `[name].json` in scripts dir (local)
+- API routes: `src/app/api/[name]/route.ts`
 
 ### 10. Git Rules
-- Dashboard repo: `~/dev/vox-dashboard`
-- Scripts: Not in git (local only)
+- Dashboard repo: `~/dev/vox-dashboard` → `github.com/joseamijares/vox-dashboard`
+- Python repo: `~/dev/vox-python` → `github.com/joseamijares/vox-python`
 - Commit message format: `[area] description`
 - Examples: `[broker] fix eToro aggregation`, `[alerts] add volume spike detection`
 
@@ -98,25 +100,19 @@ Supabase sync (optional, secondary)
 ```bash
 # 1. Create page
 cat > src/app/my-page/page.tsx << 'EOF'
-"use client";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 export default function MyPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
-        {/* Content */}
-      </main>
-    </div>
+    <PageShell title="My Page">
+      {/* Content */}
+    </PageShell>
   );
 }
 EOF
 
-# 2. Add to sidebar + mobile header
+# 2. Add to navSections in src/lib/design-system.ts
 # 3. Build + deploy
-npm run build && npx vercel --prod
+git add . && git commit -m "[dashboard] add my page" && git push
 ```
 
 ### Add New Python Agent
@@ -156,35 +152,43 @@ if __name__ == "__main__":
 
 ### Run Pipeline Manually
 ```bash
+cd ~/dev/vox-python
+
+# Broker sync (Railway grader)
+python3 src/brokers/vox_broker_sync_v2.py
+
+# Local agents
 cd ~/.hermes/scripts
-
-# Broker sync
-python3 vox_broker_sync_v2.py
-
-# Research agents
 python3 vox_research_orchestrator.py
 
 # Alerts
 python3 vox_smart_alerts_v8.py
-
-# Copy to dashboard
-cp *.json ~/dev/vox-dashboard/public/data/
 ```
 
 ## Environment
 
-Required variables in `~/.hermes/.env`:
+Required in Railway dashboard:
 ```bash
+PGHOST=postgres-flpd.railway.internal
+PGPORT=5432
+PGDATABASE=railway
+PGUSER=railway
+PGPASSWORD=xxx
+
 POLYGON_API_KEY=xxx
-SUPABASE_URL=xxx
-SUPABASE_SERVICE_ROLE_KEY=xxx
-NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
+FMP_API_KEY=xxx
+ETORO_USERNAME=xxx
+ETORO_PASSWORD=xxx
+E...n
 TELEGRAM_BOT_TOKEN=xxx
-TELEGRAM_CHAT_ID=xxx
-X_BEARER_TOKEN=xxx
-ETORO_API_KEY=xxx
+T...
 ```
 
+Required locally (`~/.hermes/.env`):
+```bash
+POLYGON_API_KEY=xxx
+FMP_API_KEY=xxx
+T...
 ## Key Files Reference
 
 | File | Purpose |
@@ -193,9 +197,11 @@ ETORO_API_KEY=xxx
 | `vox_broker_sync_v2.py` | Broker sync |
 | `vox_research_orchestrator.py` | Agent orchestrator |
 | `vox_council.py` | Council voting |
+| `vox_postgres_sync.py` | Railway Postgres client |
 | `src/lib/data.ts` | Dashboard data loader |
-| `src/components/sidebar.tsx` | Desktop nav |
-| `src/components/mobile-header.tsx` | Mobile nav |
+| `src/lib/design-system.ts` | Design tokens |
+| `src/components/vox-nav.tsx` | Navigation (sidebar + mobile) |
+| `src/components/vox-card.tsx` | Reusable card components |
 
 ## Troubleshooting
 
@@ -213,7 +219,7 @@ npm run build
 
 ### Stale data
 - Run broker sync manually
-- Check `broker_health.json`
+- Check Railway Postgres: `psql $DATABASE_URL -c "SELECT COUNT(*) FROM positions;"`
 - Verify FX rate: `python3 vox_fx_rate.py`
 
 ### Missing dependencies

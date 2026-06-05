@@ -4,10 +4,10 @@
 
 Transform VOX from a data dashboard into an autonomous AI trading intelligence that:
 
-1. **REMEMBERS** everything — RAG on Obsidian vault + trade history + market data
-2. **CONNECTS** all signals — Harness unifies grades, news, earnings, macro, sentiment
-3. **ACTS** autonomously — 10 agents generate plays, track outcomes, learn from mistakes
-4. **SYNCS** all brokers — Unified portfolio view across 8 brokers with live FX conversion
+1. **REMEMBERS** everything — Portfolio history, trade journal, market data in Railway Postgres
+2. **CONNECTS** all signals — Grades, news, earnings, macro, sentiment unified
+3. **ACTS** autonomously — Research agents generate plays, track outcomes, learn from mistakes
+4. **SYNCS** all brokers — Unified portfolio view across 6 brokers with live FX conversion
 5. **IMPROVES** continuously — Feedback loop: prediction → action → result → model update
 
 ---
@@ -22,14 +22,15 @@ Transform VOX from a data dashboard into an autonomous AI trading intelligence t
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌────────────┐ │
 │  │   BROKER    │  │  RESEARCH   │  │   ALERT     │  │ DASHBOARD  │ │
 │  │    SYNC     │  │   AGENTS    │  │   SYSTEM    │  │   (UI)     │ │
-│  │   (v2.0)    │  │   (10x)     │  │   (v8)      │  │  (Next.js) │ │
+│  │   (v2.0)    │  │   (Hybrid)  │  │   (v8)      │  │  (Next.js) │ │
 │  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └─────┬──────┘ │
 │         │                │                │               │        │
 │         └────────────────┴────────────────┴───────────────┘        │
 │                              │                                       │
 │                    ┌─────────▼──────────┐                           │
-│                    │  UNIFIED DATA LAYER │                           │
-│                    │  (JSON + Supabase)  │                           │
+│                    │   RAILWAY POSTGRES   │                           │
+│                    │  (Single source of   │                           │
+│                    │       truth)         │                           │
 │                    └─────────────────────┘                           │
 │                              │                                       │
 │         ┌────────────────────┼────────────────────┐                 │
@@ -48,45 +49,46 @@ Transform VOX from a data dashboard into an autonomous AI trading intelligence t
 
 ### Unified Portfolio Aggregation
 
-**8 Brokers, 1 View:**
+**6 Brokers, 1 View:**
 - eToro (API) → Live positions
-- GBM Main/USA (Manual) → MXN converted to USD
-- Binance (Manual) → Crypto holdings
-- Schwab, IBKR, Revolut, Bitso (Manual) → Legacy positions
+- GBM Main/USA (Manual JSON) → MXN converted to USD
+- Binance (Manual JSON) → Crypto holdings
+- Schwab, IBKR (Manual JSON) → Legacy positions
 
 **Key Features:**
-- Retry logic (3 attempts, exponential backoff)
-- Circuit breaker (auto-disable failing brokers)
-- Health checks (per-broker timing + status)
-- Live FX conversion (Polygon.io USD/MXN)
-- Stale detection (7-day threshold)
+- eToro live API sync (real positions, real prices)
+- FX conversion (Polygon.io USD/MXN)
+- All data persisted to Railway Postgres
+- Daily sync via grader service
 
-**Output:** `unified_portfolio_current.json`
-- 52 positions aggregated across brokers
-- $192,677 AUM, $56,149 PnL
+**Output:** Railway Postgres `positions` table
+- 70 positions aggregated across brokers
+- $185,301 AUM
 
 ---
 
-## Layer 2: Research Agents (10)
+## Layer 2: Research Agents (Hybrid)
 
 ### Agent Ecosystem
 
-| Agent | Purpose | Schedule | Output |
+Agents run both on Railway (grader service) and locally (Hermes cron):
+
+| Agent | Purpose | Location | Output |
 |-------|---------|----------|--------|
-| **News** | Breaking news scanner | Every 4h | `vox_news_digest.json` |
-| **Trump** | Trump statement monitor | Every 4h | `vox_trump_tracker.json` |
-| **Reddit** | r/wsb, r/stocks tracker | Every 4h | `vox_reddit_report.json` |
-| **X/Twitter** | Sentiment + mentions | Every 4h | `snapshots/x_momentum_latest.json` |
-| **Volume** | Volume anomaly detection | Every 4h | `vox_volume_scan.json` |
-| **Macro** | VIX, yields, DXY regime | Every 4h | `vox_macro_regime.json` |
-| **Sector** | 11-sector rotation | Every 4h | `vox_sector_rankings.json` |
-| **Stock Researcher** | Technical + fundamental | Every 4h | `vox_council_votes.json` |
-| **Crypto Researcher** | On-chain metrics | Every 4h | `vox_crypto_analysis.json` |
-| **Debrief** | Cross-signal aggregation | Every 4h | Supabase `intelligence_snapshots` |
+| **News** | Breaking news scanner | Local cron | `vox_news_digest.json` |
+| **Trump** | Trump statement monitor | Local cron | `vox_trump_tracker.json` |
+| **Reddit** | r/wsb, r/stocks tracker | Local cron | `vox_reddit_report.json` |
+| **X/Twitter** | Sentiment + mentions | Local cron | `snapshots/x_momentum_latest.json` |
+| **Volume** | Volume anomaly detection | Local cron | `vox_volume_scan.json` |
+| **Macro** | VIX, yields, DXY regime | Local cron | `vox_macro_regime.json` |
+| **Sector** | 11-sector rotation | Local cron | `vox_sector_rankings.json` |
+| **Stock Researcher** | Technical + fundamental | Railway grader | DB `watchlist` table |
+| **Crypto Researcher** | On-chain metrics | Local cron | `vox_crypto_analysis.json` |
+| **Debrief** | Cross-signal aggregation | Local cron | Supabase `intelligence_snapshots` |
 
 ### Pipeline Flow
 ```
-Broker Sync → Live Prices → News → Trump → Reddit → X → Volume → Macro → Sector → Research → Debrief → Alerts → Supabase
+Broker Sync → Live Prices → News → Trump → Reddit → X → Volume → Macro → Sector → Research → Debrief → Alerts → Postgres
 ```
 
 ---
@@ -144,7 +146,7 @@ Broker Sync → Live Prices → News → Trump → Reddit → X → Volume → M
 - Council = SELL → Boost alert priority
 - No council data → Fall back to grade-only alerts
 
-**Storage:** `vox_council_votes.json` + Supabase `watchlist_grades`
+**Storage:** Railway Postgres `positions.council` column
 
 ---
 
@@ -181,28 +183,26 @@ Broker Sync → Live Prices → News → Trump → Reddit → X → Volume → M
 ### Knowledge Base
 
 ```
-📁 Vector Store (ChromaDB / Pinecone)
+📁 Railway Postgres
+├── 📄 Positions (70 live positions)
+├── 📄 Watchlist (277 tickers)
+├── 📄 Plays (16 active/closed)
+├── 📄 Journal (6 entries)
+├── 📄 Alerts (39 alerts)
+└── 📄 Intelligence snapshots
+
+📁 Local Files (JSON)
 ├── 📄 Obsidian Vault (119 files)
 │   ├── Position theses (NVDA.md, BTC.md, etc.)
 │   ├── Trade journal entries
 │   ├── LLM Council decisions
 │   ├── Mistake journal
 │   └── Market regime notes
-├── 📄 Portfolio Data (JSON embeddings)
-│   ├── All positions with grades
-│   ├── Historical P&L per position
-│   ├── Sector allocation history
-│   └── Broker performance over time
-├── 📄 Market Intelligence
-│   ├── Earnings transcripts
-│   ├── SEC filings (10-K, 10-Q)
-│   ├── News articles per ticker
-│   └── Analyst reports
-└── 📄 Trading Rules & Systems
-    ├── VOX Operating Manual
-    ├── Position sizing rules
-    ├── Risk management rules
-    └── Sector rotation playbook
+├── 📄 Agent outputs
+│   ├── News digests
+│   ├── Trump tracker
+│   ├── Reddit reports
+│   └── Volume scans
 ```
 
 ### Use Cases
@@ -281,114 +281,107 @@ Generate Play → Execute → Track → Measure → Learn → Update Model
 
 ## Data Architecture
 
-### Primary Storage (JSON)
-- `unified_portfolio_current.json` — Broker-aggregated positions
-- `dashboard_positions_live.json` — Dashboard format
-- `vox_watchlist_graded.json` — Watchlist with grades
-- `vox_portfolio_graded.json` — Portfolio with grades
-- `vox_council_votes.json` — Council consensus
-- `broker_health.json` — Health check results
+### Primary Storage (Railway Postgres)
+- `positions` — 70 live positions with grades
+- `watchlist` — 277 tickers with entry/target/stop
+- `alerts` — 39 alerts with severity
+- `plays` — 16 plays (open + closed)
+- `journal` — 6 journal entries
 
-### Secondary Storage (Supabase)
-- `watchlist_grades` — Graded tickers with metadata
-- `portfolio_grades` — Position grades + targets
-- `intelligence_snapshots` — Agent outputs
-- `broker_sync_log` — Sync history
+### Secondary Storage (Local JSON)
+- Agent outputs in `~/.hermes/scripts/`
+- News digests, Trump tracker, Reddit reports
+- Volume scans, macro regimes, sector rankings
 
 ### File Locations
-- Python agents: `~/.hermes/scripts/`
+- Python agents: `~/.hermes/scripts/` (local) + `~/dev/vox-python/src/` (Railway)
 - Dashboard: `~/dev/vox-dashboard/`
-- Data: `~/.hermes/scripts/` + `~/dev/vox-dashboard/public/data/`
+- Data: Railway Postgres (primary) + local JSON (agent outputs)
 
 ---
 
 ## Cron Pipeline Architecture
 
-### Active Jobs (4)
+### Active Jobs (Hybrid)
 
 ```
-7:00 AM CT  ┌────────────────────────────────────────┐
-            │  vox-broker-sync-pipeline.sh           │
-            │  ├── Broker Sync (v2.0)                │
-            │  ├── Live Prices                       │
+7:30 AM CT  ┌────────────────────────────────────────┐
+            │  vox-daily-sync (Railway grader)       │
+            │  ├── Broker Sync (eToro API)           │
+            │  ├── Live Prices (Polygon)             │
             │  ├── Grade Watchlist                   │
             │  ├── Grade Portfolio                   │
-            │  └── Pre-Market Briefing               │
-            └────────────────────────────────────────┘
-
-7:00 AM CT  ┌────────────────────────────────────────┐
-            │  vox-premarket-pipeline.sh             │
-            │  ├── News Digest                       │
-            │  ├── Trump Tracker                     │
-            │  └── Morning Briefing                  │
-            └────────────────────────────────────────┘
-
-9/12/15 CT  ┌────────────────────────────────────────┐
-            │  vox-unified-pipeline-v3.sh            │
-            │  ├── Live Prices                       │
-            │  ├── Macro Agent (9 AM only)           │
-            │  ├── News (12/15 PM)                   │
-            │  └── Alert System v8                   │
+            │  └── Persist to Postgres               │
             └────────────────────────────────────────┘
 
 Every 4h    ┌────────────────────────────────────────┐
-            │  vox-agentic-pipeline-v2.sh            │
+            │  vox-agentic-pipeline-v2.sh (Local)    │
             │  ├── All 10 Research Agents            │
             │  ├── Council Voting                    │
             │  ├── Debrief Agent                     │
-            │  └── Supabase Sync                     │
+            │  └── Supabase/Postgres Sync            │
             └────────────────────────────────────────┘
 ```
 
-### Paused Legacy Jobs (37)
-All legacy jobs renamed to `.OLD` or paused. Only 4 active jobs run.
-
 ---
 
-## Dashboard Pages (20 Active)
+## Dashboard Pages (17 Active)
 
 | Section | Pages |
 |---------|-------|
 | **Command** | Dashboard, Plan, Intelligence |
-| **Portfolio** | Positions, Brokers, Watchlist, Sectors, Grades, Plays |
+| **Portfolio** | Positions, Brokers, Plays |
 | **Agents** | Agents, Crons, Council, Sentiment, Regime, Risk |
 | **Tools** | Sizer, Screener, Crypto |
 | **Journal** | Journal, Logger |
 
 ### Key Pages
 - `/` — Main dashboard with portfolio overview
-- `/brokers` — Live broker sync status + health checks
-- `/agents` — Agent Control Center with pipeline flow
+- `/brokers` — Live broker sync status
+- `/agents` — Agent Control Center
 - `/crons` — Cron monitor with active/paused jobs
 - `/intelligence` — Cross-signal dashboard
-- `/watchlist` — 46 tickers with grades + targets
+- `/watchlist` — 277 tickers with grades + targets
 
 ---
 
 ## Environment Variables
 
-Required in `~/.hermes/.env`:
+Required in Railway dashboard:
 
 ```bash
-# Data
+# Database
+PGHOST=postgres-flpd.railway.internal
+PGPORT=5432
+PGDATABASE=railway
+PGUSER=railway
+PGPASSWORD=***
+
+# APIs
 POLYGON_API_KEY=xxx          # Live prices + FX rates
 FMP_API_KEY=xxx              # Fundamentals
 
-# Database
-SUPABASE_URL=https://...
-SUPABASE_SERVICE_ROLE_KEY=xxx
-NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
+# eToro
+ETORO_USERNAME=xxx
+ETORO_PASSWORD=xxx
+ETORO_ACCOUNT_ID=xxx
 
-# Alerts
+# Telegram
 TELEGRAM_BOT_TOKEN=xxx
 TELEGRAM_CHAT_ID=xxx
 
 # Social
 X_BEARER_TOKEN=xxx           # X/Twitter API
+```
 
-# Brokers
-ETORO_API_KEY=xxx            # eToro live data
-BINANCE_API_KEY=xxx          # Binance (optional)
+Required locally (`~/.hermes/.env`):
+```bash
+# Same APIs for local agents
+POLYGON_API_KEY=xxx
+FMP_API_KEY=xxx
+TELEGRAM_BOT_TOKEN=xxx
+TELEGRAM_CHAT_ID=xxx
+X_BEARER_TOKEN=xxx
 ```
 
 ---
@@ -397,31 +390,33 @@ BINANCE_API_KEY=xxx          # Binance (optional)
 
 | Layer | Tech |
 |-------|------|
-| Frontend | Next.js 14 + TypeScript + shadcn/ui |
-| Styling | Tailwind CSS + Dark theme |
+| Frontend | Next.js 15 + TypeScript + Tailwind CSS |
+| Styling | Tailwind CSS + Custom design system |
 | Charts | Recharts |
 | Icons | Lucide React |
 | Backend | Python 3.11 |
 | APIs | Polygon.io, FMP, NewsAPI, X API |
-| Database | Supabase PostgreSQL |
+| Database | Railway Postgres |
 | Vector DB | ChromaDB (local) |
 | Embeddings | OpenAI text-embedding-3-small |
 | LLM | OpenRouter (Grok, Claude, GPT-4) |
 | Alerts | Telegram Bot API |
-| Hosting | Vercel (static export) |
-| Cron | Hermes Agent scheduler |
+| Hosting | Railway (web + grader services) |
+| Cron | Hermes Agent scheduler (local) + Railway (grader) |
 
 ---
 
 ## Current Stats
 
-- **Portfolio:** $192,677 AUM, $56,149 PnL, 52 positions
-- **Brokers:** 8 aggregated (1 API + 7 manual)
-- **Watchlist:** 46 tickers across 9 sectors
-- **Universe:** 259 tickers
+- **Portfolio:** $185,301 AUM, 70 positions
+- **Brokers:** 6 aggregated (1 API + 5 manual)
+- **Watchlist:** 277 tickers
+- **Alerts:** 39
+- **Plays:** 16
+- **Journal:** 6 entries
 - **Agents:** 10 research agents
-- **Cron Jobs:** 4 active, 37 paused
-- **Dashboard Pages:** 20 active, 35 legacy
+- **Cron Jobs:** Hybrid (Railway + local)
+- **Dashboard Pages:** 17 active
 
 ---
 
@@ -432,20 +427,20 @@ BINANCE_API_KEY=xxx          # Binance (optional)
 | `README.md` | Platform overview |
 | `BROKER_SYNC.md` | Broker sync architecture |
 | `AI_ARCHITECTURE.md` | This file — AI system design |
-| `CLAUDE.md` | Claude-specific coding rules |
+| `CLAUDE.md` | Development rules |
 
 ---
 
 ## Implementation Status
 
 ### ✅ Complete
-- [x] Broker Sync v2.0 (8 brokers, retry, circuit breaker)
+- [x] Broker Sync v2.0 (6 brokers, eToro API live)
 - [x] 10 Research Agents
 - [x] Alert System v8 (event-driven, LLM-enhanced)
 - [x] Council Voting System
-- [x] Dashboard v12 (20 pages, mobile-responsive)
-- [x] Cron Pipeline (4 active jobs)
-- [x] Supabase Schema
+- [x] Dashboard v12 (17 pages, mobile-responsive)
+- [x] Railway Postgres migration
+- [x] Daily sync pipeline (Railway grader)
 - [x] FX Conversion (MXN → USD)
 
 ### 🔄 In Progress
@@ -454,14 +449,14 @@ BINANCE_API_KEY=xxx          # Binance (optional)
 - [ ] Learning feedback loop
 
 ### 📋 Backlog
-- [ ] Schwab API integration (JOS-120)
-- [ ] IBKR API integration (JOS-121)
-- [ ] SSR API routes for real-time data
-- [ ] Portfolio drift detection (JOS-128)
-- [ ] Correlation heatmap (JOS-129)
-- [ ] Position sizing optimizer (JOS-130)
+- [ ] Schwab API integration
+- [ ] IBKR API integration
+- [ ] Real-time WebSocket updates
+- [ ] Portfolio drift detection
+- [ ] Correlation heatmap
+- [ ] Position sizing optimizer
 
 ---
 
-*Last updated: 2026-05-26*
+*Last updated: 2026-06-05*
 *Version: 12.0*
