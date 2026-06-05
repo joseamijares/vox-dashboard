@@ -13,13 +13,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // Use explicit null check — ?? operator may not work in all Node versions
     const ep = entry_price !== undefined ? entry_price : null;
     const tp = target_price !== undefined ? target_price : null;
     const sl = stop_loss !== undefined ? stop_loss : null;
 
     await query(
-      `UPDATE watchlist SET entry_price = $1, target_price = $2, stop_loss = $3, updated_at = NOW() WHERE ticker = $4`,
+      `UPDATE watchlist SET entry_price = $1, target_price = $2, stop_loss = $3 WHERE ticker = $4`,
       [ep, tp, sl, ticker]
     );
 
