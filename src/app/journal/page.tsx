@@ -7,7 +7,7 @@ import { Sidebar } from "@/components/sidebar";
 import { BookOpen, Calendar, Loader2, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
 import { useState, useEffect } from "react";
-import { getJournal } from "@/lib/supabase";
+import { getJournal } from "@/lib/db";
 
 interface JournalEntry {
   id: number;
@@ -67,7 +67,7 @@ export default function JournalPage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
-          <p className="text-muted-foreground">Loading journal from Supabase...</p>
+          <p className="text-muted-foreground">Loading journal...</p>
         </div>
       </div>
     );

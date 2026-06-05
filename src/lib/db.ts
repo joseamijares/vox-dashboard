@@ -95,13 +95,13 @@ export async function getPlays() {
 
 export async function getJournal() {
   const rows = await query(`
-    SELECT timestamp, date, ticker, action, shares, price, notional, broker, reason, grade_at_entry, council_at_entry, notes, pnl, pnl_pct, tags
+    SELECT id, timestamp, date, ticker, action, shares, price, notional, broker, reason, grade_at_entry, council_at_entry, notes, pnl, pnl_pct, tags
     FROM journal
     ORDER BY timestamp DESC
     LIMIT 100
   `);
   return rows.map((row: any) =>
-    parseRow(row, ["shares", "price", "notional", "grade_at_entry", "pnl", "pnl_pct"])
+    parseRow(row, ["id", "shares", "price", "notional", "grade_at_entry", "pnl", "pnl_pct"])
   );
 }
 
