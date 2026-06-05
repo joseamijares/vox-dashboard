@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
     await query(
       `UPDATE watchlist SET entry_price = $1, target_price = $2, stop_loss = $3, updated_at = NOW() WHERE ticker = $4`,
-      [entry_price || 0, target_price || 0, stop_loss || 0, ticker]
+      [entry_price ?? null, target_price ?? null, stop_loss ?? null, ticker]
     );
 
     return NextResponse.json({ success: true, ticker, entry_price, target_price, stop_loss });
