@@ -205,8 +205,8 @@ export default async function HarnessPage() {
               <div key={i} className="flex items-start gap-2">
                 <Wind className="h-4 w-4 text-amber-500 mt-0.5" />
                 <div>
-                  <p className="font-medium">{r.pattern}</p>
-                  <p className="text-xs text-neutral-500">Severity {r.severity}/5 — {Array.isArray(r.sectors) ? r.sectors.slice(0, 3).join(", ") : ""}</p>
+                  <p className="font-medium">{r.pattern_type}</p>
+                  <p className="text-xs text-neutral-500">Severity {r.severity}/5 — {Array.isArray(r.affected_sectors) ? r.affected_sectors.slice(0, 3).join(", ") : ""}</p>
                 </div>
               </div>
             ))}
@@ -226,10 +226,10 @@ export default async function HarnessPage() {
             </div>
             {(data.layer4?.macro_signals || []).slice(0, 4).map((s: any, i: number) => (
               <div key={i} className="flex items-center gap-2 text-xs mt-1">
-                <span className={s.direction === "BULLISH" ? "text-green-600" : s.direction === "BEARISH" ? "text-red-600" : "text-amber-600"}>
-                  {s.direction === "BULLISH" ? "▲" : s.direction === "BEARISH" ? "▼" : "◆"}
+                <span className={s.signal_direction === "BULLISH" ? "text-green-600" : s.signal_direction === "BEARISH" ? "text-red-600" : "text-amber-600"}>
+                  {s.signal_direction === "BULLISH" ? "▲" : s.signal_direction === "BEARISH" ? "▼" : "◆"}
                 </span>
-                <span className="text-neutral-600">{s.signal_type}</span>
+                <span className="text-neutral-600">{s.signal_name}</span>
               </div>
             ))}
           </div>

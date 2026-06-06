@@ -19,23 +19,23 @@ export async function GET() {
 
     // Macro signals (from grader v2)
     const macroSignals = await query(`
-      SELECT signal_type, direction, impact_score, impact_sectors, notes, date
+      SELECT signal_name, signal_value, signal_direction, impact_sector, confidence, source, computed_at
       FROM macro_signals
-      ORDER BY date DESC
+      ORDER BY computed_at DESC
       LIMIT 20
     `);
 
     // Weather patterns (from grader v2)
     const weatherPatterns = await query(`
-      SELECT pattern, severity, sectors, tickers, date, notes
+      SELECT region, pattern_type, severity, affected_sectors, affected_tickers, start_date, end_date, computed_at
       FROM weather_patterns
-      ORDER BY date DESC
+      ORDER BY computed_at DESC
       LIMIT 20
     `);
 
     // Sector momentum (from grader v2)
     const sectorMomentum = await query(`
-      SELECT sector, momentum_score, top_tickers, updated_at
+      SELECT sector, avg_grade, avg_return_1d, avg_return_5d, avg_return_20d, momentum_score, top_tickers, buy_count, hold_count, sell_count, computed_at
       FROM sector_momentum
       ORDER BY momentum_score DESC
     `);
@@ -86,9 +86,9 @@ export async function GET() {
     // Determine market regime from macro signals
     let regime = "NEUTRAL";
     let regimeConfidence = 50;
-    const bullish = macroSignals.filter((s: any) => s.direction === "BULLISH").length;
-    const bearish = macroSignals.filter((s: any) => s.direction === "BEARISH").length;
-    const riskOff = macroSignals.filter((s: any) => s.direction === "RISK_OFF").length;
+    const bullish = macroSignals.filter((s: any) => s.signal_direction === "BULLISH").length;
+    const bearish = macroSignals.filter((s: any) => s.signal_direction === "BEARISH").length;
+    const riskOff = macroSignals.filter((s: any) => s.signal_direction === "RISK_OFF").length;
     if (bearish + riskOff >= bullish + 2) {
       regime = "RISK_OFF";
       regimeConfidence = Math.min(95, 60 + (bearish + riskOff - bullish) * 10);
