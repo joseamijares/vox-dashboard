@@ -114,18 +114,61 @@ export default function IntelligencePage() {
     async function loadData() {
       try {
         const [wlRes, pfRes, secRes] = await Promise.all([
-          fetch("/data/vox_watchlist_graded.json"),
-          fetch("/data/vox_portfolio_graded.json"),
+          fetch("/api/watchlist"),
+          fetch("/api/positions"),
           fetch("/vox_sector_watchlist.json"),
         ]);
 
         if (wlRes.ok) {
           const wlJson = await wlRes.json();
-          setWatchlistData(wlJson.results || []);
+          // Map API format to WatchItem format
+          const mapped = (wlJson.watchlist || []).map((w: any) => ({
+            ticker: w.ticker,
+            price: w.entry_price || 0,
+            grade: w.grade || 0,
+            signal: w.council || "HOLD",
+            rsi: 50,
+            ema21: 0,
+            buy_zone: w.entry_price || 0,
+            add_on_zone: w.entry_price ? w.entry_price * 0.95 : 0,
+            stop_loss: w.stop_loss || 0,
+            trailing_stop: w.stop_loss ? w.stop_loss * 1.05 : 0,
+            target_1: w.target_price || 0,
+            target_2: w.target_price ? w.target_price * 1.15 : 0,
+            take_profit_1: w.target_price || 0,
+            take_profit_2: w.target_price ? w.target_price * 1.15 : 0,
+            risk_reward: w.stop_loss && w.entry_price ? ((w.target_price - w.entry_price) / (w.entry_price - w.stop_loss)) : 0,
+            position_size: "—",
+            sector: w.sector || "Uncategorized",
+          }));
+          setWatchlistData(mapped);
         }
         if (pfRes.ok) {
           const pfJson = await pfRes.json();
-          setPortfolioData(pfJson.results || []);
+          // Map API format to WatchItem format
+          const mapped = (pfJson.positions || []).map((p: any) => ({
+            ticker: p.ticker,
+            price: p.live_price || 0,
+            grade: p.grade || 0,
+            signal: p.council || "HOLD",
+            rsi: 50,
+            ema21: 0,
+            buy_zone: p.live_price ? p.live_price * 0.95 : 0,
+            add_on_zone: p.live_price ? p.live_price * 0.90 : 0,
+            stop_loss: p.stop_loss || p.live_price * 0.85 || 0,
+            trailing_stop: p.live_price ? p.live_price * 0.90 : 0,
+            target_1: p.target_price || p.live_price * 1.10 || 0,
+            target_2: p.target_price ? p.target_price * 1.20 : p.live_price * 1.20 || 0,
+            take_profit_1: p.target_price || p.live_price * 1.10 || 0,
+            take_profit_2: p.target_price ? p.target_price * 1.20 : p.live_price * 1.20 || 0,
+            risk_reward: 2,
+            position_size: `${p.shares || 0} shares`,
+            pnl_pct: p.avg_cost && p.live_price ? ((p.live_price - p.avg_cost) / p.avg_cost) * 100 : 0,
+            live_value: p.live_value || 0,
+            is_portfolio: true,
+            sector: p.sector || "Uncategorized",
+          }));
+          setPortfolioData(mapped);
         }
         if (secRes.ok) {
           const secJson = await secRes.json();
