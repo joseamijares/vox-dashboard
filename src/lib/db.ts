@@ -162,13 +162,13 @@ export async function getSp500Grades(): Promise<Record<string, any>[]> {
 
 export async function getSp500SectorLeaders(): Promise<Record<string, any>[]> {
   const rows = await query(`
-    SELECT sector, ticker, rank, change_5d_pct, volume_5d_avg, momentum_score, created_at
+    SELECT sector, ticker, rank, change_5d_pct, avg_volume_m, momentum_score, created_at
     FROM sp500_sector_leaders
     WHERE created_at = (SELECT MAX(created_at) FROM sp500_sector_leaders)
     ORDER BY sector, rank
   `);
   return rows.map((row: any) =>
-    parseRow(row, ["rank", "change_5d_pct", "volume_5d_avg", "momentum_score"])
+    parseRow(row, ["rank", "change_5d_pct", "avg_volume_m", "momentum_score"])
   );
 }
 
