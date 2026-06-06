@@ -36,11 +36,13 @@ const navSections = [
     ],
   },
   {
-    title: "Tools",
+    title: "Macro",
     items: [
-      { href: "/sizer", label: "Sizer" },
-      { href: "/screener", label: "Screener" },
-      { href: "/crypto", label: "Crypto" },
+      { href: "/weather", label: "Weather" },
+      { href: "/geopolitical", label: "Geopolitical" },
+      { href: "/supply-chain", label: "Supply Chain" },
+      { href: "/signals", label: "Signals" },
+      { href: "/harness", label: "Harness" },
     ],
   },
   {

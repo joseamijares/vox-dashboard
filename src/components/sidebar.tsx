@@ -7,7 +7,7 @@ import {
   LayoutDashboard, Target, Brain, Briefcase, Wallet,
   TrendingUp, Bot, Clock, Shield, Activity, BarChart3,
   AlertTriangle, Scale, Search, Bitcoin, BookOpen,
-  Newspaper, Settings,
+  Newspaper, Settings, CloudRain, Globe, Truck, Zap, Layers,
 } from "lucide-react";
 
 const navSections = [
@@ -39,11 +39,13 @@ const navSections = [
     ],
   },
   {
-    title: "Tools",
+    title: "Macro",
     items: [
-      { href: "/sizer", label: "Sizer", icon: Scale },
-      { href: "/screener", label: "Screener", icon: Search },
-      { href: "/crypto", label: "Crypto", icon: Bitcoin },
+      { href: "/weather", label: "Weather", icon: CloudRain },
+      { href: "/geopolitical", label: "Geopolitical", icon: Globe },
+      { href: "/supply-chain", label: "Supply Chain", icon: Truck },
+      { href: "/signals", label: "Signals", icon: Zap },
+      { href: "/harness", label: "Harness", icon: Layers },
     ],
   },
   {
