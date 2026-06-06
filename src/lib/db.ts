@@ -136,17 +136,17 @@ export async function getVoxGrades(): Promise<Record<string, any>[]> {
 
 export async function getSp500Universe(): Promise<Record<string, any>[]> {
   const rows = await query(`
-    SELECT ticker, name, sector, sub_industry, market_cap, is_active, added_at
+    SELECT ticker, security as name, sector, industry as sub_industry, is_active, created_at
     FROM sp500_universe
     WHERE is_active = true
     ORDER BY ticker
   `);
-  return rows.map((row: any) => parseRow(row, ["market_cap"]));
+  return rows;
 }
 
 export async function getSp500Grades(): Promise<Record<string, any>[]> {
   const rows = await query(`
-    SELECT g.ticker, u.name, u.sector, g.vox_grade, g.technical_score, g.fundamental_score,
+    SELECT g.ticker, u.security as name, u.sector, g.vox_grade, g.technical_score, g.fundamental_score,
            g.macro_score, g.sector_score, g.weather_score, g.sentiment_score, g.computed_at
     FROM sp500_grades g
     JOIN sp500_universe u ON g.ticker = u.ticker
