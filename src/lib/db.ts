@@ -172,6 +172,37 @@ export async function getSp500SectorLeaders(): Promise<Record<string, any>[]> {
   );
 }
 
+export async function getSp500Alerts(): Promise<Record<string, any>[]> {
+  const rows = await query(`
+    SELECT ticker, alert_type, old_value, new_value, message, is_read, created_at
+    FROM sp500_alerts
+    WHERE is_read = false
+    ORDER BY created_at DESC
+    LIMIT 50
+  `);
+  return rows.map((row: any) => parseRow(row, ["old_value", "new_value"]));
+}
+
+export async function getPortfolioSectorComparison(): Promise<Record<string, any>[]> {
+  const rows = await query(`
+    SELECT 
+      u.sector,
+      COUNT(g.ticker) as sp500_count,
+      ROUND(AVG(g.vox_grade), 1) as sp500_avg_grade,
+      COUNT(p.ticker) as portfolio_count,
+      COALESCE(SUM(p.live_value), 0) as portfolio_value
+    FROM sp500_universe u
+    LEFT JOIN sp500_grades g ON u.ticker = g.ticker
+    LEFT JOIN positions p ON u.ticker = p.ticker AND p.live_value > 0
+    WHERE u.is_active = true
+    GROUP BY u.sector
+    ORDER BY sp500_avg_grade DESC
+  `);
+  return rows.map((row: any) =>
+    parseRow(row, ["sp500_count", "sp500_avg_grade", "portfolio_count", "portfolio_value"])
+  );
+}
+
 export async function getSp500GradeDistribution(): Promise<Record<string, any>[]> {
   const rows = await query(`
     SELECT

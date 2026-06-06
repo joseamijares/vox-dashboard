@@ -4,6 +4,8 @@ import {
   getSp500Grades,
   getSp500SectorLeaders,
   getSp500GradeDistribution,
+  getSp500Alerts,
+  getPortfolioSectorComparison,
 } from "@/lib/db";
 
 export async function GET(request: Request) {
@@ -27,6 +29,14 @@ export async function GET(request: Request) {
       case "distribution": {
         const distribution = await getSp500GradeDistribution();
         return NextResponse.json({ distribution });
+      }
+      case "alerts": {
+        const alerts = await getSp500Alerts();
+        return NextResponse.json({ alerts });
+      }
+      case "sectors": {
+        const sectors = await getPortfolioSectorComparison();
+        return NextResponse.json({ sectors });
       }
       case "summary":
       default: {
