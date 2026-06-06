@@ -129,3 +129,67 @@ export async function getVoxGrades(): Promise<Record<string, any>[]> {
     ])
   );
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// S&P 500 DATA
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export async function getSp500Universe(): Promise<Record<string, any>[]> {
+  const rows = await query(`
+    SELECT ticker, name, sector, sub_industry, market_cap, is_active, added_at
+    FROM sp500_universe
+    WHERE is_active = true
+    ORDER BY ticker
+  `);
+  return rows.map((row: any) => parseRow(row, ["market_cap"]));
+}
+
+export async function getSp500Grades(): Promise<Record<string, any>[]> {
+  const rows = await query(`
+    SELECT g.ticker, u.name, u.sector, g.vox_grade, g.technical_score, g.fundamental_score,
+           g.macro_score, g.sector_score, g.weather_score, g.sentiment_score, g.computed_at
+    FROM sp500_grades g
+    JOIN sp500_universe u ON g.ticker = u.ticker
+    ORDER BY g.vox_grade DESC
+  `);
+  return rows.map((row: any) =>
+    parseRow(row, [
+      "vox_grade", "technical_score", "fundamental_score", "macro_score",
+      "sector_score", "weather_score", "sentiment_score"
+    ])
+  );
+}
+
+export async function getSp500SectorLeaders(): Promise<Record<string, any>[]> {
+  const rows = await query(`
+    SELECT sector, ticker, rank, change_5d_pct, volume_5d_avg, momentum_score, created_at
+    FROM sp500_sector_leaders
+    WHERE created_at = (SELECT MAX(created_at) FROM sp500_sector_leaders)
+    ORDER BY sector, rank
+  `);
+  return rows.map((row: any) =>
+    parseRow(row, ["rank", "change_5d_pct", "volume_5d_avg", "momentum_score"])
+  );
+}
+
+export async function getSp500GradeDistribution(): Promise<Record<string, any>[]> {
+  const rows = await query(`
+    SELECT
+      CASE
+        WHEN vox_grade >= 70 THEN 'Strong Buy (70+)'
+        WHEN vox_grade >= 60 THEN 'Buy (60-69)'
+        WHEN vox_grade >= 50 THEN 'Hold (50-59)'
+        WHEN vox_grade >= 40 THEN 'Trim (40-49)'
+        ELSE 'Sell (<40)'
+      END as bucket,
+      COUNT(*) as count,
+      MIN(vox_grade) as min_grade,
+      MAX(vox_grade) as max_grade
+    FROM sp500_grades
+    GROUP BY bucket
+    ORDER BY MIN(vox_grade) DESC
+  `);
+  return rows.map((row: any) =>
+    parseRow(row, ["count", "min_grade", "max_grade"])
+  );
+}

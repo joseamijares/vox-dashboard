@@ -46,6 +46,7 @@ const navSections = [
       { href: "/supply-chain", label: "Supply Chain", icon: Truck },
       { href: "/signals", label: "Signals", icon: Zap },
       { href: "/harness", label: "Harness", icon: Layers },
+      { href: "/screener", label: "S&P 500", icon: Search },
     ],
   },
   {
