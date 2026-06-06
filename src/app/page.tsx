@@ -18,18 +18,32 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [regime, setRegime] = useState({ regime: "UNKNOWN", confidence: 50, bullish: 0, bearish: 0 });
+
   useEffect(() => {
     async function loadData() {
       try {
-        const [posRes, gradesRes] = await Promise.all([
+        const [posRes, gradesRes, harnessRes] = await Promise.all([
           fetch("/api/positions"),
           fetch("/api/grades"),
+          fetch("/api/harness"),
         ]);
         if (!posRes.ok) throw new Error("Failed to fetch positions");
         const posJson = await posRes.json();
         const gradesJson = await gradesRes.json();
         setPositions(posJson.positions || []);
         setGrades(gradesJson.grades || []);
+        
+        if (harnessRes.ok) {
+          const harnessJson = await harnessRes.json();
+          const l5 = harnessJson.layer5 || {};
+          setRegime({
+            regime: l5.regime || "UNKNOWN",
+            confidence: l5.confidence || 50,
+            bullish: l5.bullish_count || 0,
+            bearish: l5.bearish_count || 0,
+          });
+        }
       } catch (e) {
         setError("Failed to load data");
       } finally {
@@ -269,8 +283,8 @@ export default function Dashboard() {
         />
         <VoxKpi
           label="Market Regime"
-          value="EARLY_BULL"
-          sub="Buy pullbacks, tight stops"
+          value={regime.regime}
+          sub={regime.bearish > regime.bullish ? `${regime.bearish} bearish vs ${regime.bullish} bullish signals` : `${regime.bullish} bullish vs ${regime.bearish} bearish signals`}
         />
       </div>
 
