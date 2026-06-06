@@ -71,6 +71,8 @@ function signalColor(type: string) {
   return "bg-amber-500/20 text-amber-400 border-amber-500/30";
 }
 
+export const dynamic = "force-dynamic";
+
 function signalIcon(type: string) {
   if (type === "BUY" || type === "ADD") return <ArrowUp className="h-4 w-4 text-green-400" />;
   if (type === "SELL") return <ArrowDown className="h-4 w-4 text-red-400" />;

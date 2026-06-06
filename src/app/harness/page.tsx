@@ -103,6 +103,8 @@ function getGradeStyle(grade: number) {
   return "bg-red-100 text-red-700 border-red-200";
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function HarnessPage() {
   const data = await getHarnessData();
 
@@ -173,9 +175,9 @@ export default async function HarnessPage() {
         </LayerCard>
 
         {/* Layer 3 */}
-        <LayerCard number={3} title="Sector Momentum" status={data.layer3.sector_momentum.length > 0 ? "ok" : "warning"}>
+        <LayerCard number={3} title="Sector Momentum" status={(data.layer3?.sector_momentum?.length || 0) > 0 ? "ok" : "warning"}>
           <div className="space-y-2 text-sm max-h-64 overflow-y-auto">
-            {data.layer3.sector_momentum.slice(0, 10).map((s: any) => (
+            {(data.layer3?.sector_momentum || []).slice(0, 10).map((s: any) => (
               <div key={s.sector} className="flex items-center justify-between">
                 <span className="truncate max-w-[140px]">{s.sector}</span>
                 <div className="flex items-center gap-2">
@@ -190,16 +192,16 @@ export default async function HarnessPage() {
         </LayerCard>
 
         {/* Layer 4 — Weather */}
-        <LayerCard number={4} title="Weather Patterns" status={data.layer4.weather_patterns.length > 0 ? "warning" : "ok"}>
+        <LayerCard number={4} title="Weather Patterns" status={(data.layer4?.weather_patterns?.length || 0) > 0 ? "warning" : "ok"}>
           <div className="space-y-2 text-sm">
-            <p><span className="text-neutral-500">Active patterns:</span> {data.layer4.weather_patterns.length}</p>
-            {data.layer4.weather_patterns.length === 0 && (
+            <p><span className="text-neutral-500">Active patterns:</span> {data.layer4?.weather_patterns?.length || 0}</p>
+            {(data.layer4?.weather_patterns?.length || 0) === 0 && (
               <div className="flex items-center gap-2 text-green-600">
                 <CloudSun className="h-4 w-4" />
                 <span>No high-impact weather alerts</span>
               </div>
             )}
-            {data.layer4.weather_patterns.slice(0, 5).map((r: any, i: number) => (
+            {(data.layer4?.weather_patterns || []).slice(0, 5).map((r: any, i: number) => (
               <div key={i} className="flex items-start gap-2">
                 <Wind className="h-4 w-4 text-amber-500 mt-0.5" />
                 <div>
@@ -212,17 +214,17 @@ export default async function HarnessPage() {
         </LayerCard>
 
         {/* Layer 5 — Macro */}
-        <LayerCard number={5} title="Macro Trends" status={data.layer5.regime !== "UNKNOWN" ? "ok" : "warning"}>
+        <LayerCard number={5} title="Macro Trends" status={data.layer5?.regime !== "UNKNOWN" ? "ok" : "warning"}>
           <div className="space-y-1 text-sm">
-            <p><span className="text-neutral-500">Regime:</span> <span className="font-medium">{data.layer5.regime}</span></p>
-            <p><span className="text-neutral-500">Confidence:</span> {data.layer5.confidence}%</p>
+            <p><span className="text-neutral-500">Regime:</span> <span className="font-medium">{data.layer5?.regime || "UNKNOWN"}</span></p>
+            <p><span className="text-neutral-500">Confidence:</span> {data.layer5?.confidence || 0}%</p>
             <div className="flex items-center gap-2 mt-2">
               <TrendingUp className="h-4 w-4 text-green-600" />
-              <span className="text-xs">{data.layer5.bullish_count} bullish</span>
+              <span className="text-xs">{data.layer5?.bullish_count || 0} bullish</span>
               <TrendingDown className="h-4 w-4 text-red-600 ml-2" />
-              <span className="text-xs">{data.layer5.bearish_count} bearish</span>
+              <span className="text-xs">{data.layer5?.bearish_count || 0} bearish</span>
             </div>
-            {data.layer4.macro_signals.slice(0, 4).map((s: any, i: number) => (
+            {(data.layer4?.macro_signals || []).slice(0, 4).map((s: any, i: number) => (
               <div key={i} className="flex items-center gap-2 text-xs mt-1">
                 <span className={s.signal_direction === "BULLISH" ? "text-green-600" : s.signal_direction === "BEARISH" ? "text-red-600" : "text-amber-600"}>
                   {s.signal_direction === "BULLISH" ? "▲" : s.signal_direction === "BEARISH" ? "▼" : "◆"}
@@ -235,7 +237,7 @@ export default async function HarnessPage() {
       </div>
 
       {/* Latest 6-layer grades */}
-      {data.layer6.latest_grades.length > 0 && (
+      {(data.layer6?.latest_grades?.length || 0) > 0 && (
         <Card className="mt-6">
           <CardHeader>
             <CardTitle className="text-lg">Latest 6-Layer Grades</CardTitle>
@@ -257,7 +259,7 @@ export default async function HarnessPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.layer6.latest_grades.slice(0, 15).map((g: any) => (
+                  {(data.layer6?.latest_grades || []).slice(0, 15).map((g: any) => (
                     <tr key={g.ticker} className="border-b last:border-0">
                       <td className="py-2 font-medium">{g.ticker}</td>
                       <td className="py-2">
