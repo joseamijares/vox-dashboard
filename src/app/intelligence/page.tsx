@@ -109,7 +109,7 @@ export default function IntelligencePage() {
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [filter, setFilter] = useState<FilterType>("all");
 
-  // Load all data
+  // Load all data + auto-refresh every 60s
   useEffect(() => {
     async function loadData() {
       try {
@@ -181,6 +181,9 @@ export default function IntelligencePage() {
       }
     }
     loadData();
+    // Auto-refresh every 60 seconds
+    const interval = setInterval(loadData, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   // ─── Helpers ─────────────────────────────────────────────────────
