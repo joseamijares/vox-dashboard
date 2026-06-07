@@ -3,8 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { marketRegime } from "@/lib/data";
 import { TrendingUp, Target, Shield, AlertTriangle } from "lucide-react";
 
@@ -25,10 +24,7 @@ export default function RegimePage() {
   const config = regimeConfig[regime.regime] || regimeConfig.EARLY_BULL;
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Market Regime</h1>
           <p className="text-muted-foreground text-sm">
@@ -157,7 +153,6 @@ export default function RegimePage() {
             </div>
           </CardContent>
         </Card>
-      </main>
-    </div>
+      </PageShell>
   );
 }

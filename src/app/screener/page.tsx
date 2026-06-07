@@ -4,8 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { useState, useEffect } from "react";
 import { Search, TrendingUp, TrendingDown, Loader2, BarChart3, Activity } from "lucide-react";
 
@@ -115,39 +114,28 @@ export default function ScreenerPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <MobileHeader />
-        <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8 flex items-center justify-center">
+      <PageShell>
           <div className="flex flex-col items-center gap-3">
             <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
             <p className="text-muted-foreground text-sm">Loading S&P 500 data...</p>
           </div>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background">
-        <MobileHeader />
-        <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
             <p className="font-medium">Error loading S&P 500 screener</p>
             <p className="text-sm">{error}</p>
           </div>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">S&P 500 Screener</h1>
           <p className="text-muted-foreground text-sm">
@@ -275,7 +263,6 @@ export default function ScreenerPage() {
             ))}
           </TabsContent>
         </Tabs>
-      </main>
-    </div>
+      </PageShell>
   );
 }

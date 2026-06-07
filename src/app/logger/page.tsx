@@ -4,8 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { useState } from "react";
 import { Plus, Save } from "lucide-react";
 
@@ -41,10 +40,7 @@ export default function LoggerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Trade Logger</h1>
           <p className="text-muted-foreground text-sm">Log new trades in real-time</p>
@@ -110,7 +106,6 @@ export default function LoggerPage() {
             </div>
           </CardContent>
         </Card>
-      </main>
-    </div>
+      </PageShell>
   );
 }

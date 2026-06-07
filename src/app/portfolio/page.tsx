@@ -10,8 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { getPositions, getTotalValue, getTotalPnL, getAvgGrade, getBrokerBreakdown, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import { useState, useMemo, useEffect } from "react";
 import { Search, TrendingUp, TrendingDown, AlertTriangle, Loader2 } from "lucide-react";
@@ -126,10 +125,7 @@ export default function PortfolioPage() {
     : null;
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Portfolio</h1>
           <p className="text-muted-foreground text-sm">
@@ -328,7 +324,6 @@ export default function PortfolioPage() {
             </table>
           </div>
         </Card>
-      </main>
-    </div>
+      </PageShell>
   );
 }

@@ -2,8 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { useState, useMemo, useEffect } from "react";
 import {
   Brain,
@@ -306,10 +305,7 @@ export default function IntelligencePage() {
   // ─── Render ──────────────────────────────────────────────────────
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
@@ -675,7 +671,6 @@ export default function IntelligencePage() {
             </p>
           </>
         )}
-      </main>
-    </div>
+      </PageShell>
   );
 }

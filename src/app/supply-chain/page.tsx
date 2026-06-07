@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { TrendingUp, TrendingDown, Minus, RefreshCw } from "lucide-react";
 
 interface Commodity {
@@ -51,10 +50,7 @@ export default function SupplyChainPage() {
   const categories = [...new Set(commodities.map((c) => c.category))];
 
   return (
-    <div className="min-h-screen bg-white">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64">
+    <PageShell>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -114,7 +110,6 @@ export default function SupplyChainPage() {
             </div>
           )}
         </div>
-      </main>
-    </div>
+      </PageShell>
   );
 }

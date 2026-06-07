@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { Search } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
 
@@ -42,23 +41,16 @@ export default function WatchlistPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <MobileHeader />
-        <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <div className="flex items-center justify-center h-64">
             <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full" />
           </div>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Watchlist</h1>
           <p className="text-muted-foreground text-sm">{watchlist.length} tickers tracked</p>
@@ -110,7 +102,6 @@ export default function WatchlistPage() {
             </div>
           ))}
         </div>
-      </main>
-    </div>
+      </PageShell>
   );
 }

@@ -2,8 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { useState, useEffect } from "react";
 import { Clock, CheckCircle, XCircle, AlertCircle, Loader2, RefreshCw } from "lucide-react";
 
@@ -120,10 +119,7 @@ export default function CronsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
@@ -222,7 +218,6 @@ export default function CronsPage() {
             )}
           </CardContent>
         </Card>
-      </main>
-    </div>
+      </PageShell>
   );
 }

@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { ArrowUp, ArrowDown, Minus, Target, AlertCircle } from "lucide-react";
 import { query } from "@/lib/db";
 
@@ -163,10 +162,7 @@ export default async function SignalsPage() {
   const signals = await getSignals();
 
   return (
-    <div className="min-h-screen bg-white">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64">
+    <PageShell>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="mb-6">
             <h1 className="text-2xl font-semibold tracking-tight text-neutral-900">Trade Signals</h1>
@@ -177,7 +173,6 @@ export default async function SignalsPage() {
             <SignalsList signals={signals} />
           </Suspense>
         </div>
-      </main>
-    </div>
+      </PageShell>
   );
 }

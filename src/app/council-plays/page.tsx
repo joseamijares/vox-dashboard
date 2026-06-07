@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 
 interface CouncilPlay {
   ticker: string;
@@ -73,28 +72,20 @@ export default function CouncilPlaysPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <div className="space-y-4">
             <div className="h-8 w-64 bg-muted animate-pulse rounded" />
             <div className="h-32 w-full bg-muted animate-pulse rounded" />
           </div>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   if (!data) {
     return (
-      <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <p>No council plays generated yet</p>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
@@ -103,10 +94,7 @@ export default function CouncilPlaysPage() {
   const needHuman = data.plays.filter((p) => p.human_required);
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Council Reviewed Plays</h1>
           <p className="text-muted-foreground text-sm">
@@ -253,7 +241,6 @@ export default function CouncilPlaysPage() {
           Generated: {new Date(data.timestamp).toLocaleString()} | 
           Every play requires dual approval: Decision Layer + LLM Council
         </p>
-      </main>
-    </div>
+      </PageShell>
   );
 }

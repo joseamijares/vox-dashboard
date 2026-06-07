@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 
 interface Action {
   action: string;
@@ -46,38 +45,27 @@ export default function AnalysisPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <div className="space-y-4">
             <div className="h-8 w-64 bg-muted animate-pulse rounded" />
             <div className="h-32 w-full bg-muted animate-pulse rounded" />
           </div>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   if (!report) {
     return (
-      <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <p>No analysis report found</p>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   const { portfolio_summary, actions } = report;
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Portfolio Analysis</h1>
           <p className="text-muted-foreground text-sm">
@@ -203,7 +191,6 @@ export default function AnalysisPage() {
           Generated: {new Date(report.timestamp).toLocaleString()} | 
           Next update: Market open
         </p>
-      </main>
-    </div>
+      </PageShell>
   );
 }

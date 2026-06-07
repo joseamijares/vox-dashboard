@@ -3,8 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { useState, useEffect } from "react";
 import { Sunrise, Newspaper, Eye, CheckSquare, TrendingUp, TrendingDown, AlertTriangle } from "lucide-react";
 
@@ -81,22 +80,15 @@ export default function DebriefPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <p className="text-muted-foreground">Loading debrief...</p>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   if (!debrief) {
     return (
-      <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <div className="mb-8">
             <h1 className="text-2xl font-bold tracking-tight">Morning Debrief</h1>
             <p className="text-muted-foreground text-sm">Pre-market intelligence</p>
@@ -113,18 +105,14 @@ export default function DebriefPage() {
               </p>
             </CardContent>
           </Card>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   const { reflection, news, watchlist, checklist } = debrief.sections;
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Morning Debrief</h1>
           <p className="text-muted-foreground text-sm">
@@ -324,7 +312,6 @@ export default function DebriefPage() {
             </CardContent>
           </Card>
         </div>
-      </main>
-    </div>
+      </PageShell>
   );
 }

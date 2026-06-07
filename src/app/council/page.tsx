@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 
 interface CouncilVote {
   ticker: string;
@@ -53,10 +52,7 @@ export default function CouncilPage() {
   const holdVotes = votes.filter((v) => v.consensus === "HOLD");
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Agent Council</h1>
           <p className="text-muted-foreground text-sm">Multi-agent voting on portfolio positions</p>
@@ -151,7 +147,6 @@ export default function CouncilPage() {
             </Card>
           </div>
         )}
-      </main>
-    </div>
+      </PageShell>
   );
 }

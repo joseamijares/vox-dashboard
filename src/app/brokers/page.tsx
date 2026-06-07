@@ -2,8 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 import { useEffect, useState } from "react";
 import { RefreshCw, AlertTriangle, CheckCircle, XCircle, Clock, Wallet } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
@@ -109,24 +108,17 @@ export default function BrokersPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <MobileHeader />
-        <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <div className="flex items-center justify-center h-64">
             <RefreshCw className="h-8 w-8 animate-spin text-muted-foreground" />
           </div>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   if (!data) {
     return (
-      <div className="min-h-screen bg-background">
-        <MobileHeader />
-        <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <Card className="vox-card">
             <CardContent className="p-8 text-center">
               <AlertTriangle className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
@@ -134,8 +126,7 @@ export default function BrokersPage() {
               <p className="text-muted-foreground">Run broker sync to populate data.</p>
             </CardContent>
           </Card>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
@@ -145,10 +136,7 @@ export default function BrokersPage() {
   const totalPnl = data.total_pnl || 0;
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
@@ -346,7 +334,6 @@ export default function BrokersPage() {
             </div>
           </CardContent>
         </Card>
-      </main>
-    </div>
+      </PageShell>
   );
 }

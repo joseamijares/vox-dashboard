@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MobileHeader } from "@/components/mobile-header";
-import { Sidebar } from "@/components/sidebar";
+import { PageShell } from "@/components/vox-nav";
 
 interface SellOrder {
   ticker: string;
@@ -64,33 +63,22 @@ export default function UltimatePlanPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <div className="h-8 w-64 bg-muted animate-pulse rounded" />
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   if (!plan) {
     return (
-      <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-        <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+      <PageShell>
           <p>No plan generated yet</p>
-        </main>
-      </div>
+        </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <MobileHeader />
-      <Sidebar />
-      <main className="pt-14 lg:pt-0 lg:ml-64 p-4 lg:p-8">
+    <PageShell>
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Ultimate Action Plan</h1>
           <p className="text-muted-foreground text-sm">
@@ -286,7 +274,6 @@ export default function UltimatePlanPage() {
         <p className="text-xs text-muted-foreground">
           Generated: {new Date(plan.timestamp).toLocaleString()} | Check off items as you execute
         </p>
-      </main>
-    </div>
+      </PageShell>
   );
 }
