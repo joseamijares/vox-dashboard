@@ -141,6 +141,19 @@ export const navSections = [
       { href: "/portfolio", label: "Positions" },
       { href: "/brokers", label: "Brokers" },
       { href: "/plays", label: "Plays" },
+      { href: "/performance", label: "Performance" },
+      { href: "/watchlist", label: "Watchlist" },
+      { href: "/paper-trading", label: "Paper Trading" },
+    ],
+  },
+  {
+    title: "Analysis",
+    items: [
+      { href: "/screener", label: "Screener" },
+      { href: "/grades", label: "Grades" },
+      { href: "/analysis", label: "Analysis" },
+      { href: "/alerts", label: "Alerts" },
+      { href: "/predictions", label: "Predictions" },
     ],
   },
   {
@@ -149,6 +162,7 @@ export const navSections = [
       { href: "/agents", label: "Agents" },
       { href: "/crons", label: "Crons" },
       { href: "/council", label: "Council" },
+      { href: "/council-plays", label: "Council Plays" },
       { href: "/sentiment", label: "Sentiment" },
       { href: "/regime", label: "Regime" },
       { href: "/risk", label: "Risk" },
@@ -160,6 +174,7 @@ export const navSections = [
       { href: "/weather", label: "Weather" },
       { href: "/geopolitical", label: "Geopolitical" },
       { href: "/supply-chain", label: "Supply Chain" },
+      { href: "/sector-macro", label: "Sector Macro" },
       { href: "/signals", label: "Signals" },
       { href: "/harness", label: "Harness" },
     ],
@@ -168,7 +183,10 @@ export const navSections = [
     title: "Journal",
     items: [
       { href: "/journal", label: "Journal" },
+      { href: "/digest", label: "Digest" },
+      { href: "/briefing", label: "Briefing" },
       { href: "/logger", label: "Logger" },
+      { href: "/debrief", label: "Debrief" },
     ],
   },
 ] as const;

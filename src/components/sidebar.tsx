@@ -8,55 +8,53 @@ import {
   TrendingUp, Bot, Clock, Shield, Activity, BarChart3,
   AlertTriangle, Scale, Search, Bitcoin, BookOpen,
   Newspaper, Settings, CloudRain, Globe, Truck, Zap, Layers,
+  LineChart, Eye, Gamepad2, GraduationCap, Bell, Sparkles,
+  Users, Factory, FileText, ClipboardList, ScrollText,
 } from "lucide-react";
+import { navSections as dsNavSections } from "@/lib/design-system";
 
-const navSections = [
-  {
-    title: "Command",
-    items: [
-      { href: "/", label: "Dashboard", icon: LayoutDashboard },
-      { href: "/plan", label: "Plan", icon: Target },
-      { href: "/intelligence", label: "Intelligence", icon: Brain },
-    ],
-  },
-  {
-    title: "Portfolio",
-    items: [
-      { href: "/portfolio", label: "Positions", icon: Briefcase },
-      { href: "/brokers", label: "Brokers", icon: Wallet },
-      { href: "/plays", label: "Plays", icon: TrendingUp },
-    ],
-  },
-  {
-    title: "Agents",
-    items: [
-      { href: "/agents", label: "Agents", icon: Bot },
-      { href: "/crons", label: "Crons", icon: Clock },
-      { href: "/council", label: "Council", icon: Shield },
-      { href: "/sentiment", label: "Sentiment", icon: Activity },
-      { href: "/regime", label: "Regime", icon: BarChart3 },
-      { href: "/risk", label: "Risk", icon: AlertTriangle },
-    ],
-  },
-  {
-    title: "Macro",
-    items: [
-      { href: "/weather", label: "Weather", icon: CloudRain },
-      { href: "/geopolitical", label: "Geopolitical", icon: Globe },
-      { href: "/supply-chain", label: "Supply Chain", icon: Truck },
-      { href: "/signals", label: "Signals", icon: Zap },
-      { href: "/harness", label: "Harness", icon: Layers },
-      { href: "/screener", label: "S&P 500", icon: Search },
-    ],
-  },
-  {
-    title: "Journal",
-    items: [
-      { href: "/journal", label: "Journal", icon: BookOpen },
-      { href: "/logger", label: "Logger", icon: Newspaper },
-    ],
-  },
-];
+const iconMap: Record<string, React.ComponentType<any>> = {
+  Dashboard: LayoutDashboard,
+  Plan: Target,
+  Intelligence: Brain,
+  Positions: Briefcase,
+  Brokers: Wallet,
+  Plays: TrendingUp,
+  Performance: LineChart,
+  Watchlist: Eye,
+  "Paper Trading": Gamepad2,
+  Screener: Search,
+  Grades: GraduationCap,
+  Analysis: BarChart3,
+  Alerts: Bell,
+  Predictions: Sparkles,
+  Agents: Bot,
+  Crons: Clock,
+  Council: Shield,
+  "Council Plays": Users,
+  Sentiment: Activity,
+  Regime: Scale,
+  Risk: AlertTriangle,
+  Weather: CloudRain,
+  Geopolitical: Globe,
+  "Supply Chain": Truck,
+  "Sector Macro": Factory,
+  Signals: Zap,
+  Harness: Layers,
+  Journal: BookOpen,
+  Digest: FileText,
+  Briefing: ClipboardList,
+  Logger: Newspaper,
+  Debrief: ScrollText,
+};
+
+const navSections = dsNavSections.map((section) => ({
+  ...section,
+  items: section.items.map((item) => ({
+    ...item,
+    icon: iconMap[item.label] || LayoutDashboard,
+  })),
+}));
 
 export function Sidebar() {
   const pathname = usePathname();
