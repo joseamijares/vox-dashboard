@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getVoxGrades } from "@/lib/db";
+import { query, getVoxGrades } from "@/lib/db";
 
 export async function GET() {
   try {
