@@ -1,16 +1,9 @@
 import { NextResponse } from "next/server";
-import { query } from "@/lib/db";
+import { getVoxGrades } from "@/lib/db";
 
 export async function GET() {
   try {
-    const rows = await query(`
-      SELECT ticker, name, vox_grade, previous_grade, action, current_price,
-             stop_loss, entry_point, position_value, shares,
-             technical_score, fundamental_score, macro_score, sector_score,
-             weather_score, sentiment_score, catalysts, weather_factors, generated_at
-      FROM vox_grades
-      ORDER BY vox_grade DESC
-    `);
+    const rows = await getVoxGrades();
     return NextResponse.json({ grades: rows });
   } catch (error) {
     console.error("Error fetching grades:", error);
