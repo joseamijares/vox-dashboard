@@ -11,10 +11,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { PageShell } from "@/components/vox-nav";
+import { VoxBadge } from "@/components/vox";
 import { getPositions, getTotalValue, getTotalPnL, getAvgGrade, getBrokerBreakdown, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import { useState, useMemo, useEffect } from "react";
 import { Search, TrendingUp, TrendingDown, AlertTriangle, Loader2 } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
+import { VoxKpi } from "@/components/vox";
+import { VoxTable } from "@/components/vox";
 
 export default function PortfolioPage() {
   const [allPositions, setAllPositions] = useState<any[]>([]);
@@ -124,6 +127,81 @@ export default function PortfolioPage() {
     ? Math.round((Date.now() - new Date(dashboardMeta.generatedAt).getTime()) / 3600000)
     : null;
 
+  // VoxTable columns for positions
+  const positionColumns = [
+    {
+      key: "ticker",
+      header: "Ticker",
+      accessor: (p: any) => (
+        <div>
+          <div className="font-semibold">{p.ticker}</div>
+          <div className="text-xs text-muted-foreground">{p.name || p.sector}</div>
+        </div>
+      ),
+      sortable: true,
+      sortFn: (a: any, b: any) => a.ticker.localeCompare(b.ticker),
+    },
+    {
+      key: "shares",
+      header: "Shares",
+      accessor: (p: any) => <span className="font-mono">{p.shares?.toFixed ? p.shares.toFixed(2) : p.shares}</span>,
+      align: "right" as const,
+    },
+    {
+      key: "price",
+      header: "Price",
+      accessor: (p: any) => {
+        const price = p.live_price || p.price || 0;
+        return <span className="font-mono">${price?.toFixed ? price.toFixed(2) : price}</span>;
+      },
+      align: "right" as const,
+    },
+    {
+      key: "value",
+      header: "Value",
+      accessor: (p: any) => <span className="font-mono">{fmt(p.live_value || p.value || 0)}</span>,
+      sortable: true,
+      sortFn: (a: any, b: any) => (a.live_value || a.value || 0) - (b.live_value || b.value || 0),
+      align: "right" as const,
+    },
+    {
+      key: "pnl",
+      header: "P&L",
+      accessor: (p: any) => {
+        const pnl = p.pnl || p.unrealized_pnl || 0;
+        const pnlPct = p.pnl_pct || p.unrealized_pnl_pct || 0;
+        return (
+          <div className={`flex items-center justify-end gap-1 ${pnl >= 0 ? "text-green-400" : "text-red-400"}`}>
+            {pnl >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+            <span className="font-mono">{fmt(pnl)} ({pnlPct >= 0 ? '+' : ''}{pnlPct.toFixed(1)}%)</span>
+          </div>
+        );
+      },
+      sortable: true,
+      sortFn: (a: any, b: any) => (a.pnl_pct || a.unrealized_pnl_pct || 0) - (b.pnl_pct || b.unrealized_pnl_pct || 0),
+      align: "right" as const,
+    },
+    {
+      key: "grade",
+      header: "Grade",
+      accessor: (p: any) => <VoxBadge grade={p.grade || 0} />,
+      sortable: true,
+      sortFn: (a: any, b: any) => (a.grade || 0) - (b.grade || 0),
+      align: "center" as const,
+    },
+    {
+      key: "action",
+      header: "Action",
+      accessor: (p: any) => <VoxBadge grade={p.grade || 0} label={actionLabel(p.grade || 0)} />,
+      align: "center" as const,
+    },
+    {
+      key: "brokers",
+      header: "Brokers",
+      accessor: (p: any) => <span className="text-muted-foreground text-xs">{(p.brokers || (p.broker ? [p.broker] : [])).join(', ')}</span>,
+    },
+  ];
+
   return (
     <PageShell>
         <div className="mb-8">
@@ -195,35 +273,17 @@ export default function PortfolioPage() {
           </CardContent>
         </Card>
 
-        {/* Summary Cards */}
+        {/* Summary Cards - using VoxKpi */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
-          <Card className="vox-card">
-            <CardContent className="p-6">
-              <p className="text-sm text-muted-foreground">Total Value</p>
-              <p className="text-2xl font-bold font-mono">{fmt(totalValue)}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-6">
-              <p className="text-sm text-muted-foreground">Total P&L</p>
-              <p className={`text-2xl font-bold font-mono ${totalPnl >= 0 ? "text-green-400" : "text-red-400"}`}>
-                {totalPnl >= 0 ? "+" : ""}{fmt(totalPnl)}
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-6">
-              <p className="text-sm text-muted-foreground">Avg Grade</p>
-              <p className="text-2xl font-bold font-mono text-green-400">{avgGrade || '—'}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-6">
-              <p className="text-sm text-muted-foreground">USD / MXN</p>
-              <p className="text-2xl font-bold font-mono">{dashboardMeta.usdMxnRate.toFixed(2)}</p>
-              <p className="text-xs text-muted-foreground mt-1">{dashboardMeta.usdMxnDate || 'Today'}</p>
-            </CardContent>
-          </Card>
+          <VoxKpi label="Total Value" value={fmt(totalValue)} />
+          <VoxKpi 
+            label="Total P&L" 
+            value={`${totalPnl >= 0 ? "+" : ""}${fmt(totalPnl)}`}
+            change={totalPnl / (totalValue - totalPnl) * 100}
+            changeType={totalPnl >= 0 ? "positive" : "negative"}
+          />
+          <VoxKpi label="Avg Grade" value={avgGrade || '—'} />
+          <VoxKpi label="USD / MXN" value={dashboardMeta.usdMxnRate.toFixed(2)} suffix="" />
         </div>
 
         {/* Filters */}
@@ -269,61 +329,15 @@ export default function PortfolioPage() {
           </Select>
         </div>
 
-        {/* Positions Table */}
-        <Card className="vox-card overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left p-4 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => { if (sortBy === "ticker") setSortDir(sortDir === "asc" ? "desc" : "asc"); else { setSortBy("ticker"); setSortDir("asc"); }}}>Ticker {sortBy === "ticker" && (sortDir === "asc" ? "↑" : "↓")}</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground">Shares</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground">Price</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => { if (sortBy === "value") setSortDir(sortDir === "asc" ? "desc" : "asc"); else { setSortBy("value"); setSortDir("desc"); }}}>Value {sortBy === "value" && (sortDir === "asc" ? "↑" : "↓")}</th>
-                  <th className="text-right p-4 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => { if (sortBy === "pnl") setSortDir(sortDir === "asc" ? "desc" : "asc"); else { setSortBy("pnl"); setSortDir("desc"); }}}>P&L {sortBy === "pnl" && (sortDir === "asc" ? "↑" : "↓")}</th>
-                  <th className="text-center p-4 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => { if (sortBy === "grade") setSortDir(sortDir === "asc" ? "desc" : "asc"); else { setSortBy("grade"); setSortDir("desc"); }}}>Grade {sortBy === "grade" && (sortDir === "asc" ? "↑" : "↓")}</th>
-                  <th className="text-center p-4 font-medium text-muted-foreground">Action</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Brokers</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map((p: any) => {
-                  const value = p.live_value || p.value || 0;
-                  const price = p.live_price || p.price || 0;
-                  const pnl = p.pnl || p.unrealized_pnl || 0;
-                  const pnlPct = p.pnl_pct || p.unrealized_pnl_pct || 0;
-                  const grade = p.grade || 0;
-                  const brokerList = p.brokers || (p.broker ? [p.broker] : []);
-                  return (
-                  <tr key={p.ticker} className="border-b border-border/50 hover:bg-muted/30">
-                    <td className="p-4">
-                      <div className="font-semibold">{p.ticker}</div>
-                      <div className="text-xs text-muted-foreground">{p.name || p.sector}</div>
-                    </td>
-                    <td className="p-4 text-right font-mono">{p.shares?.toFixed ? p.shares.toFixed(2) : p.shares}</td>
-                    <td className="p-4 text-right font-mono">${price?.toFixed ? price.toFixed(2) : price}</td>
-                    <td className="p-4 text-right font-mono">{fmt(value)}</td>
-                    <td className="p-4 text-right">
-                      <div className={`flex items-center justify-end gap-1 ${pnl >= 0 ? "text-green-400" : "text-red-400"}`}>
-                        {pnl >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                        <span className="font-mono">{fmt(pnl)} ({pnlPct >= 0 ? '+' : ''}{pnlPct.toFixed(1)}%)</span>
-                      </div>
-                    </td>
-                    <td className="p-4 text-center">
-                      <Badge variant="outline" className={gradeColor(grade)}>
-                        {grade || '—'}
-                      </Badge>
-                    </td>
-                    <td className="p-4 text-center">
-                      <Badge variant={actionBadge(grade)}>{grade ? actionLabel(grade) : '—'}</Badge>
-                    </td>
-                    <td className="p-4 text-muted-foreground text-xs">{brokerList.join(', ')}</td>
-                  </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </Card>
+        {/* Positions Table - using VoxTable */}
+        <VoxTable
+          data={filtered}
+          columns={positionColumns}
+          keyExtractor={(p) => p.ticker}
+          searchable={false}
+          pageSize={50}
+          emptyMessage="No positions match your filters"
+        />
       </PageShell>
   );
 }
