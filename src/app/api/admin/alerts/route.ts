@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // SELL alerts (grade < 40)
     const sellAlerts = await query(`
-      SELECT ticker, shares, live_price, live_value, grade, sector, broker
+      SELECT ticker, shares, live_price, live_value, grade, sector
       FROM positions
       WHERE grade < 40
       ORDER BY live_value DESC
@@ -13,7 +13,7 @@ export async function GET() {
 
     // TRIM alerts (grade 40-49)
     const trimAlerts = await query(`
-      SELECT ticker, shares, live_price, live_value, grade, sector, broker
+      SELECT ticker, shares, live_price, live_value, grade, sector
       FROM positions
       WHERE grade >= 40 AND grade < 50
       ORDER BY live_value DESC
@@ -31,7 +31,7 @@ export async function GET() {
 
     // Missing cost basis
     const missingBasis = await query(`
-      SELECT ticker, shares, live_price, live_value, grade, sector, broker
+      SELECT ticker, shares, live_price, live_value, grade, sector
       FROM positions
       WHERE avg_cost IS NULL OR avg_cost = 0
     `);

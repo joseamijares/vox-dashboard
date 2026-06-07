@@ -3,14 +3,19 @@ import { query } from "@/lib/db";
 
 export async function GET() {
   try {
-    // System configuration from database
-    const config = await query(`
-      SELECT key, value, updated_at
-      FROM system_config
-      WHERE key IN ('dashboard_version', 'grader_version', 'last_full_sync', 
-                    'alert_threshold_sell', 'alert_threshold_trim',
-                    'max_position_pct', 'rebalance_frequency')
-    `);
+    // Try to get config from database, fallback to defaults
+    let config: any[] = [];
+    try {
+      config = await query(`
+        SELECT key, value, updated_at
+        FROM system_config
+        WHERE key IN ('dashboard_version', 'grader_version', 'last_full_sync', 
+                      'alert_threshold_sell', 'alert_threshold_trim',
+                      'max_position_pct', 'rebalance_frequency')
+      `);
+    } catch {
+      // Table doesn't exist, use defaults
+    }
 
     // Build config object
     const configMap: Record<string, any> = {};
