@@ -1,5 +1,6 @@
 import { PageShell } from "@/components/vox-nav";
 import { VoxCard } from "@/components/vox-card";
+import { VoxBadge } from "@/components/vox";
 import { colors, getGradeStyle } from "@/lib/design-system";
 import { fmtCurrency } from "@/lib/format";
 import { getVoxGrades } from "@/lib/db";
@@ -68,7 +69,6 @@ export default async function GradesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {trimPositions.map((g) => {
-              const style = getGradeStyle(g.vox_grade);
               return (
                 <VoxCard key={g.ticker} hover>
                   <div className="p-3">
@@ -77,9 +77,7 @@ export default async function GradesPage() {
                         <span className="font-mono text-sm font-semibold" style={{ color: colors.foreground }}>{g.ticker}</span>
                         <p className="text-xs" style={{ color: colors.muted }}>{g.name}</p>
                       </div>
-                      <span className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded" style={{ color: style.color, background: style.bg }}>
-                        {g.vox_grade}
-                      </span>
+                      <VoxBadge grade={g.vox_grade} />
                     </div>
                     <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
                       <div><span style={{ color: colors.muted }}>Price:</span> <span className="font-mono" style={{ color: colors.foreground }}>${g.current_price?.toFixed(2)}</span></div>
@@ -115,7 +113,6 @@ export default async function GradesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {opportunities.slice(0, 12).map((g) => {
-              const style = getGradeStyle(g.vox_grade);
               return (
                 <VoxCard key={g.ticker} hover>
                   <div className="p-3">
@@ -124,9 +121,7 @@ export default async function GradesPage() {
                         <span className="font-mono text-sm font-semibold" style={{ color: colors.foreground }}>{g.ticker}</span>
                         <p className="text-xs" style={{ color: colors.muted }}>{g.name}</p>
                       </div>
-                      <span className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded" style={{ color: style.color, background: style.bg }}>
-                        {g.vox_grade}
-                      </span>
+                      <VoxBadge grade={g.vox_grade} />
                     </div>
                     <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
                       <div><span style={{ color: colors.muted }}>Entry:</span> <span className="font-mono" style={{ color: colors.profit }}>${g.entry_point?.toFixed(2)}</span></div>
@@ -173,23 +168,16 @@ export default async function GradesPage() {
             </thead>
             <tbody>
               {positions.sort((a, b) => b.vox_grade - a.vox_grade).map((g) => {
-                const style = getGradeStyle(g.vox_grade);
                 return (
                   <tr key={g.ticker} style={{ borderBottom: `1px solid ${colors.border}` }}>
                     <td className="p-3">
                       <span className="font-mono font-semibold text-sm" style={{ color: colors.foreground }}>{g.ticker}</span>
                     </td>
                     <td className="p-3">
-                      <span className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded" style={{ color: style.color, background: style.bg }}>
-                        {g.vox_grade}
-                      </span>
+                      <VoxBadge grade={g.vox_grade} />
                     </td>
                     <td className="p-3">
-                      <span className="text-xs font-medium" style={{
-                        color: g.action === "TRIM" ? colors.profit : g.action === "SELL" ? colors.loss : g.action === "BUY" ? colors.accent : colors.foreground
-                      }}>
-                        {g.action}
-                      </span>
+                      <VoxBadge grade={g.vox_grade} label={g.action} />
                     </td>
                     <td className="p-3 font-mono text-sm" style={{ color: colors.foreground }}>${g.current_price?.toFixed(2)}</td>
                     <td className="p-3 font-mono text-sm" style={{ color: colors.loss }}>${g.stop_loss?.toFixed(2)}</td>
