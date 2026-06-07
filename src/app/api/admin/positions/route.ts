@@ -10,8 +10,8 @@ export async function GET(request: Request) {
     const weakOnly = searchParams.get("weak") === "true";
 
     let sql = `
-      SELECT ticker, shares, avg_cost, live_price, live_value, 
-             grade, council, sector, broker, updated_at
+      SELECT ticker, shares, avg_cost, live_price, live_value,
+             grade, council, sector, updated_at
       FROM positions
       WHERE 1=1
     `;
