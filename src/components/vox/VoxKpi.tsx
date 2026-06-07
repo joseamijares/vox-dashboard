@@ -48,10 +48,9 @@ export function VoxKpi({
   return (
     <div
       className={cn(
-        "flex flex-col gap-1 rounded-lg border bg-white p-4",
+        "flex flex-col gap-1 rounded-lg border bg-card p-4",
         className
       )}
-      style={{ borderColor: colors.border }}
     >
       <span
         className="text-xs font-semibold uppercase tracking-wider"
@@ -60,7 +59,7 @@ export function VoxKpi({
         {label}
       </span>
       {loading ? (
-        <div className="h-8 w-24 animate-pulse rounded bg-gray-100" />
+        <div className="h-8 w-24 animate-pulse rounded bg-muted" />
       ) : (
         <span
           className="text-2xl font-semibold tracking-tight"

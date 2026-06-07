@@ -208,6 +208,14 @@
 .dark .bg-profit-soft { background: rgba(0, 192, 135, 0.10); }
 .dark .bg-loss-soft { background: rgba(246, 70, 93, 0.10); }
 
+/* Loss soft utility */
+.bg-loss-soft { background: rgba(220, 38, 38, 0.10); }
+.dark .bg-loss-soft { background: rgba(246, 70, 93, 0.10); }
+
+/* Text loss utility */
+.text-loss { color: #dc2626; }
+.dark .text-loss { color: #f6465d; }
+
 /* Grade color system */
 .grade-core { color: #00a86b; background: rgba(0, 168, 107, 0.10); }
 .grade-buy { color: #0072f5; background: rgba(0, 114, 245, 0.10); }

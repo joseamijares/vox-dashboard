@@ -130,7 +130,7 @@ export function VoxTable<T>({
         </div>
       )}
 
-      <div className="rounded-lg border" style={{ borderColor: colors.border }}>
+      <div className="rounded-lg border border-border">
         <Table>
           <TableHeader>
             <TableRow className="hover:bg-transparent">

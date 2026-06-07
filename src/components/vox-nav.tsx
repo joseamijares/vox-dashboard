@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { colors, shadows, navSections } from "@/lib/design-system";
+import { navSections } from "@/lib/design-system";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   LayoutDashboard, Target, Brain, Briefcase, Wallet,
   TrendingUp, Bot, Clock, Shield, Activity, BarChart3,
@@ -72,21 +73,12 @@ function NavItem({
       className={cn(
         "flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm font-medium transition-all",
         isActive
-          ? "text-foreground"
-          : "hover:text-foreground"
+          ? "bg-secondary text-foreground shadow-border-light"
+          : "text-muted-foreground hover:text-foreground"
       )}
-      style={
-        isActive
-          ? {
-              background: colors.secondary,
-              boxShadow: shadows.borderLight,
-              color: colors.foreground,
-            }
-          : { color: colors.muted }
-      }
     >
       <Icon className="h-3.5 w-3.5" strokeWidth={2} />
-      <span style={{ fontWeight: isActive ? 500 : 400 }}>{label}</span>
+      <span className={cn(isActive && "font-medium")}>{label}</span>
     </Link>
   );
 }
@@ -96,34 +88,23 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside
-      className="fixed left-0 top-0 z-40 h-screen w-64 hidden lg:flex flex-col"
-      style={{
-        background: colors.background,
-        boxShadow: shadows.border,
-      }}
-    >
+    <aside className="fixed left-0 top-0 z-40 h-screen w-64 hidden lg:flex flex-col bg-background border-r border-border">
       {/* Logo */}
-      <div className="flex h-14 items-center px-4 shrink-0">
+      <div className="flex h-14 items-center px-4 shrink-0 justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <div className="h-5 w-5 rounded-sm" style={{ background: colors.foreground }} />
-          <span
-            className="font-semibold text-sm tracking-tight"
-            style={{ color: colors.foreground, letterSpacing: "-0.32px" }}
-          >
+          <div className="h-5 w-5 rounded-sm bg-foreground" />
+          <span className="font-semibold text-sm tracking-tight text-foreground">
             VOX
           </span>
         </Link>
+        <ThemeToggle />
       </div>
 
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto space-y-6 p-3">
         {navSections.map((section) => (
           <div key={section.title}>
-            <h3
-              className="mb-2 px-2 text-[11px] font-semibold uppercase"
-              style={{ color: colors.muted, letterSpacing: "1.2px" }}
-            >
+            <h3 className="mb-2 px-2 text-[11px] font-semibold uppercase text-muted-foreground tracking-widest">
               {section.title}
             </h3>
             <ul className="space-y-0.5">
@@ -141,10 +122,12 @@ export function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="p-3 shrink-0">
-        <div className="flex items-center gap-2 text-xs" style={{ color: colors.mutedLight }}>
-          <Settings className="h-3 w-3" />
-          <span className="font-mono text-[11px]">VOX v12.0</span>
+      <div className="p-3 shrink-0 border-t border-border">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <Settings className="h-3 w-3" />
+            <span className="font-mono text-[11px]">VOX v12.0</span>
+          </div>
         </div>
       </div>
     </aside>
@@ -159,28 +142,23 @@ export function MobileHeader() {
   return (
     <>
       {/* Mobile Header Bar */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 lg:hidden"
-        style={{
-          background: "rgba(255,255,255,0.95)",
-          backdropFilter: "blur(8px)",
-          boxShadow: shadows.border,
-        }}
-      >
+      <header className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 lg:hidden bg-background/95 backdrop-blur-sm border-b border-border">
         <Link href="/" className="flex items-center gap-2">
-          <div className="h-5 w-5 rounded-sm" style={{ background: colors.foreground }} />
-          <span className="font-semibold text-sm" style={{ color: colors.foreground, letterSpacing: "-0.32px" }}>
+          <div className="h-5 w-5 rounded-sm bg-foreground" />
+          <span className="font-semibold text-sm tracking-tight text-foreground">
             VOX
           </span>
         </Link>
-        <button
-          onClick={() => setOpen(!open)}
-          className="p-2 rounded-md transition-colors"
-          style={{ color: colors.foreground }}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 rounded-md text-foreground"
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </header>
 
       {/* Mobile Drawer */}
@@ -192,20 +170,11 @@ export function MobileHeader() {
             onClick={() => setOpen(false)}
           />
           {/* Drawer */}
-          <nav
-            className="absolute right-0 top-14 bottom-0 w-72 overflow-y-auto"
-            style={{
-              background: colors.background,
-              boxShadow: "-4px 0 24px rgba(0,0,0,0.08)",
-            }}
-          >
+          <nav className="absolute right-0 top-14 bottom-0 w-72 overflow-y-auto bg-background shadow-lg border-l border-border">
             <div className="p-4 space-y-6">
               {navSections.map((section) => (
                 <div key={section.title}>
-                  <h3
-                    className="mb-2 px-2 text-[11px] font-semibold uppercase"
-                    style={{ color: colors.muted, letterSpacing: "1.2px" }}
-                  >
+                  <h3 className="mb-2 px-2 text-[11px] font-semibold uppercase text-muted-foreground tracking-widest">
                     {section.title}
                   </h3>
                   <div className="space-y-0.5">
@@ -236,16 +205,11 @@ export function MobileHeader() {
 // ── Page Shell (wraps all pages) ──
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ minHeight: "100vh", background: colors.background }}>
+    <div className="min-h-screen bg-background">
       <MobileHeader />
       <Sidebar />
-      <main
-        className="lg:ml-64"
-        style={{
-          paddingTop: "56px", // mobile header
-        }}
-      >
-        <div className="lg:pt-0 p-4 lg:p-8">
+      <main className="lg:ml-64 pt-14 lg:pt-0">
+        <div className="p-4 lg:p-8">
           {children}
         </div>
       </main>
