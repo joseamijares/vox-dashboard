@@ -110,6 +110,70 @@ export async function GET() {
       regimeConfidence = Math.min(95, 60 + (bearish - bullish) * 10);
     }
 
+    // Helper to convert numeric strings to numbers
+    const toNum = (v: any) => {
+      if (v === null || v === undefined) return v;
+      const n = parseFloat(v);
+      return isNaN(n) ? v : n;
+    };
+
+    // Convert position numeric fields
+    const cleanPositions = (positions || []).map((p: any) => ({
+      ...p,
+      shares: toNum(p.shares),
+      live_price: toNum(p.live_price),
+      live_value: toNum(p.live_value),
+      grade: toNum(p.grade),
+      avg_cost: toNum(p.avg_cost),
+    }));
+
+    // Convert watchlist numeric fields
+    const cleanWatchlist = (watchlist || []).map((w: any) => ({
+      ...w,
+      grade: toNum(w.grade),
+      entry_price: toNum(w.entry_price),
+      target_price: toNum(w.target_price),
+      stop_loss: toNum(w.stop_loss),
+    }));
+
+    // Convert grades numeric fields
+    const cleanGrades = (latestGrades || []).map((g: any) => ({
+      ...g,
+      vox_grade: toNum(g.vox_grade),
+      technical_score: toNum(g.technical_score),
+      fundamental_score: toNum(g.fundamental_score),
+      macro_score: toNum(g.macro_score),
+      sector_score: toNum(g.sector_score),
+      weather_score: toNum(g.weather_score),
+      sentiment_score: toNum(g.sentiment_score),
+    }));
+
+    // Convert sector momentum numeric fields
+    const cleanSectorMomentum = (sectorMomentum || []).map((s: any) => ({
+      ...s,
+      avg_grade: toNum(s.avg_grade),
+      avg_return_1d: toNum(s.avg_return_1d),
+      avg_return_5d: toNum(s.avg_return_5d),
+      avg_return_20d: toNum(s.avg_return_20d),
+      momentum_score: toNum(s.momentum_score),
+      buy_count: toNum(s.buy_count),
+      hold_count: toNum(s.hold_count),
+      sell_count: toNum(s.sell_count),
+    }));
+
+    // Convert macro signals numeric fields
+    const cleanMacroSignals = (macroSignals || []).map((s: any) => ({
+      ...s,
+      signal_value: toNum(s.signal_value),
+      confidence: toNum(s.confidence),
+    }));
+
+    // Convert weather patterns numeric fields
+    const cleanWeatherPatterns = (weatherPatterns || []).map((w: any) => ({
+      ...w,
+      severity: toNum(w.severity),
+    }));
+
     return NextResponse.json({
       generated_at: new Date().toISOString(),
       layer0: {
@@ -121,21 +185,35 @@ export async function GET() {
       },
       layer1: {
         sector_allocation: sectorPct,
-        top_holdings: (positions || []).slice(0, 10),
-        weak_positions: weak.slice(0, 10),
+        top_holdings: cleanPositions.slice(0, 10),
+        weak_positions: cleanPositions.filter((p: any) => p.grade && p.grade < 45).slice(0, 10),
       },
       layer2: {
         total_famous_traders: famousTraders.length,
         missing_from_portfolio: famousTraders.length - (watchlist || []).filter((w: any) => ownedTickers.has(w.ticker) && w.sector === "Famous Traders").length,
-        top_missing: ftMissing,
+        top_missing: ftMissing.map((w: any) => ({
+          ...w,
+          grade: toNum(w.grade),
+          entry_price: toNum(w.entry_price),
+          target_price: toNum(w.target_price),
+          stop_loss: toNum(w.stop_loss),
+        })),
       },
       layer3: {
-        sector_momentum: sectorMomentum || [],
-        supply_chain: supplyChain,
+        sector_momentum: cleanSectorMomentum,
+        supply_chain: Object.fromEntries(
+          Object.entries(supplyChain).map(([k, v]) => [k, v.map((w: any) => ({
+            ...w,
+            grade: toNum(w.grade),
+            entry_price: toNum(w.entry_price),
+            target_price: toNum(w.target_price),
+            stop_loss: toNum(w.stop_loss),
+          }))])
+        ),
       },
       layer4: {
-        macro_signals: macroSignals || [],
-        weather_patterns: weatherPatterns || [],
+        macro_signals: cleanMacroSignals,
+        weather_patterns: cleanWeatherPatterns,
       },
       layer5: {
         regime,
@@ -145,7 +223,7 @@ export async function GET() {
         risk_off_count: riskOff,
       },
       layer6: {
-        latest_grades: latestGrades || [],
+        latest_grades: cleanGrades,
       },
     });
   } catch (error: any) {
