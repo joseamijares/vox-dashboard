@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
+import { VoxBadge } from "@/components/vox";
 import { AlertCircle, CheckCircle2, Layers, TrendingUp, TrendingDown, Wind, CloudSun } from "lucide-react";
 
 interface HarnessData {
@@ -138,9 +138,7 @@ export default async function HarnessPage() {
             <p className="text-neutral-500 text-xs uppercase tracking-wide">Sector Allocation</p>
             <div className="flex flex-wrap gap-1">
               {Object.entries(data.layer1.sector_allocation).map(([sector, pct]) => (
-                <Badge key={sector} variant="outline" className="text-xs">
-                  {sector}: {pct}%
-                </Badge>
+                <VoxBadge key={sector} variant="sector" label={`${sector}: ${pct}%`} />
               ))}
             </div>
             <p className="text-neutral-500 text-xs uppercase tracking-wide mt-2">Top Holdings</p>
@@ -165,9 +163,7 @@ export default async function HarnessPage() {
               {data.layer2.top_missing.slice(0, 5).map((w: any) => (
                 <div key={w.ticker} className="flex justify-between">
                   <span>{w.ticker}</span>
-                  <Badge variant="outline" className={`text-xs ${getGradeStyle(parseFloat(w.grade) || 0)}`}>
-                    {w.grade || "N/A"}
-                  </Badge>
+                  <VoxBadge grade={parseFloat(w.grade) || 0} />
                 </div>
               ))}
             </div>
@@ -181,10 +177,8 @@ export default async function HarnessPage() {
               <div key={s.sector} className="flex items-center justify-between">
                 <span className="truncate max-w-[140px]">{s.sector}</span>
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className={`text-xs ${getGradeStyle(s.momentum_score)}`}>
-                    {s.momentum_score}
-                  </Badge>
-                  <span className="text-xs text-neutral-500">{Array.isArray(s.top_tickers) ? s.top_tickers.slice(0, 3).join(", ") : ""}</span>
+                <VoxBadge grade={s.momentum_score} />
+                <span className="text-xs text-neutral-500">{Array.isArray(s.top_tickers) ? s.top_tickers.slice(0, 3).join(", ") : ""}</span>
                 </div>
               </div>
             ))}
@@ -263,7 +257,7 @@ export default async function HarnessPage() {
                     <tr key={g.ticker} className="border-b last:border-0">
                       <td className="py-2 font-medium">{g.ticker}</td>
                       <td className="py-2">
-                        <Badge className={getGradeStyle(parseFloat(g.vox_grade) || 0)}>{g.vox_grade}</Badge>
+                        <VoxBadge grade={parseFloat(g.vox_grade) || 0} />
                       </td>
                       <td className="py-2 text-neutral-600">{g.action}</td>
                       <td className="py-2 text-neutral-500">{g.technical_score}</td>
