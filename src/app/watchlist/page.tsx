@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { PageShell } from "@/components/vox-nav";
+import { VoxLoading, VoxError } from "@/components/vox";
 import { VoxBadge } from "@/components/vox";
 import { Search } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";

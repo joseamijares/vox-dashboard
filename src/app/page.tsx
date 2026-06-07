@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { PageShell } from "@/components/vox-nav";
-import { VoxCard, VoxBadge, VoxKpi } from "@/components/vox-card";
+import { VoxCard, VoxBadge as VoxBadgeCard, VoxKpi as VoxKpiCard } from "@/components/vox-card";
+import { VoxLoading, VoxError, VoxTable } from "@/components/vox";
 import { colors, getGradeStyle } from "@/lib/design-system";
 import { fmtCurrency } from "@/lib/format";
 import { getTotalValue, getTotalPnL, gradeMap, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
@@ -114,11 +115,7 @@ export default function Dashboard() {
   if (loading) {
     return (
       <PageShell>
-        <div className="flex items-center justify-center h-64">
-          <div className="animate-spin h-6 w-6 border-2 rounded-full mx-auto"
-            style={{ borderColor: colors.foreground, borderTopColor: "transparent" }}
-          />
-        </div>
+        <VoxLoading text="Loading dashboard..." />
       </PageShell>
     );
   }
@@ -126,12 +123,7 @@ export default function Dashboard() {
   if (error) {
     return (
       <PageShell>
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <AlertTriangle className="h-6 w-6 mx-auto mb-3" style={{ color: colors.loss }} />
-            <p style={{ color: colors.foreground }}>{error}</p>
-          </div>
-        </div>
+        <VoxError message={error} onRetry={() => window.location.reload()} />
       </PageShell>
     );
   }
@@ -264,24 +256,24 @@ export default function Dashboard() {
 
       {/* KPI ROW */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <VoxKpi
+        <VoxKpiCard
           label="Total AUM"
           value={fmtCurrency(totalValue)}
           sub={totalPnl >= 0 ? `+${fmtCurrency(totalPnl).replace("$", "")}` : `-${fmtCurrency(Math.abs(totalPnl)).replace("$", "")}`}
           subVariant={totalPnl >= 0 ? "profit" : "loss"}
           icon={totalPnl >= 0 ? <TrendingUp className="h-3 w-3" style={{ color: colors.profit }} /> : <TrendingDown className="h-3 w-3" style={{ color: colors.loss }} />}
         />
-        <VoxKpi
+        <VoxKpiCard
           label="Positions"
           value={`${positions.length > 0 ? positions.length : dashboardMeta.totalPositions}`}
           sub={`${trimPositions.length} TRIM · ${newOpportunities.length} BUY`}
         />
-        <VoxKpi
+        <VoxKpiCard
           label="USD / MXN"
           value={dashboardMeta.usdMxnRate.toFixed(2)}
           sub={dashboardMeta.usdMxnDate || "Today"}
         />
-        <VoxKpi
+        <VoxKpiCard
           label="Market Regime"
           value={regime.regime}
           sub={regime.bearish > regime.bullish ? `${regime.bearish} bearish vs ${regime.bullish} bullish signals` : `${regime.bullish} bullish vs ${regime.bearish} bearish signals`}
@@ -344,7 +336,7 @@ export default function Dashboard() {
                       </td>
                       <td className="p-3">
                         {p.grade > 0 ? (
-                          <VoxBadge variant="grade" grade={p.grade}>{p.grade}</VoxBadge>
+                          <VoxBadgeCard variant="grade" grade={p.grade}>{p.grade}</VoxBadgeCard>
                         ) : (
                           <span style={{ color: colors.mutedLight, fontSize: "12px" }}>—</span>
                         )}

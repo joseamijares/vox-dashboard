@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
+import { VoxLoading, VoxError, VoxTable } from "@/components/vox";
 import { useEffect, useState } from "react";
 import { RefreshCw, AlertTriangle, CheckCircle, XCircle, Clock, Wallet } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
@@ -109,24 +110,19 @@ export default function BrokersPage() {
   if (loading) {
     return (
       <PageShell>
-          <div className="flex items-center justify-center h-64">
-            <RefreshCw className="h-8 w-8 animate-spin text-muted-foreground" />
-          </div>
-        </PageShell>
+        <VoxLoading text="Loading broker data..." />
+      </PageShell>
     );
   }
 
   if (!data) {
     return (
       <PageShell>
-          <Card className="vox-card">
-            <CardContent className="p-8 text-center">
-              <AlertTriangle className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
-              <h2 className="text-lg font-semibold mb-2">No Broker Data</h2>
-              <p className="text-muted-foreground">Run broker sync to populate data.</p>
-            </CardContent>
-          </Card>
-        </PageShell>
+        <VoxError 
+          message="No broker data available. Run broker sync to populate data." 
+          onRetry={fetchData}
+        />
+      </PageShell>
     );
   }
 
@@ -257,44 +253,27 @@ export default function BrokersPage() {
         {health && (
           <>
             <h2 className="text-lg font-semibold mb-4">Health Checks</h2>
-            <Card className="vox-card mb-8">
-              <CardContent className="p-0">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-border">
-                        <th className="text-left p-4">Broker</th>
-                        <th className="text-left p-4">Status</th>
-                        <th className="text-right p-4">Response Time</th>
-                        <th className="text-right p-4">Checked At</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Object.entries(health.checks).map(([name, check]) => (
-                        <tr key={name} className="border-b border-border/50">
-                          <td className="p-4 font-semibold">{brokerNames[name] || name}</td>
-                          <td className="p-4">
-                            <Badge variant="outline" className={
-                              check.status === "healthy"
-                                ? "bg-green-500/10 text-green-400 border-green-500/20"
-                                : "bg-red-500/10 text-red-400 border-red-500/20"
-                            }>
-                              {check.status === "healthy" ? "✓" : "✗"} {check.status}
-                            </Badge>
-                          </td>
-                          <td className="p-4 text-right font-mono">
-                            {check.duration_ms ? `${check.duration_ms}ms` : "—"}
-                          </td>
-                          <td className="p-4 text-right text-muted-foreground">
-                            {formatTime(check.timestamp)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
+            <VoxTable
+              data={Object.entries(health.checks).map(([name, check]) => ({
+                name: brokerNames[name] || name,
+                status: check.status,
+                duration: check.duration_ms,
+                checkedAt: check.timestamp,
+              }))}
+              columns={[
+                { key: "name", header: "Broker", accessor: (r: any) => <span className="font-semibold">{r.name}</span> },
+                { key: "status", header: "Status", accessor: (r: any) => (
+                  <Badge variant="outline" className={r.status === "healthy" ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-red-500/10 text-red-400 border-red-500/20"}>
+                    {r.status === "healthy" ? "✓" : "✗"} {r.status}
+                  </Badge>
+                )},
+                { key: "duration", header: "Response Time", accessor: (r: any) => <span className="font-mono">{r.duration ? `${r.duration}ms` : "—"}</span>, align: "right" },
+                { key: "checkedAt", header: "Checked At", accessor: (r: any) => <span className="text-muted-foreground">{formatTime(r.checkedAt)}</span>, align: "right" },
+              ]}
+              keyExtractor={(r: any) => r.name}
+              searchable={false}
+              pageSize={10}
+            />
           </>
         )}
 
