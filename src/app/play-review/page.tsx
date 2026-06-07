@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { PageShell } from "@/components/vox-nav";
+import { VoxBadge } from "@/components/vox";
 import { useState } from "react";
 import { Star, ThumbsUp, ThumbsDown, Target, TrendingUp, TrendingDown, AlertTriangle, CheckCircle, XCircle } from "lucide-react";
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
+import { VoxBadge } from "@/components/vox";
 import { CloudRain, Sun, Thermometer, Wind, AlertTriangle, RefreshCw } from "lucide-react";
 
 interface WeatherRisk {

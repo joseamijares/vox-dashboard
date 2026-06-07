@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
+import { VoxBadge } from "@/components/vox";
 import { ArrowUp, ArrowDown, Minus, Target, AlertCircle } from "lucide-react";
 import { query } from "@/lib/db";
 

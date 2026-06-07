@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
+import { VoxBadge } from "@/components/vox";
 import { useState, useEffect } from "react";
 import { Clock, CheckCircle, XCircle, AlertCircle, Loader2, RefreshCw } from "lucide-react";
 

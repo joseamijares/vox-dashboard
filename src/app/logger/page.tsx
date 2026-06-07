@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/vox-nav";
+import { VoxBadge } from "@/components/vox";
 import { useState } from "react";
 import { Plus, Save } from "lucide-react";
 

@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
+import { VoxBadge } from "@/components/vox";
 import { BookOpen, Calendar, Loader2, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
 import { useState, useEffect } from "react";
