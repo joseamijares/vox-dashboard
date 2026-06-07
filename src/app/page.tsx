@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { PageShell } from "@/components/vox-nav";
 import { VoxCard, VoxBadge as VoxBadgeCard, VoxKpi as VoxKpiCard } from "@/components/vox-card";
 import { VoxLoading, VoxError, VoxTable } from "@/components/vox";
-import { colors, getGradeStyle } from "@/lib/design-system";
+import { getGradeStyle } from "@/lib/design-system";
 import { fmtCurrency } from "@/lib/format";
 import { getTotalValue, getTotalPnL, gradeMap, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import {
@@ -132,29 +132,21 @@ export default function Dashboard() {
     <PageShell>
       {/* Header */}
       <div className="mb-10">
-        <h1
-          className="font-semibold"
-          style={{
-            fontSize: "40px",
-            lineHeight: 1.2,
-            letterSpacing: "-2.4px",
-            color: colors.foreground,
-          }}
-        >
+        <h1 className="text-4xl font-semibold tracking-tight text-foreground">
           Today&apos;s Command Center
         </h1>
         <div className="flex items-center gap-3 mt-2">
-          <p style={{ color: colors.muted, fontSize: "14px" }}>
+          <p className="text-sm text-muted-foreground">
             {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", year: "numeric" })}
           </p>
           {isStale && (
-            <span className="flex items-center gap-1 text-xs" style={{ color: colors.warning }}>
+            <span className="flex items-center gap-1 text-xs text-warning">
               <AlertTriangle className="h-3 w-3" />
               Data is {dataAge}h old
             </span>
           )}
           {!isStale && dashboardMeta.generatedAt && (
-            <span className="flex items-center gap-1 text-xs" style={{ color: colors.profit }}>
+            <span className="flex items-center gap-1 text-xs text-profit">
               <Clock className="h-3 w-3" />
               Fresh — {dataAge}h ago
             </span>
@@ -166,10 +158,9 @@ export default function Dashboard() {
       {sellPositions.length > 0 && (
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
-            <ShieldAlert className="h-4 w-4" style={{ color: colors.loss }} />
+            <ShieldAlert className="h-4 w-4 text-loss" />
             <h2
-              className="text-sm font-semibold uppercase"
-              style={{ color: colors.loss, letterSpacing: "-0.32px" }}
+              className="text-sm font-semibold uppercase text-loss tracking-tight"
             >
               {sellPositions.length} Positions Require Action
             </h2>
@@ -181,7 +172,7 @@ export default function Dashboard() {
                 <VoxCard key={p.ticker} hover>
                   <div className="p-3">
                     <div className="flex justify-between items-start">
-                      <span className="font-mono text-sm font-semibold" style={{ color: colors.foreground }}>
+                      <span className="font-mono text-sm font-semibold text-foreground">
                         {p.ticker}
                       </span>
                       <span
@@ -191,7 +182,7 @@ export default function Dashboard() {
                         {p.grade}
                       </span>
                     </div>
-                    <p className="text-xs mt-1" style={{ color: colors.muted }}>
+                    <p className="text-xs mt-1 text-muted-foreground">
                       {fmtCurrency(p.value || p.live_value || 0)}
                     </p>
                   </div>
@@ -200,16 +191,15 @@ export default function Dashboard() {
             })}
           </div>
           <div className="flex justify-between items-center mt-3">
-            <span style={{ color: colors.muted, fontSize: "13px" }}>
+            <span className="text-muted-foreground text-[13px]">
               Cash freed if sold:{" "}
-              <span className="font-mono font-semibold" style={{ color: colors.loss }}>
+              <span className="font-mono font-semibold text-loss">
                 {fmtCurrency(sellValue)} USD
               </span>
             </span>
             <Link
               href="/plays"
-              className="flex items-center gap-1 text-sm hover:underline"
-              style={{ color: colors.accent }}
+              className="flex items-center gap-1 text-sm hover:underline text-accent"
             >
               Go to Plays <ChevronRight className="h-3 w-3" />
             </Link>
@@ -221,8 +211,8 @@ export default function Dashboard() {
       {newOpportunities.length > 0 && (
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
-            <Target className="h-4 w-4" style={{ color: colors.accent }} />
-            <h2 className="text-sm font-semibold uppercase" style={{ color: colors.accent, letterSpacing: "-0.32px" }}>
+            <Target className="h-4 w-4 text-accent" />
+            <h2 className="text-sm font-semibold uppercase text-accent tracking-tight">
               Top {Math.min(newOpportunities.length, 6)} New Opportunities
             </h2>
           </div>
@@ -233,12 +223,12 @@ export default function Dashboard() {
                 <VoxCard key={g.ticker} hover>
                   <div className="p-3">
                     <div className="flex justify-between items-start">
-                      <span className="font-mono text-sm font-semibold" style={{ color: colors.foreground }}>{g.ticker}</span>
+                      <span className="font-mono text-sm font-semibold text-foreground">{g.ticker}</span>
                       <span className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded" style={{ color: gradeStyle.color, background: gradeStyle.bg }}>
                         {g.vox_grade}
                       </span>
                     </div>
-                    <p className="text-xs mt-1" style={{ color: colors.muted }}>
+                    <p className="text-xs mt-1 text-muted-foreground">
                       Entry ${g.entry_point?.toFixed(2)} → Target ${(g.entry_point * 1.15)?.toFixed(2)}
                     </p>
                   </div>
@@ -247,7 +237,7 @@ export default function Dashboard() {
             })}
           </div>
           <div className="flex justify-end mt-3">
-            <Link href="/grades" className="flex items-center gap-1 text-sm hover:underline" style={{ color: colors.accent }}>
+            <Link href="/grades" className="flex items-center gap-1 text-sm hover:underline text-accent">
               View all opportunities <ChevronRight className="h-3 w-3" />
             </Link>
           </div>
@@ -261,7 +251,7 @@ export default function Dashboard() {
           value={fmtCurrency(totalValue)}
           sub={totalPnl >= 0 ? `+${fmtCurrency(totalPnl).replace("$", "")}` : `-${fmtCurrency(Math.abs(totalPnl)).replace("$", "")}`}
           subVariant={totalPnl >= 0 ? "profit" : "loss"}
-          icon={totalPnl >= 0 ? <TrendingUp className="h-3 w-3" style={{ color: colors.profit }} /> : <TrendingDown className="h-3 w-3" style={{ color: colors.loss }} />}
+          icon={totalPnl >= 0 ? <TrendingUp className="h-3 w-3 text-profit" /> : <TrendingDown className="h-3 w-3 text-loss" />}
         />
         <VoxKpiCard
           label="Positions"
@@ -285,27 +275,19 @@ export default function Dashboard() {
         {/* Top Holdings Table */}
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2 mb-4">
-            <BarChart3 className="h-4 w-4" style={{ color: colors.accent }} />
-            <h2
-              className="font-semibold"
-              style={{
-                fontSize: "24px",
-                letterSpacing: "-0.96px",
-                color: colors.foreground,
-              }}
-            >
+            <BarChart3 className="h-4 w-4 text-accent" />
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
               Top 10 Holdings
             </h2>
           </div>
           <VoxCard variant="stack">
             <table className="w-full text-sm">
               <thead>
-                <tr style={{ borderBottom: `1px solid ${colors.border}` }}>
+                <tr className="border-b border-border">
                   {["Ticker", "Value", "P&L", "Grade", "Broker"].map((h) => (
                     <th
                       key={h}
-                      className="text-left p-3 font-medium"
-                      style={{ color: colors.muted, fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.5px" }}
+                      className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wide"
                     >
                       {h}
                     </th>
@@ -318,18 +300,17 @@ export default function Dashboard() {
                   return (
                     <tr
                       key={p.ticker}
-                      style={{ borderBottom: `1px solid ${colors.border}` }}
+                      className="border-b border-border"
                     >
                       <td className="p-3">
-                        <span className="font-mono font-semibold text-sm" style={{ color: colors.foreground }}>{p.ticker}</span>
+                        <span className="font-mono font-semibold text-sm text-foreground">{p.ticker}</span>
                       </td>
-                      <td className="p-3 font-mono text-sm" style={{ color: colors.foreground }}>
+                      <td className="p-3 font-mono text-sm text-foreground">
                         {fmtCurrency(p.value || p.live_value || 0)}
                       </td>
                       <td className="p-3 text-right">
                         <span
-                          className="text-sm"
-                          style={{ color: (p.pnl_pct || 0) >= 0 ? colors.profit : colors.loss }}
+                          className={`text-sm ${(p.pnl_pct || 0) >= 0 ? "text-profit" : "text-loss"}`}
                         >
                           {p.avg_cost > 0 ? `${(p.pnl_pct || 0) >= 0 ? "+" : ""}${p.pnl_pct || 0}%` : "N/A"}
                         </span>
@@ -338,10 +319,10 @@ export default function Dashboard() {
                         {p.grade > 0 ? (
                           <VoxBadgeCard variant="grade" grade={p.grade}>{p.grade}</VoxBadgeCard>
                         ) : (
-                          <span style={{ color: colors.mutedLight, fontSize: "12px" }}>—</span>
+                          <span className="text-muted-foreground/50 text-xs">—</span>
                         )}
                       </td>
-                      <td className="p-3 text-xs" style={{ color: colors.muted }}>
+                      <td className="p-3 text-xs text-muted-foreground">
                         {(p.brokers || [p.broker]).join(", ")}
                       </td>
                     </tr>
@@ -351,8 +332,7 @@ export default function Dashboard() {
             </table>
             <Link
               href="/portfolio"
-              className="flex items-center gap-1 p-3 text-sm hover:underline transition-colors"
-              style={{ color: colors.accent, borderTop: `1px solid ${colors.border}` }}
+              className="flex items-center gap-1 p-3 text-sm hover:underline transition-colors text-accent border-t border-border"
             >
               View all {positions.length} positions <ChevronRight className="h-3 w-3" />
             </Link>
@@ -364,25 +344,24 @@ export default function Dashboard() {
           {/* Grade Distribution */}
           <VoxCard className="p-4">
             <h3
-              className="font-semibold mb-3"
-              style={{ fontSize: "13px", letterSpacing: "-0.32px", color: colors.foreground }}
+              className="font-semibold mb-3 text-[13px] tracking-tight text-foreground"
             >
               Grade Distribution
             </h3>
             <div className="space-y-2">
               {[
-                { label: "Core (70+)", count: corePositions.length, color: colors.gradeCore },
-                { label: "Buy (60-69)", count: holdPositions.length, color: colors.gradeBuy },
-                { label: "Hold (50-59)", count: trimPositions.length, color: colors.gradeHold },
-                { label: "Sell (<50)", count: sellPositions.length, color: colors.gradeSell },
-                { label: "Ungraded", count: ungradedPositions.length, color: colors.gradeUngraded },
+                { label: "Core (70+)", count: corePositions.length, color: "#00a86b" },
+                { label: "Buy (60-69)", count: holdPositions.length, color: "#0072f5" },
+                { label: "Hold (50-59)", count: trimPositions.length, color: "#f59e0b" },
+                { label: "Sell (<50)", count: sellPositions.length, color: "#dc2626" },
+                { label: "Ungraded", count: ungradedPositions.length, color: "#666666" },
               ].map((bucket) => (
                 <div key={bucket.label} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full" style={{ background: bucket.color }} />
-                    <span style={{ fontSize: "13px", color: colors.muted }}>{bucket.label}</span>
+                    <div className="w-2 h-2 rounded-full bg-current" />
+                    <span className="text-[13px] text-muted-foreground">{bucket.label}</span>
                   </div>
-                  <span className="font-mono text-sm" style={{ color: colors.foreground }}>{bucket.count}</span>
+                  <span className="font-mono text-sm text-foreground">{bucket.count}</span>
                 </div>
               ))}
             </div>
@@ -391,20 +370,19 @@ export default function Dashboard() {
           {/* By Broker */}
           <VoxCard className="p-4">
             <h3
-              className="font-semibold mb-3"
-              style={{ fontSize: "13px", letterSpacing: "-0.32px", color: colors.foreground }}
+              className="font-semibold mb-3 text-[13px] tracking-tight text-foreground"
             >
               By Broker
             </h3>
             <div className="space-y-2">
               {brokerBreakdown.map((b: any) => (
                 <div key={b.broker} className="flex items-center justify-between">
-                  <span style={{ fontSize: "13px", color: colors.muted }}>{b.broker}</span>
+                  <span className="text-[13px] text-muted-foreground">{b.broker}</span>
                   <div className="flex items-center gap-1">
-                    <span className="font-mono text-sm" style={{ color: colors.foreground }}>
+                    <span className="font-mono text-sm text-foreground">
                       {fmtCurrency(b.value)}
                     </span>
-                    {b.stale && <span style={{ color: colors.warning, fontSize: "11px" }}>⚠</span>}
+                    {b.stale && <span className="text-warning text-[11px]">⚠</span>}
                   </div>
                 </div>
               ))}
@@ -424,10 +402,10 @@ export default function Dashboard() {
           <Link key={link.href} href={link.href}>
             <VoxCard hover className="p-4">
               <div className="flex items-center gap-2 mb-2">
-                <link.icon className="h-4 w-4" style={{ color: colors.accent }} />
-                <span style={{ fontSize: "14px", fontWeight: 500, color: colors.foreground }}>{link.label}</span>
+                <link.icon className="h-4 w-4 text-accent" />
+                <span className="text-sm font-medium text-foreground">{link.label}</span>
               </div>
-              <p style={{ fontSize: "12px", color: colors.muted }}>{link.desc}</p>
+              <p className="text-xs text-muted-foreground">{link.desc}</p>
             </VoxCard>
           </Link>
         ))}

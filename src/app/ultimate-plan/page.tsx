@@ -148,7 +148,7 @@ export default function UltimatePlanPage() {
                             : "border-muted-foreground"
                         }`}
                       >
-                        {completed.has(`sell-${i}`) && <span className="text-white text-xs">✓</span>}
+                        {completed.has(`sell-${i}`) && <span className="text-primary-foreground text-xs">✓</span>}
                       </button>
                     </div>
                   </div>
@@ -182,7 +182,7 @@ export default function UltimatePlanPage() {
                           : "border-muted-foreground"
                       }`}
                     >
-                      {completed.has(`stop-${i}`) && <span className="text-white text-xs">✓</span>}
+                      {completed.has(`stop-${i}`) && <span className="text-primary-foreground text-xs">✓</span>}
                     </button>
                   </div>
                 </CardContent>
@@ -240,7 +240,7 @@ export default function UltimatePlanPage() {
                             : "border-muted-foreground"
                         }`}
                       >
-                        {completed.has(`buy-${i}`) && <span className="text-white text-xs">✓</span>}
+                        {completed.has(`buy-${i}`) && <span className="text-primary-foreground text-xs">✓</span>}
                       </button>
                     </div>
                   </div>
