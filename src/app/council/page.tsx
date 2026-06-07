@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
-import { VoxLoading, VoxError } from "@/components/vox";
-import { VoxBadge } from "@/components/vox";
+import { VoxLoading, VoxError, VoxBadge, VoxKpi } from "@/components/vox";
 
 interface CouncilVote {
   ticker: string;
@@ -61,32 +60,14 @@ export default function CouncilPage() {
         </div>
 
         {loading ? (
-          <div className="space-y-4">
-            <div className="h-8 w-64 bg-muted animate-pulse rounded" />
-            <div className="h-32 w-full bg-muted animate-pulse rounded" />
-          </div>
+          <VoxLoading text="Loading council votes..." />
         ) : (
           <div className="space-y-6">
             {/* Summary Cards */}
             <div className="grid grid-cols-3 gap-4">
-              <Card className="bg-green-500/10 border-green-500/20">
-                <CardContent className="pt-6">
-                  <div className="text-2xl font-bold text-green-400">{buyVotes.length}</div>
-                  <div className="text-sm text-muted-foreground">BUY Signals</div>
-                </CardContent>
-              </Card>
-              <Card className="bg-red-500/10 border-red-500/20">
-                <CardContent className="pt-6">
-                  <div className="text-2xl font-bold text-red-400">{sellVotes.length}</div>
-                  <div className="text-sm text-muted-foreground">SELL Signals</div>
-                </CardContent>
-              </Card>
-              <Card className="bg-yellow-500/10 border-yellow-500/20">
-                <CardContent className="pt-6">
-                  <div className="text-2xl font-bold text-yellow-400">{holdVotes.length}</div>
-                  <div className="text-sm text-muted-foreground">HOLD Signals</div>
-                </CardContent>
-              </Card>
+              <VoxKpi label="BUY Signals" value={buyVotes.length.toString()} subVariant="profit" />
+              <VoxKpi label="SELL Signals" value={sellVotes.length.toString()} subVariant="loss" />
+              <VoxKpi label="HOLD Signals" value={holdVotes.length.toString()} />
             </div>
 
             {/* Votes Table */}
@@ -107,9 +88,9 @@ export default function CouncilPage() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <span className="font-bold text-lg">{vote.ticker}</span>
-                            <Badge className={getSignalColor(vote.consensus)}>
+                            <VoxBadge variant={vote.consensus === "BUY" ? "profit" : vote.consensus === "SELL" ? "loss" : "warning"}>
                               {vote.consensus} ({vote.consensus_pct}%)
-                            </Badge>
+                            </VoxBadge>
                           </div>
                           {vote.dissent.length > 0 && (
                             <Badge variant="outline" className="text-orange-400 border-orange-400/30">

@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { PageShell } from "@/components/vox-nav";
-import { VoxLoading, VoxError } from "@/components/vox";
-import { VoxBadge } from "@/components/vox";
+import { VoxLoading, VoxError, VoxBadge, VoxKpi } from "@/components/vox";
 import { Search } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
 
@@ -44,10 +43,8 @@ export default function WatchlistPage() {
   if (loading) {
     return (
       <PageShell>
-          <div className="flex items-center justify-center h-64">
-            <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full" />
-          </div>
-        </PageShell>
+        <VoxLoading text="Loading watchlist..." />
+      </PageShell>
     );
   }
 
@@ -80,9 +77,7 @@ export default function WatchlistPage() {
                   <span className="font-mono font-semibold text-lg">{w.ticker}</span>
                   <p className="text-xs text-muted-foreground">{w.name || w.sector}</p>
                 </div>
-                <span className={`text-xs font-mono px-2 py-1 rounded border ${gradeColor(w.grade || 0)}`}>
-                  {w.grade || "—"}
-                </span>
+                <VoxBadge grade={w.grade || 0}>{w.grade || "—"}</VoxBadge>
               </div>
               <div className="grid grid-cols-3 gap-2 text-xs mt-3">
                 <div>

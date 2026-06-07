@@ -5,10 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PageShell } from "@/components/vox-nav";
-import { VoxLoading, VoxError } from "@/components/vox";
-import { VoxBadge } from "@/components/vox";
+import { VoxLoading, VoxError, VoxBadge, VoxTable, VoxKpi } from "@/components/vox";
 import { useState, useEffect } from "react";
-import { Search, TrendingUp, TrendingDown, Loader2, BarChart3, Activity } from "lucide-react";
+import { Search, TrendingUp, TrendingDown, BarChart3, Activity } from "lucide-react";
 
 interface Sp500Grade {
   ticker: string;
@@ -117,22 +116,16 @@ export default function ScreenerPage() {
   if (loading) {
     return (
       <PageShell>
-          <div className="flex flex-col items-center gap-3">
-            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-            <p className="text-muted-foreground text-sm">Loading S&P 500 data...</p>
-          </div>
-        </PageShell>
+        <VoxLoading text="Loading S&P 500 data..." />
+      </PageShell>
     );
   }
 
   if (error) {
     return (
       <PageShell>
-          <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
-            <p className="font-medium">Error loading S&P 500 screener</p>
-            <p className="text-sm">{error}</p>
-          </div>
-        </PageShell>
+        <VoxError message={error} onRetry={() => window.location.reload()} />
+      </PageShell>
     );
   }
 
@@ -157,12 +150,11 @@ export default function ScreenerPage() {
         {summary && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             {summary.distribution.map((d) => (
-              <Card key={d.bucket} className="vox-card">
-                <CardContent className="p-4">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{d.bucket}</p>
-                  <p className="text-2xl font-bold">{d.count}</p>
-                </CardContent>
-              </Card>
+              <VoxKpi
+                key={d.bucket}
+                label={d.bucket}
+                value={d.count.toString()}
+              />
             ))}
           </div>
         )}
@@ -201,9 +193,7 @@ export default function ScreenerPage() {
                         <span className="text-lg font-bold font-mono">{g.ticker}</span>
                         <p className="text-xs text-muted-foreground truncate max-w-[180px]">{g.name}</p>
                       </div>
-                      <Badge variant="outline" className={gradeBadgeClass(g.vox_grade)}>
-                        {gradeLabel(g.vox_grade)}
-                      </Badge>
+                      <VoxBadge grade={g.vox_grade}>{gradeLabel(g.vox_grade)}</VoxBadge>
                     </div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-3xl font-bold">{g.vox_grade}</span>

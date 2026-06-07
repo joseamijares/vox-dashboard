@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
-import { VoxLoading, VoxError } from "@/components/vox";
-import { VoxBadge } from "@/components/vox";
+import { VoxLoading, VoxError, VoxBadge, VoxKpi } from "@/components/vox";
 
 interface CouncilPlay {
   ticker: string;
@@ -75,19 +74,16 @@ export default function CouncilPlaysPage() {
   if (loading) {
     return (
       <PageShell>
-          <div className="space-y-4">
-            <div className="h-8 w-64 bg-muted animate-pulse rounded" />
-            <div className="h-32 w-full bg-muted animate-pulse rounded" />
-          </div>
-        </PageShell>
+        <VoxLoading text="Loading council plays..." />
+      </PageShell>
     );
   }
 
   if (!data) {
     return (
       <PageShell>
-          <p>No council plays generated yet</p>
-        </PageShell>
+        <VoxError message="No council plays generated yet" onRetry={() => window.location.reload()} />
+      </PageShell>
     );
   }
 
@@ -109,30 +105,10 @@ export default function CouncilPlaysPage() {
 
         {/* Summary */}
         <div className="grid grid-cols-4 gap-4 mb-6">
-          <Card className="bg-green-500/10 border-green-500/20">
-            <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-green-400">{approved.length}</div>
-              <div className="text-sm text-muted-foreground">Approved</div>
-            </CardContent>
-          </Card>
-          <Card className="bg-amber-500/10 border-amber-500/20">
-            <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-amber-400">{conditional.length}</div>
-              <div className="text-sm text-muted-foreground">Conditional</div>
-            </CardContent>
-          </Card>
-          <Card className="bg-blue-500/10 border-blue-500/20">
-            <CardContent className="pt-6">
-              <div className="text-2xl font-bold text-blue-400">{needHuman.length}</div>
-              <div className="text-sm text-muted-foreground">Need Your Approval</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="pt-6">
-              <div className="text-2xl font-bold">{data.positions_analyzed}</div>
-              <div className="text-sm text-muted-foreground">Analyzed</div>
-            </CardContent>
-          </Card>
+          <VoxKpi label="Approved" value={approved.length.toString()} subVariant="profit" />
+          <VoxKpi label="Conditional" value={conditional.length.toString()} subVariant="warning" />
+          <VoxKpi label="Need Your Approval" value={needHuman.length.toString()} subVariant="info" />
+          <VoxKpi label="Analyzed" value={data.positions_analyzed.toString()} />
         </div>
 
         {/* Plays */}
@@ -143,13 +119,11 @@ export default function CouncilPlaysPage() {
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <span className="font-bold text-lg">{play.ticker}</span>
-                    <Badge className={getConsensusColor(play.llm_council.consensus)}>
+                    <VoxBadge variant={play.llm_council.consensus === "APPROVE" ? "profit" : play.llm_council.consensus === "REJECT" ? "loss" : "warning"}>
                       {play.llm_council.consensus}
-                    </Badge>
+                    </VoxBadge>
                     {play.human_required && (
-                      <Badge variant="outline" className="text-blue-400 border-blue-500/30">
-                        👤 Needs You
-                      </Badge>
+                      <VoxBadge variant="info">👤 Needs You</VoxBadge>
                     )}
                   </div>
                   <div className="text-right">
@@ -194,19 +168,12 @@ export default function CouncilPlaysPage() {
                   <p className="text-xs text-muted-foreground mb-2">Council Votes:</p>
                   <div className="flex flex-wrap gap-2">
                     {play.llm_council.votes.map((vote, j) => (
-                      <Badge
+                      <VoxBadge
                         key={j}
-                        variant="outline"
-                        className={
-                          vote.vote === "APPROVE"
-                            ? "text-green-400 border-green-500/30"
-                            : vote.vote === "REJECT"
-                            ? "text-red-400 border-red-500/30"
-                            : "text-amber-400 border-amber-500/30"
-                        }
+                        variant={vote.vote === "APPROVE" ? "profit" : vote.vote === "REJECT" ? "loss" : "warning"}
                       >
                         {vote.agent}: {vote.vote} ({vote.confidence}%)
-                      </Badge>
+                      </VoxBadge>
                     ))}
                   </div>
                 </div>

@@ -171,7 +171,7 @@ export default async function SignalsPage() {
             <p className="text-sm text-neutral-500 mt-1">6-layer VOX composite scores — {signals.length} active signals</p>
           </div>
 
-          <Suspense fallback={<div className="text-center py-12 text-neutral-400">Loading trade signals...</div>}>
+          <Suspense fallback={<VoxLoading text="Loading trade signals..." />}>
             <SignalsList signals={signals} />
           </Suspense>
         </div>

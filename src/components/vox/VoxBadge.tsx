@@ -4,9 +4,10 @@ import { getGradeStyle, colors } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
 
 interface VoxBadgeProps {
+  children?: React.ReactNode;
   grade?: number;
   label?: string;
-  variant?: "grade" | "sector" | "status" | "custom";
+  variant?: "grade" | "sector" | "status" | "custom" | "profit" | "loss" | "warning" | "info" | "default";
   color?: string;
   bgColor?: string;
   className?: string;
@@ -37,6 +38,7 @@ const statusColors: Record<string, { color: string; bg: string }> = {
 };
 
 export function VoxBadge({
+  children,
   grade,
   label,
   variant = "grade",
@@ -44,21 +46,31 @@ export function VoxBadge({
   bgColor,
   className,
 }: VoxBadgeProps) {
-  let style: { color: string; bg: string; label: string } = { color: colors.muted, bg: colors.gradeUngradedSoft, label: "—" };
+  let style: { color: string; bg: string; label: React.ReactNode } = { color: colors.muted, bg: colors.gradeUngradedSoft, label: children || label || "—" };
 
   if (variant === "grade" && grade !== undefined) {
     const gradeStyle = getGradeStyle(grade);
-    style = { ...gradeStyle, label: gradeStyle.label };
+    style = { ...gradeStyle, label: children || gradeStyle.label };
   } else if (variant === "sector" && label) {
     const sector = sectorColors[label] || { color: colors.muted, bg: colors.gradeUngradedSoft };
-    style = { ...sector, label };
+    style = { ...sector, label: children || label };
   } else if (variant === "status" && label) {
     const status = statusColors[label.toLowerCase()] || { color: colors.muted, bg: colors.gradeUngradedSoft };
-    style = { ...status, label };
+    style = { ...status, label: children || label };
   } else if (variant === "custom" && color && bgColor) {
-    style = { color, bg: bgColor, label: label || "—" };
+    style = { color, bg: bgColor, label: children || label || "—" };
+  } else if (variant === "profit") {
+    style = { color: colors.profit, bg: colors.profitSoft, label: children || label || "—" };
+  } else if (variant === "loss") {
+    style = { color: colors.loss, bg: colors.lossSoft, label: children || label || "—" };
+  } else if (variant === "warning") {
+    style = { color: colors.warning, bg: "rgba(245, 158, 11, 0.10)", label: children || label || "—" };
+  } else if (variant === "info") {
+    style = { color: colors.accent, bg: colors.accentSoft, label: children || label || "—" };
+  } else if (variant === "default") {
+    style = { color: colors.muted, bg: colors.gradeUngradedSoft, label: children || label || "—" };
   } else if (label) {
-    style = { ...style, label };
+    style = { ...style, label: children || label };
   }
 
   return (

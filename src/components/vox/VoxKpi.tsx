@@ -8,6 +8,8 @@ interface VoxKpiProps {
   value: string | number;
   change?: number;
   changeType?: "positive" | "negative" | "neutral";
+  sub?: string;
+  subVariant?: "profit" | "loss" | "warning" | "info" | "muted";
   prefix?: string;
   suffix?: string;
   className?: string;
@@ -19,6 +21,8 @@ export function VoxKpi({
   value,
   change,
   changeType = "neutral",
+  sub,
+  subVariant = "muted",
   prefix = "",
   suffix = "",
   className,
@@ -33,6 +37,13 @@ export function VoxKpi({
 
   const changeIcon =
     changeType === "positive" ? "↑" : changeType === "negative" ? "↓" : "—";
+
+  const subColor =
+    subVariant === "profit" ? colors.profit :
+    subVariant === "loss" ? colors.loss :
+    subVariant === "warning" ? colors.warning :
+    subVariant === "info" ? colors.accent :
+    colors.muted;
 
   return (
     <div
@@ -64,6 +75,11 @@ export function VoxKpi({
         <span className="text-xs font-medium" style={{ color: changeColor }}>
           {changeIcon} {change > 0 ? "+" : ""}
           {change.toFixed(2)}%
+        </span>
+      )}
+      {sub && !loading && (
+        <span className="text-xs font-medium" style={{ color: subColor }}>
+          {sub}
         </span>
       )}
     </div>
