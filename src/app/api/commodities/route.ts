@@ -8,7 +8,13 @@ export async function GET() {
       FROM commodity_prices
       ORDER BY symbol, created_at DESC
     `);
-    return NextResponse.json({ commodities: rows });
+    // Convert numeric strings to numbers for frontend
+    const commodities = rows.map((row: any) => ({
+      ...row,
+      price: row.price !== null ? parseFloat(row.price) : null,
+      change_pct: row.change_pct !== null ? parseFloat(row.change_pct) : null,
+    }));
+    return NextResponse.json({ commodities });
   } catch (error) {
     console.error("Error fetching commodities:", error);
     return NextResponse.json({ error: "Failed to fetch commodities" }, { status: 500 });
