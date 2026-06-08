@@ -220,14 +220,42 @@
 .grade-core { color: #00a86b; background: rgba(0, 168, 107, 0.10); }
 .grade-buy { color: #0072f5; background: rgba(0, 114, 245, 0.10); }
 .grade-hold { color: #f59e0b; background: rgba(245, 158, 11, 0.10); }
+.grade-trim { color: #f97316; background: rgba(249, 115, 22, 0.10); }
 .grade-sell { color: #dc2626; background: rgba(220, 38, 38, 0.10); }
 .grade-ungraded { color: #666666; background: rgba(0, 0, 0, 0.04); }
 
 .dark .grade-core { color: #00c087; background: rgba(0, 192, 135, 0.10); }
 .dark .grade-buy { color: #3b82f6; background: rgba(59, 130, 246, 0.10); }
 .dark .grade-hold { color: #f59e0b; background: rgba(245, 158, 11, 0.10); }
+.dark .grade-trim { color: #f97316; background: rgba(249, 115, 22, 0.10); }
 .dark .grade-sell { color: #f6465d; background: rgba(246, 70, 93, 0.10); }
 .dark .grade-ungraded { color: #94a3b8; background: rgba(255, 255, 255, 0.04); }
+
+/* Grade text utilities */
+.text-grade-core { color: #00a86b; }
+.text-grade-buy { color: #0072f5; }
+.text-grade-hold { color: #f59e0b; }
+.text-grade-trim { color: #f97316; }
+.text-grade-sell { color: #dc2626; }
+
+.dark .text-grade-core { color: #00c087; }
+.dark .text-grade-buy { color: #3b82f6; }
+.dark .text-grade-hold { color: #f59e0b; }
+.dark .text-grade-trim { color: #f97316; }
+.dark .text-grade-sell { color: #f6465d; }
+
+/* Grade background utilities */
+.bg-grade-core-soft { background: rgba(0, 168, 107, 0.10); }
+.bg-grade-buy-soft { background: rgba(0, 114, 245, 0.10); }
+.bg-grade-hold-soft { background: rgba(245, 158, 11, 0.10); }
+.bg-grade-trim-soft { background: rgba(249, 115, 22, 0.10); }
+.bg-grade-sell-soft { background: rgba(220, 38, 38, 0.10); }
+
+.dark .bg-grade-core-soft { background: rgba(0, 192, 135, 0.10); }
+.dark .bg-grade-buy-soft { background: rgba(59, 130, 246, 0.10); }
+.dark .bg-grade-hold-soft { background: rgba(245, 158, 11, 0.10); }
+.dark .bg-grade-trim-soft { background: rgba(249, 115, 22, 0.10); }
+.dark .bg-grade-sell-soft { background: rgba(246, 70, 93, 0.10); }
 
 /* Section divider */
 .section-divider {
