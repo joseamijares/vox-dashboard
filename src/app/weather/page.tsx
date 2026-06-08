@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
-import { VoxBadge } from "@/components/vox";
+import { VoxBadge, VoxLoading } from "@/components/vox";
 import { CloudRain, Sun, Thermometer, Wind, AlertTriangle, RefreshCw } from "lucide-react";
 
 interface WeatherRisk {
@@ -82,7 +82,7 @@ export default function WeatherPage() {
           </div>
 
           {loading ? (
-            <div className="text-center py-12 text-neutral-400">Loading weather data...</div>
+            <VoxLoading text="Loading weather data..." />
           ) : risks.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">

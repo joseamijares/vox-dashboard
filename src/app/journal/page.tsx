@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
-import { VoxBadge } from "@/components/vox";
+import { VoxBadge, VoxLoading } from "@/components/vox";
 import { BookOpen, Calendar, Loader2, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { fmtCurrency } from "@/lib/format";
 import { useState, useEffect } from "react";
@@ -70,12 +70,7 @@ export default function JournalPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
-          <p className="text-muted-foreground">Loading journal...</p>
-        </div>
-      </div>
+      <VoxLoading text="Loading journal..." />
     );
   }
 

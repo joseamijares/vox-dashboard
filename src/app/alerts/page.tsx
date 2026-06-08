@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { PageShell } from "@/components/vox-nav";
 import { ShieldAlert, AlertTriangle, Bell } from "lucide-react";
-import { fmtCurrency } from "@/lib/format";
-
+import { VoxLoading } from "@/components/vox";
 export default function AlertsPage() {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,10 +33,8 @@ export default function AlertsPage() {
   if (loading) {
     return (
       <PageShell>
-          <div className="flex items-center justify-center h-64">
-            <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full" />
-          </div>
-        </PageShell>
+        <VoxLoading text="Loading alerts..." />
+      </PageShell>
     );
   }
 

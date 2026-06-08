@@ -1,4 +1,5 @@
 "use client";
+import { VoxLoading } from "@/components/vox";
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -63,7 +64,7 @@ export default function SupplyChainPage() {
           </div>
 
           {loading ? (
-            <div className="text-center py-12 text-neutral-400">Loading commodity data...</div>
+            <VoxLoading text="Loading commodity data..." />
           ) : commodities.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">

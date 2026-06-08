@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
-import { VoxBadge } from "@/components/vox";
+import { VoxBadge, VoxLoading } from "@/components/vox";
 import { Globe, AlertTriangle, Shield, RefreshCw } from "lucide-react";
 
 interface GeoEvent {
@@ -69,7 +69,7 @@ export default function GeopoliticalPage() {
           </div>
 
           {loading ? (
-            <div className="text-center py-12 text-neutral-400">Loading geopolitical data...</div>
+            <VoxLoading text="Loading geopolitical data..." />
           ) : events.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">

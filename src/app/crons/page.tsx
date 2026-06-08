@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageShell } from "@/components/vox-nav";
-import { VoxBadge } from "@/components/vox";
+import { VoxBadge, VoxLoading } from "@/components/vox";
 import { useState, useEffect } from "react";
 import { Clock, CheckCircle, XCircle, AlertCircle, Loader2, RefreshCw } from "lucide-react";
 
@@ -110,12 +110,7 @@ export default function CronsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center pt-14 lg:pt-0">
-        <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
-          <p className="text-muted-foreground">Loading cron status...</p>
-        </div>
-      </div>
+      <VoxLoading text="Loading cron status..." />
     );
   }
 
