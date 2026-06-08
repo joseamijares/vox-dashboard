@@ -1,5 +1,6 @@
 import { Pool } from "pg";
 import { readFileSync } from "fs";
+import { getCouncilAction } from "./council";
 
 // Try to read password from a file (set by startup script)
 let pgPassword = "";
@@ -106,7 +107,8 @@ export async function getJournal() {
 }
 
 // Update position grade
-export async function updatePositionGrade(ticker: string, grade: number, action: string) {
+export async function updatePositionGrade(ticker: string, grade: number, _action?: string) {
+  const action = getCouncilAction(grade);
   await query(
     `UPDATE positions SET grade = $1, council = $2, updated_at = NOW() WHERE ticker = $3`,
     [grade, action, ticker]

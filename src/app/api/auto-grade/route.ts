@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { query } from "@/lib/db";
+import { getCouncilAction } from "@/lib/council";
 
 // Full 6-layer VOX grading for new positions
 async function calculateVoxGrade(ticker: string, sector: string, livePrice: number): Promise<{
@@ -42,12 +43,8 @@ async function calculateVoxGrade(ticker: string, sector: string, livePrice: numb
 
   const grade = Math.round((technical + fundamental + macro + sector_score + weather + sentiment) / 6);
 
-  let action = "HOLD";
-  if (grade >= 80) action = "TRIM";
-  else if (grade >= 75) action = "HOLD";
-  else if (grade >= 65) action = "HOLD";
-  else if (grade >= 55) action = "WATCH";
-  else action = "CUT";
+  // Use unified council logic
+  const action = getCouncilAction(grade);
 
   const stopLoss = Math.round(livePrice * 0.85 * 100) / 100;
   const entryPoint = Math.round(livePrice * 0.95 * 100) / 100;

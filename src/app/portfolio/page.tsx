@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { PageShell } from "@/components/vox-nav";
 import { VoxBadge } from "@/components/vox";
+import { getCouncilAction } from "@/lib/council";
 import { getPositions, getTotalValue, getTotalPnL, getAvgGrade, getBrokerBreakdown, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import { useState, useMemo, useEffect } from "react";
 import { Search, TrendingUp, TrendingDown, AlertTriangle, Loader2 } from "lucide-react";
@@ -110,11 +111,7 @@ export default function PortfolioPage() {
   };
 
   const actionLabel = (grade: number) => {
-    if (grade >= 70) return "BUY";
-    if (grade >= 60) return "HOLD";
-    if (grade >= 50) return "HOLD";
-    if (grade >= 40) return "TRIM";
-    return "SELL";
+    return getCouncilAction(grade);
   };
 
   // Format currency with 2 decimal places

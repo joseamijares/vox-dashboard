@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageShell } from "@/components/vox-nav";
 import { VoxBadge } from "@/components/vox";
+import { getCouncilAction } from "@/lib/council";
 import { AlertCircle, CheckCircle2, Layers, TrendingUp, TrendingDown, Wind, CloudSun } from "lucide-react";
 
 interface HarnessData {
@@ -97,9 +98,10 @@ function LayerCard({
 }
 
 function getGradeStyle(grade: number) {
-  if (grade >= 80) return "bg-emerald-100 text-emerald-700 border-emerald-200";
+  if (grade >= 70) return "bg-emerald-100 text-emerald-700 border-emerald-200";
   if (grade >= 60) return "bg-blue-100 text-blue-700 border-blue-200";
-  if (grade >= 45) return "bg-amber-100 text-amber-700 border-amber-200";
+  if (grade >= 50) return "bg-amber-100 text-amber-700 border-amber-200";
+  if (grade >= 45) return "bg-orange-100 text-orange-700 border-orange-200";
   return "bg-red-100 text-red-700 border-red-200";
 }
 
@@ -259,7 +261,7 @@ export default async function HarnessPage() {
                       <td className="py-2">
                         <VoxBadge grade={parseFloat(g.vox_grade) || 0} />
                       </td>
-                      <td className="py-2 text-neutral-600">{g.action}</td>
+                      <td className="py-2 text-neutral-600">{getCouncilAction(parseFloat(g.vox_grade) || 0)}</td>
                       <td className="py-2 text-neutral-500">{g.technical_score}</td>
                       <td className="py-2 text-neutral-500">{g.fundamental_score}</td>
                       <td className="py-2 text-neutral-500">{g.macro_score}</td>
