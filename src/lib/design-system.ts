@@ -166,6 +166,7 @@ export const navSections = [
       { href: "/sentiment", label: "Sentiment" },
       { href: "/regime", label: "Regime" },
       { href: "/risk", label: "Risk" },
+      { href: "/trump-tracker", label: "Trump Tracker" },
     ],
   },
   {

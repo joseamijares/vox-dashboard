@@ -9,7 +9,7 @@ import {
   LayoutDashboard, Target, Brain, Briefcase, Wallet,
   TrendingUp, Bot, Clock, Shield, Activity, BarChart3,
   AlertTriangle, Scale, Search, Bitcoin, BookOpen,
-  Newspaper, Settings, Menu, X,
+  Newspaper, Settings, Menu, X, Megaphone,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,6 +26,7 @@ const iconMap: Record<string, React.ElementType> = {
   Sentiment: Activity,
   Regime: BarChart3,
   Risk: AlertTriangle,
+  "Trump Tracker": Megaphone,
   Sizer: Scale,
   Screener: Search,
   Crypto: Bitcoin,
