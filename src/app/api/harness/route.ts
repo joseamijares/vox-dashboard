@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // Portfolio state
     const positions = await query(`
-      SELECT ticker, shares, live_price, live_value, grade, council, sector
+      SELECT ticker, shares, live_price, live_value, grade, council, sector, currency
       FROM positions
       ORDER BY live_value DESC
     `);
@@ -59,15 +59,22 @@ export async function GET() {
       ORDER BY ticker, generated_at DESC
     `);
 
-    const aum = (positions || []).reduce((sum: number, p: any) => sum + (parseFloat(p.live_value) || 0), 0);
+    // AUM: Convert MXN to USD (rate ~17.5) before summing
+    const aum = (positions || []).reduce((sum: number, p: any) => {
+      const val = parseFloat(p.live_value) || 0;
+      const currency = p.currency || "USD";
+      return sum + (currency === "MXN" ? val / 17.5 : val);
+    }, 0);
     const graded = (positions || []).filter((p: any) => p.grade && parseFloat(p.grade) > 0);
     const weak = (positions || []).filter((p: any) => p.grade && parseFloat(p.grade) < 45);
 
-    // Sector allocation
+    // Sector allocation (with currency conversion)
     const sectors: Record<string, number> = {};
     for (const p of positions || []) {
       const s = p.sector || "Unclassified";
-      sectors[s] = (sectors[s] || 0) + (parseFloat(p.live_value) || 0);
+      const val = parseFloat(p.live_value) || 0;
+      const currency = p.currency || "USD";
+      sectors[s] = (sectors[s] || 0) + (currency === "MXN" ? val / 17.5 : val);
     }
     const sectorPct: Record<string, number> = {};
     for (const [s, v] of Object.entries(sectors)) {
