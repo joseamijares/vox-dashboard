@@ -4,13 +4,11 @@ import { query } from "@/lib/db";
 export async function GET() {
   try {
     // Portfolio stats — council thresholds: SELL<45, TRIM=45-49, HOLD=50-59, BUY=60-69, CORE=70+
-    // AUM: Convert MXN to USD (rate ~17.5) before summing
+    // AUM: live_value is already in account base currency (USD-equivalent)
+    // currency=MXN indicates broker account, not value currency
     const positions = await query(`
       SELECT COUNT(*) as count, 
-             SUM(CASE 
-               WHEN currency = 'MXN' THEN live_value / 17.5 
-               ELSE live_value 
-             END) as total_value,
+             SUM(live_value) as total_value,
              AVG(grade) as avg_grade,
              COUNT(CASE WHEN grade >= 70 THEN 1 END) as core_count,
              COUNT(CASE WHEN grade >= 60 AND grade < 70 THEN 1 END) as buy_count,

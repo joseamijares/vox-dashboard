@@ -59,24 +59,17 @@ export async function GET() {
       ORDER BY ticker, generated_at DESC
     `);
 
-    // AUM: Convert MXN to USD (rate ~17.5) before summing
-    const aum = (positions || []).reduce((sum: number, p: any) => {
-      const val = parseFloat(p.live_value) || 0;
-      const currency = p.currency || "USD";
-      return sum + (currency === "MXN" ? val / 17.5 : val);
-    }, 0);
+    // AUM: live_value is already in account base currency (USD-equivalent)
+    const aum = (positions || []).reduce((sum: number, p: any) => sum + (parseFloat(p.live_value) || 0), 0);
     const graded = (positions || []).filter((p: any) => p.grade && parseFloat(p.grade) > 0);
     const weak = (positions || []).filter((p: any) => p.grade && parseFloat(p.grade) < 45);
 
-    // Sector allocation (with currency conversion)
+    // Sector allocation
     const sectors: Record<string, number> = {};
     for (const p of positions || []) {
-      const s = p.sector || "Unclassified";
-      const val = parseFloat(p.live_value) || 0;
-      const currency = p.currency || "USD";
-      sectors[s] = (sectors[s] || 0) + (currency === "MXN" ? val / 17.5 : val);
+      const sector = p.sector || "Unknown";
+      sectors[sector] = (sectors[sector] || 0) + (parseFloat(p.live_value) || 0);
     }
-    const sectorPct: Record<string, number> = {};
     for (const [s, v] of Object.entries(sectors)) {
       sectorPct[s] = aum ? Math.round((v / aum) * 1000) / 10 : 0;
     }
