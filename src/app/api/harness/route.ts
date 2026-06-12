@@ -70,6 +70,7 @@ export async function GET() {
       const sector = p.sector || "Unknown";
       sectors[sector] = (sectors[sector] || 0) + (parseFloat(p.live_value) || 0);
     }
+    const sectorPct: Record<string, number> = {};
     for (const [s, v] of Object.entries(sectors)) {
       sectorPct[s] = aum ? Math.round((v / aum) * 1000) / 10 : 0;
     }
