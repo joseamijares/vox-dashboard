@@ -126,13 +126,12 @@ export function getGradeStyle(grade: number) {
 }
 
 // ── Navigation Data (single source) ──
+// Consolidated to only pages we actually use
 export const navSections = [
   {
-    title: "Command",
+    title: "Overview",
     items: [
       { href: "/", label: "Dashboard" },
-      { href: "/plan", label: "Plan" },
-      { href: "/intelligence", label: "Intelligence" },
     ],
   },
   {
@@ -141,53 +140,21 @@ export const navSections = [
       { href: "/portfolio", label: "Positions" },
       { href: "/brokers", label: "Brokers" },
       { href: "/plays", label: "Plays" },
-      { href: "/performance", label: "Performance" },
       { href: "/watchlist", label: "Watchlist" },
-      { href: "/paper-trading", label: "Paper Trading" },
     ],
   },
   {
     title: "Analysis",
     items: [
-      { href: "/screener", label: "Screener" },
       { href: "/grades", label: "Grades" },
-      { href: "/analysis", label: "Analysis" },
+      { href: "/screener", label: "Screener" },
       { href: "/alerts", label: "Alerts" },
-      { href: "/predictions", label: "Predictions" },
-    ],
-  },
-  {
-    title: "Agents",
-    items: [
-      { href: "/agents", label: "Agents" },
-      { href: "/crons", label: "Crons" },
-      { href: "/council", label: "Council" },
-      { href: "/council-plays", label: "Council Plays" },
-      { href: "/sentiment", label: "Sentiment" },
-      { href: "/regime", label: "Regime" },
-      { href: "/risk", label: "Risk" },
-      { href: "/trump-tracker", label: "Trump Tracker" },
-    ],
-  },
-  {
-    title: "Macro",
-    items: [
-      { href: "/weather", label: "Weather" },
-      { href: "/geopolitical", label: "Geopolitical" },
-      { href: "/supply-chain", label: "Supply Chain" },
-      { href: "/sector-macro", label: "Sector Macro" },
-      { href: "/signals", label: "Signals" },
-      { href: "/harness", label: "Harness" },
     ],
   },
   {
     title: "Journal",
     items: [
       { href: "/journal", label: "Journal" },
-      { href: "/digest", label: "Digest" },
-      { href: "/briefing", label: "Briefing" },
-      { href: "/logger", label: "Logger" },
-      { href: "/debrief", label: "Debrief" },
     ],
   },
 ] as const;
