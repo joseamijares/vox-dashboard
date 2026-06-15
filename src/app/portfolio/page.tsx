@@ -25,6 +25,7 @@ export default function PortfolioPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [brokerFilter, setBrokerFilter] = useState("all");
+  const [gradeFilter, setGradeFilter] = useState<"all" | "buy" | "hold" | "trim" | "sell">("all");
   const [sortBy, setSortBy] = useState<"value" | "pnl" | "grade" | "ticker" | "broker">("value");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
@@ -73,7 +74,12 @@ export default function PortfolioPage() {
       const matchesBroker = brokerFilter === "all" || 
         (p.brokers && p.brokers.includes(brokerFilter)) ||
         p.broker === brokerFilter;
-      return matchesSearch && matchesBroker;
+      const matchesGrade = gradeFilter === "all" ||
+        (gradeFilter === "buy" && p.grade >= 60) ||
+        (gradeFilter === "hold" && p.grade >= 50 && p.grade < 60) ||
+        (gradeFilter === "trim" && p.grade >= 40 && p.grade < 50) ||
+        (gradeFilter === "sell" && p.grade < 40);
+      return matchesSearch && matchesBroker && matchesGrade;
     });
 
     result.sort((a: any, b: any) => {
@@ -93,7 +99,7 @@ export default function PortfolioPage() {
     });
 
     return result;
-  }, [allPositions, search, brokerFilter, sortBy, sortDir]);
+  }, [allPositions, search, brokerFilter, gradeFilter, sortBy, sortDir]);
 
   const gradeColor = (grade: number) => {
     if (grade >= 70) return "bg-green-500/20 text-green-400 border-green-500/30";
@@ -303,6 +309,18 @@ export default function PortfolioPage() {
               {allBrokers.map((b) => (
                 <SelectItem key={b} value={b}>{b}</SelectItem>
               ))}
+            </SelectContent>
+          </Select>
+          <Select value={gradeFilter} onValueChange={(v) => setGradeFilter(v || "all")}>
+            <SelectTrigger className="w-[160px]">
+              <SelectValue placeholder="Grade" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Grades</SelectItem>
+              <SelectItem value="buy">Buy (60+)</SelectItem>
+              <SelectItem value="hold">Hold (50-59)</SelectItem>
+              <SelectItem value="trim">Trim (40-49)</SelectItem>
+              <SelectItem value="sell">Sell (0-39)</SelectItem>
             </SelectContent>
           </Select>
           <Select value={sortBy} onValueChange={(v) => {
