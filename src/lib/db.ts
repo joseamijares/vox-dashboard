@@ -54,9 +54,11 @@ export async function query(text: string, params?: any[]) {
 
 export async function getPositions() {
   const rows = await query(`
-    SELECT ticker, shares, avg_cost, live_price, live_value, grade, council, brokers, sector, updated_at
-    FROM positions
-    ORDER BY live_value DESC
+    SELECT p.ticker, p.shares, p.avg_cost, p.live_price, p.live_value, p.grade, p.council, p.brokers, p.sector, p.updated_at,
+           COALESCE(u.security, p.ticker) as name
+    FROM positions p
+    LEFT JOIN sp500_universe u ON p.ticker = u.ticker AND u.is_active = true
+    ORDER BY p.live_value DESC
   `);
   return rows.map((row: any) =>
     parseRow(row, ["shares", "avg_cost", "live_price", "live_value", "grade"])
@@ -164,10 +166,10 @@ export async function getSp500Grades(): Promise<Record<string, any>[]> {
 
 export async function getSp500SectorLeaders(): Promise<Record<string, any>[]> {
   const rows = await query(`
-    SELECT sector, ticker, rank, change_5d_pct, avg_volume_m, momentum_score, created_at
+    SELECT sector, ticker, rank_in_sector as rank, price_change_pct as change_5d_pct, avg_volume as avg_volume_m, momentum_score, screened_at as created_at
     FROM sp500_sector_leaders
-    WHERE created_at = (SELECT MAX(created_at) FROM sp500_sector_leaders)
-    ORDER BY sector, rank
+    WHERE screened_at = (SELECT MAX(screened_at) FROM sp500_sector_leaders)
+    ORDER BY sector, rank_in_sector
   `);
   return rows.map((row: any) =>
     parseRow(row, ["rank", "change_5d_pct", "avg_volume_m", "momentum_score"])
