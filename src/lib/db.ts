@@ -219,8 +219,8 @@ export async function getSp500GradeDistribution(): Promise<Record<string, any>[]
       MIN(vox_grade) as min_grade,
       MAX(vox_grade) as max_grade
     FROM sp500_grades
-    GROUP BY bucket
-    ORDER BY MIN(vox_grade) DESC
+    GROUP BY 1
+    ORDER BY 3 DESC
   `);
   return rows.map((row: any) =>
     parseRow(row, ["count", "min_grade", "max_grade"])
