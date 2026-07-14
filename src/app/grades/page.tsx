@@ -52,7 +52,7 @@ export default async function GradesPage() {
   return (
     <PageShell
       title="Grades"
-      subtitle="Latest-per-ticker layers · portfolio-first"
+      subtitle="Hygiene ranking only — not auto-trade. Latest-per-ticker · portfolio-first"
     >
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         <VoxKpi label="Held graded" value={held.length} />
