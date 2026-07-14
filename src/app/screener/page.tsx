@@ -1,26 +1,26 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useEffect, useMemo, useState } from "react";
 import { PageShell } from "@/components/vox-nav";
-import { VoxLoading, VoxError, VoxBadge, VoxTable, VoxKpi } from "@/components/vox";
-import { useState, useEffect } from "react";
-import { Search, TrendingUp, TrendingDown, BarChart3, Activity } from "lucide-react";
+import { VoxBadge, VoxError, VoxKpi, VoxLoading } from "@/components/vox";
+import { typography } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
+import { Search } from "lucide-react";
 
-interface Sp500Grade {
+interface GradeRow {
   ticker: string;
-  name: string;
-  sector: string;
+  name?: string;
+  sector?: string;
   vox_grade: number;
-  technical_score: number;
-  fundamental_score: number;
-  macro_score: number;
-  sector_score: number;
-  weather_score: number;
-  sentiment_score: number;
-  computed_at: string;
+  technical_score?: number;
+  fundamental_score?: number;
+  macro_score?: number;
+  sector_score?: number;
+  weather_score?: number;
+  sentiment_score?: number;
+  in_portfolio?: boolean;
+  portfolio_value?: number;
+  computed_at?: string;
 }
 
 interface SectorLeader {
@@ -31,230 +31,350 @@ interface SectorLeader {
   momentum_score: number;
 }
 
-interface Distribution {
-  bucket: string;
-  count: number;
-}
-
-interface Summary {
-  universeCount: number;
-  gradesCount: number;
-  leadersCount: number;
-  distribution: Distribution[];
-  top10: Sp500Grade[];
-  bottom10: Sp500Grade[];
-  lastUpdated: string;
-}
-
-function gradeBadgeClass(grade: number) {
-  if (grade >= 70) return "bg-green-500/20 text-green-600 border-green-500/30";
-  if (grade >= 60) return "bg-blue-500/20 text-blue-600 border-blue-500/30";
-  if (grade >= 50) return "bg-yellow-500/20 text-yellow-600 border-yellow-500/30";
-  if (grade >= 40) return "bg-orange-500/20 text-orange-600 border-orange-500/30";
-  return "bg-red-500/20 text-red-600 border-red-500/30";
-}
-
-function gradeLabel(grade: number) {
-  if (grade >= 70) return "STRONG BUY";
-  if (grade >= 60) return "BUY";
-  if (grade >= 50) return "HOLD";
-  if (grade >= 40) return "TRIM";
-  return "SELL";
-}
+type Tab = "universe" | "portfolio" | "leaders" | "sectors";
+type Band = "all" | "core" | "buy" | "hold" | "trim" | "sell";
 
 export default function ScreenerPage() {
-  const [activeTab, setActiveTab] = useState("grades");
+  const [tab, setTab] = useState<Tab>("universe");
   const [filter, setFilter] = useState("");
-  const [summary, setSummary] = useState<Summary | null>(null);
+  const [band, setBand] = useState<Band>("all");
+  const [sector, setSector] = useState("all");
+  const [grades, setGrades] = useState<GradeRow[]>([]);
   const [leaders, setLeaders] = useState<SectorLeader[]>([]);
+  const [sectors, setSectors] = useState<any[]>([]);
+  const [distribution, setDistribution] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setLoading(true);
-        const [summaryRes, leadersRes] = await Promise.all([
-          fetch("/api/sp500?type=summary"),
-          fetch("/api/sp500?type=leaders"),
-        ]);
-
-        if (!summaryRes.ok) throw new Error("Failed to fetch summary");
-        if (!leadersRes.ok) throw new Error("Failed to fetch leaders");
-
-        const summaryData = await summaryRes.json();
-        const leadersData = await leadersRes.json();
-
-        setSummary(summaryData);
-        setLeaders(leadersData.leaders || []);
-      } catch (err: any) {
-        setError(err.message || "Failed to load S&P 500 data");
-      } finally {
-        setLoading(false);
-      }
+  const load = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const [gRes, lRes, sRes, dRes] = await Promise.all([
+        fetch("/api/sp500?type=grades"),
+        fetch("/api/sp500?type=leaders"),
+        fetch("/api/sp500?type=sectors"),
+        fetch("/api/sp500?type=distribution"),
+      ]);
+      if (!gRes.ok) throw new Error("Failed to load grades");
+      const gJson = await gRes.json();
+      const lJson = lRes.ok ? await lRes.json() : { leaders: [] };
+      const sJson = sRes.ok ? await sRes.json() : { sectors: [] };
+      const dJson = dRes.ok ? await dRes.json() : { distribution: [] };
+      setGrades(gJson.grades || []);
+      setLeaders(lJson.leaders || []);
+      setSectors(sJson.sectors || []);
+      setDistribution(dJson.distribution || []);
+    } catch (e: any) {
+      setError(e.message || "Failed to load screener");
+    } finally {
+      setLoading(false);
     }
+  };
 
-    fetchData();
+  useEffect(() => {
+    load();
   }, []);
 
-  const filteredGrades = summary?.top10
-    ? [...summary.top10, ...(summary.bottom10 || [])]
-        .filter(
-          (g) =>
-            g.ticker.toLowerCase().includes(filter.toLowerCase()) ||
-            g.name?.toLowerCase().includes(filter.toLowerCase()) ||
-            g.sector?.toLowerCase().includes(filter.toLowerCase())
-        )
-    : [];
+  const sectorOptions = useMemo(() => {
+    const set = new Set<string>();
+    grades.forEach((g) => g.sector && set.add(g.sector));
+    return Array.from(set).sort();
+  }, [grades]);
 
-  const groupedLeaders = leaders.reduce((acc, leader) => {
-    if (!acc[leader.sector]) acc[leader.sector] = [];
-    acc[leader.sector].push(leader);
-    return acc;
-  }, {} as Record<string, SectorLeader[]>);
+  const filtered = useMemo(() => {
+    const q = filter.toLowerCase().trim();
+    return grades.filter((g) => {
+      const grade = g.vox_grade || 0;
+      const matchQ =
+        !q ||
+        g.ticker.toLowerCase().includes(q) ||
+        (g.name || "").toLowerCase().includes(q) ||
+        (g.sector || "").toLowerCase().includes(q);
+      const matchS = sector === "all" || g.sector === sector;
+      const matchB =
+        band === "all" ||
+        (band === "core" && grade >= 70) ||
+        (band === "buy" && grade >= 60 && grade < 70) ||
+        (band === "hold" && grade >= 50 && grade < 60) ||
+        (band === "trim" && grade >= 40 && grade < 50) ||
+        (band === "sell" && grade > 0 && grade < 40);
+      const matchTab =
+        tab !== "portfolio" || g.in_portfolio || (g.portfolio_value || 0) > 0;
+      return matchQ && matchS && matchB && matchTab;
+    });
+  }, [grades, filter, sector, band, tab]);
+
+  const groupedLeaders = useMemo(() => {
+    return leaders.reduce((acc, leader) => {
+      if (!acc[leader.sector]) acc[leader.sector] = [];
+      acc[leader.sector].push(leader);
+      return acc;
+    }, {} as Record<string, SectorLeader[]>);
+  }, [leaders]);
+
+  const heldCount = grades.filter(
+    (g) => g.in_portfolio || (g.portfolio_value || 0) > 0
+  ).length;
+  const maxSectorVal = Math.max(
+    ...sectors.map((s) => Number(s.portfolio_value || 0)),
+    1
+  );
 
   if (loading) {
     return (
-      <PageShell>
-        <VoxLoading text="Loading S&P 500 data..." />
+      <PageShell title="Screener" subtitle="Universe · sectors · layers">
+        <VoxLoading text="Loading screener…" />
       </PageShell>
     );
   }
 
   if (error) {
     return (
-      <PageShell>
-        <VoxError message={error} onRetry={() => window.location.reload()} />
+      <PageShell title="Screener">
+        <VoxError message={error} onRetry={load} />
       </PageShell>
     );
   }
 
   return (
-    <PageShell>
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold tracking-tight">S&P 500 Screener</h1>
-          <p className="text-muted-foreground text-sm">
-            {summary ? (
-              <>
-                {summary.gradesCount} of {summary.universeCount} tickers graded •{" "}
-                {summary.leadersCount} sector leaders • Updated{" "}
-                {new Date(summary.lastUpdated).toLocaleString()}
-              </>
-            ) : (
-              "Real-time S&P 500 grading and sector analysis"
-            )}
-          </p>
+    <PageShell
+      title="Screener"
+      subtitle={`${grades.length} graded · ${heldCount} in book · not day-trading`}
+    >
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        <VoxKpi label="Universe graded" value={grades.length} />
+        <VoxKpi label="In portfolio" value={heldCount} />
+        <VoxKpi label="Sectors" value={sectorOptions.length || sectors.length} />
+        <VoxKpi
+          label="Leaders"
+          value={leaders.length}
+          sub="sector momentum"
+        />
+      </div>
+
+      {distribution.length > 0 && (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-6">
+          {distribution.map((d) => (
+            <div key={d.bucket} className="vox-surface p-3">
+              <div className={typography.label}>{d.bucket}</div>
+              <div className="vox-metric text-xl font-semibold mt-1">
+                {d.count}
+              </div>
+            </div>
+          ))}
         </div>
+      )}
 
-        {/* Stats */}
-        {summary && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {summary.distribution.map((d) => (
-              <VoxKpi
-                key={d.bucket}
-                label={d.bucket}
-                value={d.count.toString()}
+      {/* Tabs */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        {(
+          [
+            ["universe", "Universe"],
+            ["portfolio", "In book"],
+            ["leaders", "Sector leaders"],
+            ["sectors", "Sector map"],
+          ] as [Tab, string][]
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            onClick={() => setTab(id)}
+            className={cn(
+              "rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
+              tab === id
+                ? "bg-secondary text-foreground"
+                : "bg-muted/40 text-muted-foreground hover:text-foreground"
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {(tab === "universe" || tab === "portfolio") && (
+        <>
+          <div className="flex flex-col sm:flex-row gap-3 mb-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <input
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                placeholder="Filter ticker, name, sector…"
+                className="w-full h-10 rounded-lg bg-card pl-9 pr-3 text-sm border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
               />
-            ))}
-          </div>
-        )}
-
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList>
-            <TabsTrigger value="grades">
-              <BarChart3 className="h-4 w-4 mr-2" />
-              Grades
-            </TabsTrigger>
-            <TabsTrigger value="leaders">
-              <Activity className="h-4 w-4 mr-2" />
-              Sector Leaders
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="grades" className="space-y-4">
-            <div className="flex items-center gap-4">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Filter by ticker, name, or sector..."
-                  value={filter}
-                  onChange={(e) => setFilter(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredGrades.map((g) => (
-                <Card key={g.ticker} className="vox-card">
-                  <CardContent className="p-5">
-                    <div className="flex items-center justify-between mb-2">
-                      <div>
-                        <span className="text-lg font-bold font-mono">{g.ticker}</span>
-                        <p className="text-xs text-muted-foreground truncate max-w-[180px]">{g.name}</p>
-                      </div>
-                      <VoxBadge grade={g.vox_grade}>{gradeLabel(g.vox_grade)}</VoxBadge>
-                    </div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-3xl font-bold">{g.vox_grade}</span>
-                      <span className="text-xs text-muted-foreground">{g.sector}</span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
-                      <div>T: {g.technical_score}</div>
-                      <div>F: {g.fundamental_score}</div>
-                      <div>M: {g.macro_score}</div>
-                      <div>S: {g.sector_score}</div>
-                      <div>W: {g.weather_score}</div>
-                      <div>Se: {g.sentiment_score}</div>
-                    </div>
-                  </CardContent>
-                </Card>
+            <select
+              value={sector}
+              onChange={(e) => setSector(e.target.value)}
+              className="h-10 rounded-lg bg-card px-3 text-sm border border-border"
+            >
+              <option value="all">All sectors</option>
+              {sectorOptions.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
               ))}
-            </div>
-          </TabsContent>
+            </select>
+            <select
+              value={band}
+              onChange={(e) => setBand(e.target.value as Band)}
+              className="h-10 rounded-lg bg-card px-3 text-sm border border-border"
+            >
+              <option value="all">All grades</option>
+              <option value="core">Core 70+</option>
+              <option value="buy">Buy 60–69</option>
+              <option value="hold">Hold 50–59</option>
+              <option value="trim">Trim 40–49</option>
+              <option value="sell">Sell &lt;40</option>
+            </select>
+          </div>
 
-          <TabsContent value="leaders" className="space-y-6">
-            {Object.entries(groupedLeaders).map(([sector, sectorLeaders]) => (
-              <div key={sector}>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-                  {sector}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {sectorLeaders.map((leader) => (
-                    <Card key={`${leader.sector}-${leader.ticker}`} className="vox-card">
-                      <CardContent className="p-5">
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-muted-foreground">#{leader.rank}</span>
-                            <span className="text-lg font-bold font-mono">{leader.ticker}</span>
-                          </div>
-                          {leader.change_5d_pct >= 0 ? (
-                            <TrendingUp className="h-4 w-4 text-green-500" />
-                          ) : (
-                            <TrendingDown className="h-4 w-4 text-red-500" />
-                          )}
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span
-                            className={`text-2xl font-bold ${
-                              leader.change_5d_pct >= 0 ? "text-green-600" : "text-red-600"
-                            }`}
-                          >
-                            {leader.change_5d_pct >= 0 ? "+" : ""}
-                            {leader.change_5d_pct.toFixed(2)}%
-                          </span>
-                          <span className="text-xs text-muted-foreground">
-                            Score: {leader.momentum_score.toFixed(1)}
-                          </span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+          <div className="vox-surface overflow-x-auto">
+            <table className="vox-table w-full min-w-[760px]">
+              <thead>
+                <tr>
+                  <th className="text-left px-4 py-3">Ticker</th>
+                  <th className="text-left px-4 py-3">Sector</th>
+                  <th className="text-right px-4 py-3">Grade</th>
+                  <th className="text-right px-4 py-3">T</th>
+                  <th className="text-right px-4 py-3">F</th>
+                  <th className="text-right px-4 py-3">M</th>
+                  <th className="text-right px-4 py-3">Se</th>
+                  <th className="text-left px-4 py-3">Book</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.slice(0, 200).map((g) => (
+                  <tr key={g.ticker}>
+                    <td className="px-4 py-2.5">
+                      <div className="font-mono font-semibold">{g.ticker}</div>
+                      <div className="text-[11px] text-muted-foreground truncate max-w-[180px]">
+                        {g.name}
+                      </div>
+                    </td>
+                    <td className="px-4 py-2.5 text-xs text-muted-foreground">
+                      {g.sector || "—"}
+                    </td>
+                    <td className="px-4 py-2.5 text-right">
+                      <VoxBadge grade={g.vox_grade}>{g.vox_grade}</VoxBadge>
+                    </td>
+                    <td className="px-4 py-2.5 text-right font-mono text-xs tabular-nums text-muted-foreground">
+                      {Math.round(g.technical_score || 0)}
+                    </td>
+                    <td className="px-4 py-2.5 text-right font-mono text-xs tabular-nums text-muted-foreground">
+                      {Math.round(g.fundamental_score || 0)}
+                    </td>
+                    <td className="px-4 py-2.5 text-right font-mono text-xs tabular-nums text-muted-foreground">
+                      {Math.round(g.macro_score || 0)}
+                    </td>
+                    <td className="px-4 py-2.5 text-right font-mono text-xs tabular-nums text-muted-foreground">
+                      {Math.round(g.sentiment_score || 0)}
+                    </td>
+                    <td className="px-4 py-2.5 text-xs">
+                      {g.in_portfolio || (g.portfolio_value || 0) > 0 ? (
+                        <span className="text-grade-core">Held</span>
+                      ) : (
+                        <span className="text-muted-foreground">—</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+                {!filtered.length && (
+                  <tr>
+                    <td
+                      colSpan={8}
+                      className="px-4 py-10 text-center text-sm text-muted-foreground"
+                    >
+                      No rows match filters
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Showing {Math.min(filtered.length, 200)} of {filtered.length} ·
+            dense scan for ideas, not auto-trade
+          </p>
+        </>
+      )}
+
+      {tab === "leaders" && (
+        <div className="space-y-6">
+          {Object.entries(groupedLeaders).map(([sec, rows]) => (
+            <div key={sec} className="vox-surface p-4">
+              <div className={cn(typography.label, "mb-3")}>{sec}</div>
+              <div className="grid sm:grid-cols-3 gap-3">
+                {rows.map((l) => (
+                  <div
+                    key={`${l.sector}-${l.ticker}`}
+                    className="rounded-lg bg-muted/30 p-3"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">
+                        #{l.rank}
+                      </span>
+                      <span className="font-mono font-semibold">{l.ticker}</span>
+                    </div>
+                    <div
+                      className={cn(
+                        "mt-2 text-lg font-mono font-semibold tabular-nums",
+                        (l.change_5d_pct || 0) >= 0 ? "text-profit" : "text-loss"
+                      )}
+                    >
+                      {(l.change_5d_pct || 0) >= 0 ? "+" : ""}
+                      {(l.change_5d_pct || 0).toFixed(2)}%
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Momentum {Number(l.momentum_score || 0).toFixed(1)}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </TabsContent>
-        </Tabs>
-      </PageShell>
+            </div>
+          ))}
+          {!leaders.length && (
+            <p className="text-sm text-muted-foreground">
+              No sector leaders available yet
+            </p>
+          )}
+        </div>
+      )}
+
+      {tab === "sectors" && (
+        <div className="vox-surface p-4">
+          <div className={cn(typography.label, "mb-4")}>
+            Portfolio sector map
+          </div>
+          <div className="space-y-3">
+            {sectors.map((s) => {
+              const val = Number(s.portfolio_value || 0);
+              return (
+                <div key={s.sector}>
+                  <div className="flex justify-between text-xs mb-1">
+                    <span className="font-medium">{s.sector}</span>
+                    <span className="font-mono text-muted-foreground tabular-nums">
+                      ${val.toLocaleString()} · n={s.portfolio_count} · avg g
+                      {s.portfolio_avg_grade ?? "—"}
+                    </span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-grade-buy/80"
+                      style={{
+                        width: `${Math.max(3, (val / maxSectorVal) * 100)}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+            {!sectors.length && (
+              <p className="text-sm text-muted-foreground">No sector data</p>
+            )}
+          </div>
+        </div>
+      )}
+    </PageShell>
   );
 }

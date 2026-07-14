@@ -1,10 +1,12 @@
 import { PageShell } from "@/components/vox-nav";
-import { VoxCard } from "@/components/vox-card";
-import { VoxBadge } from "@/components/vox";
-import { getGradeStyle } from "@/lib/design-system";
-import { fmtCurrency } from "@/lib/format";
+import { VoxBadge, VoxKpi } from "@/components/vox";
+import { VoxCard, VoxCardContent, VoxCardHeader, VoxCardTitle } from "@/components/vox-card";
 import { getVoxGrades } from "@/lib/db";
-import { Zap, TrendingUp, Target } from "lucide-react";
+import { fmtCurrency } from "@/lib/format";
+import { typography } from "@/lib/design-system";
+import { cn } from "@/lib/utils";
+
+export const dynamic = "force-dynamic";
 
 interface Grade {
   ticker: string;
@@ -24,167 +26,172 @@ interface Grade {
   weather_score: number;
   sentiment_score: number;
   catalysts: string;
-  weather_factors: string;
 }
 
-export const dynamic = "force-dynamic";
-
 export default async function GradesPage() {
-  const grades = await getVoxGrades() as Grade[];
-
-  const positions = grades.filter((g) => (g.position_value || 0) > 0);
-  const opportunities = grades.filter((g) => (g.position_value || 0) === 0 && g.action === "BUY");
-
-  const trimPositions = positions.filter((g) => g.action === "TRIM").sort((a, b) => b.vox_grade - a.vox_grade);
-  const holdPositions = positions.filter((g) => g.action === "HOLD").sort((a, b) => b.vox_grade - a.vox_grade);
+  const grades = (await getVoxGrades()) as Grade[];
+  const held = grades.filter((g) => (g.position_value || 0) > 0 || (g.shares || 0) > 0);
+  const opps = grades.filter(
+    (g) => (g.position_value || 0) === 0 && (g.action === "BUY" || g.vox_grade >= 65)
+  );
+  const weak = held
+    .filter((g) => (g.vox_grade || 0) < 45)
+    .sort((a, b) => a.vox_grade - b.vox_grade)
+    .slice(0, 12);
+  const strong = held
+    .filter((g) => (g.vox_grade || 0) >= 65)
+    .sort((a, b) => b.vox_grade - a.vox_grade)
+    .slice(0, 12);
+  const avg =
+    held.length > 0
+      ? Math.round(
+          held.reduce((s, g) => s + (g.vox_grade || 0), 0) / held.length
+        )
+      : 0;
 
   return (
-    <PageShell>
-      {/* Header */}
-      <div className="mb-10">
-        <h1 className="text-4xl font-semibold tracking-tight text-foreground">
-          VOX Grades
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          {positions.length} positions graded · {opportunities.length} new opportunities
-        </p>
+    <PageShell
+      title="Grades"
+      subtitle="Latest-per-ticker layers · portfolio-first"
+    >
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        <VoxKpi label="Held graded" value={held.length} />
+        <VoxKpi label="Avg held grade" value={avg || "—"} />
+        <VoxKpi label="Strong (≥65)" value={strong.length} />
+        <VoxKpi label="Weak (<45)" value={weak.length} />
       </div>
 
-      {/* URGENT: TRIM */}
-      {trimPositions.length > 0 && (
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <TrendingUp className="h-4 w-4 text-profit" />
-            <h2 className="text-sm font-semibold uppercase text-profit tracking-tight">
-              {trimPositions.length} Positions to TRIM — Strong but Extended
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {trimPositions.map((g) => {
-              return (
-                <VoxCard key={g.ticker} hover>
-                  <div className="p-3">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span className="font-mono text-sm font-semibold text-foreground">{g.ticker}</span>
-                        <p className="text-xs text-muted-foreground">{g.name}</p>
-                      </div>
-                      <VoxBadge grade={g.vox_grade} />
-                    </div>
-                    <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
-                      <div><span className="text-muted-foreground">Price:</span> <span className="font-mono text-foreground">${g.current_price?.toFixed(2)}</span></div>
-                      <div><span className="text-muted-foreground">Stop:</span> <span className="font-mono text-loss">${g.stop_loss?.toFixed(2)}</span></div>
-                    </div>
-                    <div className="mt-2 flex gap-1">
-                      {["technical", "fundamental", "macro", "sector", "sentiment"].map((layer) => {
-                        const score = g[`${layer}_score` as keyof Grade] as number;
-                        return (
-                          <div key={layer} className="flex-1 text-center">
-                            <div className="text-[9px] uppercase text-muted-foreground">{layer.slice(0, 3)}</div>
-                            <div className={`text-[10px] font-mono ${score >= 70 ? "text-profit" : score >= 50 ? "text-foreground" : "text-loss"}`}>{score}</div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </VoxCard>
-              );
-            })}
-          </div>
+      <div className="grid lg:grid-cols-2 gap-4 mb-6">
+        <div className="vox-surface p-4">
+          <div className={cn(typography.label, "mb-3")}>Strong held</div>
+          <ul className="space-y-2">
+            {strong.map((g) => (
+              <li
+                key={g.ticker}
+                className="flex items-center justify-between gap-2 text-sm"
+              >
+                <span className="font-mono font-semibold">{g.ticker}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground font-mono">
+                    T{Math.round(g.technical_score || 0)}/F
+                    {Math.round(g.fundamental_score || 0)}
+                  </span>
+                  <VoxBadge grade={g.vox_grade}>{g.vox_grade}</VoxBadge>
+                </div>
+              </li>
+            ))}
+            {!strong.length && (
+              <li className="text-sm text-muted-foreground">None</li>
+            )}
+          </ul>
         </div>
-      )}
+        <div className="vox-surface p-4">
+          <div className={cn(typography.label, "mb-3")}>Weak held</div>
+          <ul className="space-y-2">
+            {weak.map((g) => (
+              <li
+                key={g.ticker}
+                className="flex items-center justify-between gap-2 text-sm"
+              >
+                <span className="font-mono font-semibold">{g.ticker}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground font-mono tabular-nums">
+                    {fmtCurrency(g.position_value || 0)}
+                  </span>
+                  <VoxBadge grade={g.vox_grade}>{g.vox_grade}</VoxBadge>
+                </div>
+              </li>
+            ))}
+            {!weak.length && (
+              <li className="text-sm text-muted-foreground">None material</li>
+            )}
+          </ul>
+        </div>
+      </div>
 
-      {/* NEW OPPORTUNITIES */}
-      {opportunities.length > 0 && (
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <Target className="h-4 w-4 text-accent" />
-            <h2 className="text-sm font-semibold uppercase text-accent tracking-tight">
-              Top {opportunities.length} New Opportunities — 6-Layer Scan
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {opportunities.slice(0, 12).map((g) => {
-              return (
-                <VoxCard key={g.ticker} hover>
-                  <div className="p-3">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span className="font-mono text-sm font-semibold text-foreground">{g.ticker}</span>
-                        <p className="text-xs text-muted-foreground">{g.name}</p>
-                      </div>
-                      <VoxBadge grade={g.vox_grade} />
-                    </div>
-                    <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
-                      <div><span className="text-muted-foreground">Entry:</span> <span className="font-mono text-profit">${g.entry_point?.toFixed(2)}</span></div>
-                      <div><span className="text-muted-foreground">Stop:</span> <span className="font-mono text-loss">${g.stop_loss?.toFixed(2)}</span></div>
-                    </div>
-                    <div className="mt-2 flex gap-1">
-                      {["technical", "fundamental", "macro", "sector", "sentiment"].map((layer) => {
-                        const score = g[`${layer}_score` as keyof Grade] as number;
-                        return (
-                          <div key={layer} className="flex-1 text-center">
-                            <div className="text-[9px] uppercase text-muted-foreground">{layer.slice(0, 3)}</div>
-                            <div className={`text-[10px] font-mono ${score >= 70 ? "text-profit" : score >= 50 ? "text-foreground" : "text-loss"}`}>{score}</div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                    {g.weather_factors && g.weather_factors !== "None" && (
-                      <p className="mt-2 text-[10px] text-warning">☀ {g.weather_factors}</p>
-                    )}
-                  </div>
-                </VoxCard>
-              );
-            })}
-          </div>
+      <div className="vox-surface overflow-x-auto mb-6">
+        <div className="px-4 pt-4 pb-2">
+          <div className={typography.label}>Held book (layers)</div>
         </div>
-      )}
+        <table className="vox-table w-full min-w-[720px]">
+          <thead>
+            <tr>
+              <th className="text-left px-4 py-2">Ticker</th>
+              <th className="text-right px-4 py-2">Grade</th>
+              <th className="text-left px-4 py-2">Action</th>
+              <th className="text-right px-4 py-2">Value</th>
+              <th className="text-right px-4 py-2">T</th>
+              <th className="text-right px-4 py-2">F</th>
+              <th className="text-right px-4 py-2">M</th>
+              <th className="text-right px-4 py-2">Se</th>
+            </tr>
+          </thead>
+          <tbody>
+            {held
+              .sort((a, b) => (b.position_value || 0) - (a.position_value || 0))
+              .slice(0, 80)
+              .map((g) => (
+                <tr key={g.ticker}>
+                  <td className="px-4 py-2 font-mono font-semibold text-sm">
+                    {g.ticker}
+                  </td>
+                  <td className="px-4 py-2 text-right">
+                    <VoxBadge grade={g.vox_grade}>{g.vox_grade}</VoxBadge>
+                  </td>
+                  <td className="px-4 py-2 text-xs text-muted-foreground">
+                    {g.action || "—"}
+                  </td>
+                  <td className="px-4 py-2 text-right font-mono text-sm tabular-nums">
+                    {fmtCurrency(g.position_value || 0)}
+                  </td>
+                  <td className="px-4 py-2 text-right font-mono text-xs text-muted-foreground">
+                    {Math.round(g.technical_score || 0)}
+                  </td>
+                  <td className="px-4 py-2 text-right font-mono text-xs text-muted-foreground">
+                    {Math.round(g.fundamental_score || 0)}
+                  </td>
+                  <td className="px-4 py-2 text-right font-mono text-xs text-muted-foreground">
+                    {Math.round(g.macro_score || 0)}
+                  </td>
+                  <td className="px-4 py-2 text-right font-mono text-xs text-muted-foreground">
+                    {Math.round(g.sentiment_score || 0)}
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
 
-      {/* ALL POSITIONS TABLE */}
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-4">
-          <Zap className="h-4 w-4 text-accent" />
-          <h2 className="font-semibold text-2xl font-semibold tracking-tight text-foreground">
-            All Positions
-          </h2>
+      <div className="mb-2">
+        <div className={cn(typography.label, "mb-3")}>
+          Opportunities not held (top)
         </div>
-        <VoxCard variant="stack">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border">
-                {["Ticker", "Grade", "Action", "Price", "Stop", "Value", "Tech", "Fund", "Macro", "Sect", "Sent"].map((h) => (
-                  <th key={h} className="text-left p-3 font-medium text-muted-foreground text-[11px] uppercase">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {positions.sort((a, b) => b.vox_grade - a.vox_grade).map((g) => {
-                return (
-                  <tr key={g.ticker} className="border-b border-border">
-                    <td className="p-3">
-                      <span className="font-mono font-semibold text-sm text-foreground">{g.ticker}</span>
-                    </td>
-                    <td className="p-3">
-                      <VoxBadge grade={g.vox_grade} />
-                    </td>
-                    <td className="p-3">
-                      <VoxBadge grade={g.vox_grade} label={g.action} />
-                    </td>
-                    <td className="p-3 font-mono text-sm text-foreground">${g.current_price?.toFixed(2)}</td>
-                    <td className="p-3 font-mono text-sm text-loss">${g.stop_loss?.toFixed(2)}</td>
-                    <td className="p-3 font-mono text-sm text-foreground">{fmtCurrency(g.position_value || 0)}</td>
-                    <td className={`p-3 font-mono text-xs ${g.technical_score >= 70 ? "text-profit" : "text-muted-foreground"}`}>{g.technical_score}</td>
-                    <td className={`p-3 font-mono text-xs ${g.fundamental_score >= 70 ? "text-profit" : "text-muted-foreground"}`}>{g.fundamental_score}</td>
-                    <td className={`p-3 font-mono text-xs ${g.macro_score >= 70 ? "text-profit" : "text-muted-foreground"}`}>{g.macro_score}</td>
-                    <td className={`p-3 font-mono text-xs ${g.sector_score >= 70 ? "text-profit" : "text-muted-foreground"}`}>{g.sector_score}</td>
-                    <td className={`p-3 font-mono text-xs ${g.sentiment_score >= 70 ? "text-profit" : "text-muted-foreground"}`}>{g.sentiment_score}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </VoxCard>
+        <div className="grid md:grid-cols-3 gap-3">
+          {opps.slice(0, 9).map((g) => (
+            <VoxCard key={g.ticker}>
+              <VoxCardHeader>
+                <VoxCardTitle>
+                  <span className="font-mono">{g.ticker}</span>
+                </VoxCardTitle>
+                <VoxBadge grade={g.vox_grade}>{g.vox_grade}</VoxBadge>
+              </VoxCardHeader>
+              <VoxCardContent>
+                <p className="text-xs text-muted-foreground truncate">
+                  {g.name}
+                </p>
+                <p className="text-xs font-mono text-muted-foreground mt-2">
+                  T{Math.round(g.technical_score || 0)} F
+                  {Math.round(g.fundamental_score || 0)} M
+                  {Math.round(g.macro_score || 0)} Se
+                  {Math.round(g.sentiment_score || 0)}
+                </p>
+              </VoxCardContent>
+            </VoxCard>
+          ))}
+          {!opps.length && (
+            <p className="text-sm text-muted-foreground">No open opportunities</p>
+          )}
+        </div>
       </div>
     </PageShell>
   );

@@ -17,6 +17,7 @@ import {
   BookOpen,
   Menu,
   X,
+  PieChart,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -25,6 +26,7 @@ const iconMap: Record<string, React.ElementType> = {
   Positions: Briefcase,
   Brokers: Wallet,
   Grades: BarChart3,
+  Sectors: PieChart,
   Screener: Search,
   Alerts: Bell,
   Signals: Activity,

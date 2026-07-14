@@ -1,318 +1,186 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useEffect, useMemo, useState } from "react";
 import { PageShell } from "@/components/vox-nav";
-import { VoxLoading, VoxError, VoxTable } from "@/components/vox";
-import { useEffect, useState } from "react";
-import { RefreshCw, AlertTriangle, CheckCircle, XCircle, Clock, Wallet } from "lucide-react";
+import { VoxBadge, VoxError, VoxKpi, VoxLoading } from "@/components/vox";
+import { typography } from "@/lib/design-system";
 import { fmtCurrency } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
-interface BrokerHealth {
-  status: string;
-  duration_ms?: number;
-  error?: string;
-  timestamp: string;
-}
-
-interface BrokerStatus {
+interface BrokerRow {
+  broker: string;
   value: number;
-  status: string;
-  stale: boolean;
-  currency: string;
-  last_updated?: string;
   position_count: number;
-}
-
-interface BrokerData {
-  timestamp: string;
-  total_value: number;
-  total_pnl: number;
-  broker_breakdown: Record<string, number>;
-  broker_status: Record<string, BrokerStatus>;
-  health?: {
-    overall: string;
-    healthy_count: number;
-    total_count: number;
-    checks: Record<string, BrokerHealth>;
-  };
+  last_updated?: string;
+  sync_age_days?: number;
 }
 
 export default function BrokersPage() {
-  const [data, setData] = useState<BrokerData | null>(null);
+  const [brokers, setBrokers] = useState<BrokerRow[]>([]);
+  const [positions, setPositions] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
+  const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  const load = async () => {
     try {
-      const res = await fetch("/data/dashboard_positions_live.json?t=" + Date.now());
-      if (res.ok) {
-        const json = await res.json();
-        setData(json);
-        setLastRefresh(new Date());
-      }
-    } catch (e) {
-      console.error("Failed to fetch broker data:", e);
+      setLoading(true);
+      setError(null);
+      const [bRes, pRes] = await Promise.all([
+        fetch("/api/brokers"),
+        fetch("/api/positions"),
+      ]);
+      if (!bRes.ok) throw new Error("Failed to load brokers");
+      const bJson = await bRes.json();
+      const pJson = pRes.ok ? await pRes.json() : { positions: [] };
+      setBrokers(bJson.brokers || []);
+      setPositions(pJson.positions || []);
+    } catch (e: any) {
+      setError(e.message || "Failed to load brokers");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchData();
-    const interval = setInterval(fetchData, 30000); // Refresh every 30s
-    return () => clearInterval(interval);
+    load();
   }, []);
 
-  const formatTime = (iso: string) => {
-    try {
-      const d = new Date(iso);
-      return d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
-    } catch {
-      return "—";
-    }
-  };
-
-  const formatDate = (iso: string) => {
-    try {
-      const d = new Date(iso);
-      return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-    } catch {
-      return "—";
-    }
-  };
-
-  const getStatusIcon = (status: string, stale: boolean) => {
-    if (stale) return <AlertTriangle className="h-4 w-4 text-yellow-400" />;
-    if (status === "connected") return <CheckCircle className="h-4 w-4 text-green-400" />;
-    if (status === "manual") return <Clock className="h-4 w-4 text-blue-400" />;
-    return <XCircle className="h-4 w-4 text-red-400" />;
-  };
-
-  const getStatusColor = (status: string, stale: boolean) => {
-    if (stale) return "bg-yellow-500/10 text-yellow-400 border-yellow-500/20";
-    if (status === "connected") return "bg-green-500/10 text-green-400 border-green-500/20";
-    if (status === "manual") return "bg-blue-500/10 text-blue-400 border-blue-500/20";
-    return "bg-red-500/10 text-red-400 border-red-500/20";
-  };
-
-  const brokerNames: Record<string, string> = {
-    etoro: "eToro",
-    binance: "Binance",
-    gbm_main: "GBM Plus (Main)",
-    gbm_usa: "GBM Plus (USA)",
-    schwab: "Charles Schwab",
-    ibkr: "Interactive Brokers",
-    revolut: "Revolut",
-    bitso: "Bitso",
-  };
+  const total = useMemo(
+    () => brokers.reduce((s, b) => s + (b.value || 0), 0),
+    [brokers]
+  );
+  const max = Math.max(...brokers.map((b) => b.value || 0), 1);
+  const stale = brokers.filter((b) => (b.sync_age_days || 0) > 7);
 
   if (loading) {
     return (
-      <PageShell>
-        <VoxLoading text="Loading broker data..." />
+      <PageShell title="Brokers" subtitle="Multi-broker health">
+        <VoxLoading text="Loading brokers…" />
       </PageShell>
     );
   }
 
-  if (!data) {
+  if (error) {
     return (
-      <PageShell>
-        <VoxError 
-          message="No broker data available. Run broker sync to populate data." 
-          onRetry={fetchData}
-        />
+      <PageShell title="Brokers">
+        <VoxError message={error} onRetry={load} />
       </PageShell>
     );
   }
-
-  const brokers = data.broker_status || {};
-  const health = data.health;
-  const totalValue = data.total_value || 0;
-  const totalPnl = data.total_pnl || 0;
 
   return (
-    <PageShell>
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">Broker Sync</h1>
-              <p className="text-muted-foreground text-sm">
-                Live portfolio aggregation across all brokers
-              </p>
-            </div>
-            <button
-              onClick={fetchData}
-              className="p-2 rounded-lg hover:bg-muted transition-colors"
-              title="Refresh now"
-            >
-              <RefreshCw className="h-5 w-5" />
-            </button>
-          </div>
-          <p className="text-xs text-muted-foreground mt-2">
-            Last refresh: {formatDate(lastRefresh.toISOString())} {formatTime(lastRefresh.toISOString())}
-          </p>
+    <PageShell
+      title="Brokers"
+      subtitle="Source of truth · multi-broker ownership is never a sell reason"
+      actions={
+        <button
+          onClick={load}
+          className="rounded-full px-3 py-1.5 text-xs bg-secondary text-secondary-foreground"
+        >
+          Refresh
+        </button>
+      }
+    >
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        <VoxKpi label="Broker book" value={fmtCurrency(total)} />
+        <VoxKpi label="Brokers" value={brokers.length} />
+        <VoxKpi label="Positions" value={positions.length} />
+        <VoxKpi
+          label="Stale (>7d)"
+          value={stale.length}
+          sub={stale.length ? stale.map((b) => b.broker).join(", ") : "none"}
+          subVariant={stale.length ? "warning" : "profit"}
+        />
+      </div>
+
+      <div className="vox-surface p-4 mb-6">
+        <div className={cn(typography.label, "mb-4")}>Allocation</div>
+        <div className="space-y-3">
+          {brokers.map((b) => {
+            const age = b.sync_age_days;
+            const fresh =
+              age == null ? "unknown" : age <= 2 ? "fresh" : age <= 7 ? "ok" : "stale";
+            return (
+              <div key={b.broker}>
+                <div className="flex flex-wrap items-center justify-between gap-2 text-sm mb-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">{b.broker}</span>
+                    <VoxBadge
+                      variant="status"
+                      label={fresh === "fresh" ? "fresh" : fresh === "stale" ? "stale" : "active"}
+                    >
+                      {fresh}
+                    </VoxBadge>
+                  </div>
+                  <div className="font-mono tabular-nums text-muted-foreground text-xs">
+                    {fmtCurrency(b.value)} · {b.position_count} pos
+                    {age != null ? ` · ${age.toFixed(1)}d` : ""}
+                  </div>
+                </div>
+                <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-grade-buy/80"
+                    style={{
+                      width: `${Math.max(3, ((b.value || 0) / max) * 100)}%`,
+                    }}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
+      </div>
 
-        {/* Summary Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground mb-1">Total AUM</p>
-              <p className="text-xl font-bold font-mono">${totalValue.toLocaleString()}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground mb-1">Total P&L</p>
-              <p className={`text-xl font-bold font-mono ${totalPnl >= 0 ? "text-green-400" : "text-red-400"}`}>
-                {totalPnl >= 0 ? "+" : ""}${totalPnl.toLocaleString()}
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground mb-1">Brokers</p>
-              <p className="text-xl font-bold">{Object.keys(brokers).length}</p>
-            </CardContent>
-          </Card>
-          <Card className="vox-card">
-            <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground mb-1">Health</p>
-              <div className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full ${health?.overall === "healthy" ? "bg-green-400" : health?.overall === "degraded" ? "bg-yellow-400" : "bg-red-400"}`} />
-                <p className="text-xl font-bold capitalize">{health?.overall || "unknown"}</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+      <div className="vox-surface overflow-x-auto">
+        <table className="vox-table w-full min-w-[520px]">
+          <thead>
+            <tr>
+              <th className="text-left px-4 py-3">Broker</th>
+              <th className="text-right px-4 py-3">Value</th>
+              <th className="text-right px-4 py-3">W%</th>
+              <th className="text-right px-4 py-3">#</th>
+              <th className="text-right px-4 py-3">Sync age</th>
+              <th className="text-left px-4 py-3">Last sync</th>
+            </tr>
+          </thead>
+          <tbody>
+            {brokers.map((b) => (
+              <tr key={b.broker}>
+                <td className="px-4 py-2.5 font-medium">{b.broker}</td>
+                <td className="px-4 py-2.5 text-right font-mono tabular-nums">
+                  {fmtCurrency(b.value)}
+                </td>
+                <td className="px-4 py-2.5 text-right font-mono text-muted-foreground tabular-nums">
+                  {total > 0 ? ((b.value / total) * 100).toFixed(1) : "0"}%
+                </td>
+                <td className="px-4 py-2.5 text-right font-mono tabular-nums">
+                  {b.position_count}
+                </td>
+                <td className="px-4 py-2.5 text-right font-mono text-xs tabular-nums">
+                  {b.sync_age_days != null
+                    ? `${b.sync_age_days.toFixed(1)}d`
+                    : "—"}
+                </td>
+                <td className="px-4 py-2.5 text-xs text-muted-foreground">
+                  {b.last_updated
+                    ? new Date(b.last_updated).toLocaleString()
+                    : "—"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-        {/* Broker Status Grid */}
-        <h2 className="text-lg font-semibold mb-4">Broker Status</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          {Object.entries(brokers).map(([key, broker]) => (
-            <Card key={key} className="vox-card">
-              <CardContent className="p-4">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-muted">
-                      <Wallet className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">{brokerNames[key] || key}</h3>
-                      <p className="text-xs text-muted-foreground">
-                        {broker.position_count} positions
-                      </p>
-                    </div>
-                  </div>
-                  <Badge variant="outline" className={getStatusColor(broker.status, broker.stale)}>
-                    <span className="flex items-center gap-1">
-                      {getStatusIcon(broker.status, broker.stale)}
-                      {broker.stale ? "STALE" : broker.status.toUpperCase()}
-                    </span>
-                  </Badge>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-muted-foreground text-xs">Value</p>
-                    <p className="font-mono font-semibold">
-                      ${broker.value.toLocaleString()}
-                      {broker.currency === "MXN" && (
-                        <span className="text-muted-foreground text-xs ml-1">MXN</span>
-                      )}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-muted-foreground text-xs">Last Updated</p>
-                    <p className="font-mono">
-                      {broker.last_updated ? formatTime(broker.last_updated) : "—"}
-                    </p>
-                  </div>
-                </div>
-
-                {health?.checks?.[key] && (
-                  <div className="mt-3 pt-3 border-t border-border/50">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className={`${health.checks[key].status === "healthy" ? "text-green-400" : "text-red-400"}`}>
-                        {health.checks[key].status === "healthy" ? "✓" : "✗"} Health check
-                      </span>
-                      <span className="text-muted-foreground">
-                        {health.checks[key].duration_ms}ms
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Health Details */}
-        {health && (
-          <>
-            <h2 className="text-lg font-semibold mb-4">Health Checks</h2>
-            <VoxTable
-              data={Object.entries(health.checks).map(([name, check]) => ({
-                name: brokerNames[name] || name,
-                status: check.status,
-                duration: check.duration_ms,
-                checkedAt: check.timestamp,
-              }))}
-              columns={[
-                { key: "name", header: "Broker", accessor: (r: any) => <span className="font-semibold">{r.name}</span> },
-                { key: "status", header: "Status", accessor: (r: any) => (
-                  <Badge variant="outline" className={r.status === "healthy" ? "bg-green-500/10 text-green-400 border-green-500/20" : "bg-red-500/10 text-red-400 border-red-500/20"}>
-                    {r.status === "healthy" ? "✓" : "✗"} {r.status}
-                  </Badge>
-                )},
-                { key: "duration", header: "Response Time", accessor: (r: any) => <span className="font-mono">{r.duration ? `${r.duration}ms` : "—"}</span>, align: "right" },
-                { key: "checkedAt", header: "Checked At", accessor: (r: any) => <span className="text-muted-foreground">{formatTime(r.checkedAt)}</span>, align: "right" },
-              ]}
-              keyExtractor={(r: any) => r.name}
-              searchable={false}
-              pageSize={10}
-            />
-          </>
-        )}
-
-        {/* Sync Schedule */}
-        <h2 className="text-lg font-semibold mb-4">Sync Schedule</h2>
-        <Card className="vox-card">
-          <CardContent className="p-4">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-sm">Pre-Market Sync</span>
-                </div>
-                <span className="text-sm text-muted-foreground">7:00 AM CT</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-sm">Midday Sync</span>
-                </div>
-                <span className="text-sm text-muted-foreground">12:00 PM CT</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-blue-400" />
-                  <span className="text-sm">Alert Pipeline</span>
-                </div>
-                <span className="text-sm text-muted-foreground">9/12/15 CT</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-purple-400" />
-                  <span className="text-sm">Research Orchestrator</span>
-                </div>
-                <span className="text-sm text-muted-foreground">Every 4 hours</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </PageShell>
+      <div className="mt-6 vox-surface p-4">
+        <div className={cn(typography.label, "mb-2")}>Manual refresh path</div>
+        <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
+          <li>GBM Main / USA → Excel export to Hermes</li>
+          <li>Schwab → Individual Positions CSV</li>
+          <li>IBKR → screenshot or CSV</li>
+          <li>eToro / Binance / Bitso → API when credentials healthy</li>
+        </ul>
+      </div>
+    </PageShell>
   );
 }

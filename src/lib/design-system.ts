@@ -119,6 +119,7 @@ export const navSections = [
       { href: "/portfolio", label: "Positions", icon: "Positions" },
       { href: "/brokers", label: "Brokers", icon: "Brokers" },
       { href: "/grades", label: "Grades", icon: "Grades" },
+      { href: "/sectors", label: "Sectors", icon: "Sectors" },
     ],
   },
   {
