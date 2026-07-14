@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { colors } from "@/lib/design-system";
 
 interface VoxErrorProps {
   message?: string;
@@ -17,20 +16,18 @@ export function VoxError({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-3 rounded-lg border border-border bg-card p-8 text-center",
+        "vox-surface flex flex-col items-center justify-center gap-3 p-8 text-center",
         className
       )}
     >
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-loss-soft text-loss text-lg">
-        ⚠
+      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-loss-soft text-loss text-sm font-semibold">
+        !
       </div>
-      <p className="text-sm font-medium text-foreground">
-        {message}
-      </p>
+      <p className="text-sm font-medium text-foreground">{message}</p>
       {onRetry && (
         <button
           onClick={onRetry}
-          className="rounded-md px-4 py-2 text-sm font-medium text-primary-foreground bg-primary transition-colors hover:opacity-90"
+          className="rounded-full px-4 py-2 text-sm font-medium bg-secondary text-secondary-foreground hover:bg-muted transition-colors"
         >
           Retry
         </button>

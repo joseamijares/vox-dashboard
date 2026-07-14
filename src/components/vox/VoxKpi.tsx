@@ -1,7 +1,7 @@
 "use client";
 
-import { colors, typography } from "@/lib/design-system";
 import { cn } from "@/lib/utils";
+import { typography } from "@/lib/design-system";
 
 interface VoxKpiProps {
   label: string;
@@ -28,58 +28,47 @@ export function VoxKpi({
   className,
   loading = false,
 }: VoxKpiProps) {
-  const changeColor =
+  const changeCls =
     changeType === "positive"
-      ? colors.profit
+      ? "text-profit"
       : changeType === "negative"
-        ? colors.loss
-        : colors.muted;
+        ? "text-loss"
+        : "text-muted-foreground";
+
+  const subCls =
+    subVariant === "profit"
+      ? "text-profit"
+      : subVariant === "loss"
+        ? "text-loss"
+        : subVariant === "warning"
+          ? "text-warning"
+          : subVariant === "info"
+            ? "text-grade-buy"
+            : "text-muted-foreground";
 
   const changeIcon =
-    changeType === "positive" ? "↑" : changeType === "negative" ? "↓" : "—";
-
-  const subColor =
-    subVariant === "profit" ? colors.profit :
-    subVariant === "loss" ? colors.loss :
-    subVariant === "warning" ? colors.warning :
-    subVariant === "info" ? colors.accent :
-    colors.muted;
+    changeType === "positive" ? "↑" : changeType === "negative" ? "↓" : "";
 
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-1 rounded-lg border bg-card p-4",
-        className
-      )}
-    >
-      <span
-        className="text-xs font-semibold uppercase tracking-wider"
-        style={{ color: colors.muted }}
-      >
-        {label}
-      </span>
+    <div className={cn("vox-surface flex flex-col gap-1.5 p-4 lg:p-5", className)}>
+      <span className={typography.label}>{label}</span>
       {loading ? (
-        <div className="h-8 w-24 animate-pulse rounded bg-muted" />
+        <div className="h-8 w-24 animate-pulse rounded-md bg-muted" />
       ) : (
-        <span
-          className="text-2xl font-semibold tracking-tight"
-          style={{ color: colors.foreground }}
-        >
+        <span className="vox-metric text-2xl font-semibold tracking-tight text-foreground">
           {prefix}
           {value}
           {suffix}
         </span>
       )}
       {change !== undefined && !loading && (
-        <span className="text-xs font-medium" style={{ color: changeColor }}>
+        <span className={cn("text-xs font-medium font-mono tabular-nums", changeCls)}>
           {changeIcon} {change > 0 ? "+" : ""}
           {change.toFixed(2)}%
         </span>
       )}
       {sub && !loading && (
-        <span className="text-xs font-medium" style={{ color: subColor }}>
-          {sub}
-        </span>
+        <span className={cn("text-xs font-medium", subCls)}>{sub}</span>
       )}
     </div>
   );

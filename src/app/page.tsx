@@ -1,414 +1,282 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { PageShell } from "@/components/vox-nav";
-import { VoxCard, VoxBadge as VoxBadgeCard, VoxKpi as VoxKpiCard } from "@/components/vox-card";
-import { VoxLoading, VoxError, VoxTable } from "@/components/vox";
-import { getGradeStyle } from "@/lib/design-system";
+import { VoxKpi, VoxBadge, VoxLoading, VoxError } from "@/components/vox";
+import { typography } from "@/lib/design-system";
 import { fmtCurrency } from "@/lib/format";
-import { getTotalValue, getTotalPnL, gradeMap, dashboardMeta, calculateTotalValue, calculateTotalPnL, calculateBrokerBreakdown } from "@/lib/data";
 import {
-  TrendingUp, TrendingDown, Target, ShieldAlert, Zap,
-  BarChart3, AlertTriangle, Clock, ChevronRight
-} from "lucide-react";
+  calculateTotalValue,
+  calculateBrokerBreakdown,
+} from "@/lib/data";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 export default function Dashboard() {
   const [positions, setPositions] = useState<any[]>([]);
-  const [grades, setGrades] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const [regime, setRegime] = useState({ regime: "UNKNOWN", confidence: 50, bullish: 0, bearish: 0 });
+  const [regime, setRegime] = useState({ regime: "—", confidence: 0 });
 
   useEffect(() => {
-    async function loadData() {
+    async function load() {
       try {
-        const [posRes, gradesRes, harnessRes] = await Promise.all([
+        const [posRes, harnessRes] = await Promise.all([
           fetch("/api/positions"),
-          fetch("/api/grades"),
-          fetch("/api/harness"),
+          fetch("/api/harness").catch(() => null),
         ]);
-        if (!posRes.ok) throw new Error("Failed to fetch positions");
+        if (!posRes.ok) throw new Error("Failed to load positions");
         const posJson = await posRes.json();
-        const gradesJson = await gradesRes.json();
         setPositions(posJson.positions || []);
-        setGrades(gradesJson.grades || []);
-        
-        if (harnessRes.ok) {
-          const harnessJson = await harnessRes.json();
-          const l5 = harnessJson.layer5 || {};
+        if (harnessRes && harnessRes.ok) {
+          const h = await harnessRes.json();
+          const l5 = h.layer5 || {};
           setRegime({
-            regime: l5.regime || "UNKNOWN",
-            confidence: l5.confidence || 50,
-            bullish: l5.bullish_count || 0,
-            bearish: l5.bearish_count || 0,
+            regime: l5.regime || "—",
+            confidence: l5.confidence || 0,
           });
         }
-      } catch (e) {
-        setError("Failed to load data");
+      } catch {
+        setError("Failed to load dashboard data");
       } finally {
         setLoading(false);
       }
     }
-    loadData();
+    load();
   }, []);
 
-  const totalValue = positions.length > 0 ? calculateTotalValue(positions) : getTotalValue();
-  const totalPnl = positions.length > 0 ? calculateTotalPnL(positions) : getTotalPnL();
-  const liveBrokerBreakdown = positions.length > 0 ? calculateBrokerBreakdown(positions) : null;
+  const totalValue = useMemo(
+    () => (positions.length ? calculateTotalValue(positions) : 0),
+    [positions]
+  );
 
-  const dataAge = positions.length > 0 && positions[0]?.updated_at
-    ? Math.round((Date.now() - new Date(positions[0].updated_at).getTime()) / (1000 * 60 * 60))
-    : dashboardMeta.generatedAt
-    ? Math.round((Date.now() - new Date(dashboardMeta.generatedAt).getTime()) / (1000 * 60 * 60))
-    : null;
-  const isStale = dataAge !== null && dataAge > 24;
+  const graded = positions.filter((p) => (p.grade || 0) > 0);
+  const avgGrade = graded.length
+    ? Math.round(graded.reduce((s, p) => s + p.grade, 0) / graded.length)
+    : 0;
+  const researched = positions.filter((p) => p.research_score != null);
+  const avgResearch = researched.length
+    ? Math.round(
+        (researched.reduce((s, p) => s + p.research_score, 0) /
+          researched.length) *
+          10
+      ) / 10
+    : 0;
 
-  const enrichedPositions = positions.map((p: any) => ({
-    ...p,
-    grade: gradeMap[p.ticker]?.grade || p.grade || 0,
-  }));
+  const top = useMemo(
+    () =>
+      [...positions]
+        .sort(
+          (a, b) =>
+            (b.value || b.live_value || b.value_usd || 0) -
+            (a.value || a.live_value || a.value_usd || 0)
+        )
+        .slice(0, 8),
+    [positions]
+  );
 
-  // Merge with VOX grades for actions
-  const gradeMapLive: Record<string, any> = {};
-  grades.forEach((g: any) => {
-    gradeMapLive[g.ticker] = g;
-  });
+  const weak = useMemo(
+    () =>
+      [...positions]
+        .filter(
+          (p) =>
+            (p.grade || 0) > 0 &&
+            (p.grade || 0) < 45 &&
+            (p.value || p.live_value || p.value_usd || 0) >= 200
+        )
+        .sort((a, b) => (a.grade || 0) - (b.grade || 0))
+        .slice(0, 6),
+    [positions]
+  );
 
-  const positionsWithActions = enrichedPositions.map((p: any) => ({
-    ...p,
-    vox_grade: gradeMapLive[p.ticker]?.vox_grade || p.grade || 0,
-    action: gradeMapLive[p.ticker]?.action || "HOLD",
-    stop_loss: gradeMapLive[p.ticker]?.stop_loss || 0,
-  }));
+  const leaders = useMemo(
+    () =>
+      [...positions]
+        .filter((p) => p.research_score != null)
+        .sort((a, b) => (b.research_score || 0) - (a.research_score || 0))
+        .slice(0, 6),
+    [positions]
+  );
 
-  const trimPositions = positionsWithActions.filter((p: any) => p.action === "TRIM").sort((a: any, b: any) => b.vox_grade - a.vox_grade);
-  const newOpportunities = grades.filter((g: any) => g.action === "BUY" && (g.position_value || 0) === 0).sort((a: any, b: any) => b.vox_grade - a.vox_grade);
+  const brokers = useMemo(() => {
+    if (!positions.length) return [];
+    return Object.entries(calculateBrokerBreakdown(positions))
+      .map(([broker, value]) => ({ broker, value: value as number }))
+      .sort((a, b) => b.value - a.value);
+  }, [positions]);
 
-  const sellPositions = positionsWithActions.filter((p: any) => p.grade > 0 && p.grade < 50);
-  const holdPositions = positionsWithActions.filter((p: any) => p.grade >= 50 && p.grade < 60);
-  const corePositions = positionsWithActions.filter((p: any) => p.grade >= 70);
-  const ungradedPositions = positionsWithActions.filter((p: any) => p.grade === 0);
-
-  const sellValue = sellPositions.reduce((sum: number, p: any) => sum + (p.value || p.live_value || 0), 0);
-  const topHoldings = [...enrichedPositions].sort((a: any, b: any) => (b.value || b.live_value || 0) - (a.value || a.live_value || 0)).slice(0, 10);
-
-  const brokerBreakdown = liveBrokerBreakdown
-    ? Object.entries(liveBrokerBreakdown).map(([broker, value]) => ({
-        broker,
-        value: value as number,
-        stale: false,
-      })).sort((a: any, b: any) => b.value - a.value)
-    : (() => {
-        const breakdown = dashboardMeta.brokerBreakdown;
-        const status = dashboardMeta.brokerStatus;
-        return Object.entries(breakdown)
-          .map(([broker, value]: [string, any]) => ({
-            broker,
-            value: value as number,
-            stale: status[broker]?.stale || false,
-          }))
-          .sort((a: any, b: any) => b.value - a.value);
-      })();
+  const maxBroker = brokers[0]?.value || 1;
 
   if (loading) {
     return (
-      <PageShell>
-        <VoxLoading text="Loading dashboard..." />
+      <PageShell title="Dashboard" subtitle="Portfolio intelligence">
+        <VoxLoading text="Loading VOX…" />
       </PageShell>
     );
   }
 
   if (error) {
     return (
-      <PageShell>
-        <VoxError message={error} onRetry={() => window.location.reload()} />
+      <PageShell title="Dashboard">
+        <VoxError message={error} />
       </PageShell>
     );
   }
 
   return (
-    <PageShell>
-      {/* Header */}
-      <div className="mb-10">
-        <h1 className="text-4xl font-semibold tracking-tight text-foreground">
-          Today&apos;s Command Center
-        </h1>
-        <div className="flex items-center gap-3 mt-2">
-          <p className="text-sm text-muted-foreground">
-            {new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", year: "numeric" })}
-          </p>
-          {isStale && (
-            <span className="flex items-center gap-1 text-xs text-warning">
-              <AlertTriangle className="h-3 w-3" />
-              Data is {dataAge}h old
-            </span>
-          )}
-          {!isStale && dashboardMeta.generatedAt && (
-            <span className="flex items-center gap-1 text-xs text-profit">
-              <Clock className="h-3 w-3" />
-              Fresh — {dataAge}h ago
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* URGENT ALERTS */}
-      {sellPositions.length > 0 && (
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <ShieldAlert className="h-4 w-4 text-loss" />
-            <h2
-              className="text-sm font-semibold uppercase text-loss tracking-tight"
-            >
-              {sellPositions.length} Positions Require Action
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {sellPositions.slice(0, 6).map((p: any) => {
-              const gradeStyle = getGradeStyle(p.grade);
-              return (
-                <VoxCard key={p.ticker} hover>
-                  <div className="p-3">
-                    <div className="flex justify-between items-start">
-                      <span className="font-mono text-sm font-semibold text-foreground">
-                        {p.ticker}
-                      </span>
-                      <span
-                        className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded"
-                        style={{ color: gradeStyle.color, background: gradeStyle.bg }}
-                      >
-                        {p.grade}
-                      </span>
-                    </div>
-                    <p className="text-xs mt-1 text-muted-foreground">
-                      {fmtCurrency(p.value || p.live_value || 0)}
-                    </p>
-                  </div>
-                </VoxCard>
-              );
-            })}
-          </div>
-          <div className="flex justify-between items-center mt-3">
-            <span className="text-muted-foreground text-[13px]">
-              Cash freed if sold:{" "}
-              <span className="font-mono font-semibold text-loss">
-                {fmtCurrency(sellValue)} USD
-              </span>
-            </span>
-            <Link
-              href="/plays"
-              className="flex items-center gap-1 text-sm hover:underline text-accent"
-            >
-              Go to Plays <ChevronRight className="h-3 w-3" />
-            </Link>
-          </div>
-        </div>
-      )}
-
-      {/* NEW OPPORTUNITIES */}
-      {newOpportunities.length > 0 && (
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <Target className="h-4 w-4 text-accent" />
-            <h2 className="text-sm font-semibold uppercase text-accent tracking-tight">
-              Top {Math.min(newOpportunities.length, 6)} New Opportunities
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {newOpportunities.slice(0, 6).map((g: any) => {
-              const gradeStyle = getGradeStyle(g.vox_grade);
-              return (
-                <VoxCard key={g.ticker} hover>
-                  <div className="p-3">
-                    <div className="flex justify-between items-start">
-                      <span className="font-mono text-sm font-semibold text-foreground">{g.ticker}</span>
-                      <span className="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded" style={{ color: gradeStyle.color, background: gradeStyle.bg }}>
-                        {g.vox_grade}
-                      </span>
-                    </div>
-                    <p className="text-xs mt-1 text-muted-foreground">
-                      Entry ${g.entry_point?.toFixed(2)} → Target ${(g.entry_point * 1.15)?.toFixed(2)}
-                    </p>
-                  </div>
-                </VoxCard>
-              );
-            })}
-          </div>
-          <div className="flex justify-end mt-3">
-            <Link href="/grades" className="flex items-center gap-1 text-sm hover:underline text-accent">
-              View all opportunities <ChevronRight className="h-3 w-3" />
-            </Link>
-          </div>
-        </div>
-      )}
-
-      {/* KPI ROW */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <VoxKpiCard
-          label="Total AUM"
-          value={fmtCurrency(totalValue)}
-          sub={totalPnl >= 0 ? `+${fmtCurrency(totalPnl).replace("$", "")}` : `-${fmtCurrency(Math.abs(totalPnl)).replace("$", "")}`}
-          subVariant={totalPnl >= 0 ? "profit" : "loss"}
-          icon={totalPnl >= 0 ? <TrendingUp className="h-3 w-3 text-profit" /> : <TrendingDown className="h-3 w-3 text-loss" />}
-        />
-        <VoxKpiCard
-          label="Positions"
-          value={`${positions.length > 0 ? positions.length : dashboardMeta.totalPositions}`}
-          sub={`${trimPositions.length} TRIM · ${newOpportunities.length} BUY`}
-        />
-        <VoxKpiCard
-          label="USD / MXN"
-          value={dashboardMeta.usdMxnRate.toFixed(2)}
-          sub={dashboardMeta.usdMxnDate || "Today"}
-        />
-        <VoxKpiCard
-          label="Market Regime"
-          value={regime.regime}
-          sub={regime.bearish > regime.bullish ? `${regime.bearish} bearish vs ${regime.bullish} bullish signals` : `${regime.bullish} bullish vs ${regime.bearish} bearish signals`}
+    <PageShell
+      title="Dashboard"
+      subtitle="Balanced book · research scores · not day-trading"
+      actions={
+        <Link
+          href="/portfolio"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          Full positions <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
+      }
+    >
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-6">
+        <VoxKpi label="AUM" value={fmtCurrency(totalValue)} />
+        <VoxKpi label="Positions" value={positions.length} />
+        <VoxKpi label="Avg grade" value={avgGrade || "—"} />
+        <VoxKpi
+          label="Avg research"
+          value={avgResearch || "—"}
+          sub={regime.regime !== "—" ? `Regime ${regime.regime}` : undefined}
         />
       </div>
 
-      {/* HOLDINGS + DISTRIBUTION */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        {/* Top Holdings Table */}
-        <div className="lg:col-span-2">
-          <div className="flex items-center gap-2 mb-4">
-            <BarChart3 className="h-4 w-4 text-accent" />
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Top 10 Holdings
-            </h2>
-          </div>
-          <VoxCard variant="stack">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border">
-                  {["Ticker", "Value", "P&L", "Grade", "Broker"].map((h) => (
-                    <th
-                      key={h}
-                      className="text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wide"
-                    >
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {topHoldings.map((p: any) => {
-                  const gradeStyle = getGradeStyle(p.grade);
-                  return (
-                    <tr
-                      key={p.ticker}
-                      className="border-b border-border"
-                    >
-                      <td className="p-3">
-                        <span className="font-mono font-semibold text-sm text-foreground">{p.ticker}</span>
-                      </td>
-                      <td className="p-3 font-mono text-sm text-foreground">
-                        {fmtCurrency(p.value || p.live_value || 0)}
-                      </td>
-                      <td className="p-3 text-right">
-                        <span
-                          className={`text-sm ${(p.pnl_pct || 0) >= 0 ? "text-profit" : "text-loss"}`}
-                        >
-                          {p.avg_cost > 0 ? `${(p.pnl_pct || 0) >= 0 ? "+" : ""}${p.pnl_pct || 0}%` : "N/A"}
-                        </span>
-                      </td>
-                      <td className="p-3">
-                        {p.grade > 0 ? (
-                          <VoxBadgeCard variant="grade" grade={p.grade}>{p.grade}</VoxBadgeCard>
-                        ) : (
-                          <span className="text-muted-foreground/50 text-xs">—</span>
-                        )}
-                      </td>
-                      <td className="p-3 text-xs text-muted-foreground">
-                        {(p.brokers || [p.broker]).join(", ")}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            <Link
-              href="/portfolio"
-              className="flex items-center gap-1 p-3 text-sm hover:underline transition-colors text-accent border-t border-border"
-            >
-              View all {positions.length} positions <ChevronRight className="h-3 w-3" />
-            </Link>
-          </VoxCard>
-        </div>
-
-        {/* Right Column */}
-        <div className="space-y-4">
-          {/* Grade Distribution */}
-          <VoxCard className="p-4">
-            <h3
-              className="font-semibold mb-3 text-[13px] tracking-tight text-foreground"
-            >
-              Grade Distribution
-            </h3>
-            <div className="space-y-2">
-              {[
-                { label: "Core (70+)", count: corePositions.length, color: "#00a86b" },
-                { label: "Buy (60-69)", count: holdPositions.length, color: "#0072f5" },
-                { label: "Hold (50-59)", count: trimPositions.length, color: "#f59e0b" },
-                { label: "Sell (<50)", count: sellPositions.length, color: "#dc2626" },
-                { label: "Ungraded", count: ungradedPositions.length, color: "#666666" },
-              ].map((bucket) => (
-                <div key={bucket.label} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-current" />
-                    <span className="text-[13px] text-muted-foreground">{bucket.label}</span>
-                  </div>
-                  <span className="font-mono text-sm text-foreground">{bucket.count}</span>
+      <div className="grid lg:grid-cols-3 gap-4 mb-6">
+        {/* Broker allocation */}
+        <div className="vox-surface p-4 lg:p-5 lg:col-span-1">
+          <div className={cn(typography.label, "mb-4")}>Broker allocation</div>
+          <div className="space-y-3">
+            {brokers.map((b) => (
+              <div key={b.broker}>
+                <div className="flex justify-between text-xs mb-1">
+                  <span className="text-foreground font-medium">{b.broker}</span>
+                  <span className="font-mono tabular-nums text-muted-foreground">
+                    {fmtCurrency(b.value)}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </VoxCard>
-
-          {/* By Broker */}
-          <VoxCard className="p-4">
-            <h3
-              className="font-semibold mb-3 text-[13px] tracking-tight text-foreground"
-            >
-              By Broker
-            </h3>
-            <div className="space-y-2">
-              {brokerBreakdown.map((b: any) => (
-                <div key={b.broker} className="flex items-center justify-between">
-                  <span className="text-[13px] text-muted-foreground">{b.broker}</span>
-                  <div className="flex items-center gap-1">
-                    <span className="font-mono text-sm text-foreground">
-                      {fmtCurrency(b.value)}
-                    </span>
-                    {b.stale && <span className="text-warning text-[11px]">⚠</span>}
-                  </div>
+                <div className="h-1 rounded-full bg-muted overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-grade-buy/80"
+                    style={{ width: `${Math.max(4, (b.value / maxBroker) * 100)}%` }}
+                  />
                 </div>
-              ))}
-            </div>
-          </VoxCard>
-        </div>
-      </div>
-
-      {/* QUICK LINKS */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { label: "Plays", href: "/plays", icon: Target, desc: `${sellPositions.length} urgent actions` },
-          { label: "Portfolio", href: "/portfolio", icon: BarChart3, desc: `${positions.length} positions` },
-          { label: "Grades", href: "/grades", icon: Zap, desc: "AI grading system" },
-          { label: "Watchlist", href: "/watchlist", icon: ShieldAlert, desc: "Entry triggers" },
-        ].map((link) => (
-          <Link key={link.href} href={link.href}>
-            <VoxCard hover className="p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <link.icon className="h-4 w-4 text-accent" />
-                <span className="text-sm font-medium text-foreground">{link.label}</span>
               </div>
-              <p className="text-xs text-muted-foreground">{link.desc}</p>
-            </VoxCard>
+            ))}
+            {!brokers.length && (
+              <p className="text-sm text-muted-foreground">No broker data</p>
+            )}
+          </div>
+        </div>
+
+        {/* Research leaders */}
+        <div className="vox-surface p-4 lg:p-5">
+          <div className="flex items-center justify-between mb-4">
+            <div className={typography.label}>Research leaders</div>
+            <Link href="/grades" className="text-xs text-muted-foreground hover:text-foreground">
+              Grades
+            </Link>
+          </div>
+          <ul className="space-y-2.5">
+            {leaders.map((p) => (
+              <li key={p.ticker} className="flex items-center justify-between gap-2">
+                <span className="font-mono font-semibold text-sm">{p.ticker}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground font-mono">
+                    g{p.grade ?? "—"}
+                  </span>
+                  <VoxBadge grade={Math.round(p.research_score)} variant="grade">
+                    {p.research_score}
+                  </VoxBadge>
+                </div>
+              </li>
+            ))}
+            {!leaders.length && (
+              <li className="text-sm text-muted-foreground">No research scores yet</li>
+            )}
+          </ul>
+        </div>
+
+        {/* Weak names */}
+        <div className="vox-surface p-4 lg:p-5">
+          <div className={cn(typography.label, "mb-4")}>Weak (≥$200)</div>
+          <ul className="space-y-2.5">
+            {weak.map((p) => (
+              <li key={p.ticker} className="flex items-center justify-between gap-2">
+                <span className="font-mono font-semibold text-sm">{p.ticker}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono text-muted-foreground tabular-nums">
+                    {fmtCurrency(p.value || p.live_value || p.value_usd || 0)}
+                  </span>
+                  <VoxBadge grade={p.grade} variant="grade">
+                    {p.grade}
+                  </VoxBadge>
+                </div>
+              </li>
+            ))}
+            {!weak.length && (
+              <li className="text-sm text-muted-foreground">None material</li>
+            )}
+          </ul>
+        </div>
+      </div>
+
+      {/* Top holdings */}
+      <div className="vox-surface overflow-x-auto">
+        <div className="flex items-center justify-between px-4 pt-4 pb-2">
+          <div className={typography.label}>Top holdings</div>
+          <Link
+            href="/portfolio"
+            className="text-xs text-muted-foreground hover:text-foreground"
+          >
+            View all
           </Link>
-        ))}
+        </div>
+        <table className="vox-table w-full min-w-[560px]">
+          <thead>
+            <tr>
+              <th className="text-left px-4 py-2">Ticker</th>
+              <th className="text-right px-4 py-2">Value</th>
+              <th className="text-right px-4 py-2">Grade</th>
+              <th className="text-right px-4 py-2">Research</th>
+              <th className="text-left px-4 py-2">Council</th>
+            </tr>
+          </thead>
+          <tbody>
+            {top.map((p) => {
+              const val = p.value || p.live_value || p.value_usd || 0;
+              return (
+                <tr key={p.ticker}>
+                  <td className="px-4 py-2.5 font-mono font-semibold text-sm">
+                    {p.ticker}
+                  </td>
+                  <td className="px-4 py-2.5 text-right font-mono tabular-nums text-sm">
+                    {fmtCurrency(val)}
+                  </td>
+                  <td className="px-4 py-2.5 text-right">
+                    {p.grade ? (
+                      <VoxBadge grade={p.grade}>{p.grade}</VoxBadge>
+                    ) : (
+                      "—"
+                    )}
+                  </td>
+                  <td className="px-4 py-2.5 text-right font-mono tabular-nums text-sm">
+                    {p.research_score ?? "—"}
+                  </td>
+                  <td className="px-4 py-2.5 text-xs text-muted-foreground">
+                    {p.council || "—"}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </PageShell>
   );

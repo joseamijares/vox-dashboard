@@ -1,190 +1,150 @@
 // ── VOX Design System ──
-// Single source of truth for colors, typography, spacing, shadows
-// No hardcoded values anywhere in components
+// Dark-first Linear/fintech tokens. Prefer CSS variables + Tailwind semantic classes.
+// Avoid hardcoded light hex in components.
 
-export const colors = {
-  // Canvas
-  background: "#ffffff",
-  foreground: "#171717",
-
-  // Semantic
-  primary: "#171717",
-  primaryForeground: "#ffffff",
-  secondary: "#fafafa",
-  muted: "#666666",
-  mutedLight: "#999999",
-  border: "rgba(0, 0, 0, 0.08)",
-
-  // Accent
-  accent: "#0072f5",
-  accentSoft: "#ebf5ff",
-
-  // Trading
-  profit: "#00a86b",
-  profitSoft: "rgba(0, 168, 107, 0.10)",
-  loss: "#dc2626",
-  lossSoft: "rgba(220, 38, 38, 0.10)",
-
+export const tokens = {
+  // Canvas (Linear-style)
+  bgBase: "#0b0e11",
+  bgElevated: "#111418",
+  bgCard: "#15181d",
+  bgCardHover: "#1a1e25",
+  bgMuted: "#1c2129",
+  textPrimary: "#f0f2f5",
+  textSecondary: "#8b929e",
+  textTertiary: "#5c6570",
+  borderSubtle: "rgba(255,255,255,0.06)",
+  borderDefault: "rgba(255,255,255,0.08)",
+  // Accents (muted pastels — not neon)
+  accent: "#7c9cff",
+  accentSoft: "rgba(124,156,255,0.12)",
+  profit: "#4ade80",
+  profitSoft: "rgba(74,222,128,0.12)",
+  loss: "#f87171",
+  lossSoft: "rgba(248,113,113,0.12)",
+  warning: "#fbbf24",
+  warningSoft: "rgba(251,191,36,0.12)",
   // Grades
-  gradeCore: "#00a86b",
-  gradeCoreSoft: "rgba(0, 168, 107, 0.10)",
-  gradeBuy: "#0072f5",
-  gradeBuySoft: "rgba(0, 114, 245, 0.10)",
-  gradeHold: "#f59e0b",
-  gradeHoldSoft: "rgba(245, 158, 11, 0.10)",
-  gradeTrim: "#f97316",
-  gradeTrimSoft: "rgba(249, 115, 22, 0.10)",
-  gradeSell: "#dc2626",
-  gradeSellSoft: "rgba(220, 38, 38, 0.10)",
-  gradeUngraded: "#666666",
-  gradeUngradedSoft: "rgba(0, 0, 0, 0.04)",
+  gradeCore: "#4ade80",
+  gradeBuy: "#7c9cff",
+  gradeHold: "#fbbf24",
+  gradeTrim: "#fb923c",
+  gradeSell: "#f87171",
+} as const;
 
-  // Status
-  warning: "#f59e0b",
-  info: "#0072f5",
+/** @deprecated use semantic Tailwind classes; kept for gradual migration */
+export const colors = {
+  background: "var(--background)",
+  foreground: "var(--foreground)",
+  primary: "var(--primary)",
+  primaryForeground: "var(--primary-foreground)",
+  secondary: "var(--secondary)",
+  muted: "var(--muted-foreground)",
+  mutedLight: "var(--muted-foreground)",
+  border: "var(--border)",
+  accent: "var(--vox-accent)",
+  accentSoft: "var(--vox-accent-soft)",
+  profit: "var(--vox-profit)",
+  profitSoft: "var(--vox-profit-soft)",
+  loss: "var(--vox-loss)",
+  lossSoft: "var(--vox-loss-soft)",
+  gradeCore: "var(--vox-grade-core)",
+  gradeCoreSoft: "var(--vox-grade-core-soft)",
+  gradeBuy: "var(--vox-grade-buy)",
+  gradeBuySoft: "var(--vox-grade-buy-soft)",
+  gradeHold: "var(--vox-grade-hold)",
+  gradeHoldSoft: "var(--vox-grade-hold-soft)",
+  gradeTrim: "var(--vox-grade-trim)",
+  gradeTrimSoft: "var(--vox-grade-trim-soft)",
+  gradeSell: "var(--vox-grade-sell)",
+  gradeSellSoft: "var(--vox-grade-sell-soft)",
+  gradeUngraded: "var(--muted-foreground)",
+  gradeUngradedSoft: "var(--muted)",
+  warning: "var(--vox-warning)",
+  info: "var(--vox-accent)",
 } as const;
 
 export const typography = {
-  display: {
-    fontSize: "40px",
-    fontWeight: 600,
-    lineHeight: 1.2,
-    letterSpacing: "-2.4px",
-  },
-  heading: {
-    fontSize: "24px",
-    fontWeight: 600,
-    lineHeight: 1.3,
-    letterSpacing: "-0.96px",
-  },
-  subheading: {
-    fontSize: "18px",
-    fontWeight: 600,
-    lineHeight: 1.4,
-    letterSpacing: "-0.32px",
-  },
-  body: {
-    fontSize: "14px",
-    fontWeight: 400,
-    lineHeight: 1.5,
-    letterSpacing: "0",
-  },
-  caption: {
-    fontSize: "12px",
-    fontWeight: 500,
-    lineHeight: 1.4,
-    letterSpacing: "0.5px",
-  },
-  label: {
-    fontSize: "11px",
-    fontWeight: 600,
-    lineHeight: 1.4,
-    letterSpacing: "1.2px",
-    textTransform: "uppercase" as const,
-  },
-  mono: {
-    fontFamily: "var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-    fontFeatureSettings: '"liga" 1, "tnum" 1',
-  },
+  display: "text-3xl lg:text-4xl font-semibold tracking-tight text-foreground",
+  heading: "text-xl lg:text-2xl font-semibold tracking-tight text-foreground",
+  subheading: "text-base font-semibold text-foreground",
+  body: "text-sm text-foreground",
+  caption: "text-xs text-muted-foreground",
+  label: "text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground",
+  mono: "font-mono tabular-nums",
+  metric: "text-2xl font-semibold tracking-tight font-mono tabular-nums text-foreground",
 } as const;
 
 export const spacing = {
-  xs: "4px",
-  sm: "8px",
-  md: "12px",
-  lg: "16px",
-  xl: "24px",
-  "2xl": "32px",
-  "3xl": "40px",
-  "4xl": "64px",
-} as const;
-
-export const shadows = {
-  border: "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
-  borderLight: "rgb(235, 235, 235) 0px 0px 0px 1px",
-  card: "rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px",
-  cardHover: "rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.06) 0px 4px 4px",
-  cardStack: "rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px, rgba(0,0,0,0.04) 0px 8px 8px -8px, #fafafa 0px 0px 0px 1px",
-  cardStackHover: "rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.06) 0px 4px 4px, rgba(0,0,0,0.06) 0px 12px 12px -8px, #fafafa 0px 0px 0px 1px",
+  page: "p-4 lg:p-8",
+  section: "space-y-6",
+  card: "p-4 lg:p-5",
+  gap: "gap-3 lg:gap-4",
 } as const;
 
 export const radius = {
-  sm: "6px",
-  md: "8px",
-  lg: "12px",
-  xl: "16px",
-  full: "9999px",
+  sm: "rounded-md",
+  md: "rounded-lg",
+  lg: "rounded-xl",
+  full: "rounded-full",
 } as const;
 
-// ── Grade System ──
 export function getGradeStyle(grade: number) {
-  if (grade >= 70) return { color: colors.gradeCore, bg: colors.gradeCoreSoft, label: "Core" };
-  if (grade >= 60) return { color: colors.gradeBuy, bg: colors.gradeBuySoft, label: "Buy" };
-  if (grade >= 50) return { color: colors.gradeHold, bg: colors.gradeHoldSoft, label: "Hold" };
-  if (grade >= 40) return { color: colors.gradeTrim, bg: colors.gradeTrimSoft, label: "Trim" };
-  return { color: colors.gradeSell, bg: colors.gradeSellSoft, label: "Sell" };
+  if (grade >= 70)
+    return { color: "var(--vox-grade-core)", bg: "var(--vox-grade-core-soft)", label: "Core", className: "text-grade-core bg-grade-core-soft" };
+  if (grade >= 60)
+    return { color: "var(--vox-grade-buy)", bg: "var(--vox-grade-buy-soft)", label: "Buy", className: "text-grade-buy bg-grade-buy-soft" };
+  if (grade >= 50)
+    return { color: "var(--vox-grade-hold)", bg: "var(--vox-grade-hold-soft)", label: "Hold", className: "text-grade-hold bg-grade-hold-soft" };
+  if (grade >= 40)
+    return { color: "var(--vox-grade-trim)", bg: "var(--vox-grade-trim-soft)", label: "Trim", className: "text-grade-trim bg-grade-trim-soft" };
+  return { color: "var(--vox-grade-sell)", bg: "var(--vox-grade-sell-soft)", label: "Sell", className: "text-grade-sell bg-grade-sell-soft" };
 }
 
-// ── Navigation Data (single source) ──
-// Consolidated to only pages we actually use
+export function getGradeClass(grade: number | null | undefined): string {
+  if (grade == null || Number.isNaN(grade)) return "text-muted-foreground bg-muted";
+  return getGradeStyle(grade).className;
+}
+
+/** Slim navigation — only real product surfaces */
 export const navSections = [
   {
     title: "Overview",
     items: [
-      { href: "/", label: "Dashboard" },
+      { href: "/", label: "Dashboard", icon: "Dashboard" },
     ],
   },
   {
     title: "Portfolio",
     items: [
-      { href: "/portfolio", label: "Positions" },
-      { href: "/brokers", label: "Brokers" },
-      { href: "/plays", label: "Plays" },
-      { href: "/watchlist", label: "Watchlist" },
+      { href: "/portfolio", label: "Positions", icon: "Positions" },
+      { href: "/brokers", label: "Brokers", icon: "Brokers" },
+      { href: "/grades", label: "Grades", icon: "Grades" },
     ],
   },
   {
-    title: "Analysis",
+    title: "Research",
     items: [
-      { href: "/grades", label: "Grades" },
-      { href: "/screener", label: "Screener" },
-      { href: "/alerts", label: "Alerts" },
+      { href: "/screener", label: "Screener", icon: "Screener" },
+      { href: "/alerts", label: "Alerts", icon: "Alerts" },
+      { href: "/signals", label: "Signals", icon: "Signals" },
     ],
   },
   {
-    title: "Journal",
+    title: "System",
     items: [
-      { href: "/journal", label: "Journal" },
+      { href: "/crons", label: "Crons", icon: "Crons" },
+      { href: "/journal", label: "Journal", icon: "Journal" },
     ],
   },
 ] as const;
 
-// ── Reusable Component Styles ──
 export const styles = {
-  card: {
-    background: colors.background,
-    boxShadow: shadows.card,
-    borderRadius: radius.md,
-    transition: "all 0.15s ease",
-  },
-  cardHover: {
-    boxShadow: shadows.cardHover,
-    transform: "translateY(-1px)",
-  },
-  cardStack: {
-    background: colors.background,
-    boxShadow: shadows.cardStack,
-    borderRadius: radius.md,
-  },
-  pageContainer: {
-    minHeight: "100vh",
-    background: colors.background,
-  },
-  pageMain: {
-    paddingTop: "56px", // mobile header height
-  },
-  pageMainDesktop: {
-    paddingTop: "0",
-    marginLeft: "256px", // sidebar width
-  },
+  page: "min-h-screen bg-background text-foreground",
+  card: "rounded-lg bg-card text-card-foreground transition-colors",
+  cardInteractive: "rounded-lg bg-card text-card-foreground transition-colors hover:bg-muted/40",
+  kpi: "rounded-lg bg-card p-4 lg:p-5 flex flex-col gap-1.5",
+  tableWrap: "rounded-lg bg-card overflow-hidden",
+  tableHead: "text-[11px] uppercase tracking-wider text-muted-foreground font-medium",
+  pill: "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+  pageHeader: "mb-6 lg:mb-8",
 } as const;

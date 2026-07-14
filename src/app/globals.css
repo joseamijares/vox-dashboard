@@ -43,75 +43,111 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Light (secondary) */
 :root {
-  --radius: 0.625rem;
-  /* Vercel-style near-white canvas, not pure black */
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius: 0.5rem;
+  --background: #f7f8fa;
+  --foreground: #0f1419;
   --card: #ffffff;
-  --card-foreground: #171717;
+  --card-foreground: #0f1419;
   --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #171717;
+  --popover-foreground: #0f1419;
+  --primary: #0f1419;
   --primary-foreground: #ffffff;
-  --secondary: #fafafa;
-  --secondary-foreground: #171717;
-  --muted: #fafafa;
-  --muted-foreground: #666666;
-  --accent: #0072f5;
-  --accent-foreground: #ffffff;
-  --destructive: #ff5b4f;
-  /* Vercel shadow-as-border technique */
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.08);
-  --ring: hsla(212, 100%, 48%, 1);
-  --chart-1: #0072f5;
-  --chart-2: #00c087;
-  --chart-3: #f0b90b;
-  --chart-4: #ff5b4f;
-  --chart-5: #de1d8d;
+  --secondary: #eef1f5;
+  --secondary-foreground: #0f1419;
+  --muted: #eef1f5;
+  --muted-foreground: #5c6570;
+  --accent: #eef1f5;
+  --accent-foreground: #0f1419;
+  --destructive: #dc2626;
+  --border: rgba(15, 20, 25, 0.08);
+  --input: rgba(15, 20, 25, 0.08);
+  --ring: #7c9cff;
+  --chart-1: #7c9cff;
+  --chart-2: #4ade80;
+  --chart-3: #fbbf24;
+  --chart-4: #f87171;
+  --chart-5: #a78bfa;
   --sidebar: #ffffff;
-  --sidebar-foreground: #171717;
-  --sidebar-primary: #171717;
+  --sidebar-foreground: #0f1419;
+  --sidebar-primary: #0f1419;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #fafafa;
-  --sidebar-accent-foreground: #171717;
-  --sidebar-border: rgba(0, 0, 0, 0.08);
-  --sidebar-ring: hsla(212, 100%, 48%, 1);
+  --sidebar-accent: #eef1f5;
+  --sidebar-accent-foreground: #0f1419;
+  --sidebar-border: rgba(15, 20, 25, 0.08);
+  --sidebar-ring: #7c9cff;
+
+  --vox-accent: #3b6cf5;
+  --vox-accent-soft: rgba(59, 108, 245, 0.10);
+  --vox-profit: #059669;
+  --vox-profit-soft: rgba(5, 150, 105, 0.10);
+  --vox-loss: #dc2626;
+  --vox-loss-soft: rgba(220, 38, 38, 0.10);
+  --vox-warning: #d97706;
+  --vox-grade-core: #059669;
+  --vox-grade-core-soft: rgba(5, 150, 105, 0.10);
+  --vox-grade-buy: #3b6cf5;
+  --vox-grade-buy-soft: rgba(59, 108, 245, 0.10);
+  --vox-grade-hold: #d97706;
+  --vox-grade-hold-soft: rgba(217, 119, 6, 0.10);
+  --vox-grade-trim: #ea580c;
+  --vox-grade-trim-soft: rgba(234, 88, 12, 0.10);
+  --vox-grade-sell: #dc2626;
+  --vox-grade-sell-soft: rgba(220, 38, 38, 0.10);
 }
 
+/* Dark-first product surface — Linear / institutional fintech */
 .dark {
-  --background: #0a0a0f;
-  --foreground: #e2e8f0;
-  --card: #13131f;
-  --card-foreground: #e2e8f0;
-  --popover: #13131f;
-  --popover-foreground: #e2e8f0;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --secondary: #1a1a2e;
-  --secondary-foreground: #e2e8f0;
-  --muted: #1a1a2e;
-  --muted-foreground: #94a3b8;
-  --accent: #1a1a2e;
-  --accent-foreground: #e2e8f0;
-  --destructive: #ef4444;
-  --border: #27273a;
-  --input: #27273a;
-  --ring: #3b82f6;
-  --chart-1: #3b82f6;
-  --chart-2: #22c55e;
-  --chart-3: #f59e0b;
-  --chart-4: #ef4444;
-  --chart-5: #8b5cf6;
-  --sidebar: #0f0f1a;
-  --sidebar-foreground: #e2e8f0;
-  --sidebar-primary: #3b82f6;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1a1a2e;
-  --sidebar-accent-foreground: #e2e8f0;
-  --sidebar-border: #27273a;
-  --sidebar-ring: #3b82f6;
+  --background: #0b0e11;
+  --foreground: #f0f2f5;
+  --card: #15181d;
+  --card-foreground: #f0f2f5;
+  --popover: #15181d;
+  --popover-foreground: #f0f2f5;
+  --primary: #f0f2f5;
+  --primary-foreground: #0b0e11;
+  --secondary: #1c2129;
+  --secondary-foreground: #f0f2f5;
+  --muted: #1c2129;
+  --muted-foreground: #8b929e;
+  --accent: #1c2129;
+  --accent-foreground: #f0f2f5;
+  --destructive: #f87171;
+  --border: rgba(255, 255, 255, 0.06);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #7c9cff;
+  --chart-1: #7c9cff;
+  --chart-2: #4ade80;
+  --chart-3: #fbbf24;
+  --chart-4: #f87171;
+  --chart-5: #a78bfa;
+  --sidebar: #0f1216;
+  --sidebar-foreground: #f0f2f5;
+  --sidebar-primary: #7c9cff;
+  --sidebar-primary-foreground: #0b0e11;
+  --sidebar-accent: #1c2129;
+  --sidebar-accent-foreground: #f0f2f5;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: #7c9cff;
+
+  --vox-accent: #7c9cff;
+  --vox-accent-soft: rgba(124, 156, 255, 0.12);
+  --vox-profit: #4ade80;
+  --vox-profit-soft: rgba(74, 222, 128, 0.12);
+  --vox-loss: #f87171;
+  --vox-loss-soft: rgba(248, 113, 113, 0.12);
+  --vox-warning: #fbbf24;
+  --vox-grade-core: #4ade80;
+  --vox-grade-core-soft: rgba(74, 222, 128, 0.12);
+  --vox-grade-buy: #7c9cff;
+  --vox-grade-buy-soft: rgba(124, 156, 255, 0.12);
+  --vox-grade-hold: #fbbf24;
+  --vox-grade-hold-soft: rgba(251, 191, 36, 0.12);
+  --vox-grade-trim: #fb923c;
+  --vox-grade-trim-soft: rgba(251, 146, 60, 0.12);
+  --vox-grade-sell: #f87171;
+  --vox-grade-sell-soft: rgba(248, 113, 113, 0.12);
 }
 
 @layer base {
@@ -119,180 +155,102 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "liga" 1;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "liga" 1, "tnum" 1;
   }
 }
 
-/* ── Vercel Design System ── */
-
-/* Shadow-as-border: the signature Vercel technique */
-.shadow-border {
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+/* Linear-style surface card — background shift, almost no border */
+.vox-surface {
+  background: var(--card);
+  border-radius: 10px;
+}
+.vox-surface-hover:hover {
+  background: color-mix(in srgb, var(--card) 92%, var(--foreground) 8%);
 }
 
-.shadow-border-light {
-  box-shadow: rgb(235, 235, 235) 0px 0px 0px 1px;
+/* KPI metric */
+.vox-metric {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
-/* Multi-layer card shadow (Vercel card stack) */
-.card-vercel {
-  background: #ffffff;
-  box-shadow: rgba(0,0,0,0.08) 0px 0px 0px 1px,
-              rgba(0,0,0,0.04) 0px 2px 2px,
-              rgba(0,0,0,0.04) 0px 8px 8px -8px,
-              #fafafa 0px 0px 0px 1px;
-  border-radius: 8px;
+/* Trading / grade utilities — always from CSS vars */
+.text-profit { color: var(--vox-profit); }
+.text-loss { color: var(--vox-loss); }
+.bg-profit-soft { background: var(--vox-profit-soft); }
+.bg-loss-soft { background: var(--vox-loss-soft); }
+.text-warning { color: var(--vox-warning); }
+
+.text-grade-core { color: var(--vox-grade-core); }
+.text-grade-buy { color: var(--vox-grade-buy); }
+.text-grade-hold { color: var(--vox-grade-hold); }
+.text-grade-trim { color: var(--vox-grade-trim); }
+.text-grade-sell { color: var(--vox-grade-sell); }
+
+.bg-grade-core-soft { background: var(--vox-grade-core-soft); }
+.bg-grade-buy-soft { background: var(--vox-grade-buy-soft); }
+.bg-grade-hold-soft { background: var(--vox-grade-hold-soft); }
+.bg-grade-trim-soft { background: var(--vox-grade-trim-soft); }
+.bg-grade-sell-soft { background: var(--vox-grade-sell-soft); }
+
+.grade-core { color: var(--vox-grade-core); background: var(--vox-grade-core-soft); }
+.grade-buy { color: var(--vox-grade-buy); background: var(--vox-grade-buy-soft); }
+.grade-hold { color: var(--vox-grade-hold); background: var(--vox-grade-hold-soft); }
+.grade-trim { color: var(--vox-grade-trim); background: var(--vox-grade-trim-soft); }
+.grade-sell { color: var(--vox-grade-sell); background: var(--vox-grade-sell-soft); }
+.grade-ungraded { color: var(--muted-foreground); background: var(--muted); }
+
+/* Table density */
+.vox-table th {
+  @apply text-[11px] font-medium uppercase tracking-wider text-muted-foreground;
 }
-
-.card-vercel:hover {
-  box-shadow: rgba(0,0,0,0.08) 0px 0px 0px 1px,
-              rgba(0,0,0,0.06) 0px 4px 4px,
-              rgba(0,0,0,0.06) 0px 12px 12px -8px,
-              #fafafa 0px 0px 0px 1px;
+.vox-table td {
+  @apply text-sm;
 }
-
-/* Dark mode card */
-.dark .card-vercel {
-  background: #13131f;
-  box-shadow: rgba(0,0,0,0.3) 0px 0px 0px 1px,
-              rgba(0,0,0,0.2) 0px 2px 2px,
-              rgba(0,0,0,0.2) 0px 8px 8px -8px;
+.vox-table tbody tr {
+  border-bottom: 1px solid var(--border);
 }
-
-/* Typography: aggressive negative tracking like Vercel */
-.tracking-display {
-  letter-spacing: -2.4px;
+.vox-table tbody tr:last-child {
+  border-bottom: none;
 }
-
-.tracking-heading {
-  letter-spacing: -1.28px;
-}
-
-.tracking-subheading {
-  letter-spacing: -0.96px;
-}
-
-.tracking-tight {
-  letter-spacing: -0.32px;
-}
-
-/* Pill badges */
-.badge-pill {
-  background: #ebf5ff;
-  color: #0068d6;
-  padding: 0px 10px;
-  border-radius: 9999px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* Workflow accent colors */
-.text-ship { color: #ff5b4f; }
-.text-preview { color: #de1d8d; }
-.text-develop { color: #0a72ef; }
-
-.bg-ship-soft { background: rgba(255, 91, 79, 0.10); }
-.bg-preview-soft { background: rgba(222, 29, 141, 0.10); }
-.bg-develop-soft { background: rgba(10, 114, 239, 0.10); }
-
-/* Trading colors (adapted for light theme) */
-.text-profit { color: #00a86b; }
-.text-loss { color: #dc2626; }
-.bg-profit-soft { background: rgba(0, 168, 107, 0.10); }
-.bg-loss-soft { background: rgba(220, 38, 38, 0.10); }
-
-/* Dark mode trading colors */
-.dark .text-profit { color: #00c087; }
-.dark .text-loss { color: #f6465d; }
-.dark .bg-profit-soft { background: rgba(0, 192, 135, 0.10); }
-.dark .bg-loss-soft { background: rgba(246, 70, 93, 0.10); }
-
-/* Loss soft utility */
-.bg-loss-soft { background: rgba(220, 38, 38, 0.10); }
-.dark .bg-loss-soft { background: rgba(246, 70, 93, 0.10); }
-
-/* Text loss utility */
-.text-loss { color: #dc2626; }
-.dark .text-loss { color: #f6465d; }
-
-/* Grade color system */
-.grade-core { color: #00a86b; background: rgba(0, 168, 107, 0.10); }
-.grade-buy { color: #0072f5; background: rgba(0, 114, 245, 0.10); }
-.grade-hold { color: #f59e0b; background: rgba(245, 158, 11, 0.10); }
-.grade-trim { color: #f97316; background: rgba(249, 115, 22, 0.10); }
-.grade-sell { color: #dc2626; background: rgba(220, 38, 38, 0.10); }
-.grade-ungraded { color: #666666; background: rgba(0, 0, 0, 0.04); }
-
-.dark .grade-core { color: #00c087; background: rgba(0, 192, 135, 0.10); }
-.dark .grade-buy { color: #3b82f6; background: rgba(59, 130, 246, 0.10); }
-.dark .grade-hold { color: #f59e0b; background: rgba(245, 158, 11, 0.10); }
-.dark .grade-trim { color: #f97316; background: rgba(249, 115, 22, 0.10); }
-.dark .grade-sell { color: #f6465d; background: rgba(246, 70, 93, 0.10); }
-.dark .grade-ungraded { color: #94a3b8; background: rgba(255, 255, 255, 0.04); }
-
-/* Grade text utilities */
-.text-grade-core { color: #00a86b; }
-.text-grade-buy { color: #0072f5; }
-.text-grade-hold { color: #f59e0b; }
-.text-grade-trim { color: #f97316; }
-.text-grade-sell { color: #dc2626; }
-
-.dark .text-grade-core { color: #00c087; }
-.dark .text-grade-buy { color: #3b82f6; }
-.dark .text-grade-hold { color: #f59e0b; }
-.dark .text-grade-trim { color: #f97316; }
-.dark .text-grade-sell { color: #f6465d; }
-
-/* Grade background utilities */
-.bg-grade-core-soft { background: rgba(0, 168, 107, 0.10); }
-.bg-grade-buy-soft { background: rgba(0, 114, 245, 0.10); }
-.bg-grade-hold-soft { background: rgba(245, 158, 11, 0.10); }
-.bg-grade-trim-soft { background: rgba(249, 115, 22, 0.10); }
-.bg-grade-sell-soft { background: rgba(220, 38, 38, 0.10); }
-
-.dark .bg-grade-core-soft { background: rgba(0, 192, 135, 0.10); }
-.dark .bg-grade-buy-soft { background: rgba(59, 130, 246, 0.10); }
-.dark .bg-grade-hold-soft { background: rgba(245, 158, 11, 0.10); }
-.dark .bg-grade-trim-soft { background: rgba(249, 115, 22, 0.10); }
-.dark .bg-grade-sell-soft { background: rgba(246, 70, 93, 0.10); }
-
-/* Section divider */
-.section-divider {
-  border-bottom: 1px solid #171717;
+.vox-table tbody tr:hover {
+  background: color-mix(in srgb, var(--muted) 60%, transparent);
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: #ebebeb;
+  background: color-mix(in srgb, var(--muted-foreground) 35%, transparent);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4d4d4;
+  background: color-mix(in srgb, var(--muted-foreground) 55%, transparent);
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #27273a;
+/* Legacy aliases (no orphan hard light cards) */
+.shadow-border {
+  box-shadow: 0 0 0 1px var(--border);
 }
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #3b3b5c;
+.shadow-border-light {
+  box-shadow: 0 0 0 1px var(--border);
+}
+.card-vercel {
+  background: var(--card);
+  border-radius: 10px;
+  box-shadow: none;
+  border: 1px solid var(--border);
+}
+.dark .card-vercel {
+  background: var(--card);
+  box-shadow: none;
 }
 
-/* Focus ring */
-.focus-vercel:focus {
-  outline: 2px solid hsla(212, 100%, 48%, 1);
-  outline-offset: 2px;
-}
-
-/* Monospace with ligatures */
-.font-mono-liga {
-  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-feature-settings: "liga" 1, "tnum" 1;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
