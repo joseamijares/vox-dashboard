@@ -18,6 +18,7 @@ import {
   Menu,
   X,
   PieChart,
+  Shield,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -27,6 +28,7 @@ const iconMap: Record<string, React.ElementType> = {
   Brokers: Wallet,
   Grades: BarChart3,
   Sectors: PieChart,
+  Risk: Shield,
   Screener: Search,
   Alerts: Bell,
   Signals: Activity,
