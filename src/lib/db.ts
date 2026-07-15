@@ -85,6 +85,16 @@ export async function getPositions() {
       p.brokers,
       p.sector,
       p.updated_at,
+      p.price_source,
+      p.price_asof,
+      p.prev_close,
+      p.day_chg_pct,
+      CASE
+        WHEN p.price_asof IS NULL THEN true
+        WHEN p.price_asof < NOW() - INTERVAL '45 minutes' THEN true
+        ELSE false
+      END AS price_stale,
+      EXTRACT(EPOCH FROM (NOW() - p.price_asof)) / 60.0 AS price_age_min,
       COALESCE(u.security, p.ticker) AS name,
       g.technical_score,
       g.fundamental_score,
@@ -123,6 +133,9 @@ export async function getPositions() {
       "macro_score",
       "sentiment_score",
       "research_score",
+      "prev_close",
+      "day_chg_pct",
+      "price_age_min",
     ])
   );
 }

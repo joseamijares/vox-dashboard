@@ -199,10 +199,12 @@ export default function PortfolioPage() {
 
       {/* Table */}
       <div className="vox-surface overflow-x-auto">
-        <table className="vox-table w-full min-w-[720px]">
+        <table className="vox-table w-full min-w-[900px]">
           <thead>
             <tr className="border-b border-border">
               <th className="text-left px-4 py-3">Ticker</th>
+              <th className="text-right px-4 py-3">Price</th>
+              <th className="text-right px-4 py-3">Day%</th>
               <th className="text-right px-4 py-3">Value</th>
               <th className="text-right px-4 py-3">W%</th>
               <th className="text-right px-4 py-3">Grade</th>
@@ -218,10 +220,50 @@ export default function PortfolioPage() {
               const w =
                 totalValue > 0 ? ((val / totalValue) * 100).toFixed(2) : "0";
               const layers = p.layer_scores || {};
+              const day = p.day_chg_pct;
+              const stale = !!p.price_stale;
               return (
                 <tr key={p.ticker + (p.brokers || []).join()}>
                   <td className="px-4 py-3 font-semibold font-mono tracking-tight">
-                    {p.ticker}
+                    <div className="flex items-center gap-2">
+                      {p.ticker}
+                      {stale && (
+                        <span
+                          className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400"
+                          title={
+                            p.price_asof
+                              ? `Price as of ${p.price_asof}`
+                              : "No price_asof"
+                          }
+                        >
+                          stale
+                        </span>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 text-right font-mono tabular-nums text-sm">
+                    {p.live_price ? (
+                      <span title={p.price_source || ""}>
+                        ${Number(p.live_price).toFixed(2)}
+                      </span>
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
+                  </td>
+                  <td
+                    className={cn(
+                      "px-4 py-3 text-right font-mono tabular-nums text-sm",
+                      day == null
+                        ? "text-muted-foreground"
+                        : day >= 0
+                          ? "text-emerald-400"
+                          : "text-red-400",
+                      day != null && Math.abs(day) >= 8 && "font-semibold"
+                    )}
+                  >
+                    {day == null
+                      ? "—"
+                      : `${day >= 0 ? "+" : ""}${Number(day).toFixed(1)}%`}
                   </td>
                   <td className="px-4 py-3 text-right font-mono tabular-nums">
                     {fmtCurrency(val)}
@@ -265,7 +307,7 @@ export default function PortfolioPage() {
             {!filtered.length && (
               <tr>
                 <td
-                  colSpan={8}
+                  colSpan={10}
                   className="px-4 py-10 text-center text-muted-foreground text-sm"
                 >
                   No positions match filters
@@ -276,8 +318,8 @@ export default function PortfolioPage() {
         </table>
       </div>
       <p className="mt-3 text-xs text-muted-foreground">
-        Showing {filtered.length} of {allPositions.length} · Multi-broker
-        ownership is never a sell reason
+        Showing {filtered.length} of {allPositions.length} · Day% vs prev close ·
+        Stale = price_asof &gt; 45m · Multi-broker never a sell reason
       </p>
     </PageShell>
   );
