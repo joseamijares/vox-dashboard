@@ -18,13 +18,15 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [regime, setRegime] = useState({ regime: "—", confidence: 0 });
+  const [ops, setOps] = useState<any | null>(null);
 
   useEffect(() => {
     async function load() {
       try {
-        const [posRes, harnessRes] = await Promise.all([
+        const [posRes, harnessRes, opsRes] = await Promise.all([
           fetch("/api/positions"),
           fetch("/api/harness").catch(() => null),
+          fetch("/api/ops").catch(() => null),
         ]);
         if (!posRes.ok) throw new Error("Failed to load positions");
         const posJson = await posRes.json();
@@ -36,6 +38,9 @@ export default function Dashboard() {
             regime: l5.regime || "—",
             confidence: l5.confidence || 0,
           });
+        }
+        if (opsRes && opsRes.ok) {
+          setOps(await opsRes.json());
         }
       } catch {
         setError("Failed to load dashboard data");
@@ -147,6 +152,50 @@ export default function Dashboard() {
           sub={regime.regime !== "—" ? `Regime ${regime.regime}` : undefined}
         />
       </div>
+
+      {ops && (
+        <div className="vox-surface p-4 lg:p-5 mb-6 border border-border/80">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div className={cn(typography.label)}>Daily ops</div>
+            <div className="text-xs text-muted-foreground font-mono">
+              Tech {ops.weights?.tech ?? "—"}% · Energy {ops.weights?.energy ?? "—"}% · Crypto{" "}
+              {ops.weights?.crypto ?? "—"}%
+              {!ops.pricing?.ok && (
+                <span className="ml-2 text-amber-400">· prices incomplete</span>
+              )}
+            </div>
+          </div>
+          <ul className="space-y-1.5 text-sm">
+            {(ops.actions || []).slice(0, 5).map((a: string, i: number) => (
+              <li key={i} className="text-foreground/90">
+                <span className="text-muted-foreground font-mono mr-2">{i + 1}.</span>
+                {a}
+              </li>
+            ))}
+          </ul>
+          {(ops.big_moves || []).length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {ops.big_moves.slice(0, 6).map((m: any) => (
+                <span
+                  key={m.ticker}
+                  className={cn(
+                    "text-xs font-mono px-2 py-0.5 rounded",
+                    m.day_chg_pct >= 0
+                      ? "bg-emerald-500/10 text-emerald-400"
+                      : "bg-red-500/10 text-red-400"
+                  )}
+                >
+                  {m.ticker} {m.day_chg_pct >= 0 ? "+" : ""}
+                  {Number(m.day_chg_pct).toFixed(0)}%
+                </span>
+              ))}
+            </div>
+          )}
+          <p className="mt-3 text-[11px] text-muted-foreground">
+            Hygiene only · full card in Obsidian Daily-Ops-LATEST · not auto-trade
+          </p>
+        </div>
+      )}
 
       <div className="grid lg:grid-cols-3 gap-4 mb-6">
         {/* Broker allocation */}
