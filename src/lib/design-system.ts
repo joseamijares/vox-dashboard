@@ -134,6 +134,7 @@ export const navSections = [
   {
     title: "System",
     items: [
+      { href: "/architecture", label: "Architecture", icon: "Architecture" },
       { href: "/crons", label: "Crons", icon: "Crons" },
       { href: "/journal", label: "Journal", icon: "Journal" },
     ],

@@ -19,6 +19,7 @@ import {
   X,
   PieChart,
   Shield,
+  Network,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -32,6 +33,7 @@ const iconMap: Record<string, React.ElementType> = {
   Screener: Search,
   Alerts: Bell,
   Signals: Activity,
+  Architecture: Network,
   Crons: Clock,
   Journal: BookOpen,
 };
