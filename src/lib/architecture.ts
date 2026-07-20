@@ -6,7 +6,7 @@
 export const architectureMeta = {
   product: "VOX Investment Intelligence — portfolio control tower",
   phase: "Phases 1–5 complete",
-  updated: "2026-07-17",
+  updated: "2026-07-20",
   mandate: "Balanced quality compounders · ~20% annual aim · not day-trading",
   decisionSsot: "Daily Ops Card Decision Object (Telegram)",
   workdirs: {
@@ -24,10 +24,22 @@ export const modelRouting = [
     note: "Main Hermes + X research",
   },
   {
-    role: "Soft advisor",
+    role: "Soft advisor (cron)",
     model: "Kimi Coding k3",
     path: "kimi-coding (KIMI_API_KEY)",
-    note: "M/W/F · never OpenRouter · never SSOT",
+    note: "M/W/F · never OpenRouter · never SSOT · bakeoff #2",
+  },
+  {
+    role: "Soft advisor (hard)",
+    model: "Claude Sonnet 5",
+    path: "OpenRouter anthropic/claude-sonnet-5",
+    note: "On demand · bakeoff winner · vox.py advisor --model sonnet5",
+  },
+  {
+    role: "Soft advisor (draft)",
+    model: "GLM 5.2",
+    path: "OpenRouter z-ai/glm-5.2",
+    note: "Optional speed only — failed grade-trap; never sole",
   },
   {
     role: "Subagents",
