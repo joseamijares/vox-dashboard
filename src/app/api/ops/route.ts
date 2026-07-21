@@ -9,6 +9,28 @@ const CRYPTO = new Set([
   "DOT", "BONK", "PENGU", "VAULTA", "VANA", "MORPHO",
 ]);
 
+/** Shells / junk — never fail pricing.ok on these (align with Ops Card). */
+const JUNK_ASOF = new Set([
+  "MIRROR_TOTAL",
+  "CASH",
+  "GBM O",
+  "BI 270121",
+  "TOTAL",
+  "VAULTA",
+  "KITE",
+  "FF",
+]);
+
+const DUST_USD = 25;
+
+function isPriceable(ticker: string, value: number): boolean {
+  const t = String(ticker || "").toUpperCase();
+  if (!t || JUNK_ASOF.has(t)) return false;
+  if (t.includes(" ")) return false;
+  if (value < DUST_USD) return false;
+  return true;
+}
+
 /** Lightweight ops snapshot for dashboard home / API consumers */
 export async function GET() {
   try {
@@ -40,9 +62,9 @@ export async function GET() {
       const sec = String(p.sector || "").toLowerCase();
       if (sec.includes("tech")) tech += w;
       if (sec.includes("energy")) energy += w;
-      if (!p.price_asof && t !== "MIRROR_TOTAL" && t !== "CASH") missingAsof += 1;
+      if (isPriceable(t, v) && !p.price_asof) missingAsof += 1;
       const d = p.day_chg_pct != null ? Number(p.day_chg_pct) : null;
-      if (d != null && Math.abs(d) >= 8) {
+      if (d != null && Math.abs(d) >= 8 && isPriceable(t, v)) {
         big.push({
           ticker: t,
           day_chg_pct: d,
